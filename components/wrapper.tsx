@@ -4,27 +4,34 @@ import Link from "next/link";
 
 export const Wrapper = ({
   children,
-  url,
+  path,
 }: {
   children: React.ReactNode;
-  url: string;
+  path: string;
 }) => {
   return (
-    <div className="border relative rounded-lg max-w-6xl md:h-[720px] overflow-hidden p-12">
-      <div className="flex gap-2 absolute top-4 left-4">
-        <Circle className="w-4" />
-        <Circle className="w-4" />
-        <Circle className="w-4" />
+    <div className="border rounded-lg max-w-6xl md:h-[720px] overflow-scroll no-scrollbar">
+      <div className="top-bar sticky top-0 backdrop-blur-md flex z-10 justify-between items-center border-b">
+        <div className="not-prose ml-4 flex gap-2">
+          <Circle className="w-3" />
+          <Circle className="w-3" />
+          <Circle className="w-3" />
+        </div>
+        <p className="text-xs">
+          <span className="opacity-70">components/</span>
+          {path}
+        </p>
+        <Button className="not-prose text-xs" variant={"link"} asChild>
+          <Link
+            href={`https://github.com/brijr/components/tree/main/components/${path}.tsx`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Get Code
+          </Link>
+        </Button>
       </div>
-      <Button className="absolute top-4 right-4" variant={"outline"} asChild>
-        <Link
-          href={`https://github.com/brijr/components/tree/main/components/${url}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Get Code <ChevronRight className="ml-2 h-4 w-4" />
-        </Link>
-      </Button>
+
       {children}
     </div>
   );
