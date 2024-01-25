@@ -7,7 +7,7 @@ import HeroOne from "@/components/heros/hero-one";
 export default function Home() {
   return (
     <Main className="flex flex-col py-12 gap-12 items-center">
-      <Wrapper>
+      <Wrapper url="heros/hero-one.tsx">
         <HeroOne />
       </Wrapper>
     </Main>
