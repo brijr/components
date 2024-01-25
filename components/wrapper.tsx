@@ -27,11 +27,11 @@ export const Wrapper = ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            Get Code
+            source code
           </Link>
         </Button>
       </div>
-
+      
       {children}
     </div>
   );
