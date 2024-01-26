@@ -1,7 +1,6 @@
 // Layout Imports
 import { Main } from "@/components/craft/layout";
 import { Wrapper } from "@/components/wrapper";
-import { Info } from "@/components/info";
 
 // Component Imports
 import HeroFour from "@/components/heros/hero-four";
