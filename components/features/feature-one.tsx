@@ -3,7 +3,7 @@ import * as Craft from "@/components/craft/layout";
 import Balancer from "react-wrap-balancer";
 
 // Icons
-import { HomeIcon, HeartIcon, StarIcon } from "@radix-ui/react-icons";
+import { Coins } from "lucide-react";
 
 type FeatureText = {
   icon: JSX.Element;
@@ -13,22 +13,22 @@ type FeatureText = {
 
 const featureText: FeatureText[] = [
   {
-    icon: <StarIcon className="w-6 h-6" />,
-    title: "Veteran Disability",
+    icon: <Coins className="w-6 h-6" />,
+    title: "Lorem Ipsum",
     description:
-      "Many veterans bear the mental and physical scars sustained during their service. Veteran disability benefits provides veterans with compensation for their sacrifice.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
-    icon: <HomeIcon className="w-6 h-6" />,
-    title: "Housing Benefits",
+    icon: <Coins className="w-6 h-6" />,
+    title: "Lorem Ipsum",
     description:
-      "Whether it's moving into a new home, or remodeling a current home to be better suited to life with a disability, there are mortgage and loan services that only veterans can access.",
+      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
-    icon: <HeartIcon className="w-6 h-6" />,
-    title: "VA Healthcare",
+    icon: <Coins className="w-6 h-6" />,
+    title: "Lorem Ipsum",
     description:
-      "Service to our nation has guaranteed many veterans access to quality healthcare for the rest of their lives. However, knowing what is covered and where to get medical help can be tough.",
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
   },
 ];
 
@@ -39,15 +39,12 @@ const Feature = () => {
         <div className="flex flex-col gap-6">
           <h3 className="text-4xl">
             <Balancer>
-              Uncover the benefits you&apos;ve earned through service to our
-              nation
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit
             </Balancer>
           </h3>
           <h4 className="text-2xl font-light opacity-70">
             <Balancer>
-              Your tireless and valiant service has not gone unnoticed. Our
-              great nation recognizes your sacrifice by providing you and other
-              heroes with exclusive veteran benefits.
+              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
             </Balancer>
           </h4>
 
