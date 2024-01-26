@@ -1,4 +1,6 @@
-import { Circle, ChevronRight, ArrowUpRight } from "lucide-react";
+"use client";
+
+import { Circle, ArrowUpRight } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import CopyButton from "./copy";
