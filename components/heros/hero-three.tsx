@@ -3,14 +3,14 @@ import Image from "next/image";
 import Logo from "@/public/logo.svg";
 import Link from "next/link";
 
-const Four = () => {
+const Hero = () => {
   return (
     <Craft.Section className="not-prose">
       <Craft.Container>
         <div className="w-full h-full m-auto max-w-5xl py-10 px-6 flex flex-col gap-8">
           {/* Large Text */}
           <h1 className="text-6xl font-normal tracking-tight">
-            Four is a component {/* eslint-disable-next-line */}
+            This is a component {/* eslint-disable-next-line */}
             <img
               className="inline my-auto -mt-6"
               width={172}
@@ -57,4 +57,4 @@ const Four = () => {
   );
 };
 
-export default Four;
+export default Hero;

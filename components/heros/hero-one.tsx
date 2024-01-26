@@ -2,18 +2,19 @@ import * as Craft from "@/components/craft/layout";
 import Placeholder from "@/public/placeholder.jpg";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 const Hero = () => {
   return (
-    <Craft.Section className="border-b">
+    <Craft.Section>
       <Craft.Container>
         <div className="not-prose flex flex-col gap-6">
-          <a
-            href="https://9d8.dev"
-            className="flex gap-1 text-xs items-center border w-fit rounded-lg px-2 py-1 opacity-70 hover:opacity-100 transition-all"
-          >
-            Lorem ipsum dolor sit amet <ArrowRight className="w-4" />
-          </a>
+          <Button asChild className="w-fit" variant={"outline"}>
+            <Link href="https://9d8.dev">
+              Lorem ipsum dolor sit amet <ArrowRight className="w-4" />
+            </Link>
+          </Button>
           <h1 className="text-primary-500 text-4xl md:text-6xl">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit
           </h1>

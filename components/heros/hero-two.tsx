@@ -8,7 +8,7 @@ import { Camera } from "lucide-react";
 
 const Hero = () => {
   return (
-    <Craft.Section className="border-b">
+    <Craft.Section>
       <Craft.Container className="text-center items-center flex flex-col gap-6">
         <Image
           src={Logo}

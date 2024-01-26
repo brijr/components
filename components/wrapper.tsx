@@ -10,8 +10,8 @@ export const Wrapper = ({
   path: string;
 }) => {
   return (
-    <div className="border rounded-lg drop-shadow-sm hover:drop-shadow-lg transition-all max-w-6xl md:max-h-[720px] overflow-hidden no-scrollbar">
-      <div className="top-bar sticky top-0 backdrop-blur-md flex z-30 pl-4 pr-1 justify-between items-center border-b">
+    <div className="w-full bg-background drop-shadow-md hover:drop-shadow-xl border rounded-lg transition-all max-w-6xl md:max-h-[760px] overflow-hidden no-scrollbar">
+      <div className="top-bar sticky top-0 flex z-30 pl-4 pr-1 h-10 justify-between items-center border-b">
         <div className="not-prose flex gap-2">
           <Circle className="w-3" />
           <Circle className="w-3" />

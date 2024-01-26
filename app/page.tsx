@@ -7,6 +7,7 @@ import { Info } from "@/components/info";
 import HeroOne from "@/components/heros/hero-one";
 import HeroTwo from "@/components/heros/hero-two";
 import HeroThree from "@/components/heros/hero-three";
+import HeroFour from "@/components/heros/hero-four";
 
 const components = [
   {
@@ -20,6 +21,10 @@ const components = [
   {
     component: <HeroThree />,
     path: "heros/hero-three",
+  },
+  {
+    component: <HeroFour />,
+    path: "heros/hero-four",
   },
 ];
 
