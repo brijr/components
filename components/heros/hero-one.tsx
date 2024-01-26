@@ -10,7 +10,7 @@ const Hero = () => {
     <Craft.Section>
       <Craft.Container>
         <div className="not-prose flex flex-col gap-6">
-          <Button asChild className="w-fit" variant={"outline"}>
+          <Button asChild className="w-fit" size={"sm"} variant={"outline"}>
             <Link href="https://9d8.dev">
               Lorem ipsum dolor sit amet <ArrowRight className="w-4" />
             </Link>

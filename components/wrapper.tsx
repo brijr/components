@@ -36,7 +36,7 @@ export const Wrapper = ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            source code <ArrowUpRight className="ml-1 w-3" />
+            view on github <ArrowUpRight className="ml-1 w-3" />
           </Link>
         </Button>
       </div>

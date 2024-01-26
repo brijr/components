@@ -2,6 +2,8 @@
 import { Main } from "@/components/craft/layout";
 import { Wrapper } from "@/components/wrapper";
 import { Info } from "@/components/info";
+import { End } from "@/components/end";
+import * as Craft from "@/components/craft/layout";
 
 // Component Imports
 import HeroOne from "@/components/heros/hero-one";
@@ -40,14 +42,21 @@ const components = [
 
 export default function Home() {
   return (
-    <Main className="flex flex-col py-12 gap-12 items-center">
+    <Main>
       <Info />
-      {/* Components */}
-      {components.map((component) => (
-        <Wrapper code="" key={component.path} path={component.path}>
-          {component.component}
-        </Wrapper>
-      ))}
+      <Craft.Section className="flex flex-col py-12 gap-12 items-center">
+        {/* Components */}
+        {components.map((component) => (
+          <Wrapper
+            code={component.code}
+            key={component.path}
+            path={component.path}
+          >
+            {component.component}
+          </Wrapper>
+        ))}
+      </Craft.Section>
+      <End />
     </Main>
   );
 }
