@@ -9,10 +9,10 @@ const Hero = () => {
       <Craft.Container>
         <div className="not-prose flex flex-col gap-6">
           <a
-            href="https://fjord.dev"
+            href="https://9d8.dev"
             className="flex gap-1 text-xs items-center border w-fit rounded-lg px-2 py-1 opacity-70 hover:opacity-100 transition-all"
           >
-            Lorem ipsum dolor sit amet <ArrowRight />
+            Lorem ipsum dolor sit amet <ArrowRight className="w-4" />
           </a>
           <h1 className="text-primary-500 text-4xl md:text-6xl">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit

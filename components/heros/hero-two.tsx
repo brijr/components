@@ -2,43 +2,41 @@ import * as Craft from "@/components/craft/layout";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/public/logo.svg";
-import LogoLightMode from "@/public/logo_light_bg.svg";
 import Balancer from "react-wrap-balancer";
 import { Button } from "@/components/ui/button";
 import { Camera } from "lucide-react";
 
 const Hero = () => {
   return (
-    <Craft.Section>
+    <Craft.Section className="border-b">
       <Craft.Container className="text-center items-center flex flex-col gap-6">
         <Image
           src={Logo}
-          width={300}
-          height={100}
-          alt="Presets.com Logo"
-          className="hidden dark:block not-prose"
-        ></Image>
+          width={172}
+          height={72}
+          alt="Company Logo"
+          className="not-prose dark:invert mb-6 md:mb-12"
+        />
         <h1 className="!mb-0">
           <Balancer>
-            Presets and Photo Resources for Photographers and Content Creators.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </Balancer>
         </h1>
         <h3 className="opacity-75 !my-0">
           <Balancer>
-            Presets and photography resources designed by expert photographers
-            and content creators to help you enhance your photos and online
-            presence.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            nisi ut aliquip ex ea commodo consequat.
           </Balancer>
         </h3>
-        <div className="my-8 not-prose flex gap-2">
+        <div className="mt-6 md:mt-12 not-prose flex gap-2">
           <Button asChild>
             <Link href="/">
               <Camera className="mr-2" />
-              Browse Presets
+              Lorem Ipsum
             </Link>
           </Button>
           <Button variant={"ghost"} asChild>
-            <Link href="/posts">Discover Photo Resources -{">"}</Link>
+            <Link href="/posts">Dolor Sit Amet -{">"}</Link>
           </Button>
         </div>
       </Craft.Container>

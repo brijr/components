@@ -1,4 +1,4 @@
-import { Circle, ChevronRight } from "lucide-react";
+import { Circle, ChevronRight, ArrowUpRight } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 
@@ -10,9 +10,9 @@ export const Wrapper = ({
   path: string;
 }) => {
   return (
-    <div className="border rounded-lg max-w-6xl md:h-[720px] overflow-scroll no-scrollbar">
-      <div className="top-bar sticky top-0 backdrop-blur-md flex z-10 justify-between items-center border-b">
-        <div className="not-prose ml-4 flex gap-2">
+    <div className="border rounded-lg drop-shadow-sm hover:drop-shadow-lg transition-all max-w-6xl md:max-h-[720px] overflow-hidden no-scrollbar">
+      <div className="top-bar sticky top-0 backdrop-blur-md flex z-30 pl-4 pr-1 justify-between items-center border-b">
+        <div className="not-prose flex gap-2">
           <Circle className="w-3" />
           <Circle className="w-3" />
           <Circle className="w-3" />
@@ -21,17 +21,22 @@ export const Wrapper = ({
           <span className="opacity-70">components/</span>
           {path}
         </p>
-        <Button className="not-prose text-xs" variant={"link"} asChild>
+        <Button
+          className="not-prose text-xs font-light"
+          size={"sm"}
+          variant={"link"}
+          asChild
+        >
           <Link
             href={`https://github.com/brijr/components/tree/main/components/${path}.tsx`}
             target="_blank"
             rel="noopener noreferrer"
           >
-            source code
+            source code <ArrowUpRight className="ml-1 w-3" />
           </Link>
         </Button>
       </div>
-      
+
       {children}
     </div>
   );
