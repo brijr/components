@@ -12,7 +12,7 @@ type CopyButtonProps = {
 const CopyButton: React.FC<CopyButtonProps> = ({ textToCopy, className }) => {
   const [copyStatus, setCopyStatus] = React.useState(
     <>
-      <span className="mr-1 lowercase text-sm">Copy Code</span>
+      <span className="mr-1 sr lowercase text-xs">Copy Code</span>
       <Copy className="w-4" />
     </>
   );
