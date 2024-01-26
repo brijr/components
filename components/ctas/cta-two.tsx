@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import * as Craft from "@/components/craft/layout";
+import Balancer from "react-wrap-balancer";
 
 // Component Imports
 import { Button } from "@/components/ui/button";
@@ -24,7 +25,7 @@ const formSchema = z.object({
   }),
 });
 
-export function CTAForm() {
+export function CTA() {
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -43,10 +44,12 @@ export function CTAForm() {
   return (
     <Craft.Section>
       <Craft.Container className="space-y-8">
-        <h3 className="text-2xl font-bold">Try Fjord out for yourself!</h3>
+        <h3 className="text-2xl font-bold">Lorem ipsum dolor sit amet!</h3>
         <p className="text-lg">
-          Reach out to learn more about Fjord from the developers. See how Fjord
-          can be the perfect starter for your next website.
+          <Balancer>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </Balancer>
         </p>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -63,7 +66,7 @@ export function CTAForm() {
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription>No spam, ever!</FormDescription>
+                  <FormDescription>Lorem ipsum dolor sit amet.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -76,4 +79,4 @@ export function CTAForm() {
   );
 }
 
-export default CTAForm;
+export default CTA;
