@@ -65,6 +65,7 @@
     "eslint-config-next": "14.1.0",
     "next-themes": "^0.2.1",
     "postcss": "^8",
+    "raw-loader": "^4.0.2",
     "react-wrap-balancer": "^1.1.0",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
