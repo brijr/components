@@ -17,6 +17,10 @@ import FAQOne from "@/components/faqs/faqs-one";
 // Feature Component Imports
 import FeatureOne from "@/components/features/feature-one";
 
+// Header Component Imports
+import HeaderOne from "@/components/headers/header-one";
+import HeaderTwo from "@/components/headers/header-two";
+
 // Component Code Imports
 const HeroOneCode = readFileSync(
   join(process.cwd(), "components/heros/hero-one.tsx"),
@@ -48,6 +52,14 @@ const FAQOneCode = readFileSync(
 );
 const FeatureOneCode = readFileSync(
   join(process.cwd(), "components/features/feature-one.tsx"),
+  "utf8"
+);
+const HeaderOneCode = readFileSync(
+  join(process.cwd(), "components/headers/header-one.tsx"),
+  "utf8"
+);
+const HeaderTwoCode = readFileSync(
+  join(process.cwd(), "components/headers/header-two.tsx"),
   "utf8"
 );
 
@@ -92,5 +104,15 @@ export const components = [
     component: FeatureOne,
     path: "features/feature-one",
     code: FeatureOneCode,
+  },
+  {
+    component: HeaderOne,
+    path: "headers/header-one",
+    code: HeaderOneCode,
+  },
+  {
+    component: HeaderTwo,
+    path: "headers/header-two",
+    code: HeaderTwoCode,
   },
 ];
