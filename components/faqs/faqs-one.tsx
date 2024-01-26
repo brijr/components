@@ -1,6 +1,6 @@
 import * as Craft from "@/components/craft/layout";
 
-import { ArrowTopRightIcon } from "@radix-ui/react-icons";
+import { ArrowUpRight } from "lucide-react";
 
 import {
   Accordion,
@@ -9,27 +9,32 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const content: faqProps[] = [
+type FAQItem = {
+  question: string;
+  answer: string;
+  link?: string;
+};
+
+const content: FAQItem[] = [
   {
-    question: "What is All Veteran and how can it help me?",
+    question: "Lorem ipsum dolor sit amet?",
     answer:
-      "All Veteran is a dedicated platform that offers comprehensive resources and information on veteran benefits. Whether you're looking to understand your entitlements, seeking healthcare support, or need assistance with post-military career opportunities, our platform guides you through the available benefits and how to access them.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
-    question: "Are the resources on All Veterans free to access?",
+    question: "Ut enim ad minim veniam?",
     answer:
-      "Yes, All Veteran is committed to supporting the veteran community by providing free access to all our informational resources. Our goal is to ensure every veteran is well-informed about the benefits they've earned through their service.",
+      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
-    question:
-      "How can I ensure I'm eligible for the benefits listed on All Veteran?",
+    question: "Duis aute irure dolor in reprehenderit?",
     answer:
-      "While All Veteran provides a comprehensive overview of available benefits, individual eligibility can vary based on service duration, type of discharge, and other criteria. We recommend consulting with a Veterans Service Officer (VSO) or the VA directly to verify your specific eligibility.",
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
   },
   {
-    question: "Is All Veteran associated with the VA?",
+    question: "Excepteur sint occaecat cupidatat non proident?",
     answer:
-      "We are not associated with the VA. Rather, we offer high-quality free resources to veterans and friends of veterans to help them get the benefits they've earned.",
+      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   },
 ];
 
@@ -55,7 +60,7 @@ const FAQ = () => {
                         href={item.link}
                         className="opacity-60 mt-2 hover:opacity-100 transition-all flex items-center"
                       >
-                        Learn more <ArrowTopRightIcon className="ml-1" />
+                        Learn more <ArrowUpRight className="ml-1" />
                       </a>
                     )}
                   </AccordionContent>
