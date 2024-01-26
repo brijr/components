@@ -1,3 +1,5 @@
+"use client";
+
 // Layout Imports
 import { Main } from "@/components/craft/layout";
 import { Wrapper } from "@/components/wrapper";
@@ -17,6 +19,7 @@ import HeroTwoCode from "!!raw-loader!@/components/heros/hero-two";
 import HeroThreeCode from "!!raw-loader!@/components/heros/hero-three";
 import HeroFourCode from "!!raw-loader!@/components/heros/hero-four";
 
+// Component Data
 const components = [
   {
     component: <HeroOne />,
