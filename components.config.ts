@@ -11,6 +11,9 @@ import HeroFour from "@/components/heros/hero-four";
 import CTAOne from "@/components/ctas/cta-one";
 import CTATwo from "@/components/ctas/cta-two";
 
+// FAQ Component Imports
+import FAQOne from "@/components/faqs/faqs-one";
+
 // Component Code Imports
 const HeroOneCode = readFileSync(
   join(process.cwd(), "components/heros/hero-one.tsx"),
@@ -34,6 +37,10 @@ const CTAOneCode = readFileSync(
 );
 const CTATwoCode = readFileSync(
   join(process.cwd(), "components/ctas/cta-two.tsx"),
+  "utf8"
+);
+const FAQOneCode = readFileSync(
+  join(process.cwd(), "components/faqs/faqs-one.tsx"),
   "utf8"
 );
 
@@ -67,5 +74,10 @@ export const components = [
     component: CTATwo,
     path: "ctas/cta-two",
     code: CTATwoCode,
+  },
+  {
+    component: FAQOne,
+    path: "faqs/faqs-one",
+    code: FAQOneCode,
   },
 ];
