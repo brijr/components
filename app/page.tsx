@@ -5,6 +5,7 @@ import { Info } from "@/components/info";
 import { End } from "@/components/end";
 import * as Craft from "@/components/craft/layout";
 
+// Component Config
 import { components } from "@/components.config";
 
 export default function Home() {
