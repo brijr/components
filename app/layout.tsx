@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <Layout className={font.className}>
       {children}
-      <Toaster />
+      <Toaster position="top-right" />
     </Layout>
   );
 }
