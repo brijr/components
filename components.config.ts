@@ -14,6 +14,9 @@ import CTATwo from "@/components/ctas/cta-two";
 // FAQ Component Imports
 import FAQOne from "@/components/faqs/faqs-one";
 
+// Feature Component Imports
+import FeatureOne from "@/components/features/feature-one";
+
 // Component Code Imports
 const HeroOneCode = readFileSync(
   join(process.cwd(), "components/heros/hero-one.tsx"),
@@ -43,7 +46,12 @@ const FAQOneCode = readFileSync(
   join(process.cwd(), "components/faqs/faqs-one.tsx"),
   "utf8"
 );
+const FeatureOneCode = readFileSync(
+  join(process.cwd(), "components/features/feature-one.tsx"),
+  "utf8"
+);
 
+// Component Interface
 export const components = [
   {
     component: HeroOne,
@@ -79,5 +87,10 @@ export const components = [
     component: FAQOne,
     path: "faqs/faqs-one",
     code: FAQOneCode,
+  },
+  {
+    component: FeatureOne,
+    path: "features/feature-one",
+    code: FeatureOneCode,
   },
 ];
