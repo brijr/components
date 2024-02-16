@@ -25,20 +25,23 @@ export default function Home({
 
   return (
     <Main>
-      <Info />
-      <Craft.Section className="flex flex-col py-12 gap-12 items-center">
-        <div className="flex not-prose gap-4">
-          <p>Sort by Type: </p>
+      <Info>
+        <Craft.Container className="not-prose w-full flex flex-wrap items-center">
+          <p className="hidden md:block mr-4 text-sm">Sort by Type: </p>
           {types.map((type) => (
-            <Button asChild variant="outline" key={type}>
-              <Link className="block" href={`/?type=${type}`} passHref>
+            <Button asChild variant="link" className="px-2" key={type}>
+              <Link
+                className={typeFilter === type ? "underline" : ""}
+                href={`/?type=${type}`}
+                passHref
+              >
                 {type}
               </Link>
             </Button>
           ))}
-        </div>
-        {/* Filtered Components */}
-        {/* Filtered Components */}
+        </Craft.Container>
+      </Info>
+      <Craft.Section className="flex p-2 md:p-0 flex-col py-12 gap-12 items-center">
         {filteredComponents.map((component) => (
           <Wrapper
             code={component.code}

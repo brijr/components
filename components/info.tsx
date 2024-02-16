@@ -3,12 +3,16 @@ import { ModeToggle } from "./craft/theme/theme-toggle";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { Github, Twitter } from "lucide-react";
+import { ReactNode } from "react";
 
-export const Info = () => {
+export const Info = ({ children }: { children?: ReactNode }) => {
   return (
     <Craft.Section>
       <Craft.Container className="not-prose grid gap-4">
-        <p className="text-orange-500">{`</>`}</p>
+        <Link
+          href="/"
+          className="text-orange-500 hover:text-orange-300 transition-all"
+        >{`</>`}</Link>
         <h1>components.bridger.to</h1>
         <h2 className="!leading-[1.3] mb-4 font-light opacity-75 lowercase">
           This is a collection of NextJS components created by{" "}
@@ -50,6 +54,7 @@ export const Info = () => {
           </Button>
         </div>
       </Craft.Container>
+      {children}
     </Craft.Section>
   );
 };
