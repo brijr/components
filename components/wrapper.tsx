@@ -13,7 +13,7 @@ export const Wrapper = ({
   children: React.ReactNode;
   path: string;
   code: string;
-  type: string;
+  type?: string;
 }) => {
   return (
     <div
