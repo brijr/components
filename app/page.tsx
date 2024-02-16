@@ -27,9 +27,14 @@ export default function Home({
     <Main>
       <Info>
         <Craft.Container className="not-prose w-full flex flex-wrap items-center">
-          <p className="hidden md:block mr-4 text-sm">Sort by Type: </p>
+          <p className="hidden md:block mr-4 text-base">Sort by Type: </p>
           {types.map((type) => (
-            <Button asChild variant="link" className="px-2" key={type}>
+            <Button
+              asChild
+              variant="link"
+              className="px-2 font-normal text-base"
+              key={type}
+            >
               <Link
                 className={typeFilter === type ? "underline" : ""}
                 href={`/?type=${type}`}
