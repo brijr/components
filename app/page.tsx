@@ -6,7 +6,7 @@ import ComponentList from "@/components/component-list";
 export default function Home() {
   return (
     <Main>
-      <ComponentList />
+      <ComponentList searchParams={{}} />
       <End />
     </Main>
   );
