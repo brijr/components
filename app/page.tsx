@@ -1,3 +1,5 @@
+"use server";
+
 // Layout Imports
 import { Main } from "@/components/craft/layout";
 import { Wrapper } from "@/components/wrapper";
