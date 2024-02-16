@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <Craft.Section>
       <Craft.Container className="text-center">
-        <h2 className="!mt-0">This is a Header</h2>
+        <h1 className="!my-0">This is a Header</h1>
         <p className="text-gray-500">
           <Balancer>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam

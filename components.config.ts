@@ -21,98 +21,96 @@ import FeatureOne from "@/components/features/feature-one";
 import HeaderOne from "@/components/headers/header-one";
 import HeaderTwo from "@/components/headers/header-two";
 
-// Component Code Imports
-const HeroOneCode = readFileSync(
-  join(process.cwd(), "components/heros/hero-one.tsx"),
-  "utf8"
-);
-const HeroTwoCode = readFileSync(
-  join(process.cwd(), "components/heros/hero-two.tsx"),
-  "utf8"
-);
-const HeroThreeCode = readFileSync(
-  join(process.cwd(), "components/heros/hero-three.tsx"),
-  "utf8"
-);
-const HeroFourCode = readFileSync(
-  join(process.cwd(), "components/heros/hero-four.tsx"),
-  "utf8"
-);
-const CTAOneCode = readFileSync(
-  join(process.cwd(), "components/ctas/cta-one.tsx"),
-  "utf8"
-);
-const CTATwoCode = readFileSync(
-  join(process.cwd(), "components/ctas/cta-two.tsx"),
-  "utf8"
-);
-const FAQOneCode = readFileSync(
-  join(process.cwd(), "components/faqs/faqs-one.tsx"),
-  "utf8"
-);
-const FeatureOneCode = readFileSync(
-  join(process.cwd(), "components/features/feature-one.tsx"),
-  "utf8"
-);
-const HeaderOneCode = readFileSync(
-  join(process.cwd(), "components/headers/header-one.tsx"),
-  "utf8"
-);
-const HeaderTwoCode = readFileSync(
-  join(process.cwd(), "components/headers/header-two.tsx"),
-  "utf8"
-);
-
-// Component Interface
-export const components = [
+// Component Code Imports and Interface
+export const components: Components[] = [
   {
     component: HeroOne,
     path: "heros/hero-one",
-    code: HeroOneCode,
+    code: readFileSync(
+      join(process.cwd(), "components/heros/hero-one.tsx"),
+      "utf8"
+    ),
+    type: "hero",
   },
   {
     component: HeroTwo,
     path: "heros/hero-two",
-    code: HeroTwoCode,
+    code: readFileSync(
+      join(process.cwd(), "components/heros/hero-two.tsx"),
+      "utf8"
+    ),
+    type: "hero",
   },
   {
     component: HeroThree,
     path: "heros/hero-three",
-    code: HeroThreeCode,
+    code: readFileSync(
+      join(process.cwd(), "components/heros/hero-three.tsx"),
+      "utf8"
+    ),
+    type: "hero",
   },
   {
     component: HeroFour,
     path: "heros/hero-four",
-    code: HeroFourCode,
+    code: readFileSync(
+      join(process.cwd(), "components/heros/hero-four.tsx"),
+      "utf8"
+    ),
+    type: "hero",
   },
   {
     component: CTAOne,
     path: "ctas/cta-one",
-    code: CTAOneCode,
+    code: readFileSync(
+      join(process.cwd(), "components/ctas/cta-one.tsx"),
+      "utf8"
+    ),
+    type: "cta",
   },
   {
     component: CTATwo,
     path: "ctas/cta-two",
-    code: CTATwoCode,
+    code: readFileSync(
+      join(process.cwd(), "components/ctas/cta-two.tsx"),
+      "utf8"
+    ),
+    type: "cta",
   },
   {
     component: FAQOne,
     path: "faqs/faqs-one",
-    code: FAQOneCode,
+    code: readFileSync(
+      join(process.cwd(), "components/faqs/faqs-one.tsx"),
+      "utf8"
+    ),
+    type: "faq",
   },
   {
     component: FeatureOne,
     path: "features/feature-one",
-    code: FeatureOneCode,
+    code: readFileSync(
+      join(process.cwd(), "components/features/feature-one.tsx"),
+      "utf8"
+    ),
+    type: "feature",
   },
   {
     component: HeaderOne,
     path: "headers/header-one",
-    code: HeaderOneCode,
+    code: readFileSync(
+      join(process.cwd(), "components/headers/header-one.tsx"),
+      "utf8"
+    ),
+    type: "header",
   },
   {
     component: HeaderTwo,
     path: "headers/header-two",
-    code: HeaderTwoCode,
+    code: readFileSync(
+      join(process.cwd(), "components/headers/header-two.tsx"),
+      "utf8"
+    ),
+    type: "header",
   },
 ];

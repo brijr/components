@@ -15,9 +15,14 @@ const CTA = () => {
               labore et dolore magna aliqua.
             </Balancer>
           </h4>
-          <Button className="w-fit" asChild>
-            <Link href="#">Get Started</Link>
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button className="w-fit" asChild>
+              <Link href="#">Get Started</Link>
+            </Button>
+            <Button className="w-fit" variant="link" asChild>
+              <Link href="#">Learn More {"->"}</Link>
+            </Button>
+          </div>
         </div>
       </Craft.Container>
     </Craft.Section>

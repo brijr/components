@@ -8,10 +8,12 @@ export const Wrapper = ({
   children,
   path,
   code,
+  type,
 }: {
   children: React.ReactNode;
   path: string;
   code: string;
+  type: string;
 }) => {
   return (
     <div

@@ -12,7 +12,7 @@ const Hero = () => {
         {/* Name and Nav */}
         <div className="w-full flex justify-between">
           <div className="">
-            <h1 className="text-6xl uppercase font-medium mb-4">
+            <h1 className="text-6xl font-normal mb-4">
               <Link className="hover:opacity-70 transition-all" href="#">
                 Lorem Ipsum
               </Link>
