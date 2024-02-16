@@ -1,5 +1,3 @@
-"use server";
-
 // Layout Imports
 import { Main } from "@/components/craft/layout";
 import { Wrapper } from "@/components/wrapper";
@@ -15,7 +13,7 @@ import { components } from "@/components.config";
 // Types of components
 const types: ComponentTypes[] = ["hero", "feature", "cta", "header", "faq"];
 
-export default function Home({
+export default async function Home({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
