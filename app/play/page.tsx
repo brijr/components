@@ -8,7 +8,7 @@ import Header from "@/components/headers/header-one";
 export default function Home() {
   return (
     <Main className="flex min-h-screen flex-col items-center gap-12 py-12">
-      <Wrapper code="playground" path="playground">
+      <Wrapper code="playground" path="playground" type="test">
         {/* Component in Dev */}
         <Header />
         {/* Component in Dev */}
