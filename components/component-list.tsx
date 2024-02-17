@@ -11,7 +11,7 @@ import { components } from "@/components.config";
 // Types of components
 const types: ComponentTypes[] = ["hero", "feature", "cta", "header", "faq"];
 
-export default async function ComponentList({
+export default function ComponentList({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
