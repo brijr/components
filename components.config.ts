@@ -16,6 +16,7 @@ import FAQOne from "@/components/faqs/faqs-one";
 
 // Feature Component Imports
 import FeatureOne from "@/components/features/feature-one";
+import FeatureTwo from "@/components/features/feature-two";
 
 // Header Component Imports
 import HeaderOne from "@/components/headers/header-one";
@@ -24,43 +25,47 @@ import HeaderTwo from "@/components/headers/header-two";
 // Component Code Imports
 const HeroOneCode = readFileSync(
   join(process.cwd(), "components/heros/hero-one.tsx"),
-  "utf8"
+  "utf8",
 );
 const HeroTwoCode = readFileSync(
   join(process.cwd(), "components/heros/hero-two.tsx"),
-  "utf8"
+  "utf8",
 );
 const HeroThreeCode = readFileSync(
   join(process.cwd(), "components/heros/hero-three.tsx"),
-  "utf8"
+  "utf8",
 );
 const HeroFourCode = readFileSync(
   join(process.cwd(), "components/heros/hero-four.tsx"),
-  "utf8"
+  "utf8",
 );
 const CTAOneCode = readFileSync(
   join(process.cwd(), "components/ctas/cta-one.tsx"),
-  "utf8"
+  "utf8",
 );
 const CTATwoCode = readFileSync(
   join(process.cwd(), "components/ctas/cta-two.tsx"),
-  "utf8"
+  "utf8",
 );
 const FAQOneCode = readFileSync(
   join(process.cwd(), "components/faqs/faqs-one.tsx"),
-  "utf8"
+  "utf8",
 );
 const FeatureOneCode = readFileSync(
   join(process.cwd(), "components/features/feature-one.tsx"),
-  "utf8"
+  "utf8",
+);
+const FeatureTwoCode = readFileSync(
+  join(process.cwd(), "components/features/feature-two.tsx"),
+  "utf8",
 );
 const HeaderOneCode = readFileSync(
   join(process.cwd(), "components/headers/header-one.tsx"),
-  "utf8"
+  "utf8",
 );
 const HeaderTwoCode = readFileSync(
   join(process.cwd(), "components/headers/header-two.tsx"),
-  "utf8"
+  "utf8",
 );
 
 // Component Interface
@@ -111,6 +116,12 @@ export const components: Components[] = [
     component: FeatureOne,
     path: "features/feature-one",
     code: FeatureOneCode,
+    type: "feature",
+  },
+  {
+    component: FeatureTwo,
+    path: "features/feature-two",
+    code: FeatureTwoCode,
     type: "feature",
   },
   {
