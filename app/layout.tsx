@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import { Layout } from "@/components/craft/layout";
 import { Toaster } from "@/components/ui/sonner";
+import { Background } from "@/components/backgrounds";
 
 const font = Manrope({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
     <Layout className={font.className}>
       {children}
       <Toaster position="top-right" />
+      <Background />
     </Layout>
   );
 }
