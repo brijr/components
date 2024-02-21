@@ -35,9 +35,7 @@ export default function Home() {
               }`}
               key={type}
             >
-              <Link href={`/${type}`} passHref>
-                {type}
-              </Link>
+              <Link href={`/${type}`}>{type}</Link>
             </Button>
           ))}
         </Craft.Container>
