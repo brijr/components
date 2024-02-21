@@ -8,7 +8,7 @@ import Placeholder from "@/public/placeholder.jpg";
 const Feature = () => {
   return (
     <Craft.Section>
-      <Craft.Container className="rounded-lg md:rounded-xl p-6 md:p-12 grid md:grid-cols-2 md:gap-12 items-stretch">
+      <Craft.Container className="grid md:grid-cols-2 md:gap-12 items-stretch">
         <div className="flex flex-col gap-6 py-8">
           <h3 className="!my-0">Lorem ipsum dolor sit</h3>
           <p className="font-light leading-[1.4] opacity-70">
