@@ -6,6 +6,7 @@ import HeroOne from "@/components/heros/hero-one";
 import HeroTwo from "@/components/heros/hero-two";
 import HeroThree from "@/components/heros/hero-three";
 import HeroFour from "@/components/heros/hero-four";
+import HeroFive from "@/components/heros/hero-five";
 
 // CTA Component Imports
 import CTAOne from "@/components/ctas/cta-one";
@@ -25,47 +26,51 @@ import HeaderTwo from "@/components/headers/header-two";
 // Component Code Imports
 const HeroOneCode = readFileSync(
   join(process.cwd(), "components/heros/hero-one.tsx"),
-  "utf8",
+  "utf8"
 );
 const HeroTwoCode = readFileSync(
   join(process.cwd(), "components/heros/hero-two.tsx"),
-  "utf8",
+  "utf8"
 );
 const HeroThreeCode = readFileSync(
   join(process.cwd(), "components/heros/hero-three.tsx"),
-  "utf8",
+  "utf8"
 );
 const HeroFourCode = readFileSync(
   join(process.cwd(), "components/heros/hero-four.tsx"),
-  "utf8",
+  "utf8"
+);
+const HeroFiveCode = readFileSync(
+  join(process.cwd(), "components/heros/hero-five.tsx"),
+  "utf8"
 );
 const CTAOneCode = readFileSync(
   join(process.cwd(), "components/ctas/cta-one.tsx"),
-  "utf8",
+  "utf8"
 );
 const CTATwoCode = readFileSync(
   join(process.cwd(), "components/ctas/cta-two.tsx"),
-  "utf8",
+  "utf8"
 );
 const FAQOneCode = readFileSync(
   join(process.cwd(), "components/faqs/faqs-one.tsx"),
-  "utf8",
+  "utf8"
 );
 const FeatureOneCode = readFileSync(
   join(process.cwd(), "components/features/feature-one.tsx"),
-  "utf8",
+  "utf8"
 );
 const FeatureTwoCode = readFileSync(
   join(process.cwd(), "components/features/feature-two.tsx"),
-  "utf8",
+  "utf8"
 );
 const HeaderOneCode = readFileSync(
   join(process.cwd(), "components/headers/header-one.tsx"),
-  "utf8",
+  "utf8"
 );
 const HeaderTwoCode = readFileSync(
   join(process.cwd(), "components/headers/header-two.tsx"),
-  "utf8",
+  "utf8"
 );
 
 // Component Interface
@@ -92,6 +97,12 @@ export const components: Components[] = [
     component: HeroFour,
     path: "heros/hero-four",
     code: HeroFourCode,
+    type: "hero",
+  },
+  {
+    component: HeroFive,
+    path: "heros/hero-five",
+    code: HeroFiveCode,
     type: "hero",
   },
   {
