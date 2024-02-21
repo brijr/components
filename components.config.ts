@@ -1,5 +1,3 @@
-"use server";
-
 import { readFileSync } from "fs";
 import { join } from "path";
 
