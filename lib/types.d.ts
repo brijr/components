@@ -3,7 +3,7 @@ declare module "!!raw-loader!*" {
   export default content;
 }
 
-type ComponentTypes = "hero" | "cta" | "faq" | "feature" | "header";
+type ComponentTypes = "hero" | "cta" | "faq" | "feature" | "header" | "all";
 
 type Components = {
   component: any;

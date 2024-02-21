@@ -11,7 +11,14 @@ import Link from "next/link";
 import { components } from "@/components.config";
 
 // Types of components
-const types: ComponentTypes[] = ["hero", "feature", "cta", "header", "faq"];
+const types: ComponentTypes[] = [
+  "all",
+  "hero",
+  "feature",
+  "cta",
+  "header",
+  "faq",
+];
 
 export default function Home({
   searchParams,
@@ -27,7 +34,9 @@ export default function Home({
             <Button
               asChild
               variant="link"
-              className="px-2 text-base font-normal"
+              className={`px-2 text-base font-normal ${
+                type === "header" ? "underline opacity-70 cursor-default" : ""
+              }`}
               key={type}
             >
               <Link href={`/${type}`} passHref>
@@ -38,16 +47,18 @@ export default function Home({
         </Craft.Container>
       </Info>
       <Craft.Section className="flex flex-col items-center gap-12 p-2 py-12 md:p-0">
-        {components.map((component) => (
-          <Wrapper
-            code={component.code}
-            key={component.path}
-            path={component.path}
-            type={component.type}
-          >
-            <component.component />
-          </Wrapper>
-        ))}
+        {components
+          .filter((component) => component.type === "header")
+          .map((component) => (
+            <Wrapper
+              code={component.code}
+              key={component.path}
+              path={component.path}
+              type={component.type}
+            >
+              <component.component />
+            </Wrapper>
+          ))}
       </Craft.Section>
       <End />
     </Main>

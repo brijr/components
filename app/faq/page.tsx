@@ -1,4 +1,6 @@
 // Layout Imports
+import { Main } from "@/components/craft/layout";
+import { End } from "@/components/end";
 import { Wrapper } from "@/components/wrapper";
 import { Info } from "@/components/info";
 import * as Craft from "@/components/craft/layout";
@@ -11,14 +13,13 @@ import { components } from "@/components.config";
 // Types of components
 const types: ComponentTypes[] = ["hero", "feature", "cta", "header", "faq"];
 
-export default function ComponentList({ searchParams }: { searchParams: any }) {
-  const typeFilter = searchParams.type as string | undefined;
-  const filteredComponents = typeFilter
-    ? components.filter((component) => component.type === typeFilter)
-    : components;
-
+export default function Home({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
   return (
-    <>
+    <Main>
       <Info>
         <Craft.Container className="not-prose flex w-full flex-wrap items-center">
           <p className="mr-4 hidden text-base md:block">Sort by Type: </p>
@@ -26,14 +27,12 @@ export default function ComponentList({ searchParams }: { searchParams: any }) {
             <Button
               asChild
               variant="link"
-              className="px-2 text-base font-normal"
+              className={`px-2 text-base font-normal ${
+                type === "faq" ? "underline opacity-70 cursor-default" : ""
+              }`}
               key={type}
             >
-              <Link
-                className={typeFilter === type ? "underline" : ""}
-                href={`/?type=${type}`}
-                passHref
-              >
+              <Link href={`/${type}`} passHref>
                 {type}
               </Link>
             </Button>
@@ -41,17 +40,20 @@ export default function ComponentList({ searchParams }: { searchParams: any }) {
         </Craft.Container>
       </Info>
       <Craft.Section className="flex flex-col items-center gap-12 p-2 py-12 md:p-0">
-        {filteredComponents.map((component) => (
-          <Wrapper
-            code={component.code}
-            key={component.path}
-            path={component.path}
-            type={component.type}
-          >
-            <component.component />
-          </Wrapper>
-        ))}
+        {components
+          .filter((component) => component.type === "faq")
+          .map((component) => (
+            <Wrapper
+              code={component.code}
+              key={component.path}
+              path={component.path}
+              type={component.type}
+            >
+              <component.component />
+            </Wrapper>
+          ))}
       </Craft.Section>
-    </>
+      <End />
+    </Main>
   );
 }
