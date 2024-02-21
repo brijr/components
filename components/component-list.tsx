@@ -11,11 +11,7 @@ import { components } from "@/components.config";
 // Types of components
 const types: ComponentTypes[] = ["hero", "feature", "cta", "header", "faq"];
 
-export default function ComponentList({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
+export default function ComponentList({ searchParams }: { searchParams: any }) {
   const typeFilter = searchParams.type as string | undefined;
   const filteredComponents = typeFilter
     ? components.filter((component) => component.type === typeFilter)
