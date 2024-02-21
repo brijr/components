@@ -20,11 +20,7 @@ const types: ComponentTypes[] = [
   "faq",
 ];
 
-export default function Home({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
+export default function Home() {
   return (
     <Main>
       <Info>

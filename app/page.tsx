@@ -11,13 +11,16 @@ import Link from "next/link";
 import { components } from "@/components.config";
 
 // Types of components
-const types: ComponentTypes[] = ["hero", "feature", "cta", "header", "faq"];
+const types: ComponentTypes[] = [
+  "all",
+  "hero",
+  "feature",
+  "cta",
+  "header",
+  "faq",
+];
 
-export default function Home({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
+export default function Home() {
   return (
     <Main>
       <Info>
@@ -27,7 +30,9 @@ export default function Home({
             <Button
               asChild
               variant="link"
-              className="px-2 text-base font-normal"
+              className={`px-2 text-base font-normal ${
+                type === "all" ? "underline opacity-70 cursor-default" : ""
+              }`}
               key={type}
             >
               <Link href={`/${type}`} passHref>
