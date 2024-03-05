@@ -45,7 +45,7 @@ export function CTA() {
     <Craft.Section>
       <Craft.Container className="space-y-8">
         <h2>Lorem ipsum dolor sit amet!</h2>
-        <p className="text-lg">
+        <p className="text-2xl opacity-70">
           <Balancer>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.

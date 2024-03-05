@@ -9,7 +9,7 @@ const CTA = () => {
       <Craft.Container className="not-prose rounded-lg md:rounded-xl p-6 md:p-12">
         <div className="flex flex-col gap-6">
           <h3 className="text-4xl">Lorem ipsum dolor sit amet</h3>
-          <h4 className="text-2xl font-light opacity-70">
+          <h4 className="text-2xl opacity-70">
             <Balancer>
               Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
               labore et dolore magna aliqua.
