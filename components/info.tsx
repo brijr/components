@@ -25,7 +25,7 @@ export const Info = ({ children }: { children?: ReactNode }) => {
           . They are built using{" "}
           <a
             className="border-b hover:border-b-orange-500 transition-all"
-            href="https://github.com/9d8dev/craft"
+            href="https://github.com/brijr/craft"
           >
             Craft UI
           </a>
