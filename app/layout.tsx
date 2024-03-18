@@ -4,6 +4,7 @@ import { Manrope } from "next/font/google";
 import { Layout } from "@/components/craft/layout";
 import { Toaster } from "@/components/ui/sonner";
 import { Background } from "@/components/backgrounds";
+import { Analytics } from "@vercel/analytics/react";
 
 const font = Manrope({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
       {children}
       <Toaster position="top-right" />
       <Background />
+      <Analytics />
     </Layout>
   );
 }
