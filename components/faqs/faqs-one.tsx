@@ -52,13 +52,15 @@ const FAQ = () => {
             {content.map((item, index) => (
               <Accordion key={index} type="single" collapsible>
                 <AccordionItem value={item.question}>
-                  <AccordionTrigger>{item.question}</AccordionTrigger>
+                  <AccordionTrigger className="text-left">
+                    {item.question}
+                  </AccordionTrigger>
                   <AccordionContent className="text-base md:w-3/4">
                     {item.answer}
                     {item.link && (
                       <a
                         href={item.link}
-                        className="opacity-60 mt-2 hover:opacity-100 transition-all flex items-center"
+                        className="opacity-60 w-full mt-2 hover:opacity-100 transition-all flex items-center"
                       >
                         Learn more <ArrowUpRight className="ml-1" />
                       </a>

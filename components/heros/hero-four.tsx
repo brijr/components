@@ -12,7 +12,7 @@ const Hero = () => {
         {/* Name and Nav */}
         <div className="w-full flex justify-between">
           <div className="">
-            <h1 className="text-6xl font-normal mb-4">
+            <h1 className="md:text-6xl text-3xl font-normal mb-4">
               <Link className="hover:opacity-70 transition-all" href="#">
                 Lorem Ipsum
               </Link>
@@ -21,7 +21,7 @@ const Hero = () => {
               Another component from Craft UI.
             </h2>
           </div>
-          <div className="flex gap-4">
+          <div className="md:flex gap-4 hidden">
             <Link className="hover:opacity-70 transition-all" href="#">
               Book a component
             </Link>
@@ -40,7 +40,7 @@ const Hero = () => {
         {/* Images */}
         <div className="flex justify-end items-end gap-2 absolute bottom-0 right-0 fit">
           {/* Image 1 */}
-          <div className="w-96 h-72">
+          <div className="w-96 h-72 hidden md:block">
             <Image
               className="object-cover h-full w-full rounded-tl-3xl"
               src={Placeholder}
@@ -48,7 +48,7 @@ const Hero = () => {
             ></Image>
           </div>
           {/* Image 2 */}
-          <div className="w-96 h-[420px]">
+          <div className="w-fit md:w-96 h-[420px]">
             <Image
               className="object-cover h-full w-full rounded-tl-3xl"
               src={Placeholder}

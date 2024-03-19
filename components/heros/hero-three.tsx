@@ -7,38 +7,40 @@ const Hero = () => {
   return (
     <Craft.Section className="not-prose">
       <Craft.Container>
-        <div className="w-full h-full m-auto max-w-5xl py-10 px-6 flex flex-col gap-8">
+        <div className="w-full h-full m-auto max-w-5xl md:py-10 py-4 md:px-6 px-4 flex flex-col gap-8">
           {/* Large Text */}
-          <h1 className="text-6xl font-normal tracking-tight">
+          <h1 className="text-3xl md:text-6xl font-normal tracking-tight">
             This is a component {/* eslint-disable-next-line */}
             <img
-              className="inline my-auto -mt-6"
-              width={172}
-              height={100}
+              className="inline my-auto w-24 md:w-48 md:-mt-6 -mt-3"
+              width={192}
+              height={108}
               src="https://newsroom.porsche.com/dam/jcr:a388376a-c5e2-4363-939b-6fbacd867a64/718_neu_2023.png"
               alt=""
             ></img>{" "}
-            with {/* eslint-disable-next-line */}
+            with special {/* eslint-disable-next-line */}
             <img
-              className="inline my-auto -mt-6"
-              width={172}
-              height={100}
+              className="inline my-auto w-24 md:w-48 md:-mt-6 -mt-3"
+              width={192}
+              height={108}
               src="https://newsroom.porsche.com/dam/jcr:a388376a-c5e2-4363-939b-6fbacd867a64/718_neu_2023.png"
               alt=""
             ></img>{" "}
-            special image capabilities. {/* eslint-disable-next-line */}
+            image capabilities. {/* eslint-disable-next-line */}
           </h1>
           {/* logo features */}
-          <div className="p-4 flex border rounded-lg gap-6 items-center w-fit">
+          <div className="p-4 flex flex-wrap border rounded-lg gap-6 items-center w-fit">
             <p>As seen in:</p>
             <Image className="h-6 w-fit dark:invert" src={Logo} alt=""></Image>
             <Image className="h-6 w-fit dark:invert" src={Logo} alt=""></Image>
             <Image className="h-6 w-fit dark:invert" src={Logo} alt=""></Image>
           </div>
           {/* End Text */}
-          <div className="text-lg">
-            <p>We make components for marketing sites.</p>
-            <div className="flex gap-2">
+          <div className="md:text-lg">
+            <p className="hidden md:block">
+              We make components for marketing sites.
+            </p>
+            <div className="md:flex grid gap-2">
               <p className="opacity-50">
                 Visit craftui.org to use our components for free.{" "}
               </p>
