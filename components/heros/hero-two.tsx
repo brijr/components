@@ -1,4 +1,4 @@
-import * as Craft from "@/components/craft/layout";
+import * as Craft from "@/components/craft/craft";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/public/logo.svg";

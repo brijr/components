@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import * as Craft from "@/components/craft/layout";
+import * as Craft from "@/components/craft/craft";
 import Balancer from "react-wrap-balancer";
 
 // Component Imports

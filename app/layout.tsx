@@ -1,7 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
-import { Layout } from "@/components/craft/layout";
+import { Layout } from "@/components/craft/craft";
 import { Toaster } from "@/components/ui/sonner";
 import { Background } from "@/components/backgrounds";
 import { Analytics } from "@vercel/analytics/react";

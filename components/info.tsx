@@ -1,4 +1,4 @@
-import * as Craft from "@/components/craft/layout";
+import * as Craft from "@/components/craft/craft";
 import { ModeToggle } from "./craft/theme/theme-toggle";
 import { Button } from "./ui/button";
 import Link from "next/link";

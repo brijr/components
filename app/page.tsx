@@ -1,9 +1,9 @@
 // Layout Imports
-import { Main } from "@/components/craft/layout";
+import { Main } from "@/components/craft/craft";
 import { End } from "@/components/end";
 import { Wrapper } from "@/components/wrapper";
 import { Info } from "@/components/info";
-import * as Craft from "@/components/craft/layout";
+import * as Craft from "@/components/craft/craft";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -40,7 +40,7 @@ export default function Home() {
           ))}
         </Craft.Container>
       </Info>
-      <Craft.Section className="flex flex-col items-center gap-12 p-2 py-12 md:p-0">
+      <Craft.Section className="flex flex-col items-center gap-12 p-4 py-12">
         {components.map((component) => (
           <Wrapper
             code={component.code}

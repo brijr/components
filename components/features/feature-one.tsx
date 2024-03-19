@@ -1,5 +1,5 @@
 // Layout
-import * as Craft from "@/components/craft/layout";
+import * as Craft from "@/components/craft/craft";
 import Balancer from "react-wrap-balancer";
 
 // Icons
