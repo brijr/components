@@ -38,7 +38,7 @@ const Main = ({ children, className, id }: MainProps) => {
     <main
       className={cn(
         // General Prose
-        "prose prose-neutral prose:font-sans dark:prose-invert xl:prose-lg max-w-none",
+        "prose prose-neutral p-4 prose:font-sans dark:prose-invert xl:prose-lg max-w-none",
         // Prose Headings
         "prose-headings:font-normal prose-headings:mt-0",
         // Prose Paragraphs

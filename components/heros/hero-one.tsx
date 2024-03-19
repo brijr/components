@@ -1,4 +1,4 @@
-import * as Craft from "@/components/craft/craft";
+import * as Craft from "@/components/craft";
 import Placeholder from "@/public/placeholder.jpg";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";

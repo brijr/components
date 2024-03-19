@@ -1,5 +1,5 @@
 // Layout
-import * as Craft from "@/components/craft/craft";
+import * as Craft from "@/components/craft";
 import Balancer from "react-wrap-balancer";
 import Link from "next/link";
 

@@ -1,9 +1,9 @@
-import * as Craft from "@/components/craft/craft";
+import * as Craft from "@/components/craft";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/public/logo.svg";
 import Balancer from "react-wrap-balancer";
-import { ModeToggle } from "@/components/craft/theme/theme-toggle";
+import { ModeToggle } from "@/components/site/theme/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Github, Twitter } from "lucide-react";
 

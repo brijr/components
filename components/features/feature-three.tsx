@@ -1,4 +1,4 @@
-import * as Craft from "@/components/craft/craft";
+import * as Craft from "@/components/craft";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";

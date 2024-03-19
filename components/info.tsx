@@ -1,5 +1,5 @@
-import * as Craft from "@/components/craft/craft";
-import { ModeToggle } from "./craft/theme/theme-toggle";
+import * as Craft from "@/components/craft";
+import { ModeToggle } from "./site/theme/theme-toggle";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { Github, Twitter } from "lucide-react";

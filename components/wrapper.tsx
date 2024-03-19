@@ -18,7 +18,7 @@ export const Wrapper = ({
   return (
     <div
       id={path}
-      className="w-full group bg-background drop-shadow-md hover:drop-shadow-xl border rounded-lg transition-all max-w-6xl md:max-h-[760px] overflow-hidden no-scrollbar"
+      className="w-full group bg-background drop-shadow-md hover:drop-shadow-xl border rounded-lg transition-all max-w-6xl md:max-h-[760px] sm:m-2 overflow-hidden no-scrollbar"
     >
       <CopyButton textToCopy={code} />
       <div className="top-bar sticky top-0 flex z-30 pl-4 pr-1 h-10 justify-between items-center border-b">

@@ -1,4 +1,4 @@
-import * as Craft from "@/components/craft/craft";
+import * as Craft from "@/components/craft";
 import Image from "next/image";
 import Link from "next/link";
 
