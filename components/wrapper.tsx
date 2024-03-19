@@ -27,7 +27,9 @@ export const Wrapper = ({
           <Circle className="w-3" />
           <Circle className="w-3" />
         </div>
-        <CopyLink path={path} />
+        <div className="hidden sm:flex items-center justify-center">
+          <CopyLink path={path} />
+        </div>
         <Button
           className="not-prose text-xs font-light"
           size={"sm"}
