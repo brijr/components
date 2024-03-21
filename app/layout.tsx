@@ -22,10 +22,12 @@ export default function RootLayout({
 }>) {
   return (
     <Layout className={font.className}>
-      {children}
-      <Toaster position="top-right" />
-      <Background />
-      <Analytics />
+      <body>
+        {children}
+        <Toaster position="top-right" />
+        <Background />
+        <Analytics />
+      </body>
     </Layout>
   );
 }
