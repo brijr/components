@@ -1,6 +1,6 @@
 # [components.bridger.to ](https://components.bridger.to)
 
-> A collection of [Next.js](https://nextjs.org) components for building websites at rapid speed using [Tailwind](https://tailwindcss.com), [React](https://react.dev), [Shadcn/ui](https://ui.shadcn.com), [Craft UI](https://github.com/brijr/craft), and [Typescript](https://www.typescriptlang.org/).
+> A collection of [Next.js](https://nextjs.org) components for building websites at rapid speed using [Tailwind](https://tailwindcss.com), [React](https://react.dev), [Shadcn/ui](https://ui.shadcn.com), [brijr/craft](https://github.com/brijr/craft), and [Typescript](https://www.typescriptlang.org/).
 
 ## What is it? 
 
