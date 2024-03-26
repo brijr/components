@@ -10,6 +10,8 @@ Open source components for building websites. Created by [Bridger Tower](https:/
 
 ## Setup
 
+> Want to just use a starter? Go here [brijr/craft-starter](https://github.com/brijr/craft-starter)
+
 ### Step 1:  Create a Next.js application
 
 ```
