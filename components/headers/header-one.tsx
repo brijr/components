@@ -13,7 +13,7 @@ const Header = () => {
             voluptate quidem natus.
           </Balancer>
         </p>
-        <div className="flex gap-2">
+        <div className="flex gap-2 mt-6">
           <Button>Get Started</Button>
           <Button variant={"outline"}>Learn More</Button>
         </div>
