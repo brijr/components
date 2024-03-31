@@ -1,4 +1,6 @@
-# [components.bridger.to ](https://components.bridger.to)
+# brijr/components
+
+Website: [components.bridger.to](https://components.bridger.to)
 
 > A collection of [Next.js](https://nextjs.org) components for building websites at rapid speed using [Tailwind](https://tailwindcss.com), [React](https://react.dev), [shadcn/ui](https://ui.shadcn.com), [brijr/craft](https://github.com/brijr/craft), and [Typescript](https://www.typescriptlang.org/).
 
