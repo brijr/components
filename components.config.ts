@@ -20,7 +20,8 @@ import FeatureOne from "@/components/features/feature-one";
 import FeatureTwo from "@/components/features/feature-two";
 import FeatureThree from "@/components/features/feature-three";
 import FeatureFour from "@/components/features/feature-four";
-import FeartureFive from "@/components/features/feature-five";
+import FeatureFive from "@/components/features/feature-five";
+import FeatureSix from "@/components/features/feature-six";
 
 // Header Component Imports
 import HeaderOne from "@/components/headers/header-one";
@@ -29,63 +30,67 @@ import HeaderTwo from "@/components/headers/header-two";
 // Component Code Imports
 const HeroOneCode = readFileSync(
   join(process.cwd(), "components/heros/hero-one.tsx"),
-  "utf8",
+  "utf8"
 );
 const HeroTwoCode = readFileSync(
   join(process.cwd(), "components/heros/hero-two.tsx"),
-  "utf8",
+  "utf8"
 );
 const HeroThreeCode = readFileSync(
   join(process.cwd(), "components/heros/hero-three.tsx"),
-  "utf8",
+  "utf8"
 );
 const HeroFourCode = readFileSync(
   join(process.cwd(), "components/heros/hero-four.tsx"),
-  "utf8",
+  "utf8"
 );
 const HeroFiveCode = readFileSync(
   join(process.cwd(), "components/heros/hero-five.tsx"),
-  "utf8",
+  "utf8"
 );
 const CTAOneCode = readFileSync(
   join(process.cwd(), "components/ctas/cta-one.tsx"),
-  "utf8",
+  "utf8"
 );
 const CTATwoCode = readFileSync(
   join(process.cwd(), "components/ctas/cta-two.tsx"),
-  "utf8",
+  "utf8"
 );
 const FAQOneCode = readFileSync(
   join(process.cwd(), "components/faqs/faqs-one.tsx"),
-  "utf8",
+  "utf8"
 );
 const FeatureOneCode = readFileSync(
   join(process.cwd(), "components/features/feature-one.tsx"),
-  "utf8",
+  "utf8"
 );
 const FeatureTwoCode = readFileSync(
   join(process.cwd(), "components/features/feature-two.tsx"),
-  "utf8",
+  "utf8"
 );
 const FeatureThreeCode = readFileSync(
   join(process.cwd(), "components/features/feature-three.tsx"),
-  "utf8",
+  "utf8"
 );
 const FeatureFourCode = readFileSync(
   join(process.cwd(), "components/features/feature-four.tsx"),
-  "utf8",
+  "utf8"
 );
 const FeatureFiveCode = readFileSync(
   join(process.cwd(), "components/features/feature-five.tsx"),
-  "utf8",
+  "utf8"
+);
+const FeatureSixCode = readFileSync(
+  join(process.cwd(), "components/features/feature-six.tsx"),
+  "utf8"
 );
 const HeaderOneCode = readFileSync(
   join(process.cwd(), "components/headers/header-one.tsx"),
-  "utf8",
+  "utf8"
 );
 const HeaderTwoCode = readFileSync(
   join(process.cwd(), "components/headers/header-two.tsx"),
-  "utf8",
+  "utf8"
 );
 
 // Component Interface
@@ -163,9 +168,15 @@ export const components: Components[] = [
     type: "feature",
   },
   {
-    component: FeartureFive,
+    component: FeatureFive,
     path: "features/feature-five",
     code: FeatureFiveCode,
+    type: "feature",
+  },
+  {
+    component: FeatureSix,
+    path: "features/feature-six",
+    code: FeatureSixCode,
     type: "feature",
   },
   {

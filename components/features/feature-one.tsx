@@ -50,7 +50,7 @@ const Feature = () => {
 
           <div className="grid md:grid-cols-3 mt-6 gap-6 md:mt-12">
             {featureText.map(({ icon, title, description }, index) => (
-              <div className="grid gap-4" key={index}>
+              <div className="flex flex-col gap-4" key={index}>
                 {icon}
                 <h4 className="text-xl text-primary">{title}</h4>
                 <p className="text-base opacity-75">{description}</p>
