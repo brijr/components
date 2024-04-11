@@ -24,12 +24,11 @@ const Feature = () => {
             </Button>
           </div>
         </div>
-        <div className="not-prose border relative rounded-lg overflow-hidden flex">
+        <div className="not-prose border relative rounded-lg overflow-hidden flex h-96">
           <Image
             src={Placeholder}
             alt="placeholder"
             className="fill object-cover"
-            layout="fill"
           />
         </div>
       </Craft.Container>

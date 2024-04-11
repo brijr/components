@@ -1,7 +1,6 @@
 import * as Craft from "@/components/craft";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Balancer from "react-wrap-balancer";
 import Image from "next/image";
 import Placeholder from "@/public/placeholder.jpg";
 
@@ -9,12 +8,11 @@ const Feature = () => {
   return (
     <Craft.Section>
       <Craft.Container className="grid md:grid-cols-2 md:gap-12 items-stretch">
-        <div className="not-prose border relative rounded-lg overflow-hidden flex">
+        <div className="not-prose border relative rounded-lg overflow-hidden flex h-96">
           <Image
             src={Placeholder}
             alt="placeholder"
             className="fill object-cover"
-            layout="fill"
           />
         </div>
         <div className="flex flex-col gap-6 py-8">
@@ -32,7 +30,7 @@ const Feature = () => {
             </Button>
           </div>
         </div>
-      </Craft.Container>
+      </Craft.Container>s
     </Craft.Section>
   );
 };
