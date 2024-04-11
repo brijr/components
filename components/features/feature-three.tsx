@@ -30,7 +30,7 @@ const Feature = () => {
             </Button>
           </div>
         </div>
-      </Craft.Container>s
+      </Craft.Container>
     </Craft.Section>
   );
 };
