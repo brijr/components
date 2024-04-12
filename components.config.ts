@@ -11,6 +11,8 @@ import HeroFive from "@/components/heros/hero-five";
 // CTA Component Imports
 import CTAOne from "@/components/ctas/cta-one";
 import CTATwo from "@/components/ctas/cta-two";
+import CTAThree from "@/components/ctas/cta-three";
+import CTAFour from "@/components/ctas/cta-four";
 
 // FAQ Component Imports
 import FAQOne from "@/components/faqs/faqs-one";
@@ -54,6 +56,14 @@ const CTAOneCode = readFileSync(
 );
 const CTATwoCode = readFileSync(
   join(process.cwd(), "components/ctas/cta-two.tsx"),
+  "utf8"
+);
+const CTAThreeCode = readFileSync(
+  join(process.cwd(), "components/ctas/cta-three.tsx"),
+  "utf8"
+);
+const CTAFourCode = readFileSync(
+  join(process.cwd(), "components/ctas/cta-four.tsx"),
   "utf8"
 );
 const FAQOneCode = readFileSync(
@@ -135,6 +145,18 @@ export const components: Components[] = [
     component: CTATwo,
     path: "ctas/cta-two",
     code: CTATwoCode,
+    type: "cta",
+  },
+  {
+    component: CTAThree,
+    path: "ctas/cta-three",
+    code: CTAThreeCode,
+    type: "cta",
+  },
+  {
+    component: CTAFour,
+    path: "ctas/cta-four",
+    code: CTAFourCode,
     type: "cta",
   },
   {
