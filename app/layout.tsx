@@ -5,6 +5,7 @@ import { Layout } from "@/components/craft";
 import { Toaster } from "@/components/ui/sonner";
 import { Background } from "@/components/backgrounds";
 import { Analytics } from "@vercel/analytics/react";
+import { ThemeProvider } from "@/components/site/theme/theme-provider";
 
 const font = Manrope({ subsets: ["latin"] });
 
@@ -23,10 +24,17 @@ export default function RootLayout({
   return (
     <Layout className={font.className}>
       <body>
-        {children}
-        <Toaster position="top-right" />
-        <Background />
-        <Analytics />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <Toaster position="top-right" />
+          <Background />
+          <Analytics />
+        </ThemeProvider>
       </body>
     </Layout>
   );
