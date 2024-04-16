@@ -6,14 +6,14 @@ const Header = () => {
   return (
     <Craft.Section>
       <Craft.Container>
-        <h1 className="!my-0">This is a Header</h1>
-        <p className="text-gray-500">
+        <h1>Lorem ipsum dolor sit amet consectetur</h1>
+        <h2 className="text-muted-foreground">
           <Balancer>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
             voluptate quidem natus.
           </Balancer>
-        </p>
-        <div className="flex gap-2 mt-6">
+        </h2>
+        <div className="flex gap-2 items-center mt-8">
           <Button>Get Started</Button>
           <Button variant={"outline"}>Learn More</Button>
         </div>

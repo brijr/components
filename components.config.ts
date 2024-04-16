@@ -317,11 +317,11 @@ export const components: Components[] = [
 ];
 
 export const types = [
+  "all",
   "hero",
   "cta",
   "faq",
   "feature",
   "header",
   "footer",
-  "play",
 ];
