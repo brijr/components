@@ -17,6 +17,7 @@ import CTAFour from "@/components/ctas/cta-four";
 
 // FAQ Component Imports
 import FAQOne from "@/components/faqs/faqs-one";
+import FAQTwo from "@/components/faqs/faqs-two";
 
 // Feature Component Imports
 import FeatureOne from "@/components/features/feature-one";
@@ -30,7 +31,15 @@ import FeatureSix from "@/components/features/feature-six";
 import HeaderOne from "@/components/headers/header-one";
 import HeaderTwo from "@/components/headers/header-two";
 
+// Footer Component Imports
+import FooterOne from "@/components/footers/footer-one";
+import FooterTwo from "@/components/footers/footer-two";
+import FooterThree from "@/components/footers/footer-three";
+import FooterFour from "@/components/footers/footer-four";
+import FooterFive from "@/components/footers/footer-five";
+
 // Component Code Imports
+// Hero Component Code Imports
 const HeroOneCode = readFileSync(
   join(process.cwd(), "components/heros/hero-one.tsx"),
   "utf8"
@@ -55,6 +64,8 @@ const HeroSixCode = readFileSync(
   join(process.cwd(), "components/heros/hero-six.tsx"),
   "utf8"
 );
+
+// CTA Component Code Imports
 const CTAOneCode = readFileSync(
   join(process.cwd(), "components/ctas/cta-one.tsx"),
   "utf8"
@@ -71,10 +82,18 @@ const CTAFourCode = readFileSync(
   join(process.cwd(), "components/ctas/cta-four.tsx"),
   "utf8"
 );
+
+// FAQ Component Code Imports
 const FAQOneCode = readFileSync(
   join(process.cwd(), "components/faqs/faqs-one.tsx"),
   "utf8"
 );
+const FAQTwoCode = readFileSync(
+  join(process.cwd(), "components/faqs/faqs-two.tsx"),
+  "utf8"
+);
+
+// Feature Component Code Imports
 const FeatureOneCode = readFileSync(
   join(process.cwd(), "components/features/feature-one.tsx"),
   "utf8"
@@ -99,6 +118,8 @@ const FeatureSixCode = readFileSync(
   join(process.cwd(), "components/features/feature-six.tsx"),
   "utf8"
 );
+
+// Header Component Code Imports
 const HeaderOneCode = readFileSync(
   join(process.cwd(), "components/headers/header-one.tsx"),
   "utf8"
@@ -108,8 +129,31 @@ const HeaderTwoCode = readFileSync(
   "utf8"
 );
 
+// Footer Component Code Imports
+const FooterOneCode = readFileSync(
+  join(process.cwd(), "components/footers/footer-one.tsx"),
+  "utf8"
+);
+const FooterTwoCode = readFileSync(
+  join(process.cwd(), "components/footers/footer-two.tsx"),
+  "utf8"
+);
+const FooterThreeCode = readFileSync(
+  join(process.cwd(), "components/footers/footer-three.tsx"),
+  "utf8"
+);
+const FooterFourCode = readFileSync(
+  join(process.cwd(), "components/footers/footer-four.tsx"),
+  "utf8"
+);
+const FooterFiveCode = readFileSync(
+  join(process.cwd(), "components/footers/footer-five.tsx"),
+  "utf8"
+);
+
 // Component Interface
 export const components: Components[] = [
+  // Hero Components
   {
     component: HeroOne,
     path: "heros/hero-one",
@@ -146,6 +190,8 @@ export const components: Components[] = [
     code: HeroSixCode,
     type: "hero",
   },
+
+  // CTA Components
   {
     component: CTAOne,
     path: "ctas/cta-one",
@@ -170,12 +216,22 @@ export const components: Components[] = [
     code: CTAFourCode,
     type: "cta",
   },
+
+  // FAQ Components
   {
     component: FAQOne,
     path: "faqs/faqs-one",
     code: FAQOneCode,
     type: "faq",
   },
+  {
+    component: FAQTwo,
+    path: "faqs/faqs-two",
+    code: FAQTwoCode,
+    type: "faq",
+  },
+
+  // Feature Components
   {
     component: FeatureOne,
     path: "features/feature-one",
@@ -212,6 +268,8 @@ export const components: Components[] = [
     code: FeatureSixCode,
     type: "feature",
   },
+
+  // Header Components
   {
     component: HeaderOne,
     path: "headers/header-one",
@@ -224,4 +282,46 @@ export const components: Components[] = [
     code: HeaderTwoCode,
     type: "header",
   },
+
+  // Footer Components
+  {
+    component: FooterOne,
+    path: "footers/footer-one",
+    code: FooterOneCode,
+    type: "footer",
+  },
+  {
+    component: FooterTwo,
+    path: "footers/footer-two",
+    code: FooterTwoCode,
+    type: "footer",
+  },
+  {
+    component: FooterThree,
+    path: "footers/footer-three",
+    code: FooterThreeCode,
+    type: "footer",
+  },
+  {
+    component: FooterFour,
+    path: "footers/footer-four",
+    code: FooterFourCode,
+    type: "footer",
+  },
+  {
+    component: FooterFive,
+    path: "footers/footer-five",
+    code: FooterFiveCode,
+    type: "footer",
+  },
+];
+
+export const types = [
+  "hero",
+  "cta",
+  "faq",
+  "feature",
+  "header",
+  "footer",
+  "play",
 ];

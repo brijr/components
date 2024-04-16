@@ -8,17 +8,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 // Component Config
-import { components } from "@/components.config";
-
-// Types of components
-const types: ComponentTypes[] = [
-  "all",
-  "hero",
-  "feature",
-  "cta",
-  "header",
-  "faq",
-];
+import { components, types } from "@/components.config";
 
 export default function Home() {
   return (

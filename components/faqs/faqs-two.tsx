@@ -51,8 +51,11 @@ const FAQ = () => {
         <div className="mt-4 md:mt-8 not-prose flex flex-col gap-4">
           {content.map((item, index) => (
             <Accordion key={index} type="single" collapsible>
-              <AccordionItem value={item.question}>
-                <AccordionTrigger className="text-left">
+              <AccordionItem
+                value={item.question}
+                className="hover:bg-muted/50 transition-all border px-4 bg-muted/20 rounded-md"
+              >
+                <AccordionTrigger className="text-left hover:no-underline">
                   {item.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-base md:w-3/4">

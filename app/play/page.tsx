@@ -4,7 +4,7 @@ import { Wrapper } from "@/components/wrapper";
 import Link from "next/link";
 
 // Component Imports
-import Hero from "@/components/heros/hero-six";
+import Component from "@/components/footers/footer-one";
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
       <Link href="/">Go home</Link>
       <Wrapper code="playground" path="playground" type="test">
         {/* Component in Dev */}
-        <Hero />
+        <Component />
         {/* Component in Dev */}
       </Wrapper>
     </Main>

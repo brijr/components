@@ -21,7 +21,7 @@ export default function Home() {
               asChild
               variant="link"
               className={`px-2 text-base font-normal ${
-                type === "faq" ? "underline opacity-70 cursor-default" : ""
+                type === "footer" ? "underline opacity-70 cursor-default" : ""
               }`}
               key={type}
             >
@@ -32,7 +32,7 @@ export default function Home() {
       </Info>
       <Craft.Section className="flex flex-col items-center gap-12 p-2 py-12 md:p-0">
         {components
-          .filter((component) => component.type === "faq")
+          .filter((component) => component.type === "footer")
           .map((component) => (
             <Wrapper
               code={component.code}

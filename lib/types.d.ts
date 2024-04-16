@@ -3,7 +3,14 @@ declare module "!!raw-loader!*" {
   export default content;
 }
 
-type ComponentTypes = "all" | "hero" | "cta" | "faq" | "feature" | "header";
+type ComponentTypes =
+  | "all"
+  | "hero"
+  | "cta"
+  | "faq"
+  | "feature"
+  | "header"
+  | "footer";
 
 type Components = {
   component: any;
@@ -20,4 +27,5 @@ const types: ComponentTypes[] = [
   "cta",
   "header",
   "faq",
+  "footer",
 ];
