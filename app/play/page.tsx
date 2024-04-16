@@ -4,7 +4,7 @@ import { Wrapper } from "@/components/wrapper";
 import Link from "next/link";
 
 // Component Imports
-import Feature from "@/components/features/feature-three";
+import Hero from "@/components/heros/hero-six";
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
       <Link href="/">Go home</Link>
       <Wrapper code="playground" path="playground" type="test">
         {/* Component in Dev */}
-        <Feature />
+        <Hero />
         {/* Component in Dev */}
       </Wrapper>
     </Main>

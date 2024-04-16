@@ -7,6 +7,7 @@ import HeroTwo from "@/components/heros/hero-two";
 import HeroThree from "@/components/heros/hero-three";
 import HeroFour from "@/components/heros/hero-four";
 import HeroFive from "@/components/heros/hero-five";
+import HeroSix from "@/components/heros/hero-six";
 
 // CTA Component Imports
 import CTAOne from "@/components/ctas/cta-one";
@@ -48,6 +49,10 @@ const HeroFourCode = readFileSync(
 );
 const HeroFiveCode = readFileSync(
   join(process.cwd(), "components/heros/hero-five.tsx"),
+  "utf8"
+);
+const HeroSixCode = readFileSync(
+  join(process.cwd(), "components/heros/hero-six.tsx"),
   "utf8"
 );
 const CTAOneCode = readFileSync(
@@ -133,6 +138,12 @@ export const components: Components[] = [
     component: HeroFive,
     path: "heros/hero-five",
     code: HeroFiveCode,
+    type: "hero",
+  },
+  {
+    component: HeroSix,
+    path: "heros/hero-six",
+    code: HeroSixCode,
     type: "hero",
   },
   {
