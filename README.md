@@ -28,7 +28,7 @@ npx shadcn-ui@latest init
 
  - (if you want dark mode) Add a `ThemeProvider` and `ModeToggle` by following these steps: [Adding dark mode to your next app](https://ui.shadcn.com/docs/dark-mode/next)
 
-### Step 3: Add [Craft UI](https://github.com/brijr/craft) and `craft.tsx` to your project
+### Step 3: Add [brijr/craft](https://github.com/brijr/craft) and `craft.tsx` to your project
 
 - How to use the Craft Design System: https://github.com/brijr/craft
 - Make sure to install [Tailwind Typography](https://github.com/tailwindlabs/tailwindcss-typography) and add it to your `tailwind.config.ts`
