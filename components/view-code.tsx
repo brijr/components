@@ -20,10 +20,10 @@ export const ViewCode: React.FC<CodeDialogProps> = ({ code }) => {
         className="absolute right-16 top-4 z-50"
         size="icon"
         variant="outline"
-        onClick={() => setIsOpen(true)}
+        onClick={() => setIsOpen(!isOpen)}
       >
         <Code size={16} />
-        <span className="sr-only">View Code</span>
+        <span className="sr-only">{isOpen ? "Close Code" : "View Code"}</span>
       </Button>
 
       <AnimatePresence>
