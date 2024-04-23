@@ -3,6 +3,7 @@
 import React from "react";
 import { Copy } from "lucide-react";
 import { toast } from "sonner";
+import { Button } from "./ui/button";
 
 type CopyButtonProps = {
   textToCopy: string;
@@ -23,16 +24,18 @@ const CopyButton: React.FC<CopyButtonProps> = ({ textToCopy, className }) => {
   };
 
   return (
-    <button
+    <Button
       suppressHydrationWarning
-      className={`min-w-30 absolute right-0 z-50 group:hover:block border top-10 m-4 flex h-8 cursor-pointer items-center justify-center gap-1 rounded-lg bg-secondary px-2 py-1 transition-all hover:scale-95 focus:scale-110 ${className}`}
+      className="absolute right-4 top-14 z-50"
+      size="icon"
+      variant="outline"
       onClick={(e) => {
         handleCopy();
         e.stopPropagation();
       }}
     >
       {copyStatus}
-    </button>
+    </Button>
   );
 };
 
