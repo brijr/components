@@ -1,9 +1,10 @@
-import { Circle, ArrowUpRight, Code } from "lucide-react";
-import { Button } from "./ui/button";
-import Link from "next/link";
-import CopyButton from "./copy";
+"use client";
+import { Circle, Smartphone } from "lucide-react";
+import { CopyButton } from "./copy";
 import { CopyLink } from "./copy-link";
 import { ViewCode } from "./view-code";
+import { Button } from "./ui/button";
+import { useState } from "react";
 
 export const Wrapper = ({
   children,
@@ -16,16 +17,30 @@ export const Wrapper = ({
   code: string;
   type?: string;
 }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
   return (
     <div
       id={path}
-      className="w-full relative group bg-background drop-shadow-md hover:drop-shadow-xl border rounded-lg transition-all max-w-6xl md:max-h-[848px] sm:m-2 overflow-hidden no-scrollbar"
+      className={`w-full relative group bg-background drop-shadow-md hover:drop-shadow-xl border rounded-lg transition-all sm:m-2 no-scrollbar ${
+        isMobile
+          ? "max-w-sm md:h-[667px] overflow-scroll no-scrollbar"
+          : "max-w-6xl md:max-h-[848px] overflow-hidden"
+      }`}
     >
       <CopyButton textToCopy={code} />
       <TopBar path={path} code={code} />
       <div className="relative">
         <ViewCode code={code} />
         {children}
+        <Button
+          className="absolute top-4 hidden sm:flex right-28"
+          variant="outline"
+          size="icon"
+          onClick={() => setIsMobile(!isMobile)}
+        >
+          <Smartphone size={16} />
+        </Button>
       </div>
     </div>
   );
@@ -33,30 +48,15 @@ export const Wrapper = ({
 
 const TopBar = ({ path, code }: { path: string; code: string }) => {
   return (
-    <div className="top-bar sticky top-0 flex z-30 pl-4 pr-1 h-10 justify-between items-center border-b">
+    <div className="top-bar bg-background sticky top-0 flex z-30 pl-4 pr-1 h-10 justify-between items-center border-b">
       <div className="not-prose flex gap-2">
         <Circle className="w-3" />
         <Circle className="w-3" />
         <Circle className="w-3" />
       </div>
-      <div className="hidden sm:flex items-center justify-center">
+      <div className="hidden sm:flex items-center justify-center mr-3">
         <CopyLink path={path} />
       </div>
-
-      <Button
-        className="not-prose text-xs font-light"
-        size="sm"
-        variant="link"
-        asChild
-      >
-        <Link
-          href={`https://github.com/brijr/components/tree/main/components/${path}.tsx`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          view on github <ArrowUpRight className="ml-1 w-3" />
-        </Link>
-      </Button>
     </div>
   );
 };

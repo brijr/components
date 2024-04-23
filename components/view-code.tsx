@@ -29,10 +29,10 @@ export const ViewCode: React.FC<CodeDialogProps> = ({ code }) => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            transition={{ duration: 0.25 }}
-            initial={{ opacity: 0, y: "-100%" }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: "-100%" }}
+            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             className="absolute bg-background/50 z-20 backdrop-blur-md h-full w-full not-prose overflow-none px-4 pt-16 pb-6"
           >
             <Button
@@ -50,6 +50,7 @@ export const ViewCode: React.FC<CodeDialogProps> = ({ code }) => {
               style={atomDark}
               showLineNumbers
               wrapLines
+              wrapLongLines
             >
               {code}
             </SyntaxHighlighter>

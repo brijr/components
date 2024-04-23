@@ -10,7 +10,10 @@ type CopyButtonProps = {
   className?: string;
 };
 
-const CopyButton: React.FC<CopyButtonProps> = ({ textToCopy, className }) => {
+export const CopyButton: React.FC<CopyButtonProps> = ({
+  textToCopy,
+  className,
+}) => {
   const [copyStatus, setCopyStatus] = React.useState(
     <>
       <span className="mr-1 sr lowercase sr-only text-xs">Copy Code</span>
@@ -38,5 +41,3 @@ const CopyButton: React.FC<CopyButtonProps> = ({ textToCopy, className }) => {
     </Button>
   );
 };
-
-export default CopyButton;
