@@ -26,7 +26,7 @@ export default function Footer() {
                 components for building landing pages and websites.
               </Balancer>
             </p>
-            <div className="flex gap-4 underline underline-offset-4 text-sm text-muted-foreground">
+            <div className="flex flex-col md:flex-row mb-6 md:mb-0 gap-4 underline underline-offset-4 text-sm text-muted-foreground">
               <Link href="/privacy-policy">Privacy Policy</Link>
               <Link href="/terms-of-service">Terms of Service</Link>
               <Link href="/cookie-policy">Cookie Policy</Link>

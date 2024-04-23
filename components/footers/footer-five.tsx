@@ -29,13 +29,13 @@ export default function Footer() {
               </Balancer>
             </p>
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-4 flex-col md:flex-row mb-4 md:mb-0">
             <Link href="/privacy-policy">Privacy Policy</Link>
             <Link href="/terms-of-service">Terms of Service</Link>
             <Link href="/cookie-policy">Cookie Policy</Link>
           </div>
         </Container>
-        <Container className="border-t not-prose flex justify-between items-center">
+        <Container className="border-t not-prose flex flex-col md:flex-row md:gap-2 gap-6 justify-between md:items-center">
           <div className="flex gap-2">
             <Button variant="outline" size="icon">
               <Github />

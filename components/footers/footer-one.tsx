@@ -108,7 +108,7 @@ export default function Footer() {
           </Form>
         </Container>
         <Container className="border-t not-prose md:flex justify-between items-center text-sm">
-          <div className="flex gap-4 underline underline-offset-4 decoration-muted">
+          <div className="flex flex-col md:flex-row mb-6 md:mb-0 gap-4 underline underline-offset-4 decoration-muted">
             <Link href="/privacy-policy">Privacy Policy</Link>
             <Link href="/terms-of-service">Terms of Service</Link>
             <Link href="/cookie-policy">Cookie Policy</Link>
