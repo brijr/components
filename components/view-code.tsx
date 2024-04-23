@@ -5,6 +5,7 @@ import { Code, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface CodeDialogProps {
   code: string;
@@ -25,27 +26,34 @@ export const ViewCode: React.FC<CodeDialogProps> = ({ code }) => {
         <span className="sr-only">View Code</span>
       </Button>
 
-      {isOpen && (
-        <div className="absolute bg-background/50 z-20 backdrop-blur-md h-full w-full not-prose overflow-none px-4 pt-16 pb-6">
-          <Button
-            variant="outline"
-            className="absolute left-4 top-4 z-10"
-            size="icon"
-            onClick={() => setIsOpen(false)}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute bg-background/50 z-20 backdrop-blur-md h-full w-full not-prose overflow-none px-4 pt-16 pb-6"
           >
-            <X size={16} />
-            <span className="sr-only">Close</span>
-          </Button>
-          <SyntaxHighlighter
-            language="tsx"
-            className="overflow-auto h-full md:max-h-[720px] rounded-lg"
-            style={atomDark}
-            showLineNumbers
-          >
-            {code}
-          </SyntaxHighlighter>
-        </div>
-      )}
+            <Button
+              variant="outline"
+              className="absolute left-4 top-4 z-10"
+              size="icon"
+              onClick={() => setIsOpen(false)}
+            >
+              <X size={16} />
+              <span className="sr-only">Close</span>
+            </Button>
+            <SyntaxHighlighter
+              language="tsx"
+              className="overflow-auto h-full md:max-h-[720px] rounded-lg"
+              style={atomDark}
+              showLineNumbers
+            >
+              {code}
+            </SyntaxHighlighter>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
