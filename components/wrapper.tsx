@@ -45,8 +45,8 @@ const TopBar = ({ path, code }: { path: string; code: string }) => {
 
       <Button
         className="not-prose text-xs font-light"
-        size={"sm"}
-        variant={"link"}
+        size="sm"
+        variant="link"
         asChild
       >
         <Link
