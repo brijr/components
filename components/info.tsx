@@ -27,7 +27,7 @@ export const Info = ({ children }: { children?: ReactNode }) => {
             className="border-b hover:border-b-orange-500 transition-all"
             href="https://github.com/brijr/craft"
           >
-            Craft UI
+            brijr/craft
           </a>
           ,{" "}
           <a

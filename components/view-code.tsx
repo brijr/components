@@ -26,13 +26,13 @@ export const ViewCode: React.FC<CodeDialogProps> = ({ code }) => {
         <span className="sr-only">{isOpen ? "Close Code" : "View Code"}</span>
       </Button>
 
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
-            transition={{ duration: 0.25 }}
-            initial={{ opacity: 0, y: "-100%" }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: "-100%" }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             className="absolute bg-background/50 z-20 backdrop-blur-md h-full w-full not-prose overflow-none px-4 pt-16 pb-6"
           >
             <Button

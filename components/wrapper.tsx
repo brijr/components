@@ -1,4 +1,4 @@
-import { Circle, ArrowUpRight, Code } from "lucide-react";
+import { Circle, ArrowUpRight } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import CopyButton from "./copy";
