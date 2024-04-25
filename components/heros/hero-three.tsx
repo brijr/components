@@ -1,12 +1,12 @@
-import * as Craft from "@/components/craft";
+import { Section, Container } from "@/components/craft";
 import Image from "next/image";
 import Logo from "@/public/logo.svg";
 import Link from "next/link";
 
 const Hero = () => {
   return (
-    <Craft.Section className="not-prose">
-      <Craft.Container>
+    <Section className="not-prose">
+      <Container>
         <div className="w-full h-full m-auto max-w-5xl md:py-10 py-4 md:px-6 px-4 flex flex-col gap-8">
           {/* Large Text */}
           <h1 className="text-3xl md:text-6xl font-normal tracking-tight">
@@ -54,8 +54,8 @@ const Hero = () => {
             </p>
           </div>
         </div>
-      </Craft.Container>
-    </Craft.Section>
+      </Container>
+    </Section>
   );
 };
 

@@ -1,4 +1,4 @@
-import * as Craft from "@/components/craft";
+import { Section, Container } from "@/components/craft";
 import Placeholder from "@/public/placeholder.jpg";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
@@ -7,8 +7,8 @@ import Link from "next/link";
 
 const Hero = () => {
   return (
-    <Craft.Section>
-      <Craft.Container>
+    <Section>
+      <Container>
         <div className="not-prose flex flex-col gap-6">
           <Button asChild className="w-fit" size={"sm"} variant={"outline"}>
             <Link href="https://9d8.dev">
@@ -34,9 +34,10 @@ const Hero = () => {
             />
           </div>
         </div>
-      </Craft.Container>
-    </Craft.Section>
+      </Container>
+    </Section>
   );
 };
 
 export default Hero;
+ 

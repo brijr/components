@@ -1,6 +1,6 @@
 "use client";
 
-import * as Craft from "@/components/craft";
+import { Section, Container } from "@/components/craft";
 import Placeholder from "@/public/placeholder.jpg";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
@@ -44,8 +44,8 @@ export default function Hero() {
   }
 
   return (
-    <Craft.Section>
-      <Craft.Container>
+    <Section>
+      <Container>
         <div className="not-prose flex items-center flex-col text-center gap-6">
           <Button asChild className="w-fit" size={"sm"} variant={"outline"}>
             <Link href="https://9d8.dev">
@@ -97,7 +97,7 @@ export default function Hero() {
             />
           </div>
         </div>
-      </Craft.Container>
-    </Craft.Section>
+      </Container>
+    </Section>
   );
 }

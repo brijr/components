@@ -1,4 +1,4 @@
-import * as Craft from "@/components/craft";
+import { Section, Container } from "@/components/craft";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,8 +7,8 @@ import Placeholder from "@/public/placeholder.jpg";
 
 const Hero = () => {
   return (
-    <Craft.Section className="relative h-[720px]">
-      <Craft.Container className="not-prose">
+    <Section className="relative h-[720px]">
+      <Container className="not-prose">
         {/* Name and Nav */}
         <div className="w-full flex justify-between">
           <div className="">
@@ -63,8 +63,8 @@ const Hero = () => {
             Get Started
           </Link>
         </div>
-      </Craft.Container>
-    </Craft.Section>
+      </Container>
+    </Section>
   );
 };
 

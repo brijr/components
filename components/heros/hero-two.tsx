@@ -1,4 +1,4 @@
-import * as Craft from "@/components/craft";
+import { Section, Container } from "@/components/craft";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/public/logo.svg";
@@ -8,8 +8,8 @@ import { Camera } from "lucide-react";
 
 const Hero = () => {
   return (
-    <Craft.Section>
-      <Craft.Container className="text-center items-center flex flex-col gap-6">
+    <Section>
+      <Container className="text-center items-center flex flex-col gap-6">
         <Image
           src={Logo}
           width={172}
@@ -39,8 +39,8 @@ const Hero = () => {
             <Link href="/posts">Dolor Sit Amet -{">"}</Link>
           </Button>
         </div>
-      </Craft.Container>
-    </Craft.Section>
+      </Container>
+    </Section>
   );
 };
 

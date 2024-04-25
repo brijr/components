@@ -1,6 +1,4 @@
-import * as Craft from "@/components/craft";
-import Placeholder from "@/public/placeholder.jpg";
-import Image from "next/image";
+import { Section, Container } from "@/components/craft";
 import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
@@ -8,8 +6,8 @@ import Link from "next/link";
 
 const Hero = () => {
   return (
-    <Craft.Section className="relative backdrop-blur-sm">
-      <Craft.Container className="flex flex-col gap-6">
+    <Section className="relative backdrop-blur-sm">
+      <Container className="flex flex-col gap-6">
         <Badge className="w-fit not-prose" variant="outline">
           <Link
             className="flex items-center gap-1 group"
@@ -32,8 +30,8 @@ const Hero = () => {
           <Button>Get Started</Button>
           <Button variant="outline">Learn More</Button>
         </div>
-      </Craft.Container>
-    </Craft.Section>
+      </Container>
+    </Section>
   );
 };
 
