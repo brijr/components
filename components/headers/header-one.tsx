@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 const Header = () => {
   return (
     <Craft.Section>
-      <Craft.Container>
+      <Craft.Container className="flex flex-col gap-6">
         <h1>Lorem ipsum dolor sit amet consectetur</h1>
         <h2 className="text-muted-foreground">
           <Balancer>
