@@ -111,6 +111,8 @@ const Article = ({ children, className, id }: ArticleProps) => {
         "prose-p:mb-0",
         // Prose Strong
         "prose-strong:font-semibold",
+        // Prose Images
+        "prose-img:m-0 prose-img:",
         // Inline Links
         "prose-a:underline prose-a:decoration-primary/50 prose-a:underline-offset-2 prose-a:text-foreground/75 prose-a:transition-all",
         // Inline Link Hover
