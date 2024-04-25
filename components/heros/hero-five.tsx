@@ -6,7 +6,9 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Balancer from "react-wrap-balancer";
 import { useForm } from "react-hook-form";
+
 import * as z from "zod";
 
 // Component Imports
@@ -46,19 +48,28 @@ export default function Hero() {
   return (
     <Section>
       <Container>
-        <div className="not-prose flex items-center flex-col text-center gap-6">
-          <Button asChild className="w-fit" size={"sm"} variant={"outline"}>
+        <div className="flex items-center flex-col text-center gap-6">
+          <Button
+            asChild
+            className="w-fit not-prose"
+            size={"sm"}
+            variant={"outline"}
+          >
             <Link href="https://9d8.dev">
               Lorem ipsum dolor sit amet <ArrowRight className="ml-2 w-4" />
             </Link>
           </Button>
-          <h1 className="text-primary-500 text-4xl md:text-6xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+          <h1>
+            <Balancer>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit
+            </Balancer>
           </h1>
-          <h2 className="text-xl md:text-3xl font-light">
-            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </h2>
+          <h3 className="text-muted-foreground">
+            <Balancer>
+              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </Balancer>
+          </h3>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
@@ -88,7 +99,7 @@ export default function Hero() {
           </Form>
           <div className="my-8 h-96 w-full overflow-hidden border rounded-lg md:rounded-xl md:h-[480px]">
             <Image
-              className="h-full w-full object-cover object-bottom"
+              className="h-full not-prose w-full object-cover object-bottom"
               src={Placeholder}
               width={1920}
               height={1080}

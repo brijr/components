@@ -15,14 +15,14 @@ const Hero = () => {
           width={172}
           height={72}
           alt="Company Logo"
-          className="not-prose dark:invert mb-6 md:mb-12"
+          className="not-prose dark:invert mb-6 md:mb-8"
         />
-        <h1 className="!mb-0">
+        <h1>
           <Balancer>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </Balancer>
         </h1>
-        <h3 className="opacity-75 !my-0">
+        <h3 className="text-muted-foreground">
           <Balancer>
             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
             nisi ut aliquip ex ea commodo consequat.
