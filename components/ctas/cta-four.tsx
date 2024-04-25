@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import * as Craft from "@/components/craft";
+import { Section, Container } from "@/components/craft";
 import Balancer from "react-wrap-balancer";
 
 // Component Imports
@@ -42,8 +42,8 @@ export function CTA() {
   }
 
   return (
-    <Craft.Section>
-      <Craft.Container className="text-center flex flex-col items-center">
+    <Section>
+      <Container className="text-center flex gap-6 flex-col items-center">
         <h2>Lorem ipsum dolor sit amet!</h2>
         <p className="text-lg md:text-2xl opacity-70">
           <Balancer>
@@ -76,8 +76,8 @@ export function CTA() {
             <Button type="submit">Submit</Button>
           </form>
         </Form>
-      </Craft.Container>
-    </Craft.Section>
+      </Container>
+    </Section>
   );
 }
 
