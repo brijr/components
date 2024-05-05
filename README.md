@@ -20,10 +20,10 @@ Open source components for building websites. Created by [Bridger Tower](https:/
 npx create-next-app@latest my-app --typescript --tailwind --eslint
 ```
 
-### Step 2: Install Shadcn/ui
+### Step 2: Install brijr/craft (this will also install shadcn/ui)
 
 ```
-npx shadcn-ui@latest init
+npx brijr-craft@latest init
 ```
 
  - (if you want dark mode) Add a `ThemeProvider` and `ModeToggle` by following these steps: [Adding dark mode to your next app](https://ui.shadcn.com/docs/dark-mode/next)
