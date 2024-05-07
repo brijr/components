@@ -8,11 +8,11 @@ Website: [components.bridger.to](https://components.bridger.to)
 
 ![components](https://github.com/brijr/components/assets/57158102/a1246578-4837-4704-94d8-1b01703a850b)
 
-Open source components for building websites. Created by [Bridger Tower](https://bridger.to)
+Open source collection of React components for building websites. Created by [Bridger Tower](https://bridger.to).
 
 ## Setup
 
-> Want to just use a starter? Go here [brijr/starter](https://github.com/brijr/starter)
+> Want to use a starter? Go here 🔗[brijr/starter](https://github.com/brijr/starter)
 
 ### Step 1:  Create a Next.js application
 
