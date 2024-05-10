@@ -20,7 +20,7 @@ Open source collection of Typesafe React components for building websites. Creat
 npx create-next-app@latest my-app --typescript --tailwind --eslint
 ```
 
-### Step 2: Install brijr/craft (this will also install shadcn/ui)
+### Step 2: Install [brijr/craft](https://github.com/brijr/craft) (this will also install shadcn/ui)
 
 ```
 npx brijr-craft@latest init
