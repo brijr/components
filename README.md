@@ -12,7 +12,7 @@ Open source collection of Typesafe React components for building websites. Creat
 
 ## Setup
 
-> Want to use a starter? Go here 🔗[brijr/starter](https://github.com/brijr/starter)
+> Want to use a starter? Go here 🔗 [brijr/starter](https://github.com/brijr/starter)
 
 ### Step 1:  Create a Next.js application
 
