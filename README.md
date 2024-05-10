@@ -8,7 +8,7 @@ Website: [components.bridger.to](https://components.bridger.to)
 
 ![components](https://github.com/brijr/components/assets/57158102/a1246578-4837-4704-94d8-1b01703a850b)
 
-Open source collection of React components for building websites. Created by [Bridger Tower](https://bridger.to).
+Open source collection of Typesafe React components for building websites. Created by [Bridger Tower](https://bridger.to).
 
 ## Setup
 
