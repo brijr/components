@@ -10,7 +10,7 @@ Website: [components.bridger.to](https://components.bridger.to)
 
 Open source collection of Typesafe React components for building websites. Created by [Bridger Tower](https://bridger.to).
 
-## Setup
+## Setup Next.js Application
 
 > Want to use a starter? Go here 🔗 [brijr/starter](https://github.com/brijr/starter)
 
