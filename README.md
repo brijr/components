@@ -10,7 +10,7 @@ Website: [components.bridger.to](https://components.bridger.to)
 
 Open source collection of type-safe React components styled with Tailwind for building Next.js websites. Created by [Bridger Tower](https://bridger.to).
 
-## Setup Next.js Application
+## Setup
 
 > Want to use a starter? Go here 🔗 [brijr/starter](https://github.com/brijr/starter)
 
