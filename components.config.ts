@@ -26,6 +26,8 @@ import FeatureThree from "@/components/features/feature-three";
 import FeatureFour from "@/components/features/feature-four";
 import FeatureFive from "@/components/features/feature-five";
 import FeatureSix from "@/components/features/feature-six";
+import FeatureSeven from "@/components/features/feature-seven";
+import FeatureEight from "@/components/features/feature-eight";
 
 // Header Component Imports
 import HeaderOne from "@/components/headers/header-one";
@@ -116,6 +118,14 @@ const FeatureFiveCode = readFileSync(
 );
 const FeatureSixCode = readFileSync(
   join(process.cwd(), "components/features/feature-six.tsx"),
+  "utf8"
+);
+const FeatureSevenCode = readFileSync(
+  join(process.cwd(), "components/features/feature-seven.tsx"),
+  "utf8"
+);
+const FeatureEightCode = readFileSync(
+  join(process.cwd(), "components/features/feature-eight.tsx"),
   "utf8"
 );
 
@@ -266,6 +276,18 @@ export const components: Components[] = [
     component: FeatureSix,
     path: "features/feature-six",
     code: FeatureSixCode,
+    type: "feature",
+  },
+  {
+    component: FeatureSeven,
+    path: "features/feature-seven",
+    code: FeatureSevenCode,
+    type: "feature",
+  },
+  {
+    component: FeatureEight,
+    path: "features/feature-eight",
+    code: FeatureEightCode,
     type: "feature",
   },
 
