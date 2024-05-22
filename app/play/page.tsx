@@ -4,7 +4,7 @@ import { Wrapper } from "@/components/wrapper";
 import Link from "next/link";
 
 // Component Imports
-import Component from "@/components/footers/footer-one";
+import Component from "@/components/features/feature-eight";
 
 export default function Home() {
   return (
