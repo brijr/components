@@ -37,8 +37,7 @@ export const ViewCode: React.FC<CodeDialogProps> = ({ code }) => {
           </Button>
         </DialogTrigger>
         <DialogContent className="max-w-5xl">
-          <DialogTitle>Source Code for</DialogTitle>
-
+          <DialogTitle>Source Code</DialogTitle>
           <div>
             <SyntaxHighlighter
               language="tsx"
