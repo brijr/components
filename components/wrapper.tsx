@@ -1,9 +1,10 @@
 import { Circle, ArrowUpRight } from "lucide-react";
 import { Button } from "./ui/button";
-import Link from "next/link";
-import CopyButton from "./copy";
 import { CopyLink } from "./copy-link";
 import { ViewCode } from "./view-code";
+
+import Link from "next/link";
+import CopyButton from "./copy";
 
 export const Wrapper = ({
   children,
@@ -39,6 +40,7 @@ const TopBar = ({ path, code }: { path: string; code: string }) => {
         <Circle className="w-3" />
         <Circle className="w-3" />
       </div>
+
       <div className="hidden sm:flex items-center justify-center">
         <CopyLink path={path} />
       </div>
