@@ -9,7 +9,7 @@ import { Camera } from "lucide-react";
 const Hero = () => {
   return (
     <Section>
-      <Container className="text-center items-center flex flex-col gap-6">
+      <Container className="text-center items-center flex flex-col">
         <Image
           src={Logo}
           width={172}
@@ -17,7 +17,7 @@ const Hero = () => {
           alt="Company Logo"
           className="not-prose dark:invert mb-6 md:mb-8"
         />
-        <h1>
+        <h1 className="!mb-0">
           <Balancer>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </Balancer>

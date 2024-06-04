@@ -10,8 +10,13 @@ const Hero = () => {
   return (
     <Section>
       <Container>
-        <div className="flex flex-col gap-6">
-          <Button asChild className="w-fit" size={"sm"} variant={"outline"}>
+        <div>
+          <Button
+            asChild
+            className="w-fit mb-6"
+            size={"sm"}
+            variant={"outline"}
+          >
             <Link className="not-prose" href="https://9d8.dev">
               Lorem ipsum dolor sit amet <ArrowRight className="w-4" />
             </Link>

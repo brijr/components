@@ -48,7 +48,7 @@ export default function Hero() {
   return (
     <Section>
       <Container>
-        <div className="flex items-center flex-col text-center gap-6">
+        <div className="flex items-center flex-col text-center">
           <Button
             asChild
             className="w-fit not-prose"
