@@ -1,15 +1,15 @@
-import * as Craft from "@/components/craft";
+import { Container, Section } from "@/components/craft";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 
 const CTA = () => {
   return (
-    <Craft.Section>
-      <Craft.Container className="not-prose rounded-lg md:rounded-xl p-6 md:p-12">
+    <Section>
+      <Container>
         <div className="flex flex-col gap-6">
-          <h3 className="text-4xl">Lorem ipsum dolor sit amet</h3>
-          <h4 className="text-2xl opacity-70">
+          <h2 className="!my-0">Lorem ipsum dolor sit amet</h2>
+          <h4 className="text-muted-foreground">
             <Balancer>
               Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
               labore et dolore magna aliqua.
@@ -24,8 +24,8 @@ const CTA = () => {
             </Button>
           </div>
         </div>
-      </Craft.Container>
-    </Craft.Section>
+      </Container>
+    </Section>
   );
 };
 
