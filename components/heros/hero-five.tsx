@@ -51,15 +51,15 @@ export default function Hero() {
         <div className="flex items-center flex-col text-center">
           <Button
             asChild
-            className="w-fit not-prose"
-            size={"sm"}
-            variant={"outline"}
+            className="w-fit not-prose flex mb-6"
+            size="sm"
+            variant="outline"
           >
             <Link href="https://9d8.dev">
               Lorem ipsum dolor sit amet <ArrowRight className="ml-2 w-4" />
             </Link>
           </Button>
-          <h1>
+          <h1 className="!mb-0">
             <Balancer>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit
             </Balancer>
