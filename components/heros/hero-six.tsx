@@ -9,19 +9,19 @@ const Hero = () => {
   return (
     <Section className="relative backdrop-blur-sm">
       <Container className="flex flex-col gap-8">
-        <Badge className="w-fit not-prose" variant="outline">
+        <Badge className="not-prose w-fit" variant="outline">
           <Link
-            className="flex items-center gap-1 group"
+            className="group flex items-center gap-1"
             href="https://9d8.dev"
           >
             Lorem ipsum dolor sit amet
-            <ArrowRight className="w-4 group-hover:-rotate-45 transition-all" />
+            <ArrowRight className="w-4 transition-all group-hover:-rotate-45" />
           </Link>
         </Badge>
         <h1 className="!mb-0">
           What if building landing pages was as easy as copy and paste?
         </h1>
-        <h3 className="text-muted-foreground p-4 bg-muted/50 border rounded-md">
+        <h3 className="rounded-md border bg-muted/50 p-4 text-muted-foreground">
           Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.

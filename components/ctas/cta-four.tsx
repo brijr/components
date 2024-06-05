@@ -43,9 +43,9 @@ export function CTA() {
 
   return (
     <Section>
-      <Container className="text-center flex gap-6 flex-col items-center">
-        <h2>Lorem ipsum dolor sit amet!</h2>
-        <p className="text-lg md:text-2xl opacity-70">
+      <Container className="flex flex-col items-center gap-6 text-center">
+        <h2 className="!my-0">Lorem ipsum dolor sit amet!</h2>
+        <p className="text-lg opacity-70 md:text-2xl">
           <Balancer>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -54,7 +54,7 @@ export function CTA() {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="flex items-center gap-2 h-fit mt-6 justify-center"
+            className="mt-6 flex h-fit items-center justify-center gap-2"
           >
             <FormField
               control={form.control}

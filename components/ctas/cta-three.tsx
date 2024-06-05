@@ -6,15 +6,15 @@ import Balancer from "react-wrap-balancer";
 const CTA = () => {
   return (
     <Section>
-      <Container className="border rounded-lg bg-accent/50 items-center flex flex-col text-center md:rounded-xl p-6 md:p-12 gap-6">
-        <h2>Lorem ipsum dolor sit amet</h2>
-        <h3 className="text-muted-foreground">
+      <Container className="flex flex-col items-center gap-6 rounded-lg border bg-accent/50 p-6 text-center md:rounded-xl md:p-12">
+        <h2 className="!my-0">Lorem ipsum dolor sit amet</h2>
+        <h3 className="!mb-0 text-muted-foreground">
           <Balancer>
             Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
             labore et dolore magna aliqua.
           </Balancer>
         </h3>
-        <div className="flex items-center not-prose gap-2 mt-4 mx-auto">
+        <div className="not-prose mx-auto flex items-center gap-2">
           <Button className="w-fit" asChild>
             <Link href="#">Get Started</Link>
           </Button>
