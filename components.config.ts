@@ -44,121 +44,121 @@ import FooterFive from "@/components/footers/footer-five";
 // Hero Component Code Imports
 const HeroOneCode = readFileSync(
   join(process.cwd(), "components/heros/hero-one.tsx"),
-  "utf8"
+  "utf8",
 );
 const HeroTwoCode = readFileSync(
   join(process.cwd(), "components/heros/hero-two.tsx"),
-  "utf8"
+  "utf8",
 );
 const HeroThreeCode = readFileSync(
   join(process.cwd(), "components/heros/hero-three.tsx"),
-  "utf8"
+  "utf8",
 );
 const HeroFourCode = readFileSync(
   join(process.cwd(), "components/heros/hero-four.tsx"),
-  "utf8"
+  "utf8",
 );
 const HeroFiveCode = readFileSync(
   join(process.cwd(), "components/heros/hero-five.tsx"),
-  "utf8"
+  "utf8",
 );
 const HeroSixCode = readFileSync(
   join(process.cwd(), "components/heros/hero-six.tsx"),
-  "utf8"
+  "utf8",
 );
 
 // CTA Component Code Imports
 const CTAOneCode = readFileSync(
   join(process.cwd(), "components/ctas/cta-one.tsx"),
-  "utf8"
+  "utf8",
 );
 const CTATwoCode = readFileSync(
   join(process.cwd(), "components/ctas/cta-two.tsx"),
-  "utf8"
+  "utf8",
 );
 const CTAThreeCode = readFileSync(
   join(process.cwd(), "components/ctas/cta-three.tsx"),
-  "utf8"
+  "utf8",
 );
 const CTAFourCode = readFileSync(
   join(process.cwd(), "components/ctas/cta-four.tsx"),
-  "utf8"
+  "utf8",
 );
 
 // FAQ Component Code Imports
 const FAQOneCode = readFileSync(
   join(process.cwd(), "components/faqs/faqs-one.tsx"),
-  "utf8"
+  "utf8",
 );
 const FAQTwoCode = readFileSync(
   join(process.cwd(), "components/faqs/faqs-two.tsx"),
-  "utf8"
+  "utf8",
 );
 
 // Feature Component Code Imports
 const FeatureOneCode = readFileSync(
   join(process.cwd(), "components/features/feature-one.tsx"),
-  "utf8"
+  "utf8",
 );
 const FeatureTwoCode = readFileSync(
   join(process.cwd(), "components/features/feature-two.tsx"),
-  "utf8"
+  "utf8",
 );
 const FeatureThreeCode = readFileSync(
   join(process.cwd(), "components/features/feature-three.tsx"),
-  "utf8"
+  "utf8",
 );
 const FeatureFourCode = readFileSync(
   join(process.cwd(), "components/features/feature-four.tsx"),
-  "utf8"
+  "utf8",
 );
 const FeatureFiveCode = readFileSync(
   join(process.cwd(), "components/features/feature-five.tsx"),
-  "utf8"
+  "utf8",
 );
 const FeatureSixCode = readFileSync(
   join(process.cwd(), "components/features/feature-six.tsx"),
-  "utf8"
+  "utf8",
 );
 const FeatureSevenCode = readFileSync(
   join(process.cwd(), "components/features/feature-seven.tsx"),
-  "utf8"
+  "utf8",
 );
 const FeatureEightCode = readFileSync(
   join(process.cwd(), "components/features/feature-eight.tsx"),
-  "utf8"
+  "utf8",
 );
 
 // Header Component Code Imports
 const HeaderOneCode = readFileSync(
   join(process.cwd(), "components/headers/header-one.tsx"),
-  "utf8"
+  "utf8",
 );
 const HeaderTwoCode = readFileSync(
   join(process.cwd(), "components/headers/header-two.tsx"),
-  "utf8"
+  "utf8",
 );
 
 // Footer Component Code Imports
 const FooterOneCode = readFileSync(
   join(process.cwd(), "components/footers/footer-one.tsx"),
-  "utf8"
+  "utf8",
 );
 const FooterTwoCode = readFileSync(
   join(process.cwd(), "components/footers/footer-two.tsx"),
-  "utf8"
+  "utf8",
 );
 const FooterThreeCode = readFileSync(
   join(process.cwd(), "components/footers/footer-three.tsx"),
-  "utf8"
+  "utf8",
 );
 const FooterFourCode = readFileSync(
   join(process.cwd(), "components/footers/footer-four.tsx"),
-  "utf8"
+  "utf8",
 );
 const FooterFiveCode = readFileSync(
   join(process.cwd(), "components/footers/footer-five.tsx"),
-  "utf8"
+  "utf8",
 );
 
 // Component Interface

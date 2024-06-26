@@ -2,10 +2,10 @@ import React from "react";
 
 export function Background() {
   return (
-    <div className="w-full -z-50 h-screen fixed top-0 right-0 left-0 dark:bg-grid-small-white/[0.2] bg-grid-small-black/[0.1] flex items-center justify-center">
+    <div className="fixed left-0 right-0 top-0 -z-50 flex h-screen w-full items-center justify-center bg-accent bg-grid-small-black/[0.1] dark:bg-grid-small-white/[0.2]">
       {/* Radial gradient for the container to give a faded look */}
-      <div className="absolute pointer-events-none inset-0 flex items-center justify-center [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-      <p className="text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8"></p>
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+      <p className="relative z-20 bg-gradient-to-b from-neutral-200 to-neutral-500 bg-clip-text py-8 text-4xl font-bold text-transparent sm:text-7xl"></p>
     </div>
   );
 }

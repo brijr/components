@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <Layout className={font.className}>
-      <body>
+      <body className="px-4 xl:px-0">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
