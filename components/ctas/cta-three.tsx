@@ -12,7 +12,7 @@ import { Section, Container } from "@/components/craft";
 
 const CTA = () => {
   return (
-    <Section>
+    <Section className="px-4">
       <Container className="flex flex-col items-center gap-6 rounded-lg border bg-accent/50 p-6 text-center md:rounded-xl md:p-12">
         <h2 className="!my-0">Lorem ipsum dolor sit amet</h2>
         <h3 className="!mb-0 text-muted-foreground">
