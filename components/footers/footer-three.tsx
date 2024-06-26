@@ -1,14 +1,21 @@
-import { Section, Container } from "../craft";
+// React and Next.js imports
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "@/public/logo.svg";
+
+// Third-party library imports
 import Balancer from "react-wrap-balancer";
+
+// Local component imports
+import { Section, Container } from "../craft";
+
+// Asset imports
+import Logo from "@/public/logo.svg";
 
 export default function Footer() {
   return (
     <footer>
       <Section>
-        <Container className="grid md:grid-cols-[1.5fr_0.5fr_0.5fr] gap-12">
+        <Container className="grid gap-12 md:grid-cols-[1.5fr_0.5fr_0.5fr]">
           <div className="grid gap-6">
             <Link href="/">
               <h3 className="sr-only">brijr/components</h3>
@@ -17,7 +24,7 @@ export default function Footer() {
                 alt="Logo"
                 width={120}
                 height={27.27}
-                className="dark:invert hover:opacity-75 transition-all"
+                className="transition-all hover:opacity-75 dark:invert"
               ></Image>
             </Link>
             <p>

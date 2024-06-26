@@ -7,14 +7,14 @@ export const End = () => {
         <p>
           source code can be found on{" "}
           <a
-            className="border-b hover:border-b-orange-500 transition-all"
+            className="border-b transition-all hover:border-b-orange-500"
             href="https://github.com/brijr/components"
           >
             github
           </a>
           . follow me on{" "}
           <a
-            className="border-b hover:border-b-orange-500 transition-all"
+            className="border-b transition-all hover:border-b-orange-500"
             href="https://x.com/bridgertower"
           >
             x (twitter)

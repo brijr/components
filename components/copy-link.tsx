@@ -30,7 +30,7 @@ export const CopyLink = ({ path }: { path: string }) => {
           </button>
         </TooltipTrigger>
         <TooltipContent side="bottom" sideOffset={8}>
-          <p className="not-prose flex gap-2 text-xs items-center">
+          <p className="not-prose flex items-center gap-2 text-xs">
             <Link className="w-3" /> Copy Link to Component
           </p>
         </TooltipContent>

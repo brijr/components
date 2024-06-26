@@ -1,8 +1,11 @@
-import { Section, Container } from "@/components/craft";
-import Image from "next/image";
+// React and Next.js imports
 import Link from "next/link";
+import Image from "next/image";
 
-// Image Imports
+// Local component imports
+import { Section, Container } from "@/components/craft";
+
+// Asset imports
 import Placeholder from "@/public/placeholder.jpg";
 
 const Hero = () => {
@@ -10,10 +13,10 @@ const Hero = () => {
     <Section className="relative h-[720px]">
       <Container className="not-prose">
         {/* Name and Nav */}
-        <div className="w-full flex justify-between">
+        <div className="flex w-full justify-between">
           <div className="">
-            <h1 className="md:text-6xl text-3xl font-normal mb-4">
-              <Link className="hover:opacity-70 transition-all" href="#">
+            <h1 className="mb-4 text-3xl font-normal md:text-6xl">
+              <Link className="transition-all hover:opacity-70" href="#">
                 Lorem Ipsum
               </Link>
             </h1>
@@ -21,36 +24,36 @@ const Hero = () => {
               Another component from Craft UI.
             </h2>
           </div>
-          <div className="md:flex gap-4 hidden">
-            <Link className="hover:opacity-70 transition-all" href="#">
+          <div className="hidden gap-4 md:flex">
+            <Link className="transition-all hover:opacity-70" href="#">
               Book a component
             </Link>
-            <Link className="hover:opacity-70 transition-all" href="#">
+            <Link className="transition-all hover:opacity-70" href="#">
               Heros
             </Link>
-            <Link className="hover:opacity-70 transition-all" href="#">
+            <Link className="transition-all hover:opacity-70" href="#">
               Shop
             </Link>
-            <Link className="hover:opacity-70 transition-all" href="#">
+            <Link className="transition-all hover:opacity-70" href="#">
               Learn More
             </Link>
           </div>
         </div>
 
         {/* Images */}
-        <div className="flex justify-end items-end gap-2 absolute bottom-0 right-0 fit">
+        <div className="fit absolute bottom-0 right-0 flex items-end justify-end gap-2">
           {/* Image 1 */}
-          <div className="w-96 h-72 hidden md:block">
+          <div className="hidden h-72 w-96 md:block">
             <Image
-              className="object-cover h-full w-full rounded-tl-3xl"
+              className="h-full w-full rounded-tl-3xl object-cover"
               src={Placeholder}
               alt="placeholder"
             ></Image>
           </div>
           {/* Image 2 */}
-          <div className="w-fit md:w-96 h-[420px]">
+          <div className="h-[420px] w-fit md:w-96">
             <Image
-              className="object-cover h-full w-full rounded-tl-3xl"
+              className="h-full w-full rounded-tl-3xl object-cover"
               src={Placeholder}
               alt="placeholder"
             ></Image>
@@ -58,7 +61,7 @@ const Hero = () => {
         </div>
 
         {/* Circle CTA */}
-        <div className="absolute bottom-2 right-2 h-12 w-12 bg-secondary p-12 flex items-center justify-center rounded-full hover:opacity-80 text-center leading-4 border font-medium transition-all">
+        <div className="absolute bottom-2 right-2 flex h-12 w-12 items-center justify-center rounded-full border bg-secondary p-12 text-center font-medium leading-4 transition-all hover:opacity-80">
           <Link className="-mt-1" href="#">
             Get Started
           </Link>

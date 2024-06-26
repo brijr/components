@@ -1,6 +1,7 @@
-import { Container, Section } from "@/components/craft";
 import Balancer from "react-wrap-balancer";
+
 import { Button } from "../ui/button";
+import { Container, Section } from "@/components/craft";
 
 const Header = () => {
   return (

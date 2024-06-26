@@ -1,8 +1,9 @@
-import { Section, Container } from "@/components/craft";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
-import Image from "next/image";
+
+import { Button } from "@/components/ui/button";
+import { Section, Container } from "@/components/craft";
 import Placeholder from "@/public/placeholder.jpg";
 
 const Feature = () => {
@@ -16,7 +17,7 @@ const Feature = () => {
             labore et dolore magna aliqua.
           </Balancer>
         </p>
-        <div className="not-prose flex items-center my-8 gap-2">
+        <div className="not-prose my-8 flex items-center gap-2">
           <Button className="w-fit" asChild>
             <Link href="#">Get Started</Link>
           </Button>
@@ -24,7 +25,7 @@ const Feature = () => {
             <Link href="#">Learn More {"->"}</Link>
           </Button>
         </div>
-        <div className="not-prose border relative rounded-lg overflow-hidden flex h-96">
+        <div className="not-prose relative flex h-96 overflow-hidden rounded-lg border">
           <Image
             src={Placeholder}
             alt="placeholder"

@@ -1,5 +1,8 @@
-// Layout
-import * as Craft from "@/components/craft";
+// React and Next.js
+import React from "react";
+
+// Layout Components
+import { Section, Container } from "@/components/craft";
 import Balancer from "react-wrap-balancer";
 
 // Icons
@@ -13,19 +16,19 @@ type FeatureText = {
 
 const featureText: FeatureText[] = [
   {
-    icon: <Coins className="w-6 h-6" />,
+    icon: <Coins className="h-6 w-6" />,
     title: "Lorem Ipsum",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
-    icon: <Coins className="w-6 h-6" />,
+    icon: <Coins className="h-6 w-6" />,
     title: "Lorem Ipsum",
     description:
       "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
-    icon: <Coins className="w-6 h-6" />,
+    icon: <Coins className="h-6 w-6" />,
     title: "Lorem Ipsum",
     description:
       "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
@@ -34,8 +37,8 @@ const featureText: FeatureText[] = [
 
 const Feature = () => {
   return (
-    <Craft.Section className="border-b">
-      <Craft.Container className="not-prose">
+    <Section className="border-b">
+      <Container className="not-prose">
         <div className="flex flex-col gap-6">
           <h3 className="text-4xl">
             <Balancer>
@@ -48,7 +51,7 @@ const Feature = () => {
             </Balancer>
           </h4>
 
-          <div className="grid md:grid-cols-3 mt-6 gap-6 md:mt-12">
+          <div className="mt-6 grid gap-6 md:mt-12 md:grid-cols-3">
             {featureText.map(({ icon, title, description }, index) => (
               <div className="flex flex-col gap-4" key={index}>
                 {icon}
@@ -58,8 +61,8 @@ const Feature = () => {
             ))}
           </div>
         </div>
-      </Craft.Container>
-    </Craft.Section>
+      </Container>
+    </Section>
   );
 };
 

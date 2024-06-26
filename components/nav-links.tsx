@@ -14,14 +14,14 @@ const types: ComponentTypes[] = [
 
 export function NavLinks() {
   return (
-    <Container className="not-prose flex w-full flex-wrap gap-2 items-center">
+    <Container className="not-prose flex w-full flex-wrap items-center gap-2">
       <p className="mr-4 hidden text-base md:block">Sort by Type: </p>
       {types.map((type) => (
         <Button
           asChild
           variant="outline"
           className={`px-2 text-base font-normal ${
-            type === "all" ? "underline opacity-70 cursor-default" : ""
+            type === "all" ? "cursor-default underline opacity-70" : ""
           }`}
           key={type}
         >

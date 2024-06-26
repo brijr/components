@@ -1,17 +1,17 @@
 "use client";
 
-import { Section, Container } from "../craft";
+import * as z from "zod";
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "@/public/logo.svg";
 import Balancer from "react-wrap-balancer";
-import { Button } from "../ui/button";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Github, Twitter, Facebook } from "lucide-react";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-
+import Logo from "@/public/logo.svg";
+import { Section, Container } from "../craft";
+import { Button } from "../ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
@@ -21,7 +21,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -48,7 +47,7 @@ export default function Footer() {
     <footer>
       <Section>
         <Container className="grid gap-6">
-          <div className="flex flex-col gap-6 not-prose">
+          <div className="not-prose flex flex-col gap-6">
             <Link href="/">
               <h3 className="sr-only">brijr/components</h3>
               <Image
@@ -56,7 +55,7 @@ export default function Footer() {
                 alt="Logo"
                 width={120}
                 height={27.27}
-                className="dark:invert hover:opacity-75 transition-all"
+                className="transition-all hover:opacity-75 dark:invert"
               ></Image>
             </Link>
             <p>
@@ -81,7 +80,7 @@ export default function Footer() {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-4 not-prose"
+              className="not-prose space-y-4"
             >
               <FormField
                 control={form.control}
@@ -107,15 +106,16 @@ export default function Footer() {
             </form>
           </Form>
         </Container>
-        <Container className="border-t not-prose md:flex justify-between items-center text-sm">
-          <div className="flex flex-col md:flex-row mb-6 md:mb-0 gap-4 underline underline-offset-4 decoration-muted">
+        <Container className="not-prose items-center justify-between border-t text-sm md:flex">
+          <div className="mb-6 flex flex-col gap-4 underline decoration-muted underline-offset-4 md:mb-0 md:flex-row">
             <Link href="/privacy-policy">Privacy Policy</Link>
             <Link href="/terms-of-service">Terms of Service</Link>
             <Link href="/cookie-policy">Cookie Policy</Link>
           </div>
           <p className="text-muted-foreground">
-            © <a href="https://github.com/brijr/components">brijr/components</a>
-            . All rights reserved. 2024-present.
+            ©{" "}
+            <a href="https://github.com/brijr/components">brijr/components</a>.
+            All rights reserved. 2024-present.
           </p>
         </Container>
       </Section>

@@ -21,7 +21,7 @@ export default function Home() {
               asChild
               variant="link"
               className={`px-2 text-base font-normal ${
-                type === "all" ? "underline opacity-70 cursor-default" : ""
+                type === "all" ? "cursor-default underline opacity-70" : ""
               }`}
               key={type}
             >

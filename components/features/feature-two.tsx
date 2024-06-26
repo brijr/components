@@ -1,9 +1,13 @@
-// Layout
-import * as Craft from "@/components/craft";
-import Balancer from "react-wrap-balancer";
+// React and Next.js imports
 import Link from "next/link";
 
-// Icons
+// Third-party library imports
+import Balancer from "react-wrap-balancer";
+
+// UI component imports
+import { Section, Container } from "@/components/craft";
+
+// Icon imports
 import { Coins, ArrowRight } from "lucide-react";
 
 type FeatureText = {
@@ -51,8 +55,8 @@ const featureText: FeatureText[] = [
 
 const Feature = () => {
   return (
-    <Craft.Section className="border-b">
-      <Craft.Container className="not-prose">
+    <Section className="border-b">
+      <Container className="not-prose">
         <div className="flex flex-col gap-6">
           <h3 className="text-4xl">
             <Balancer>
@@ -75,7 +79,7 @@ const Feature = () => {
                 >
                   <div className="grid gap-4">
                     {icon}
-                    <h4 className="text-primary text-xl">{title}</h4>
+                    <h4 className="text-xl text-primary">{title}</h4>
                     <p className="text-base opacity-75">{description}</p>
                   </div>
                   {cta && (
@@ -84,12 +88,12 @@ const Feature = () => {
                     </div>
                   )}
                 </Link>
-              )
+              ),
             )}
           </div>
         </div>
-      </Craft.Container>
-    </Craft.Section>
+      </Container>
+    </Section>
   );
 };
 

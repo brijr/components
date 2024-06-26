@@ -1,14 +1,19 @@
+// React and Next.js imports
+import Image from "next/image";
+import Link from "next/link";
+
+// UI component imports
 import * as Craft from "@/components/craft";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import Image from "next/image";
+
+// Asset imports
 import Placeholder from "@/public/placeholder.jpg";
 
 const Feature = () => {
   return (
     <Craft.Section>
-      <Craft.Container className="grid md:grid-cols-2 md:gap-12 items-stretch">
-        <div className="not-prose border relative rounded-lg overflow-hidden flex h-96">
+      <Craft.Container className="grid items-stretch md:grid-cols-2 md:gap-12">
+        <div className="not-prose relative flex h-96 overflow-hidden rounded-lg border">
           <Image
             src={Placeholder}
             alt="placeholder"

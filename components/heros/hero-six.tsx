@@ -1,9 +1,10 @@
-import { Section, Container } from "@/components/craft";
+import Link from "next/link";
+
 import { ArrowRight } from "lucide-react";
+
+import { Section, Container } from "@/components/craft";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
-
-import Link from "next/link";
 
 const Hero = () => {
   return (

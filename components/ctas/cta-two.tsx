@@ -1,12 +1,11 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import * as z from "zod";
-import * as Craft from "@/components/craft";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Balancer from "react-wrap-balancer";
 
-// Component Imports
+import { Section, Container } from "@/components/craft";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -42,8 +41,8 @@ export function CTA() {
   }
 
   return (
-    <Craft.Section>
-      <Craft.Container className="space-y-8">
+    <Section>
+      <Container className="space-y-8">
         <h2 className="!my-0">Lorem ipsum dolor sit amet!</h2>
         <p className="text-lg opacity-70 md:text-2xl">
           <Balancer>
@@ -74,8 +73,8 @@ export function CTA() {
             <Button type="submit">Submit</Button>
           </form>
         </Form>
-      </Craft.Container>
-    </Craft.Section>
+      </Container>
+    </Section>
   );
 }
 

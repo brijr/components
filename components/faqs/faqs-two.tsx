@@ -1,13 +1,19 @@
-import * as Craft from "@/components/craft";
+// React and Next.js imports
+import React from "react";
 
+// Third-party library imports
 import { ArrowUpRight } from "lucide-react";
 
+// UI component imports
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+
+// Custom components
+import { Section, Container } from "@/components/craft";
 
 type FAQItem = {
   question: string;
@@ -41,19 +47,19 @@ const content: FAQItem[] = [
 
 const FAQ = () => {
   return (
-    <Craft.Section>
-      <Craft.Container>
+    <Section>
+      <Container>
         <h3 className="!mt-0">Frequently Asked Questions</h3>
         <h4 className="text-muted-foreground">
           Can&apos;t find the answer you&apos;re looking for? Reach out to our
           customer support team.
         </h4>
-        <div className="mt-4 md:mt-8 not-prose flex flex-col gap-4">
+        <div className="not-prose mt-4 flex flex-col gap-4 md:mt-8">
           {content.map((item, index) => (
             <Accordion key={index} type="single" collapsible>
               <AccordionItem
                 value={item.question}
-                className="hover:bg-muted/50 transition-all border px-4 bg-muted/20 rounded-md"
+                className="rounded-md border bg-muted/20 px-4 transition-all hover:bg-muted/50"
               >
                 <AccordionTrigger className="text-left hover:no-underline">
                   {item.question}
@@ -63,7 +69,7 @@ const FAQ = () => {
                   {item.link && (
                     <a
                       href={item.link}
-                      className="opacity-60 w-full mt-2 hover:opacity-100 transition-all flex items-center"
+                      className="mt-2 flex w-full items-center opacity-60 transition-all hover:opacity-100"
                     >
                       Learn more <ArrowUpRight className="ml-1" size="16" />
                     </a>
@@ -73,8 +79,8 @@ const FAQ = () => {
             </Accordion>
           ))}
         </div>
-      </Craft.Container>
-    </Craft.Section>
+      </Container>
+    </Section>
   );
 };
 

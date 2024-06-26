@@ -1,18 +1,16 @@
 "use client";
 
-import { Section, Container } from "@/components/craft";
-import Placeholder from "@/public/placeholder.jpg";
-import Image from "next/image";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Balancer from "react-wrap-balancer";
-import { useForm } from "react-hook-form";
-
 import * as z from "zod";
+import Image from "next/image";
+import Link from "next/link";
+import Balancer from "react-wrap-balancer";
+import { ArrowRight } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-// Component Imports
+// UI Components
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
@@ -21,7 +19,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+
+// Custom Components
+import { Section, Container } from "@/components/craft";
+
+// Assets
+import Placeholder from "@/public/placeholder.jpg";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -48,10 +51,10 @@ export default function Hero() {
   return (
     <Section>
       <Container>
-        <div className="flex items-center flex-col text-center">
+        <div className="flex flex-col items-center text-center">
           <Button
             asChild
-            className="w-fit not-prose flex mb-6"
+            className="not-prose mb-6 flex w-fit"
             size="sm"
             variant="outline"
           >
@@ -97,9 +100,9 @@ export default function Hero() {
               </Button>
             </form>
           </Form>
-          <div className="my-8 h-96 w-full overflow-hidden border rounded-lg md:rounded-xl md:h-[480px]">
+          <div className="my-8 h-96 w-full overflow-hidden rounded-lg border md:h-[480px] md:rounded-xl">
             <Image
-              className="h-full not-prose w-full object-cover object-bottom"
+              className="not-prose h-full w-full object-cover object-bottom"
               src={Placeholder}
               width={1920}
               height={1080}

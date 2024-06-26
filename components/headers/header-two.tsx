@@ -1,5 +1,8 @@
-import { Container, Section } from "@/components/craft";
+// Third-party library imports
 import Balancer from "react-wrap-balancer";
+
+// Local component imports
+import { Container, Section } from "@/components/craft";
 import { Button } from "../ui/button";
 
 const Header = () => {

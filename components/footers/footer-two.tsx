@@ -1,8 +1,9 @@
-import { Section, Container } from "../craft";
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "@/public/logo.svg";
 import Balancer from "react-wrap-balancer";
+
+import { Section, Container } from "../craft";
+import Logo from "@/public/logo.svg";
 
 export default function Footer() {
   return (
@@ -17,7 +18,7 @@ export default function Footer() {
                 alt="Logo"
                 width={120}
                 height={27.27}
-                className="dark:invert hover:opacity-75 transition-all"
+                className="transition-all hover:opacity-75 dark:invert"
               ></Image>
             </Link>
             <p>
@@ -26,7 +27,7 @@ export default function Footer() {
                 components for building landing pages and websites.
               </Balancer>
             </p>
-            <div className="flex flex-col md:flex-row mb-6 md:mb-0 gap-4 underline underline-offset-4 text-sm text-muted-foreground">
+            <div className="mb-6 flex flex-col gap-4 text-sm text-muted-foreground underline underline-offset-4 md:mb-0 md:flex-row">
               <Link href="/privacy-policy">Privacy Policy</Link>
               <Link href="/terms-of-service">Terms of Service</Link>
               <Link href="/cookie-policy">Cookie Policy</Link>

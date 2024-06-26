@@ -1,15 +1,22 @@
+// React and Next.js imports
+import Link from "next/link";
+import Image from "next/image";
+
+// Third-party library imports
+import Balancer from "react-wrap-balancer";
+
+// UI component imports
 import { Section, Container } from "@/components/craft";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import Balancer from "react-wrap-balancer";
-import Image from "next/image";
+
+// Asset imports
 import Placeholder from "@/public/placeholder.jpg";
 
 const Feature = () => {
   return (
     <Section>
       <Container className="grid items-stretch">
-        <div className="not-prose border relative rounded-lg overflow-hidden flex h-96">
+        <div className="not-prose relative flex h-96 overflow-hidden rounded-lg border">
           <Image
             src={Placeholder}
             alt="placeholder"
@@ -23,7 +30,7 @@ const Feature = () => {
             labore et dolore magna aliqua.
           </Balancer>
         </p>
-        <div className="not-prose flex items-center mt-8 gap-2">
+        <div className="not-prose mt-8 flex items-center gap-2">
           <Button className="w-fit" asChild>
             <Link href="#">Get Started</Link>
           </Button>

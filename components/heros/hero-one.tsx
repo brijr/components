@@ -1,10 +1,17 @@
-import { Section, Container } from "@/components/craft";
-import Placeholder from "@/public/placeholder.jpg";
+// React and Next.js imports
 import Image from "next/image";
+import Link from "next/link";
+
+// Third-party library imports
 import Balancer from "react-wrap-balancer";
 import { ArrowRight } from "lucide-react";
+
+// Local component imports
+import { Section, Container } from "@/components/craft";
 import { Button } from "../ui/button";
-import Link from "next/link";
+
+// Asset imports
+import Placeholder from "@/public/placeholder.jpg";
 
 const Hero = () => {
   return (
@@ -13,7 +20,7 @@ const Hero = () => {
         <div>
           <Button
             asChild
-            className="w-fit mb-6"
+            className="mb-6 w-fit"
             size={"sm"}
             variant={"outline"}
           >
@@ -33,7 +40,7 @@ const Hero = () => {
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </Balancer>
           </h3>
-          <div className="my-8 h-96 not-prose w-full overflow-hidden border rounded-lg md:rounded-xl md:h-[480px]">
+          <div className="not-prose my-8 h-96 w-full overflow-hidden rounded-lg border md:h-[480px] md:rounded-xl">
             <Image
               className="h-full w-full object-cover object-bottom"
               src={Placeholder}

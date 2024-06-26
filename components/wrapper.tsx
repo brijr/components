@@ -20,7 +20,7 @@ export const Wrapper = ({
   return (
     <div
       id={path}
-      className="w-full relative group bg-background drop-shadow-md hover:drop-shadow-xl border rounded-lg transition-all max-w-6xl md:max-h-[848px] sm:m-2 overflow-hidden no-scrollbar"
+      className="no-scrollbar group relative w-full max-w-6xl overflow-hidden rounded-lg border bg-background drop-shadow-md transition-all hover:drop-shadow-xl sm:m-2 md:max-h-[848px]"
     >
       <CopyButton textToCopy={code} />
       <TopBar path={path} code={code} />
@@ -34,14 +34,14 @@ export const Wrapper = ({
 
 const TopBar = ({ path, code }: { path: string; code: string }) => {
   return (
-    <div className="top-bar sticky top-0 flex z-30 pl-4 pr-1 h-10 justify-between items-center border-b">
+    <div className="top-bar sticky top-0 z-30 flex h-10 items-center justify-between border-b pl-4 pr-1">
       <div className="not-prose flex gap-2">
         <Circle className="w-3" />
         <Circle className="w-3" />
         <Circle className="w-3" />
       </div>
 
-      <div className="hidden sm:flex items-center justify-center">
+      <div className="hidden items-center justify-center sm:flex">
         <CopyLink path={path} />
       </div>
 

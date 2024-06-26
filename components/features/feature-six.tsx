@@ -1,5 +1,5 @@
 // Layout
-import * as Craft from "@/components/craft";
+import { Section, Container } from "@/components/craft";
 import Balancer from "react-wrap-balancer";
 import Link from "next/link";
 
@@ -46,8 +46,8 @@ const singleFeatureText: FeatureText[] = [
 
 const Feature = () => {
   return (
-    <Craft.Section>
-      <Craft.Container className="not-prose">
+    <Section>
+      <Container className="not-prose">
         <div className="flex flex-col gap-6">
           <h3 className="text-4xl">
             <Balancer>
@@ -70,7 +70,7 @@ const Feature = () => {
                 >
                   <div className="grid gap-4">
                     {icon}
-                    <h4 className="text-primary text-xl">{title}</h4>
+                    <h4 className="text-xl text-primary">{title}</h4>
                     <p className="text-base opacity-75">{description}</p>
                   </div>
                   {cta && (
@@ -79,7 +79,7 @@ const Feature = () => {
                     </div>
                   )}
                 </Link>
-              )
+              ),
             )}
           </div>
           <div>
@@ -87,12 +87,12 @@ const Feature = () => {
               ({ icon, title, description, href, cta }, index) => (
                 <Link
                   href={`${href}`}
-                  className="flex flex-col bg-muted/25 justify-between gap-6 rounded-lg border p-6 transition-all hover:-mt-2 hover:mb-2"
+                  className="flex flex-col justify-between gap-6 rounded-lg border bg-muted/25 p-6 transition-all hover:-mt-2 hover:mb-2"
                   key={index}
                 >
                   <div className="grid gap-4">
                     {icon}
-                    <h4 className="text-primary text-xl">{title}</h4>
+                    <h4 className="text-xl text-primary">{title}</h4>
                     <p className="text-base opacity-75">{description}</p>
                   </div>
                   {cta && (
@@ -101,12 +101,12 @@ const Feature = () => {
                     </div>
                   )}
                 </Link>
-              )
+              ),
             )}
           </div>
         </div>
-      </Craft.Container>
-    </Craft.Section>
+      </Container>
+    </Section>
   );
 };
 

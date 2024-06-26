@@ -41,7 +41,7 @@ export const ViewCode: React.FC<CodeDialogProps> = ({ code }) => {
           <div>
             <SyntaxHighlighter
               language="tsx"
-              className="overflow-auto h-full md:max-h-[720px] rounded-lg"
+              className="h-full overflow-auto rounded-lg md:max-h-[720px]"
               style={atomDark}
               wrapLongLines
               showLineNumbers
