@@ -15,7 +15,7 @@ export const Info = ({ children }: { children?: ReactNode }) => {
           className="text-orange-500 transition-all hover:text-orange-300"
         >{`</>`}</Link>
         <h1>components.bridger.to</h1>
-        <h2 className="mb-4 font-light lowercase !leading-[1.3] opacity-75">
+        <h2 className="mb-1 font-light lowercase !leading-[1.3] opacity-75">
           <Balancer>
             This is a collection of NextJS components created by{" "}
             <a
@@ -41,6 +41,18 @@ export const Info = ({ children }: { children?: ReactNode }) => {
             , TypeScript, and Tailwind CSS.
           </Balancer>
         </h2>
+        <p className="mb-4 font-light lowercase !leading-[1.3] opacity-75">
+          <Balancer>
+            Get up and running with brijr/components by visiting the{" "}
+            <Link
+              href="/start"
+              className="border-b transition-all hover:border-b-orange-500"
+            >
+              start page
+            </Link>
+            .
+          </Balancer>
+        </p>
         <div className="flex gap-2">
           <ModeToggle />
           <Button variant="outline" asChild size="icon">
