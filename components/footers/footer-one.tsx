@@ -65,15 +65,21 @@ export default function Footer() {
               </Balancer>
             </p>
             <div className="flex gap-2">
+             <Link href="/">
               <Button variant="outline" size="icon">
                 <Github />
               </Button>
+             </Link>
+            <Link href="/">
               <Button variant="outline" size="icon">
                 <Twitter />
               </Button>
+            </Link>
+            <Link href="/">
               <Button variant="outline" size="icon">
                 <Facebook />
               </Button>
+            </Link>
             </div>
           </div>
 

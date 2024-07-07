@@ -55,15 +55,21 @@ export default function Footer() {
         </Container>
         <Container className="not-prose flex flex-col justify-between gap-6 border-t md:flex-row md:items-center md:gap-2">
           <div className="flex gap-2">
-            <Button variant="outline" size="icon">
-              <Github />
-            </Button>
-            <Button variant="outline" size="icon">
-              <Twitter />
-            </Button>
-            <Button variant="outline" size="icon">
-              <Facebook />
-            </Button>
+            <Link href="/">
+              <Button variant="outline" size="icon">
+                <Github />
+              </Button>
+            </Link>
+            <Link href="/">
+              <Button variant="outline" size="icon">
+                <Twitter />
+              </Button>
+            </Link>
+            <Link href="/">
+              <Button variant="outline" size="icon">
+                <Facebook />
+              </Button>
+            </Link>
           </div>
           <p className="text-muted-foreground">
             ©{" "}
