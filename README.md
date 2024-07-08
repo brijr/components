@@ -29,3 +29,7 @@ npx brijr-craft@latest init
  - (if you want dark mode) Add a `ThemeProvider` and `ModeToggle` by following these steps: [Adding dark mode to your next app](https://ui.shadcn.com/docs/dark-mode/next)
 
 ### Step 3: Copy and Paste components from the [website](htpps://components.bridger.to) into your component folder to get started!
+
+## brijr/components in use
+
+[https://www.youtube.com/watch?v=s-cb_7Kyupg](https://www.youtube.com/watch?v=s-cb_7Kyupg)
