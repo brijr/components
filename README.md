@@ -32,4 +32,6 @@ npx brijr-craft@latest init
 
 ## brijr/components in use
 
-[https://www.youtube.com/watch?v=s-cb_7Kyupg](https://www.youtube.com/watch?v=s-cb_7Kyupg)
+[![Watch the video](https://img.youtube.com/vi/s-cb_7Kyupg/sddefault.jpg)](https://www.youtube.com/watch?v=s-cb_7Kyupg)
+
+[![Watch the video](https://img.youtube.com/vi/PjSfcq3p2jY/sddefault.jpg)](https://www.youtube.com/watch?v=PjSfcq3p2jY)
