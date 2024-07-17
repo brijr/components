@@ -24,7 +24,7 @@ export const Wrapper = ({
     >
       <CopyButton textToCopy={code} />
       <TopBar path={path} code={code} />
-      <div className="relative">
+      <div className="relative ">
         <ViewCode code={code} />
         {children}
       </div>

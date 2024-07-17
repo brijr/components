@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 // Component Config
-import { components, types } from "@/components.config";
+import { components, types } from "@/registry";
 
 export default function Home() {
   return (
@@ -21,7 +21,7 @@ export default function Home() {
               asChild
               variant="link"
               className={`px-2 text-base font-normal ${
-                type === "cta" ? "underline opacity-70 cursor-default" : ""
+                type === "cta" ? "cursor-default underline opacity-70" : ""
               }`}
               key={type}
             >

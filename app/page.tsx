@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 // Component Config
-import { components, types } from "@/components.config";
+import { components, types } from "@/registry";
 
 export default function Home() {
   return (
