@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Code, X } from "lucide-react";
+import { Code2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -22,15 +22,10 @@ interface CodeDialogProps {
 export const ViewCode: React.FC<CodeDialogProps> = ({ code }) => {
   return (
     <Dialog>
-      <DialogTrigger>
-        <Button
-          asChild
-          className="absolute right-16 top-4 z-50"
-          size="icon"
-          variant="outline"
-        >
+      <DialogTrigger className="absolute right-16 top-14 z-50">
+        <Button asChild size="icon" variant="outline">
           <span>
-            <Code size={16} />
+            <Code2 size={16} />
           </span>
         </Button>
       </DialogTrigger>

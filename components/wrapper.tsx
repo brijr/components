@@ -23,10 +23,8 @@ export const Wrapper = ({
     >
       <CopyButton textToCopy={code} />
       <TopBar path={path} code={code} />
-      <div className="relative">
-        {children}
-        <ViewCode code={code} />
-      </div>
+      {children}
+      <ViewCode code={code} />
     </div>
   );
 };
