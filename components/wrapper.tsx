@@ -10,7 +10,6 @@ export const Wrapper = ({
   children,
   path,
   code,
-  type,
 }: {
   children: React.ReactNode;
   path: string;
@@ -34,7 +33,7 @@ export const Wrapper = ({
 
 const TopBar = ({ path, code }: { path: string; code: string }) => {
   return (
-    <div className="top-bar sticky top-0 z-30 flex h-10 items-center justify-between border-b pl-4 pr-1">
+    <div className="top-bar sticky top-0 z-30 flex h-10 items-center justify-between border-b bg-accent/50 pl-4 pr-1">
       <div className="not-prose flex gap-2">
         <Circle className="w-3" />
         <Circle className="w-3" />
