@@ -3,11 +3,8 @@ import { Main } from "@/components/craft";
 import { End } from "@/components/end";
 import { Wrapper } from "@/components/wrapper";
 import { Info } from "@/components/info";
-import { Button } from "@/components/ui/button";
 import { TypeButton } from "@/components/type-button";
-
 import * as Craft from "@/components/craft";
-import Link from "next/link";
 
 // Component Config
 import { components, types } from "@/registry";

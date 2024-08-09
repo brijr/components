@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <Main>
       <Info>
-        <Craft.Container className="not-prose flex w-full flex-wrap items-center">
+        <Craft.Container className="not-prose flex w-full flex-wrap items-center gap-2">
           <p className="mr-4 hidden text-base md:block">Sort by Type: </p>
           {types.map((type) => (
             <TypeButton
