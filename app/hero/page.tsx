@@ -19,7 +19,7 @@ export default function Home() {
             <TypeButton
               className={
                 type === "hero"
-                  ? "cursor-default bg-background/50 text-muted-foreground hover:text-muted-foreground"
+                  ? "cursor-default text-muted-foreground hover:text-muted-foreground"
                   : ""
               }
               type={type}

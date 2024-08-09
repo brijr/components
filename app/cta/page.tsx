@@ -21,7 +21,7 @@ export default function Home() {
               key={type}
               className={
                 type === "cta"
-                  ? "cursor-default bg-background/50 text-muted-foreground hover:text-muted-foreground"
+                  ? "cursor-default text-muted-foreground hover:text-muted-foreground"
                   : ""
               }
             />

@@ -8,13 +8,7 @@ type TypeButtonProps = {
 
 export const TypeButton = ({ type, className }: TypeButtonProps) => {
   return (
-    <Button
-      asChild
-      variant="outline"
-      size="sm"
-      className={className}
-      key={type}
-    >
+    <Button asChild size="sm" className={className} key={type}>
       <Link href={`/${type}`}>{type}</Link>
     </Button>
   );
