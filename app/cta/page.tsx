@@ -4,8 +4,7 @@ import { End } from "@/components/end";
 import { Wrapper } from "@/components/wrapper";
 import { Info } from "@/components/info";
 import * as Craft from "@/components/craft";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { TypeButton } from "@/components/type-button";
 
 // Component Config
 import { components, types } from "@/registry";
@@ -15,18 +14,13 @@ export default function Home() {
     <Main>
       <Info>
         <Craft.Container className="not-prose flex w-full flex-wrap items-center gap-2">
-          <p className="mr-4 hidden text-base md:block">Sort by Type: </p>
+          <p className="sr-ony">Sort by Type: </p>
           {types.map((type) => (
-            <Button
-              asChild
-              variant="link"
-              className={`px-2 text-base font-normal ${
-                type === "cta" ? "cursor-default underline opacity-70" : ""
-              }`}
+            <TypeButton
+              type={type}
               key={type}
-            >
-              <Link href={`/${type}`}>{type}</Link>
-            </Button>
+              className={type === "cta" ? "cursor-default opacity-70" : ""}
+            />
           ))}
         </Craft.Container>
       </Info>

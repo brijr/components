@@ -15,7 +15,7 @@ const types: ComponentTypes[] = [
 export function NavLinks() {
   return (
     <Container className="not-prose flex w-full flex-wrap items-center gap-2">
-      <p className="mr-4 hidden text-base md:block">Sort by Type: </p>
+      <p className="sr-ony">Sort by Type: </p>
       {types.map((type) => (
         <Button
           asChild
