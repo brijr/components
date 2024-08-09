@@ -17,7 +17,11 @@ export default function Home() {
           <p className="sr-only">Sort by Type: </p>
           {types.map((type) => (
             <TypeButton
-              className={type === "hero" ? "cursor-default opacity-70" : ""}
+              className={
+                type === "hero"
+                  ? "cursor-default bg-background/50 text-muted-foreground hover:text-muted-foreground"
+                  : ""
+              }
               type={type}
               key={type}
             />

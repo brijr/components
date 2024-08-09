@@ -19,7 +19,11 @@ export default function Home() {
             <TypeButton
               type={type}
               key={type}
-              className={type === "cta" ? "cursor-default opacity-70" : ""}
+              className={
+                type === "cta"
+                  ? "cursor-default bg-background/50 text-muted-foreground hover:text-muted-foreground"
+                  : ""
+              }
             />
           ))}
         </Craft.Container>

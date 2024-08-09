@@ -34,7 +34,7 @@ const FeatureNine = () => {
   return (
     <Section>
       <Container>
-        <h2 className="mb-4 mt-0">This is a Feature with an Image Carousel</h2>
+        <h2 className="!mt-0 mb-4">This is a Feature with an Image Carousel</h2>
         <p>
           Use it to showcase your latest images. Get started at
           components.bridgher.to and make sure to install brijr/craft for
