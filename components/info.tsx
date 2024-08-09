@@ -53,21 +53,6 @@ export const Info = ({ children }: { children?: ReactNode }) => {
             .
           </Balancer>
         </p>
-        <div className="flex gap-2">
-          <ModeToggle />
-          <Button variant="outline" asChild size="icon">
-            <Link href="https://github.com/brijr/components">
-              <Github className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
-              <span className="sr-only">Visit Github</span>
-            </Link>
-          </Button>
-          <Button variant="outline" asChild size="icon">
-            <Link href="https://x.com/bridgertower">
-              <Twitter className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
-              <span className="sr-only">Visit Twitter</span>
-            </Link>
-          </Button>
-        </div>
       </Craft.Container>
       {children}
     </Craft.Section>

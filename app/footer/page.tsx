@@ -4,8 +4,6 @@ import { End } from "@/components/end";
 import { Wrapper } from "@/components/wrapper";
 import { Info } from "@/components/info";
 import * as Craft from "@/components/craft";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { TypeButton } from "@/components/type-button";
 
 // Component Config
