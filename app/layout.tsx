@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { Background } from "@/components/backgrounds";
 import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "@/components/site/theme/theme-provider";
+import { Nav } from "@/components/nav";
 
 const font = Manrope({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <Layout className={font.className}>
       <body className="px-4 xl:px-0">
+        <Nav />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

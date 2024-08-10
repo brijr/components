@@ -19,7 +19,7 @@ export default function Home() {
             <TypeButton
               className={
                 type === "faq"
-                  ? "cursor-default text-muted-foreground hover:text-muted-foreground"
+                  ? "cursor-default text-muted-foreground hover:text-muted-foreground hover:no-underline"
                   : ""
               }
               type={type}
