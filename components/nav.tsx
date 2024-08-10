@@ -2,13 +2,19 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ModeToggle } from "./site/theme/theme-toggle";
+import { Button } from "./ui/button";
 
 export const Nav = () => {
   return (
-    <nav className="sticky top-0 z-50 border-b bg-muted">
+    <nav className="sticky top-0 z-50 border-b bg-background">
       <div className="mx-auto flex max-w-6xl items-center justify-between p-4">
         <h1>
-          <span className="text-orange-500">components</span>.bridger.to
+          <Link
+            href="/"
+            className="text-orange-500 transition-all hover:text-orange-300"
+          >{`</>`}</Link>{" "}
+          brijr/components
         </h1>
         <NavList />
       </div>
@@ -29,7 +35,7 @@ const NavList = () => {
   const pathname = usePathname();
 
   return (
-    <div className="flex gap-4">
+    <div className="flex items-center gap-4">
       {links.map((link) => (
         <Link
           key={link.href}
@@ -43,6 +49,13 @@ const NavList = () => {
           {link.name}
         </Link>
       ))}
+
+      <div className="flex items-center gap-2">
+        <ModeToggle />
+        <Button variant="outline">
+          <Link href="/start">Get Started</Link>
+        </Button>
+      </div>
     </div>
   );
 };

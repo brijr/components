@@ -6,9 +6,9 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <Main>
+    <Main className="h-screen bg-background">
       <Section>
-        <Container className="rounded-lg bg-background">{children}</Container>
+        <Container>{children}</Container>
       </Section>
     </Main>
   );
