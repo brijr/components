@@ -11,7 +11,7 @@ import { components } from "@/registry";
 export default function Home() {
   return (
     <Main>
-      <Info />
+      <Info title="All Components" />
       <Craft.Section className="flex flex-col items-center gap-12 p-2 py-12 md:p-0">
         {components.map((component) => (
           <Wrapper
