@@ -6,7 +6,7 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <Main className="h-screen bg-background">
+    <Main>
       <Section>
         <Container>{children}</Container>
       </Section>

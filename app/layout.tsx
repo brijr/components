@@ -25,13 +25,13 @@ export default function RootLayout({
   return (
     <Layout className={font.className}>
       <body className="px-4 xl:px-0">
-        <Nav />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
+          <Nav />
           {children}
           <Toaster position="top-right" />
           <Background />
