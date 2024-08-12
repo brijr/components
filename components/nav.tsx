@@ -6,6 +6,7 @@ import { ModeToggle } from "./site/theme/theme-toggle";
 import { Button } from "./ui/button";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
+import { File, Github } from "lucide-react";
 
 export const Nav = () => {
   const { scrollY } = useScroll();
@@ -72,8 +73,10 @@ const NavList = () => {
 
       <div className="flex items-center gap-2">
         <ModeToggle />
-        <Button variant="secondary" asChild>
-          <Link href="/start">Get Started</Link>
+        <Button variant="outline" size="icon" asChild>
+          <a href="https://github.com/brijr/craft" target="_blank">
+            <Github className="h-4 w-4" />
+          </a>
         </Button>
       </div>
     </div>
