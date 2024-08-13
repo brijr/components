@@ -9,12 +9,13 @@ export const Info = ({ title }: { title: string }) => {
         <h2>{title}</h2>
         <p className="text-sm">
           Read the{" "}
-          <Link
-            href="https://github.com/brijr/craft"
+          <a
+            href="https://github.com/brijr/components"
             className="underline underline-offset-4 transition-all hover:decoration-orange-500"
+            target="_blank"
           >
             documentation on GitHub
-          </Link>
+          </a>
           . Copy a component below and paste it into your application.
         </p>
       </Container>
