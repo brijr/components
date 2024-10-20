@@ -48,6 +48,7 @@ const links = [
   { name: "FAQs", href: "/faq" },
   { name: "Headers", href: "/header" },
   { name: "Footers", href: "/footer" },
+  { name: "Pricing", href: "/pricing" },
 ];
 
 const NavList = () => {
