@@ -372,7 +372,7 @@ export const types = [
   "cta",
   "faq",
   "feature",
+  "pricing",
   "header",
   "footer",
-  "pricing",
 ];
