@@ -10,7 +10,8 @@ type ComponentTypes =
   | "faq"
   | "feature"
   | "header"
-  | "footer";
+  | "footer"
+  | "pricing";
 
 type Components = {
   component: any;
@@ -28,4 +29,5 @@ const types: ComponentTypes[] = [
   "header",
   "faq",
   "footer",
+  "pricing",
 ];
