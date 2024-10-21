@@ -12,7 +12,7 @@ const font = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://components.bridger.to"),
-  title: "Next JS Components created by Bridger Tower",
+  title: "Next JS Components for building websites created by Bridger Tower",
   description:
     "Collection of Typescript React components for Next JS built using Tailwind and shadcn/ui. Created by Bridger Tower.",
 };
