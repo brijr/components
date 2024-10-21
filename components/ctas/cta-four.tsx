@@ -62,7 +62,7 @@ export function CTA() {
                   <FormLabel className="sr-only">Email</FormLabel>
                   <FormControl>
                     <Input
-                      className="md:w-64"
+                      className="!mt-0 md:w-64"
                       placeholder="Your email address"
                       {...field}
                     />
