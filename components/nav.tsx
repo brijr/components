@@ -74,7 +74,7 @@ const NavList = () => {
       </div>
 
       <div className="flex items-center gap-2">
-        s
+        <ModeToggle />
         <Button variant="outline" size="icon" asChild>
           <a href="https://github.com/brijr/components" target="_blank">
             <Github className="h-4 w-4" />
