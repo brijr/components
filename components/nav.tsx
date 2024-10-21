@@ -6,7 +6,8 @@ import { ModeToggle } from "./site/theme/theme-toggle";
 import { Button } from "./ui/button";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
-import { Github } from "lucide-react";
+import { Github, Menu } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export const Nav = () => {
   const { scrollY } = useScroll();
@@ -56,7 +57,7 @@ const NavList = () => {
 
   return (
     <div className="flex items-center gap-8">
-      <div className="flex items-center gap-4 text-sm">
+      <div className="hidden items-center gap-4 text-sm md:flex">
         {links.map((link) => (
           <Link
             key={link.href}
@@ -73,12 +74,36 @@ const NavList = () => {
       </div>
 
       <div className="flex items-center gap-2">
-        <ModeToggle />
+        s
         <Button variant="outline" size="icon" asChild>
           <a href="https://github.com/brijr/components" target="_blank">
             <Github className="h-4 w-4" />
           </a>
         </Button>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="outline" size="icon" className="md:hidden">
+              <Menu className="h-4 w-4" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent>
+            <div className="mt-8 flex flex-col gap-4">
+              {links.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`${
+                    pathname === link.href
+                      ? "pointer-events-none text-muted-foreground"
+                      : "text-primary/80 transition-all hover:text-primary"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     </div>
   );
