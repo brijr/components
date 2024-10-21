@@ -46,9 +46,9 @@ const links = [
   { name: "Features", href: "/feature" },
   { name: "CTAs", href: "/cta" },
   { name: "FAQs", href: "/faq" },
+  { name: "Pricing", href: "/pricing" },
   { name: "Headers", href: "/header" },
   { name: "Footers", href: "/footer" },
-  { name: "Pricing", href: "/pricing" },
 ];
 
 const NavList = () => {
