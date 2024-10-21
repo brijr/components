@@ -4,7 +4,7 @@
 
 > A collection of [Next.js](https://nextjs.org) components for building websites at rapid speed using [Tailwind](https://tailwindcss.com), [React](https://react.dev), [shadcn/ui](https://ui.shadcn.com), [brijr/craft](https://github.com/brijr/craft), and [Typescript](https://www.typescriptlang.org/).
 
-## What is it? 
+## What is it?
 
 ![components](https://github.com/brijr/components/assets/57158102/a1246578-4837-4704-94d8-1b01703a850b)
 
@@ -20,10 +20,10 @@ Open source collection of type-safe React components styled with Tailwind for bu
 npx create-next-app@latest my-app --typescript --tailwind --eslint
 ```
 
-### Step 2: Install [brijr/craft](https://github.com/brijr/craft) (this will also install shadcn/ui)
+### Step 2: Install [craft-ds](https://github.com/brijr/craft) (this will also install shadcn/ui)
 
 ```
-npx brijr-craft@latest init
+npx craft-ds@latest init
 ```
 
  - Add a `ThemeProvider` and `ModeToggle` (if you want dark mode) by following these steps: [Adding dark mode to your next app](https://ui.shadcn.com/docs/dark-mode/next)
