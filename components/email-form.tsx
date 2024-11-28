@@ -1,8 +1,8 @@
 "use client";
 
 // ! MAKE SURE TO CHANGE THE SOURCE AND USER GROUP
-const source = "https://wipdesign.com";
-const userGroup = "WIP Design";
+const source = "https://components.bridger.to";
+const userGroup = "Components";
 
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
