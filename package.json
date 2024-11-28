@@ -57,6 +57,7 @@
     "react-hook-form": "^7.51.3",
     "react-resizable-panels": "^2.0.18",
     "react-syntax-highlighter": "^15.5.0",
+    "react-use-measure": "^2.1.1",
     "sharp": "^0.33.3",
     "sonner": "^1.4.41",
     "tailwind-merge": "^2.3.0",
