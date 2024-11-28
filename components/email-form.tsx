@@ -80,103 +80,104 @@ export function EmailForm({ label }: { label?: string }) {
 
   return (
     <MotionConfig transition={transition}>
-      <motion.div
-        animate={{ height: bounds.height > 0 ? bounds.height : undefined }}
-        transition={{ type: "spring", bounce: 0.2, duration: 0.8 }}
-      >
-        <div ref={ref}>
-          <AnimatePresence mode="wait">
-            {!isSubmitted ? (
-              <motion.div
-                key="form"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{
-                  ...transition,
-                  duration: transition.duration / 2,
-                }}
-              >
-                <Form {...form}>
-                  <form
-                    onSubmit={form.handleSubmit(onSubmit)}
-                    className="space-y-2"
-                  >
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>{label}</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="dieter.rams@gmail.com"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormDescription>
-                            Enter your email address to subscribe.
-                          </FormDescription>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <motion.div
-                      initial={{ opacity: 1 }}
-                      animate={{ opacity: isLoading ? 0.5 : 1 }}
-                      transition={{ duration: 0.2 }}
+      <div>
+        <motion.div
+          animate={{ height: bounds.height > 0 ? bounds.height : undefined }}
+          transition={{ type: "spring", bounce: 0.2, duration: 0.8 }}
+        >
+          <div ref={ref}>
+            <AnimatePresence mode="wait">
+              {!isSubmitted ? (
+                <motion.div
+                  key="form"
+                  exit={{ opacity: 0 }}
+                  transition={{
+                    ...transition,
+                    duration: transition.duration / 2,
+                  }}
+                >
+                  <Form {...form}>
+                    <form
+                      onSubmit={form.handleSubmit(onSubmit)}
+                      className="space-y-2"
                     >
-                      <Button
-                        className={cn("w-[98.52px]")}
-                        type="submit"
-                        disabled={isLoading}
-                      >
-                        <motion.span
-                          initial={false}
-                          animate={{
-                            opacity: isLoading ? 0 : 1,
-                            y: isLoading ? 10 : 0,
-                          }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          Subscribe
-                        </motion.span>
-                        <motion.span
-                          initial={false}
-                          animate={{
-                            opacity: isLoading ? 1 : 0,
-                            y: isLoading ? 0 : -10,
-                          }}
-                          transition={{ duration: 0.2 }}
-                          style={{
-                            position: "absolute",
-                            display: "inline-block",
-                          }}
-                        >
-                          •••
-                        </motion.span>
-                      </Button>
-                    </motion.div>
-                  </form>
-                </Form>
-              </motion.div>
-            ) : (
-              <motion.div
-                key="thank-you"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{
-                  ...transition,
-                  duration: transition.duration / 2,
-                  delay: transition.duration / 2,
-                }}
-              >
-                <p className="text-sm">Thank you for subscribing.</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </motion.div>
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>{label}</FormLabel>
+                            <div className="flex gap-2">
+                              <FormControl>
+                                <Input
+                                  placeholder="dieter.rams@gmail.com"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <motion.div
+                                initial={{ opacity: 1 }}
+                                animate={{ opacity: isLoading ? 0.5 : 1 }}
+                                transition={{ duration: 0.2 }}
+                              >
+                                <Button
+                                  className={cn("w-[98.52px]")}
+                                  type="submit"
+                                  disabled={isLoading}
+                                >
+                                  <motion.span
+                                    initial={false}
+                                    animate={{
+                                      opacity: isLoading ? 0 : 1,
+                                      y: isLoading ? 10 : 0,
+                                    }}
+                                    transition={{ duration: 0.2 }}
+                                  >
+                                    Subscribe
+                                  </motion.span>
+                                  <motion.span
+                                    initial={false}
+                                    animate={{
+                                      opacity: isLoading ? 1 : 0,
+                                      y: isLoading ? 0 : -10,
+                                    }}
+                                    transition={{ duration: 0.2 }}
+                                    style={{
+                                      position: "absolute",
+                                      display: "inline-block",
+                                    }}
+                                  >
+                                    •••
+                                  </motion.span>
+                                </Button>
+                              </motion.div>
+                            </div>
+                            <FormDescription>
+                              Subscribe for component updates.
+                            </FormDescription>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </form>
+                  </Form>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="thank-you"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{
+                    ...transition,
+                    duration: transition.duration / 2,
+                  }}
+                >
+                  <p className="text-sm">Thank you for subscribing.</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </motion.div>
+      </div>
     </MotionConfig>
   );
 }

@@ -1,6 +1,6 @@
 import { Section, Container } from "@/components/craft";
 
-import Link from "next/link";
+import { EmailForm } from "./email-form";
 
 export const Info = ({ title }: { title: string }) => {
   return (
@@ -18,6 +18,9 @@ export const Info = ({ title }: { title: string }) => {
           </a>
           . Copy a component below and paste it into your application.
         </p>
+        <div className="max-w-md pt-4">
+          <EmailForm />
+        </div>
       </Container>
     </Section>
   );
