@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const LOOPS_API_KEY = process.env.LOOP_API_KEY;
+const LOOPS_API_KEY = process.env.LOOPS_API_KEY;
 
 export async function POST(request: Request) {
   try {
@@ -8,6 +8,14 @@ export async function POST(request: Request) {
 
     if (!email) {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
+    }
+
+    if (!LOOPS_API_KEY) {
+      console.error("LOOPS_API_KEY environment variable is not set");
+      return NextResponse.json(
+        { error: "API configuration error" },
+        { status: 500 },
+      );
     }
 
     const response = await fetch(
@@ -23,7 +31,9 @@ export async function POST(request: Request) {
     );
 
     if (!response.ok) {
-      throw new Error("Failed to create contact in Loops");
+      const errorData = await response.text();
+      console.error("Loops API error:", errorData);
+      throw new Error(`Failed to create contact in Loops: ${errorData}`);
     }
 
     const data = await response.json();
