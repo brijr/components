@@ -3,3 +3,5 @@ Allow: /
 Disallow: /play
 
 Sitemap: https://components.bridger.to/sitemap.xml
+
+Github: https://github.com/brijr/components
