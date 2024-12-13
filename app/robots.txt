@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /play
+
+Sitemap: https://components.bridger.to/sitemap.xml
