@@ -1,6 +1,6 @@
 # brijr/components
 
-[components.bridger.to](https://components.bridger.to)
+[components.work](https://components.work)
 
 > A collection of [Next.js](https://nextjs.org) components for building websites at rapid speed using [Tailwind](https://tailwindcss.com), [React](https://react.dev), [shadcn/ui](https://ui.shadcn.com), [brijr/craft](https://github.com/brijr/craft), and [Typescript](https://www.typescriptlang.org/).
 
@@ -14,7 +14,7 @@ Open source collection of type-safe React components styled with Tailwind for bu
 
 > Want to use a starter? Go here 🔗 [brijr/starter](https://github.com/brijr/starter)
 
-### Step 1:  Create a Next.js application
+### Step 1: Create a Next.js application
 
 ```
 npx create-next-app@latest my-app --typescript --tailwind --eslint
@@ -26,9 +26,9 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint
 npx craft-ds@latest init
 ```
 
- - Add a `ThemeProvider` and `ModeToggle` (if you want dark mode) by following these steps: [Adding dark mode to your next app](https://ui.shadcn.com/docs/dark-mode/next)
+- Add a `ThemeProvider` and `ModeToggle` (if you want dark mode) by following these steps: [Adding dark mode to your next app](https://ui.shadcn.com/docs/dark-mode/next)
 
-### Step 3: Copy and Paste components from the [website](htpps://components.bridger.to) into your component folder to get started!
+### Step 3: Copy and Paste components from the [website](htpps://components.work) into your component folder to get started!
 
 ## brijr/components in use
 

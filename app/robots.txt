@@ -2,6 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /play
 
-Sitemap: https://components.bridger.to/sitemap.xml
+Sitemap: https://components.work/sitemap.xml
 
 Github: https://github.com/brijr/components

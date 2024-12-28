@@ -1,7 +1,7 @@
 "use client";
 
 // ! MAKE SURE TO CHANGE THE SOURCE AND USER GROUP
-const source = "https://components.bridger.to";
+const source = "https://components.work";
 const userGroup = "Components";
 
 import { useState } from "react";

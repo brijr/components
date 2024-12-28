@@ -15,7 +15,7 @@ export const CopyLink = ({ path }: { path: string }) => {
   const clipboard = useClipboard({ copiedTimeout: 1500 });
 
   const handleCopyLink = () => {
-    const link = `https://components.bridger.to#${path}`;
+    const link = `https://components.work#${path}`;
     clipboard.copy(link);
     toast.success("Link Copied to Clipboard");
   };

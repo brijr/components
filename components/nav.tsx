@@ -34,7 +34,7 @@ export const Nav = () => {
     >
       <h1 className="ml-2">
         <Link href="/">
-          <span className="text-orange-500">components</span>.bridger.to
+          <span className="text-orange-500">components</span>.work
         </Link>
       </h1>
       <NavList />

@@ -11,7 +11,7 @@ import { Nav } from "@/components/nav";
 const font = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://components.bridger.to"),
+  metadataBase: new URL("https://components.work"),
   title: "Next JS Components for building websites created by Bridger Tower",
   description:
     "Collection of Typescript React components for Next JS built using Tailwind and shadcn/ui. Created by Bridger Tower.",
