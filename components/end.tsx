@@ -41,7 +41,7 @@ export const End = () => {
           .
         </p>
         <p className="opacity-70">
-          components.<a href="https://bridger.to">bridger.to</a> © 2024
+          components.work by <a href="https://bridger.to">bridger</a> © 2024
         </p>
       </Craft.Container>
     </Craft.Section>
