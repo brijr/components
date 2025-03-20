@@ -45,6 +45,8 @@ import FooterFive from "@/components/footers/footer-five";
 import PricingOne from "@/components/pricing/pricing-one";
 import PricingTwo from "@/components/pricing/pricing-two";
 import PricingThree from "@/components/pricing/pricing-three"
+import PricingFour from "@/components/pricing/pricing-four"
+
 
 // Component Code Imports
 // Hero Component Code Imports
@@ -181,7 +183,11 @@ const PricingTwoCode = readFileSync(
   "utf-8",
 );
 const PricingThreeCode = readFileSync(
-  join(process.cwd(), "components/pricing/pricing-two.tsx"),
+  join(process.cwd(), "components/pricing/pricing-three.tsx"),
+  "utf-8",
+);
+const PricingFourCode = readFileSync(
+  join(process.cwd(), "components/pricing/pricing-four.tsx"),
   "utf-8",
 );
 
@@ -384,6 +390,12 @@ export const components: Components[] = [
     component: PricingThree,
     path: "pricing/pricing-three",
     code: PricingThreeCode,
+    type: "pricing",
+  },
+  {
+    component: PricingFour,
+    path: "pricing/pricing-four",
+    code: PricingFourCode,
     type: "pricing",
   },
 ];
