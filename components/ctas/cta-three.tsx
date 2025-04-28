@@ -8,7 +8,7 @@ import Balancer from "react-wrap-balancer";
 import { Button } from "@/components/ui/button";
 
 // Custom components
-import { Section, Container } from "@/components/craft";
+import { Section, Container } from "@/components/ds";
 
 const CTA = () => {
   return (

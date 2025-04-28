@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { ArrowRight } from "lucide-react";
 
-import { Section, Container } from "@/components/craft";
+import { Section, Container } from "@/components/ds";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { CircleCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { Container, Section } from "../craft";
+import { Container, Section } from "../ds";
 
 interface PricingCardProps {
   title: "Basic" | "Standard" | "Pro";

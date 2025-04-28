@@ -1,5 +1,5 @@
 // Layout
-import { Section, Container } from "@/components/craft";
+import { Section, Container } from "@/components/ds";
 import Balancer from "react-wrap-balancer";
 import Link from "next/link";
 

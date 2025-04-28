@@ -1,9 +1,9 @@
 // Layout Imports
-import { Main } from "@/components/craft";
+import { Main } from "@/components/ds";
 import { End } from "@/components/end";
 import { Wrapper } from "@/components/wrapper";
 import { Info } from "@/components/info";
-import * as Craft from "@/components/craft";
+import * as Craft from "@/components/ds";
 
 // Component Config
 import { components } from "@/registry";

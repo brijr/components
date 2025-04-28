@@ -1,4 +1,4 @@
-import * as Craft from "@/components/craft";
+import * as Craft from "@/components/ds";
 import { ModeToggle } from "./site/theme/theme-toggle";
 import { Button } from "./ui/button";
 import { Github, Twitter } from "lucide-react";
