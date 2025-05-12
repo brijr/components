@@ -52,7 +52,7 @@
     "mini-svg-data-uri": "^1.4.4",
     "next": "^15.3.2",
     "react": "^19.1.0",
-    "react-day-picker": "^8.10.1",
+    "react-day-picker": "^9.6.7",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.56.3",
     "react-resizable-panels": "^2.1.9",
