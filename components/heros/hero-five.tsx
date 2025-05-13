@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // Custom Components
-import { Section, Container } from "@/components/craft";
+import { Section, Container } from "@/components/ds";
 
 // Assets
 import Placeholder from "@/public/placeholder.jpg";

@@ -5,7 +5,7 @@ import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 
 // Custom components
-import { Section, Container } from "@/components/craft";
+import { Section, Container } from "@/components/ds";
 
 // Icons
 import { Coins, ArrowRight } from "lucide-react";

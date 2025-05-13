@@ -7,7 +7,7 @@ import { CircleCheck } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Section,Container } from "../craft"
+import { Section,Container } from "../ds"
 
 interface PricingCardProps {
   title: "Basic" | "Standard" | "Pro"

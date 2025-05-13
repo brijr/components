@@ -7,7 +7,7 @@ import Balancer from "react-wrap-balancer";
 import { Camera } from "lucide-react";
 
 // Local component imports
-import { Section, Container } from "@/components/craft";
+import { Section, Container } from "@/components/ds";
 import { Button } from "@/components/ui/button";
 
 // Asset imports

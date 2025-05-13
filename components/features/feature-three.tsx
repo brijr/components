@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 // UI component imports
-import * as Craft from "@/components/craft";
+import * as Craft from "@/components/ds";
 import { Button } from "@/components/ui/button";
 
 // Asset imports

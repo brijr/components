@@ -7,7 +7,7 @@ import { CircleCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { Slider } from "@/components/ui/slider";
-import { Container, Section } from "../craft";
+import { Container, Section } from "../ds";
 
 interface PricingCardProps {
   title: "Basic" | "Standard" | "Pro";
