@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 // UI component imports
-import { Section, Container } from "@/components/craft";
+import { Section, Container } from "@/components/ds";
 import { Button } from "@/components/ui/button";
 
 // Asset imports

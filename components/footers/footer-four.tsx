@@ -12,7 +12,7 @@ import { Button } from "../ui/button";
 import { Github, Twitter, Facebook } from "lucide-react";
 
 // Local component imports
-import { Section, Container } from "../craft";
+import { Section, Container } from "../ds";
 
 // Asset imports
 import Logo from "@/public/logo.svg";

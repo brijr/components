@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Section, Container } from "@/components/craft";
+import { Section, Container } from "@/components/ds";
 import Logo from "@/public/logo.svg";
 
 const Hero = () => {

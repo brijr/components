@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 // Local component imports
-import { Section, Container } from "@/components/craft";
+import { Section, Container } from "@/components/ds";
 
 // Asset imports
 import Placeholder from "@/public/placeholder.jpg";

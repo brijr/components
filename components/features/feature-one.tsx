@@ -2,7 +2,7 @@
 import React from "react";
 
 // Layout Components
-import { Section, Container } from "@/components/craft";
+import { Section, Container } from "@/components/ds";
 import Balancer from "react-wrap-balancer";
 
 // Icons

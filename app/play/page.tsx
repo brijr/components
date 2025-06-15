@@ -1,5 +1,5 @@
 // Layout Imports
-import { Main } from "@/components/craft";
+import { Main } from "@/components/ds";
 import { Wrapper } from "@/components/wrapper";
 import Link from "next/link";
 
