@@ -9,8 +9,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Github, Twitter, Facebook } from "lucide-react";
 
 import Logo from "@/public/logo.svg";
-import { Section, Container } from "../craft";
-import { Button } from "../ui/button";
+import { Section, Container } from "@/components/ds";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Form,

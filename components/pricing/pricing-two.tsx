@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import Balancer from "react-wrap-balancer"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { CircleCheck } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import Link from "next/link"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Section,Container } from "../craft"
+import Balancer from "react-wrap-balancer";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { CircleCheck } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Section, Container } from "@/components/ds";
 
 interface PricingCardProps {
-  title: "Basic" | "Standard" | "Pro"
-  monthlyPrice: string
-  yearlyPrice: string
-  description?: string
-  features: string[]
-  cta: string
-  href: string
+  title: "Basic" | "Standard" | "Pro";
+  monthlyPrice: string;
+  yearlyPrice: string;
+  description?: string;
+  features: string[];
+  cta: string;
+  href: string;
 }
 
 // Dummy pricing data
@@ -35,7 +35,12 @@ const pricingData: PricingCardProps[] = [
     monthlyPrice: "$59",
     yearlyPrice: "$590",
     description: "Best for growing businesses with more needs.",
-    features: ["10 Pages", "Advanced SEO", "CMS Integration", "24/7 Chat Support"],
+    features: [
+      "10 Pages",
+      "Advanced SEO",
+      "CMS Integration",
+      "24/7 Chat Support",
+    ],
     cta: "Choose Standard",
     href: "https://stripe.com/",
   },
@@ -44,27 +49,36 @@ const pricingData: PricingCardProps[] = [
     monthlyPrice: "$99",
     yearlyPrice: "$990",
     description: "Ideal for larger businesses that need scalability.",
-    features: ["Unlimited Pages", "E-commerce Integration", "Priority Support", "Custom API Integration"],
+    features: [
+      "Unlimited Pages",
+      "E-commerce Integration",
+      "Priority Support",
+      "Custom API Integration",
+    ],
     cta: "Choose Pro",
     href: "https://stripe.com/",
   },
-]
+];
 
 const Pricing = () => {
-  const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("monthly")
+  const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">(
+    "monthly",
+  );
 
   return (
     <Section>
-      <Container className="flex flex-col items-center  gap-4 text-center">
+      <Container className="flex flex-col items-center gap-4 text-center">
         <h2 className="!my-0">Pricing</h2>
         <p className="text-lg opacity-70 md:text-2xl">
           <Balancer>Select the plan that best suits your needs.</Balancer>
         </p>
 
-        <div className="w-full not-prose mt-4 flex justify-center">
+        <div className="not-prose mt-4 flex w-full justify-center">
           <Tabs
             defaultValue="monthly"
-            onValueChange={(value) => setBillingPeriod(value as "monthly" | "yearly")}
+            onValueChange={(value) =>
+              setBillingPeriod(value as "monthly" | "yearly")
+            }
             className="w-[300px]"
           >
             <TabsList className="grid w-full grid-cols-2">
@@ -81,22 +95,29 @@ const Pricing = () => {
 
         <div className="not-prose mt-8 grid grid-cols-1 gap-6 min-[850px]:grid-cols-3">
           {pricingData.map((plan, index) => (
-            <PricingCard key={index} plan={plan} billingPeriod={billingPeriod} />
+            <PricingCard
+              key={index}
+              plan={plan}
+              billingPeriod={billingPeriod}
+            />
           ))}
         </div>
       </Container>
     </Section>
-  )
-}
+  );
+};
 
 const PricingCard = ({
   plan,
   billingPeriod,
 }: {
-  plan: PricingCardProps
-  billingPeriod: "monthly" | "yearly"
+  plan: PricingCardProps;
+  billingPeriod: "monthly" | "yearly";
 }) => {
-  const price = billingPeriod === "monthly" ? `${plan.monthlyPrice}/month` : `${plan.yearlyPrice}/year`
+  const price =
+    billingPeriod === "monthly"
+      ? `${plan.monthlyPrice}/month`
+      : `${plan.yearlyPrice}/year`;
 
   return (
     <div className="flex flex-col rounded-lg border p-6">
@@ -125,8 +146,7 @@ const PricingCard = ({
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Pricing
-
+export default Pricing;

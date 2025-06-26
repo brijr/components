@@ -7,7 +7,7 @@ import { CircleCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { Slider } from "@/components/ui/slider";
-import { Container, Section } from "../craft";
+import { Container, Section } from "@/components/ds";
 
 interface PricingCardProps {
   title: "Basic" | "Standard" | "Pro";
@@ -67,10 +67,13 @@ const Pricing = () => {
 
   return (
     <Section>
-      <Container className="flex flex-col items-center  gap-4 text-center">
+      <Container className="flex flex-col items-center gap-4 text-center">
         <h2 className="!my-0">Pricing</h2>
         <p className="text-lg opacity-70 md:text-2xl">
-          <Balancer>Customize your plan to fit your exact needs. Only pay for what you use.</Balancer>
+          <Balancer>
+            Customize your plan to fit your exact needs. Only pay for what you
+            use.
+          </Balancer>
         </p>
 
         <div className="mt-8 w-full max-w-md">

@@ -6,7 +6,7 @@ import Image from "next/image";
 import Balancer from "react-wrap-balancer";
 
 // UI component imports
-import { Section, Container } from "@/components/craft";
+import { Section, Container } from "@/components/ds";
 import { Button } from "@/components/ui/button";
 
 // Asset imports

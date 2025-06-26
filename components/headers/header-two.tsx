@@ -2,8 +2,8 @@
 import Balancer from "react-wrap-balancer";
 
 // Local component imports
-import { Container, Section } from "@/components/craft";
-import { Button } from "../ui/button";
+import { Container, Section } from "@/components/ds";
+import { Button } from "@/components/ui/button";
 
 const Header = () => {
   return (

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { CircleCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { Container, Section } from "../craft";
+import { Container, Section } from "@/components/ds";
 
 interface PricingCardProps {
   title: "Basic" | "Standard" | "Pro";
@@ -77,7 +77,7 @@ const PricingCard = ({ plan }: { plan: PricingCardProps }) => {
     <div
       className={`relative flex flex-col rounded-lg border p-6 transition-all duration-200 ${
         plan.isPopular
-          ? "z-10 scale-105 border-primary dark:border-gray-300 shadow-lg"
+          ? "z-10 scale-105 border-primary shadow-lg dark:border-gray-300"
           : ""
       }`}
     >

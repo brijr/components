@@ -6,7 +6,7 @@ import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 
 // Local component imports
-import { Section, Container } from "../craft";
+import { Section, Container } from "@/components/ds";
 
 // Asset imports
 import Logo from "@/public/logo.svg";

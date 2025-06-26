@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Balancer from "react-wrap-balancer";
 
-import { Section, Container } from "@/components/craft";
+import { Section, Container } from "@/components/ds";
 import { Button } from "@/components/ui/button";
 import {
   Form,

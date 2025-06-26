@@ -7,8 +7,8 @@ import Balancer from "react-wrap-balancer";
 import { ArrowRight } from "lucide-react";
 
 // Local component imports
-import { Section, Container } from "@/components/craft";
-import { Button } from "../ui/button";
+import { Section, Container } from "@/components/ds";
+import { Button } from "@/components/ui/button";
 
 // Asset imports
 import Placeholder from "@/public/placeholder.jpg";
