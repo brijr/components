@@ -1,4 +1,4 @@
-import { Section, Container } from "@/components/craft";
+import { Section, Container } from "@/components/ds";
 
 import { EmailForm } from "./email-form";
 

@@ -1,4 +1,4 @@
-import { Main, Section, Container } from "@/components/craft";
+import { Main, Section, Container } from "@/components/ds";
 
 export default function Layout({
   children,

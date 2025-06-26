@@ -1,4 +1,4 @@
-import { Container } from "./craft";
+import { Container } from "@/components/ds";
 import { Button } from "./ui/button";
 import Link from "next/link";
 
