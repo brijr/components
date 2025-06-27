@@ -1,29 +1,18 @@
-// React and Next.js imports
-import Link from "next/link";
-import Image from "next/image";
+import { Section, Container, Prose } from "@/components/ds";
 
-// Local component imports
-import { Section, Container } from "@/components/ds";
-
-// Asset imports
 import Placeholder from "@/public/placeholder.jpg";
+import Image from "next/image";
+import Link from "next/link";
 
 const Hero = () => {
   return (
     <Section className="relative h-[720px]">
-      <Container className="not-prose">
-        {/* Name and Nav */}
+      <Container>
         <div className="flex w-full justify-between">
-          <div className="">
-            <h1 className="mb-4 text-3xl font-normal md:text-6xl">
-              <Link className="transition-all hover:opacity-70" href="#">
-                Lorem Ipsum
-              </Link>
-            </h1>
-            <h2 className="w-48 text-lg font-light leading-6">
-              Another component from Craft UI.
-            </h2>
-          </div>
+          <Prose isSpaced>
+            <h1>Lorem Ipsum</h1>
+            <h2 className="text-muted-foreground">Another component for you</h2>
+          </Prose>
           <div className="hidden gap-4 md:flex">
             <Link className="transition-all hover:opacity-70" href="#">
               Book a component

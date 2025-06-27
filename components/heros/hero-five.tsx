@@ -1,53 +1,35 @@
-import Image from "next/image";
-import Link from "next/link";
-import Balancer from "react-wrap-balancer";
+import { Section, Container, Prose } from "@/components/ds";
 import { ArrowRight } from "lucide-react";
-
-// UI Components
 import { Button } from "@/components/ui/button";
 
-// Custom Components
-import { Section, Container } from "@/components/ds";
-
-// Assets
 import Placeholder from "@/public/placeholder.jpg";
+import Image from "next/image";
 
 export default function Hero() {
   return (
     <Section>
-      <Container>
-        <div className="flex flex-col items-center text-center">
-          <Button
-            asChild
-            className="not-prose mb-6 flex w-fit"
-            size="sm"
-            variant="outline"
-          >
-            <Link href="https://9d8.dev">
-              Lorem ipsum dolor sit amet <ArrowRight className="ml-2 w-4" />
-            </Link>
-          </Button>
+      <Container className="flex flex-col items-center gap-6 text-center">
+        <Button size="sm" variant="outline">
+          Lorem ipsum dolor sit amet <ArrowRight size={16} />
+        </Button>
+        <Prose isSpaced>
           <h1 className="!mb-0">
-            <Balancer>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit
-            </Balancer>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit
           </h1>
           <h3 className="text-muted-foreground">
-            <Balancer>
-              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </Balancer>
+            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </h3>
-          <div className="my-8 h-96 w-full overflow-hidden rounded-lg border md:h-[480px] md:rounded-xl">
-            <Image
-              className="not-prose h-full w-full object-cover object-bottom"
-              src={Placeholder}
-              width={1920}
-              height={1080}
-              alt="hero image"
-              placeholder="blur"
-            />
-          </div>
+        </Prose>
+        <div className="my-8 h-96 w-full overflow-hidden rounded-lg border md:h-[480px] md:rounded-xl">
+          <Image
+            className="not-prose h-full w-full object-cover object-bottom"
+            src={Placeholder}
+            width={1920}
+            height={1080}
+            alt="hero image"
+            placeholder="blur"
+          />
         </div>
       </Container>
     </Section>
