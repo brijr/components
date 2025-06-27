@@ -1,18 +1,18 @@
 // Layout Imports
-import { Main } from "@/components/ds";
-import { End } from "@/components/end";
+import { Section } from "@/components/ds";
 import { Wrapper } from "@/components/wrapper";
 import { Info } from "@/components/info";
-import * as Craft from "@/components/ds";
+import { Main } from "@/components/ds";
+import { End } from "@/components/end";
 
 // Component Config
-import { components, types } from "@/registry";
+import { components } from "@/registry";
 
 export default function Home() {
   return (
     <Main>
       <Info title="FAQ Components" />
-      <Craft.Section className="flex flex-col items-center gap-12 p-2 py-12 md:p-0">
+      <Section className="flex flex-col items-center gap-12 p-2 py-12 md:p-0">
         {components
           .filter((component) => component.type === "faq")
           .map((component) => (
@@ -25,7 +25,7 @@ export default function Home() {
               <component.component />
             </Wrapper>
           ))}
-      </Craft.Section>
+      </Section>
       <End />
     </Main>
   );
