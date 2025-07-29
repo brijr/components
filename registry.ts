@@ -7,6 +7,7 @@ type RegistryItem = {
   slug: string;
   Component: React.ComponentType<any>;
   description?: string;
+  props?: any;
 };
 
 export const registry: RegistryItem[] = [
