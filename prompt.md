@@ -202,6 +202,32 @@ export const heroMinimalSchema = {
 };
 ```
 
+## Component Best Practices
+
+### Images
+- Vary aspect ratios based on content type (16:9 for dashboards, 4:3 for products, etc.)
+- Always include width and height for Next.js Image optimization
+- Use priority={true} for above-the-fold images
+
+### Layout
+- Let Container handle max-widths - don't add your own
+- Use Prose with isArticle for long-form content max-width
+- Trust the design system components to handle responsive behavior
+
+### CTAs and Links
+- ALWAYS use Button with asChild pattern for link buttons:
+  ```tsx
+  <Button asChild>
+    <a href="/path">Text</a>
+  </Button>
+  ```
+- This ensures proper styling and accessibility with shadcn/ui
+
+### Spacing
+- Use Stack/Inline for ALL spacing needs
+- Never add margins between elements
+- Section and Container have built-in padding - don't add more
+
 ## Quality Checklist
 - [ ] Uses design system components (Stack, Inline, Heading, Text, etc.)
 - [ ] All content is passed via props
