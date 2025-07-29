@@ -62,6 +62,22 @@ import { defaultContent as featureShowcaseLeftContent } from "./components/featu
 import { FeatureTimeline } from "./components/feature/feature-timeline";
 import { defaultContent as featureTimelineContent } from "./components/feature/feature-timeline/content";
 
+// CTA components
+import { CTASimple } from "./components/cta/cta-simple";
+import { defaultContent as ctaSimpleContent } from "./components/cta/cta-simple/content";
+import { CTASimpleLeft } from "./components/cta/cta-simple-left";
+import { defaultContent as ctaSimpleLeftContent } from "./components/cta/cta-simple-left/content";
+import { CTASplit } from "./components/cta/cta-split";
+import { defaultContent as ctaSplitContent } from "./components/cta/cta-split/content";
+import { CTAWithImage } from "./components/cta/cta-with-image";
+import { defaultContent as ctaWithImageContent } from "./components/cta/cta-with-image/content";
+import { CTABanner } from "./components/cta/cta-banner";
+import { defaultContent as ctaBannerContent } from "./components/cta/cta-banner/content";
+import { CTAWithBenefits } from "./components/cta/cta-with-benefits";
+import { defaultContent as ctaWithBenefitsContent } from "./components/cta/cta-with-benefits/content";
+import { CTAFloating } from "./components/cta/cta-floating";
+import { defaultContent as ctaFloatingContent } from "./components/cta/cta-floating/content";
+
 type RegistryItem = {
   name: string;
   type: "hero" | "feature" | "cta" | "pricing" | "testimonial" | "faq" | "contact" | "stats" | "logo" | "team" | "footer" | "newsletter" | "blog";
@@ -347,5 +363,70 @@ export const registry: RegistryItem[] = [
     description: "Timeline/process steps layout for onboarding flows or roadmaps.",
     props: featureTimelineContent,
     filePath: "./components/feature/feature-timeline/index.tsx",
+  },
+
+  // CTA components
+  {
+    name: "CTA Simple",
+    type: "cta",
+    slug: "cta-simple",
+    Component: CTASimple,
+    description: "Basic centered CTA with headline, subheadline, and action buttons.",
+    props: ctaSimpleContent,
+    filePath: "./components/cta/cta-simple/index.tsx",
+  },
+  {
+    name: "CTA Simple (Left)",
+    type: "cta",
+    slug: "cta-simple-left",
+    Component: CTASimpleLeft,
+    description: "Left-aligned CTA with headline, subheadline, and action buttons.",
+    props: ctaSimpleLeftContent,
+    filePath: "./components/cta/cta-simple-left/index.tsx",
+  },
+  {
+    name: "CTA Split",
+    type: "cta",
+    slug: "cta-split",
+    Component: CTASplit,
+    description: "Split layout CTA with text on one side and actions on the other.",
+    props: ctaSplitContent,
+    filePath: "./components/cta/cta-split/index.tsx",
+  },
+  {
+    name: "CTA with Image",
+    type: "cta",
+    slug: "cta-with-image",
+    Component: CTAWithImage,
+    description: "CTA section with supporting image to enhance visual appeal.",
+    props: ctaWithImageContent,
+    filePath: "./components/cta/cta-with-image/index.tsx",
+  },
+  {
+    name: "CTA Banner",
+    type: "cta",
+    slug: "cta-banner",
+    Component: CTABanner,
+    description: "Full-width banner CTA for announcements and urgent actions.",
+    props: ctaBannerContent,
+    filePath: "./components/cta/cta-banner/index.tsx",
+  },
+  {
+    name: "CTA with Benefits",
+    type: "cta",
+    slug: "cta-with-benefits",
+    Component: CTAWithBenefits,
+    description: "CTA section with a list of benefits to reinforce value proposition.",
+    props: ctaWithBenefitsContent,
+    filePath: "./components/cta/cta-with-benefits/index.tsx",
+  },
+  {
+    name: "CTA Floating",
+    type: "cta",
+    slug: "cta-floating",
+    Component: CTAFloating,
+    description: "Sticky floating CTA bar that appears after user interaction.",
+    props: ctaFloatingContent,
+    filePath: "./components/cta/cta-floating/index.tsx",
   },
 ];
