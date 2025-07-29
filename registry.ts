@@ -1,5 +1,5 @@
-import { HeroTextImage } from "./components/heros/hero-text-image";
-import { defaultContent as heroTextImageContent } from "./components/heros/hero-text-image/content";
+import { HeroMinimal } from "./components/hero/hero-minimal";
+import { defaultContent as heroMinimalContent } from "./components/hero/hero-minimal/content";
 
 type RegistryItem = {
   name: string;
@@ -12,12 +12,11 @@ type RegistryItem = {
 
 export const registry: RegistryItem[] = [
   {
-    name: "Hero Text Image",
+    name: "Hero Minimal",
     type: "hero",
-    slug: "hero-text-image",
-    Component: HeroTextImage,
-    description:
-      "Hero section with text content followed by a full-width image.",
-    props: heroTextImageContent,
+    slug: "hero-minimal",
+    Component: HeroMinimal,
+    description: "Minimal hero section with centered text and optional CTAs.",
+    props: heroMinimalContent,
   },
 ];
