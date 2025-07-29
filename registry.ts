@@ -78,6 +78,20 @@ import { defaultContent as ctaWithBenefitsContent } from "./components/cta/cta-w
 import { CTAFloating } from "./components/cta/cta-floating";
 import { defaultContent as ctaFloatingContent } from "./components/cta/cta-floating/content";
 
+// Pricing components
+import { PricingSimple } from "./components/pricing/pricing-simple";
+import { defaultContent as pricingSimpleContent } from "./components/pricing/pricing-simple/content";
+import { PricingWithToggle } from "./components/pricing/pricing-with-toggle";
+import { defaultContent as pricingWithToggleContent } from "./components/pricing/pricing-with-toggle/content";
+import { PricingComparison } from "./components/pricing/pricing-comparison";
+import { defaultContent as pricingComparisonContent } from "./components/pricing/pricing-comparison/content";
+import { PricingSingle } from "./components/pricing/pricing-single";
+import { defaultContent as pricingSingleContent } from "./components/pricing/pricing-single/content";
+import { PricingTiered } from "./components/pricing/pricing-tiered";
+import { defaultContent as pricingTieredContent } from "./components/pricing/pricing-tiered/content";
+import { PricingEnterprise } from "./components/pricing/pricing-enterprise";
+import { defaultContent as pricingEnterpriseContent } from "./components/pricing/pricing-enterprise/content";
+
 type RegistryItem = {
   name: string;
   type: "hero" | "feature" | "cta" | "pricing" | "testimonial" | "faq" | "contact" | "stats" | "logo" | "team" | "footer" | "newsletter" | "blog";
@@ -428,5 +442,61 @@ export const registry: RegistryItem[] = [
     description: "Sticky floating CTA bar that appears after user interaction.",
     props: ctaFloatingContent,
     filePath: "./components/cta/cta-floating/index.tsx",
+  },
+
+  // Pricing components
+  {
+    name: "Pricing Simple",
+    type: "pricing",
+    slug: "pricing-simple",
+    Component: PricingSimple,
+    description: "Basic pricing cards displaying multiple pricing tiers.",
+    props: pricingSimpleContent,
+    filePath: "./components/pricing/pricing-simple/index.tsx",
+  },
+  {
+    name: "Pricing with Toggle",
+    type: "pricing",
+    slug: "pricing-with-toggle",
+    Component: PricingWithToggle,
+    description: "Pricing cards with monthly/annual toggle for flexible billing.",
+    props: pricingWithToggleContent,
+    filePath: "./components/pricing/pricing-with-toggle/index.tsx",
+  },
+  {
+    name: "Pricing Comparison",
+    type: "pricing",
+    slug: "pricing-comparison",
+    Component: PricingComparison,
+    description: "Detailed feature comparison table for complex pricing.",
+    props: pricingComparisonContent,
+    filePath: "./components/pricing/pricing-comparison/index.tsx",
+  },
+  {
+    name: "Pricing Single",
+    type: "pricing",
+    slug: "pricing-single",
+    Component: PricingSingle,
+    description: "Single pricing option for simple pricing models.",
+    props: pricingSingleContent,
+    filePath: "./components/pricing/pricing-single/index.tsx",
+  },
+  {
+    name: "Pricing Tiered",
+    type: "pricing",
+    slug: "pricing-tiered",
+    Component: PricingTiered,
+    description: "Tiered pricing with visual hierarchy and recommended badge.",
+    props: pricingTieredContent,
+    filePath: "./components/pricing/pricing-tiered/index.tsx",
+  },
+  {
+    name: "Pricing Enterprise",
+    type: "pricing",
+    slug: "pricing-enterprise",
+    Component: PricingEnterprise,
+    description: "Enterprise pricing focused on custom solutions and features.",
+    props: pricingEnterpriseContent,
+    filePath: "./components/pricing/pricing-enterprise/index.tsx",
   },
 ];
