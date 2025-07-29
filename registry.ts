@@ -14,6 +14,16 @@ import { HeroWithFeatures } from "./components/hero/hero-with-features";
 import { defaultContent as heroWithFeaturesContent } from "./components/hero/hero-with-features/content";
 import { HeroWithBadge } from "./components/hero/hero-with-badge";
 import { defaultContent as heroWithBadgeContent } from "./components/hero/hero-with-badge/content";
+import { HeroWithStats } from "./components/hero/hero-with-stats";
+import { defaultContent as heroWithStatsContent } from "./components/hero/hero-with-stats/content";
+import { HeroWithTestimonial } from "./components/hero/hero-with-testimonial";
+import { defaultContent as heroWithTestimonialContent } from "./components/hero/hero-with-testimonial/content";
+import { HeroWithForm } from "./components/hero/hero-with-form";
+import { defaultContent as heroWithFormContent } from "./components/hero/hero-with-form/content";
+import { HeroWithTabs } from "./components/hero/hero-with-tabs";
+import { defaultContent as heroWithTabsContent } from "./components/hero/hero-with-tabs/content";
+import { HeroCentered } from "./components/hero/hero-centered";
+import { defaultContent as heroCenteredContent } from "./components/hero/hero-centered/content";
 
 type RegistryItem = {
   name: string;
@@ -88,5 +98,45 @@ export const registry: RegistryItem[] = [
     Component: HeroWithBadge,
     description: "Minimal hero section with a badge/announcement above the headline.",
     props: heroWithBadgeContent,
+  },
+  {
+    name: "Hero with Stats",
+    type: "hero",
+    slug: "hero-with-stats",
+    Component: HeroWithStats,
+    description: "Hero section with prominent statistics display.",
+    props: heroWithStatsContent,
+  },
+  {
+    name: "Hero with Testimonial",
+    type: "hero",
+    slug: "hero-with-testimonial",
+    Component: HeroWithTestimonial,
+    description: "Hero section with a featured testimonial for social proof.",
+    props: heroWithTestimonialContent,
+  },
+  {
+    name: "Hero with Form",
+    type: "hero",
+    slug: "hero-with-form",
+    Component: HeroWithForm,
+    description: "Hero section with an inline form for lead capture.",
+    props: heroWithFormContent,
+  },
+  {
+    name: "Hero with Tabs",
+    type: "hero",
+    slug: "hero-with-tabs",
+    Component: HeroWithTabs,
+    description: "Hero section with tabbed content panels.",
+    props: heroWithTabsContent,
+  },
+  {
+    name: "Hero Centered",
+    type: "hero",
+    slug: "hero-centered",
+    Component: HeroCentered,
+    description: "Ultra-minimal centered hero with large typography.",
+    props: heroCenteredContent,
   },
 ];
