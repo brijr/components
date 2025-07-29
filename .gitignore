@@ -43,4 +43,7 @@ next-env.d.ts
 # AI
 claude.md
 .claude
-prompt.md
+
+# other
+.DS_Store
+.vscode
