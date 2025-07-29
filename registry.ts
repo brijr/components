@@ -24,8 +24,6 @@ import { HeroWithTabs } from "./components/hero/hero-with-tabs";
 import { defaultContent as heroWithTabsContent } from "./components/hero/hero-with-tabs/content";
 import { HeroCentered } from "./components/hero/hero-centered";
 import { defaultContent as heroCenteredContent } from "./components/hero/hero-centered/content";
-
-// Left-aligned hero variants
 import { HeroMinimalLeft } from "./components/hero/hero-minimal-left";
 import { defaultContent as heroMinimalLeftContent } from "./components/hero/hero-minimal-left/content";
 import { HeroWithBadgeLeft } from "./components/hero/hero-with-badge-left";
@@ -73,7 +71,8 @@ export const registry: RegistryItem[] = [
     type: "hero",
     slug: "hero-left-aligned",
     Component: HeroLeftAligned,
-    description: "Hero section with left-aligned text, CTAs, and an image below.",
+    description:
+      "Hero section with left-aligned text, CTAs, and an image below.",
     props: heroLeftAlignedContent,
     filePath: "./components/hero/hero-left-aligned/index.tsx",
   },
@@ -82,7 +81,8 @@ export const registry: RegistryItem[] = [
     type: "hero",
     slug: "hero-split",
     Component: HeroSplit,
-    description: "Hero section with split layout - text on one side, image on the other.",
+    description:
+      "Hero section with split layout - text on one side, image on the other.",
     props: heroSplitContent,
     filePath: "./components/hero/hero-split/index.tsx",
   },
@@ -91,7 +91,8 @@ export const registry: RegistryItem[] = [
     type: "hero",
     slug: "hero-with-background",
     Component: HeroWithBackground,
-    description: "Hero section with full-width background image and text overlay.",
+    description:
+      "Hero section with full-width background image and text overlay.",
     props: heroWithBackgroundContent,
     filePath: "./components/hero/hero-with-background/index.tsx",
   },
@@ -118,7 +119,8 @@ export const registry: RegistryItem[] = [
     type: "hero",
     slug: "hero-with-badge",
     Component: HeroWithBadge,
-    description: "Minimal hero section with a badge/announcement above the headline.",
+    description:
+      "Minimal hero section with a badge/announcement above the headline.",
     props: heroWithBadgeContent,
     filePath: "./components/hero/hero-with-badge/index.tsx",
   },
@@ -167,14 +169,15 @@ export const registry: RegistryItem[] = [
     props: heroCenteredContent,
     filePath: "./components/hero/hero-centered/index.tsx",
   },
-  
+
   // Left-aligned variants
   {
     name: "Hero Minimal (Left)",
     type: "hero",
     slug: "hero-minimal-left",
     Component: HeroMinimalLeft,
-    description: "Minimal hero section with left-aligned text and optional CTAs.",
+    description:
+      "Minimal hero section with left-aligned text and optional CTAs.",
     props: heroMinimalLeftContent,
     filePath: "./components/hero/hero-minimal-left/index.tsx",
   },
@@ -183,7 +186,8 @@ export const registry: RegistryItem[] = [
     type: "hero",
     slug: "hero-with-badge-left",
     Component: HeroWithBadgeLeft,
-    description: "Hero section with a badge/announcement above the left-aligned headline.",
+    description:
+      "Hero section with a badge/announcement above the left-aligned headline.",
     props: heroWithBadgeLeftContent,
     filePath: "./components/hero/hero-with-badge-left/index.tsx",
   },
@@ -192,7 +196,8 @@ export const registry: RegistryItem[] = [
     type: "hero",
     slug: "hero-with-stats-left",
     Component: HeroWithStatsLeft,
-    description: "Hero section with left-aligned text and prominent statistics display.",
+    description:
+      "Hero section with left-aligned text and prominent statistics display.",
     props: heroWithStatsLeftContent,
     filePath: "./components/hero/hero-with-stats-left/index.tsx",
   },
@@ -201,7 +206,8 @@ export const registry: RegistryItem[] = [
     type: "hero",
     slug: "hero-with-testimonial-left",
     Component: HeroWithTestimonialLeft,
-    description: "Hero section with left-aligned text and a featured testimonial for social proof.",
+    description:
+      "Hero section with left-aligned text and a featured testimonial for social proof.",
     props: heroWithTestimonialLeftContent,
     filePath: "./components/hero/hero-with-testimonial-left/index.tsx",
   },
@@ -210,7 +216,8 @@ export const registry: RegistryItem[] = [
     type: "hero",
     slug: "hero-with-form-left",
     Component: HeroWithFormLeft,
-    description: "Hero section with left-aligned text and an inline form for lead capture.",
+    description:
+      "Hero section with left-aligned text and an inline form for lead capture.",
     props: heroWithFormLeftContent,
     filePath: "./components/hero/hero-with-form-left/index.tsx",
   },
@@ -219,7 +226,8 @@ export const registry: RegistryItem[] = [
     type: "hero",
     slug: "hero-with-tabs-left",
     Component: HeroWithTabsLeft,
-    description: "Hero section with left-aligned text and tabbed content panels.",
+    description:
+      "Hero section with left-aligned text and tabbed content panels.",
     props: heroWithTabsLeftContent,
     filePath: "./components/hero/hero-with-tabs-left/index.tsx",
   },
