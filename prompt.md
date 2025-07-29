@@ -1,12 +1,15 @@
 # Component Creation Guide
 
 ## Project Context
+
 I'm building a component library with Next.js 15, TypeScript, and Tailwind CSS. The library showcases various marketing UI components.
 
 ## Design System Overview
+
 Use the design system from `@/components/ds` instead of raw Tailwind classes:
 
 ### Typography
+
 ```tsx
 import { Heading, Text } from "@/components/ds";
 
@@ -16,46 +19,59 @@ import { Heading, Text } from "@/components/ds";
 ```
 
 ### Layout & Spacing
+
 ```tsx
 import { Section, Container, Stack, Inline } from "@/components/ds";
 
-<Section>                                      // Has built-in padding (py-4 sm:py-8)
-  <Container>                                  // Has built-in padding and max-width
-    <Stack spacing="lg">                       // Vertical spacing between children
+<Section>
+  {" "}
+  // Has built-in padding (py-4 sm:py-8)
+  <Container>
+    {" "}
+    // Has built-in padding and max-width
+    <Stack spacing="lg">
+      {" "}
+      // Vertical spacing between children
       <Heading>Title</Heading>
       <Text>Description</Text>
-      <Inline spacing="sm">                    // Horizontal spacing (auto-wraps)
+      <Inline spacing="sm">
+        {" "}
+        // Horizontal spacing (auto-wraps)
         <Button>Primary</Button>
         <Button variant="outline">Secondary</Button>
       </Inline>
     </Stack>
   </Container>
-</Section>
+</Section>;
 ```
 
 ### When to Use Design System vs Tailwind
 
 **Use Design System Components:**
+
 - Typography (Heading, Text, Prose)
 - Layout structure (Section, Container, Main)
 - Spacing between elements (Stack, Inline)
 - Common patterns with built-in accessibility
 
 **Use Tailwind Classes:**
+
 - Visual styling (backgrounds, borders, shadows)
 - Grid layouts (`grid grid-cols-3 gap-6`)
 - Flexbox adjustments (`items-center justify-between`)
 - Responsive modifiers (`md:flex lg:grid-cols-4`)
 - Custom spacing for specific design needs
 
-**IMPORTANT:** 
+**IMPORTANT:**
+
 - Section has built-in padding (`py-4 sm:py-8`). DO NOT add padding classes like `py-16` or `py-24`.
 - Container has built-in padding and max-width. DO NOT add extra padding.
 - Only add classes for styling needs like backgrounds, borders, or special effects.
 
 ### Spacing Scale
+
 - `xs`: gap-1
-- `sm`: gap-2  
+- `sm`: gap-2
 - `md`: gap-4 (default)
 - `lg`: gap-6
 - `xl`: gap-8
@@ -65,6 +81,7 @@ import { Section, Container, Stack, Inline } from "@/components/ds";
 ## TypeScript Best Practices
 
 ### Component Typing
+
 **DO NOT use React.FC or React.FunctionComponent**. Instead, use direct function declarations with typed props:
 
 ```tsx
@@ -79,6 +96,7 @@ export function Component({ prop }: Props): JSX.Element { ... }
 ```
 
 ### Why avoid React.FC?
+
 - Adds unnecessary verbosity
 - Implicitly adds `children` prop which may not be needed
 - Modern TypeScript infers return types correctly
@@ -87,6 +105,7 @@ export function Component({ prop }: Props): JSX.Element { ... }
 ## Component Requirements
 
 ### File Structure
+
 ```
 /components/[component-type]/[component-name]/
   ├── index.tsx      # Main component file
@@ -96,6 +115,7 @@ export function Component({ prop }: Props): JSX.Element { ... }
 Component types: `hero`, `feature`, `cta`, `pricing`, `testimonial`, `faq`, etc.
 
 ### Component File (index.tsx)
+
 1. **Named Export**: `export const ComponentName`
 2. **TypeScript Interface**: Define all props with JSDoc comments
 3. **Design System**: Use components from `@/components/ds`
@@ -106,6 +126,7 @@ Component types: `hero`, `feature`, `cta`, `pricing`, `testimonial`, `faq`, etc.
 8. **Accessible**: Proper heading hierarchy, alt text, ARIA labels
 
 ### Content File (content.ts)
+
 ```typescript
 export const defaultContent = {
   // All text, images, and configuration
@@ -117,6 +138,7 @@ export const contentVariations = [
 ```
 
 ### Image Requirements
+
 - Use Next.js Image component from `next/image`
 - Default to `/placeholder.webp` for examples
 - Include width/height in props
@@ -127,12 +149,14 @@ export const contentVariations = [
 After creating each component:
 
 1. Import in `registry.ts`:
+
 ```typescript
 import { ComponentName } from "./components/[type]/[component-name]";
 import { defaultContent } from "./components/[type]/[component-name]/content";
 ```
 
 2. Add registry entry:
+
 ```typescript
 {
   name: "Component Name",        // Human-readable
@@ -149,7 +173,14 @@ import { defaultContent } from "./components/[type]/[component-name]/content";
 ```tsx
 // components/hero/hero-minimal/index.tsx
 import * as React from "react";
-import { Section, Container, Stack, Heading, Text, Inline } from "@/components/ds";
+import {
+  Section,
+  Container,
+  Stack,
+  Heading,
+  Text,
+  Inline,
+} from "@/components/ds";
 import { Button } from "@/components/ui/button";
 
 export interface HeroMinimalProps {
@@ -185,7 +216,7 @@ export const HeroMinimal = ({
               </Text>
             )}
           </Stack>
-          
+
           {(primaryCTA || secondaryCTA) && (
             <Inline spacing="md">
               {primaryCTA && (
@@ -227,7 +258,7 @@ export const heroMinimalSchema = {
       required: ["text", "href"],
     },
     secondaryCTA: {
-      type: "object", 
+      type: "object",
       properties: {
         text: { type: "string" },
         href: { type: "string" },
@@ -242,28 +273,33 @@ export const heroMinimalSchema = {
 ## Component Best Practices
 
 ### React Server Components (RSC)
+
 - All components should be RSC by default
 - Only add `"use client"` when absolutely necessary (forms, interactivity)
 - Keep client components small and focused
 - Pass server data to client components via props
 
 ### Performance
+
 - Use dynamic imports for heavy client components
 - Implement loading states with Suspense boundaries
 - Optimize images with Next.js Image component
 - Lazy load below-the-fold content when appropriate
 
 ### Images
+
 - Vary aspect ratios based on content type (16:9 for dashboards, 4:3 for products, etc.)
 - Always include width and height for Next.js Image optimization
 - Use priority={true} for above-the-fold images
 
 ### Layout
+
 - Let Container handle max-widths - don't add your own
 - Use Prose with isArticle for long-form content max-width
 - Trust the design system components to handle responsive behavior
 
 ### CTAs and Links
+
 - ALWAYS use Button with asChild pattern for link buttons:
   ```tsx
   <Button asChild>
@@ -273,6 +309,7 @@ export const heroMinimalSchema = {
 - This ensures proper styling and accessibility with shadcn/ui
 
 ### Accessibility Requirements
+
 - **Keyboard Navigation**: All interactive elements must be keyboard accessible
 - **Focus Management**: Visible focus indicators on all interactive elements
 - **ARIA Labels**: Use aria-label for icon-only buttons
@@ -283,6 +320,7 @@ export const heroMinimalSchema = {
 - **Form Labels**: All form inputs must have associated labels
 
 ### Spacing
+
 - Use Stack/Inline for ALL spacing needs
 - Never add margins between elements
 - Section and Container have built-in padding - don't add more
@@ -299,6 +337,7 @@ export const heroMinimalSchema = {
 8. **Multiple H1s** - Only one H1 per page/component
 
 ## Quality Checklist
+
 - [ ] Uses design system components (Stack, Inline, Heading, Text, etc.)
 - [ ] All content is passed via props
 - [ ] TypeScript interfaces are complete with JSDoc
@@ -313,28 +352,31 @@ export const heroMinimalSchema = {
 ## Common Patterns
 
 ### Text with CTA
+
 ```tsx
 <Stack spacing="md" align="center">
   <Heading level={2}>Section Title</Heading>
-  <Text variant="lead" color="muted">Description</Text>
+  <Text variant="lead" color="muted">
+    Description
+  </Text>
   <Button>Action</Button>
 </Stack>
 ```
 
 ### Side-by-side Layout
+
 ```tsx
 <div className="grid md:grid-cols-2 gap-8 items-center">
   <Stack spacing="md">
     <Heading level={2}>Feature</Heading>
     <Text>Description</Text>
   </Stack>
-  <div>
-    {/* Image or other content */}
-  </div>
+  <div>{/* Image or other content */}</div>
 </div>
 ```
 
 ### Card Grid
+
 ```tsx
 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
   {items.map((item) => (
@@ -353,6 +395,7 @@ export const heroMinimalSchema = {
 ## Error Handling Patterns
 
 ### Loading States
+
 ```tsx
 if (isLoading) {
   return (
@@ -369,6 +412,7 @@ if (isLoading) {
 ```
 
 ### Error States
+
 ```tsx
 if (error) {
   return (
@@ -386,6 +430,7 @@ if (error) {
 ```
 
 ### Empty States
+
 ```tsx
 if (!data || data.length === 0) {
   return (
@@ -402,6 +447,7 @@ if (!data || data.length === 0) {
 ```
 
 ## Component Types to Build
+
 - **Hero Sections**: Landing page heroes with various layouts
 - **Feature Sections**: Showcase product features
 - **CTA Sections**: Call-to-action blocks
