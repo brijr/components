@@ -12,7 +12,7 @@ import type { DSProps } from "./types";
  * @returns {JSX.Element} A section element.
  */
 export const Section = ({ children, className, id, style }: DSProps) => (
-  <section className={cn("py-2 sm:py-4", className)} id={id} style={style}>
+  <section className={cn("py-4 sm:py-8", className)} id={id} style={style}>
     {children}
   </section>
 );

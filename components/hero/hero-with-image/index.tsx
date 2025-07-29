@@ -1,6 +1,13 @@
 import * as React from "react";
 import Image from "next/image";
-import { Section, Container, Stack, Heading, Text, Inline } from "@/components/ds";
+import {
+  Section,
+  Container,
+  Stack,
+  Heading,
+  Text,
+  Inline,
+} from "@/components/ds";
 import { Button } from "@/components/ui/button";
 
 /**
@@ -69,7 +76,7 @@ export const HeroWithImage: React.FC<HeroWithImageProps> = ({
   image,
 }) => {
   return (
-    <Section className="py-16 md:py-24">
+    <Section>
       <Container>
         <Stack spacing="2xl" align="center">
           {/* Text content */}
@@ -79,12 +86,17 @@ export const HeroWithImage: React.FC<HeroWithImageProps> = ({
                 {headline}
               </Heading>
               {subheadline && (
-                <Text variant="lead" align="center" color="muted" className="max-w-2xl">
+                <Text
+                  variant="lead"
+                  align="center"
+                  color="muted"
+                  className="max-w-2xl"
+                >
                   {subheadline}
                 </Text>
               )}
             </Stack>
-            
+
             {(primaryCTA || secondaryCTA) && (
               <Inline spacing="md">
                 {primaryCTA && (
@@ -136,60 +148,60 @@ export const heroWithImageSchema = {
     primaryCTA: {
       type: "object",
       properties: {
-        text: { 
+        text: {
           type: "string",
-          description: "Button text"
+          description: "Button text",
         },
-        href: { 
+        href: {
           type: "string",
-          description: "Button link URL"
+          description: "Button link URL",
         },
       },
       required: ["text", "href"],
-      description: "Primary call-to-action button"
+      description: "Primary call-to-action button",
     },
     secondaryCTA: {
-      type: "object", 
+      type: "object",
       properties: {
-        text: { 
+        text: {
           type: "string",
-          description: "Button text"
+          description: "Button text",
         },
-        href: { 
+        href: {
           type: "string",
-          description: "Button link URL"
+          description: "Button link URL",
         },
       },
       required: ["text", "href"],
-      description: "Secondary call-to-action button"
+      description: "Secondary call-to-action button",
     },
     image: {
       type: "object",
       properties: {
         src: {
           type: "string",
-          description: "Image source URL"
+          description: "Image source URL",
         },
         alt: {
           type: "string",
-          description: "Alt text for accessibility"
+          description: "Alt text for accessibility",
         },
         width: {
           type: "number",
-          description: "Image width in pixels"
+          description: "Image width in pixels",
         },
         height: {
           type: "number",
-          description: "Image height in pixels"
+          description: "Image height in pixels",
         },
         priority: {
           type: "boolean",
-          description: "Priority loading for LCP"
-        }
+          description: "Priority loading for LCP",
+        },
       },
       required: ["src", "alt"],
-      description: "Hero image configuration"
-    }
+      description: "Hero image configuration",
+    },
   },
   required: ["headline", "image"],
 };
