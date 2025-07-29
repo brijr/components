@@ -128,7 +128,7 @@ export const HeroWithTestimonial = ({
           </Stack>
 
           {/* Testimonial card */}
-          <Card className="max-w-3xl w-full">
+          <Card className="w-full max-w-3xl">
             <CardContent className="pt-6">
               <Stack spacing="lg">
                 <Text variant="lead" className="italic" align="center">
@@ -136,7 +136,7 @@ export const HeroWithTestimonial = ({
                 </Text>
 
                 <Stack spacing="sm" align="center">
-                  <Avatar className="w-12 h-12">
+                  <Avatar className="h-12 w-12">
                     {testimonial.author.avatarUrl && (
                       <AvatarImage
                         src={testimonial.author.avatarUrl}

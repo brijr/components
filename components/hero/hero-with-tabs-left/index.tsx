@@ -108,14 +108,9 @@ export const HeroWithTabsLeft = ({
         <Stack spacing="2xl" align="start">
           {/* Text content */}
           <Stack spacing="md" align="start" className="max-w-3xl">
-            <Heading level={1}>
-              {headline}
-            </Heading>
+            <Heading level={1}>{headline}</Heading>
             {subheadline && (
-              <Text
-                variant="lead"
-                color="muted"
-              >
+              <Text variant="lead" color="muted">
                 {subheadline}
               </Text>
             )}
@@ -123,28 +118,29 @@ export const HeroWithTabsLeft = ({
 
           {/* Tabs */}
           <Tabs defaultValue={defaultValue} className="w-full max-w-3xl">
-            <TabsList className="grid w-full" style={{ gridTemplateColumns: `repeat(${tabs.length}, 1fr)` }}>
+            <TabsList
+              className="grid w-full"
+              style={{ gridTemplateColumns: `repeat(${tabs.length}, 1fr)` }}
+            >
               {tabs.map((tab) => (
                 <TabsTrigger key={tab.value} value={tab.value}>
                   {tab.label}
                 </TabsTrigger>
               ))}
             </TabsList>
-            
+
             {tabs.map((tab) => (
               <TabsContent key={tab.value} value={tab.value}>
                 <Stack spacing="lg" align="start" className="mt-6">
                   <Stack spacing="md" align="start">
-                    <Heading level={3}>
-                      {tab.title}
-                    </Heading>
+                    <Heading level={3}>{tab.title}</Heading>
                     <Text color="muted" className="max-w-2xl">
                       {tab.description}
                     </Text>
                   </Stack>
 
                   {tab.features && tab.features.length > 0 && (
-                    <ul className="grid sm:grid-cols-2 gap-3 w-full max-w-xl">
+                    <ul className="grid w-full max-w-xl gap-3 sm:grid-cols-2">
                       {tab.features.map((feature, index) => (
                         <li key={index} className="flex items-start gap-2">
                           <Text className="text-primary">•</Text>
@@ -160,7 +156,7 @@ export const HeroWithTabsLeft = ({
                       alt={tab.image.alt}
                       width={600}
                       height={400}
-                      className="rounded-lg shadow-lg max-w-full"
+                      className="max-w-full rounded-lg shadow-lg"
                     />
                   )}
                 </Stack>

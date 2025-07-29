@@ -366,7 +366,7 @@ export const heroMinimalSchema = {
 ### Side-by-side Layout
 
 ```tsx
-<div className="grid md:grid-cols-2 gap-8 items-center">
+<div className="grid items-center gap-8 md:grid-cols-2">
   <Stack spacing="md">
     <Heading level={2}>Feature</Heading>
     <Text>Description</Text>
@@ -378,7 +378,7 @@ export const heroMinimalSchema = {
 ### Card Grid
 
 ```tsx
-<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
   {items.map((item) => (
     <Card key={item.id}>
       <CardHeader>

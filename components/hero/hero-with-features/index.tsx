@@ -125,7 +125,7 @@ export const HeroWithFeatures = ({
           </Stack>
 
           {/* Feature cards */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+          <div className="grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((feature, index) => (
               <Card key={index}>
                 <CardHeader>

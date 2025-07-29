@@ -1,4 +1,3 @@
 {
-  "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindFunctions": ["cn", "clsx", "twMerge", "twMergeClassnames"]
+  "plugins": ["prettier-plugin-tailwindcss"]
 }

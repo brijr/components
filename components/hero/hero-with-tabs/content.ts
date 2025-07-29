@@ -70,7 +70,11 @@ export const contentVariations: HeroWithTabsProps[] = [
         value: "startups",
         title: "From idea to IPO",
         description: "Everything you need to build and scale your startup",
-        features: ["Free tier available", "Startup credits", "Priority support"],
+        features: [
+          "Free tier available",
+          "Startup credits",
+          "Priority support",
+        ],
         image: {
           src: "/placeholder.webp",
           alt: "Startup dashboard",
@@ -101,7 +105,8 @@ export const contentVariations: HeroWithTabsProps[] = [
         label: "Self-Paced",
         value: "self-paced",
         title: "Learn on your schedule",
-        description: "Access all course materials and progress at your own speed",
+        description:
+          "Access all course materials and progress at your own speed",
       },
       {
         label: "Instructor-Led",
@@ -113,7 +118,8 @@ export const contentVariations: HeroWithTabsProps[] = [
         label: "Bootcamp",
         value: "bootcamp",
         title: "Intensive 12-week program",
-        description: "Full-time immersive experience with job placement support",
+        description:
+          "Full-time immersive experience with job placement support",
       },
     ],
     primaryCTA: {

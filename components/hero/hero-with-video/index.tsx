@@ -114,13 +114,13 @@ export const HeroWithVideo = ({
           {/* Video embed */}
           <div className="w-full max-w-4xl">
             <div
-              className="relative overflow-hidden rounded-xl shadow-2xl bg-muted"
+              className="bg-muted relative overflow-hidden rounded-xl shadow-2xl"
               style={{ paddingBottom }}
             >
               <iframe
                 src={video.embedUrl}
                 title={video.title}
-                className="absolute inset-0 w-full h-full"
+                className="absolute inset-0 h-full w-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />

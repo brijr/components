@@ -76,11 +76,7 @@ export const HeroWithBadge = ({
           {/* Badge */}
           {badge && (
             <Badge variant={badge.variant} asChild={!!badge.href}>
-              {badge.href ? (
-                <a href={badge.href}>{badge.text}</a>
-              ) : (
-                badge.text
-              )}
+              {badge.href ? <a href={badge.href}>{badge.text}</a> : badge.text}
             </Badge>
           )}
 

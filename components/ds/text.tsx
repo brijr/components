@@ -89,7 +89,7 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     const Comp = Component as React.ElementType;
 
@@ -98,14 +98,14 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
         ref={ref}
         className={cn(
           textVariants({ variant, color, weight, align }),
-          className
+          className,
         )}
         {...props}
       >
         {children}
       </Comp>
     );
-  }
+  },
 );
 
 Text.displayName = "Text";

@@ -1,11 +1,5 @@
 import * as React from "react";
-import {
-  Section,
-  Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+import { Section, Container, Stack, Heading, Text } from "@/components/ds";
 import { Button } from "@/components/ui/button";
 
 /**
@@ -50,18 +44,18 @@ export const HeroCentered = ({
   cta,
 }: HeroCenteredProps) => {
   return (
-    <Section className="min-h-[60vh] flex items-center">
+    <Section className="flex min-h-[60vh] items-center">
       <Container>
         <Stack spacing="xl" align="center">
           <Stack spacing="lg" align="center">
-            <Heading 
-              level={1} 
+            <Heading
+              level={1}
               align="center"
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight"
+              className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
             >
               {headline}
             </Heading>
-            
+
             {subheadline && (
               <Text
                 variant="lead"
@@ -75,8 +69,8 @@ export const HeroCentered = ({
           </Stack>
 
           {cta && (
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               variant={cta.variant || "default"}
               asChild
               className="text-base"

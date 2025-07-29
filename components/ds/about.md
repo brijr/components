@@ -25,6 +25,7 @@ import { Heading } from "@/components/ds";
 ```
 
 **Props:**
+
 - `level`: 1-6 (required) - Determines both semantic HTML element and visual size
 - `color`: "default" | "muted" | "primary" | "destructive" - Text color
 - `align`: "left" | "center" | "right" - Text alignment
@@ -32,6 +33,7 @@ import { Heading } from "@/components/ds";
 - `className`: Additional Tailwind classes if needed
 
 **Sizes:**
+
 - Level 1: `text-4xl sm:text-5xl` - Main page titles
 - Level 2: `text-3xl sm:text-4xl` - Major sections
 - Level 3: `text-2xl sm:text-3xl` - Subsections
@@ -64,6 +66,7 @@ import { Text } from "@/components/ds";
 ```
 
 **Props:**
+
 - `variant`: Controls text size and style
   - "body" (default): Normal paragraph text
   - "lead": Larger intro text (`text-lg sm:text-xl`)
@@ -107,6 +110,7 @@ import { Prose } from "@/components/ds";
 ```
 
 **Features:**
+
 - Auto-styles all HTML elements
 - Responsive heading sizes
 - Custom list bullets
@@ -151,6 +155,7 @@ import { Stack } from "@/components/ds";
 ```
 
 **Props:**
+
 - `spacing`: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl"
   - xs: `gap-1` (4px)
   - sm: `gap-2` (8px)
@@ -196,6 +201,7 @@ import { Inline } from "@/components/ds";
 ```
 
 **Props:**
+
 - `spacing`: Same scale as Stack
 - `align`: "start" | "center" | "end" | "baseline" | "stretch"
 - `justify`: "start" | "center" | "end" | "between" | "around" | "evenly"
@@ -234,6 +240,7 @@ import { Section } from "@/components/ds";
 ```
 
 **Built-in styles:**
+
 - Padding: `py-2 sm:py-4` (8px mobile, 16px desktop)
 - Additional classes are merged, not replaced
 - Semantic `<section>` element
@@ -258,6 +265,7 @@ import { Container } from "@/components/ds";
 ```
 
 **Built-in styles:**
+
 - Max width: `max-w-5xl` (1024px)
 - Centering: `mx-auto`
 - Padding: `p-4 sm:p-6` (16px mobile, 24px desktop)
@@ -271,14 +279,13 @@ import { Main } from "@/components/ds";
 
 <Main>
   <Section>
-    <Container>
-      {/* Page content */}
-    </Container>
+    <Container>{/* Page content */}</Container>
   </Section>
-</Main>
+</Main>;
 ```
 
 **Usage:**
+
 - Semantic `<main>` element
 - Typically one per page
 - Can add classes for min-height, background, etc.
@@ -299,10 +306,11 @@ import { Nav } from "@/components/ds";
       <Button variant="ghost">Contact</Button>
     </Inline>
   </Inline>
-</Nav>
+</Nav>;
 ```
 
 **Built-in styles:**
+
 - Inner container: `max-w-5xl mx-auto px-4 sm:px-6 py-2`
 - Use `containerClassName` to modify inner container
 
@@ -325,7 +333,9 @@ import { Nav } from "@/components/ds";
       </Stack>
       <Inline spacing="md">
         <Button size="lg">Get Started</Button>
-        <Button size="lg" variant="outline">View Examples</Button>
+        <Button size="lg" variant="outline">
+          View Examples
+        </Button>
       </Inline>
     </Stack>
   </Container>
@@ -346,8 +356,8 @@ import { Nav } from "@/components/ds";
           Our design system includes all the components you need
         </Text>
       </Stack>
-      
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {features.map((feature) => (
           <Card key={feature.id}>
             <CardHeader>
@@ -372,7 +382,7 @@ import { Nav } from "@/components/ds";
 ```tsx
 <Section>
   <Container>
-    <div className="grid md:grid-cols-2 gap-12 items-center">
+    <div className="grid items-center gap-12 md:grid-cols-2">
       <Stack spacing="md">
         <Badge>Case Study</Badge>
         <Heading level={2}>How we increased conversions by 150%</Heading>
@@ -390,8 +400,8 @@ import { Nav } from "@/components/ds";
         <Button>Read the full story</Button>
       </Stack>
       <div>
-        <Image 
-          src="/case-study.png" 
+        <Image
+          src="/case-study.png"
           alt="Conversion graph"
           width={600}
           height={400}
@@ -406,6 +416,7 @@ import { Nav } from "@/components/ds";
 ## Best Practices
 
 ### Do's
+
 - Use Stack/Inline for spacing instead of margins
 - Use semantic Heading levels (1 → 6)
 - Combine components for complex layouts
@@ -413,6 +424,7 @@ import { Nav } from "@/components/ds";
 - Let Section/Container handle page spacing
 
 ### Don'ts
+
 - Don't add padding to Section/Container (they have it)
 - Don't skip heading levels (h1 → h3)
 - Don't use raw margins between elements
@@ -420,13 +432,16 @@ import { Nav } from "@/components/ds";
 - Don't nest Containers
 
 ### Responsive Design
+
 All components handle responsive sizing automatically:
+
 - Headings scale up on larger screens
 - Container padding adjusts for mobile
 - Text remains readable at all sizes
 - Spacing scales appropriately
 
 ### Accessibility
+
 - Heading levels create proper document outline
 - Text colors meet contrast requirements
 - Interactive elements have focus states
@@ -436,10 +451,16 @@ All components handle responsive sizing automatically:
 
 ```tsx
 // Import everything
-import { 
-  Section, Container, Main, Nav,           // Layout
-  Heading, Text, Prose,                    // Typography
-  Stack, Inline                            // Spacing
+import {
+  Section,
+  Container,
+  Main,
+  Nav, // Layout
+  Heading,
+  Text,
+  Prose, // Typography
+  Stack,
+  Inline, // Spacing
 } from "@/components/ds";
 
 // Most common pattern
@@ -450,5 +471,5 @@ import {
       <Text>Content</Text>
     </Stack>
   </Container>
-</Section>
+</Section>;
 ```

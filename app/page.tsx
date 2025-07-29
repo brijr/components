@@ -16,7 +16,7 @@ export default function HomePage() {
         ))}
       </div>
       <div className="py-6 text-center">
-        <p className="text-sm font-mono text-muted-foreground">
+        <p className="text-muted-foreground font-mono text-sm">
           created by{" "}
           <a href="https://bridger.to" className="text-foreground">
             Bridger Tower

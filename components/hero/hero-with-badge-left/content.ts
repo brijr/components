@@ -32,8 +32,7 @@ export const contentVariations: HeroWithBadgeLeftProps[] = [
       variant: "destructive",
     },
     headline: "50% off for the next 48 hours",
-    subheadline:
-      "Join thousands of teams already transforming their workflow",
+    subheadline: "Join thousands of teams already transforming their workflow",
     primaryCTA: {
       text: "Claim Offer",
       href: "/special-offer",

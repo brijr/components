@@ -70,8 +70,7 @@ export const contentVariations: HeroWithFeaturesProps[] = [
   },
   {
     headline: "Simplify your workflow",
-    subheadline:
-      "Automate repetitive tasks and focus on what truly matters",
+    subheadline: "Automate repetitive tasks and focus on what truly matters",
     primaryCTA: {
       text: "Try It Free",
       href: "/trial",
@@ -88,8 +87,7 @@ export const contentVariations: HeroWithFeaturesProps[] = [
       },
       {
         title: "Integration Hub",
-        description:
-          "Connect with 1000+ tools and services you already use",
+        description: "Connect with 1000+ tools and services you already use",
       },
       {
         title: "Custom Workflows",

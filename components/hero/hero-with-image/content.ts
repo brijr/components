@@ -2,79 +2,83 @@ import { HeroWithImageProps } from "./index";
 
 export const defaultContent: HeroWithImageProps = {
   headline: "Beautiful Design System Components",
-  subheadline: "Build stunning interfaces with our pre-built, customizable components",
+  subheadline:
+    "Build stunning interfaces with our pre-built, customizable components",
   primaryCTA: {
     text: "Get Started",
-    href: "/signup"
+    href: "/signup",
   },
   secondaryCTA: {
     text: "View Components",
-    href: "/components"
+    href: "/components",
   },
   image: {
     src: "/placeholder.webp",
     alt: "Dashboard interface showing modern design components",
     width: 1200,
     height: 675,
-    priority: true
-  }
+    priority: true,
+  },
 };
 
 export const contentVariations: HeroWithImageProps[] = [
   // Analytics Platform
   {
     headline: "Analytics That Drive Growth",
-    subheadline: "Understand your users, optimize your product, and scale with confidence",
+    subheadline:
+      "Understand your users, optimize your product, and scale with confidence",
     primaryCTA: {
       text: "Start Free Trial",
-      href: "/trial"
+      href: "/trial",
     },
     secondaryCTA: {
       text: "Book a Demo",
-      href: "/demo"
+      href: "/demo",
     },
     image: {
       src: "/placeholder.webp",
       alt: "Analytics dashboard with charts and metrics",
       width: 1200,
       height: 675,
-      priority: true
-    }
+      priority: true,
+    },
   },
   // Developer Tools
   {
     headline: "Ship Code Faster",
-    subheadline: "Modern development tools that help you build, test, and deploy with ease",
+    subheadline:
+      "Modern development tools that help you build, test, and deploy with ease",
     primaryCTA: {
       text: "Try It Free",
-      href: "/start"
+      href: "/start",
     },
     secondaryCTA: {
       text: "Documentation",
-      href: "/docs"
+      href: "/docs",
     },
     image: {
       src: "/placeholder.webp",
       alt: "Code editor interface with syntax highlighting",
       width: 1200,
-      height: 675
-    }
+      height: 675,
+    },
   },
   // E-commerce
   {
     headline: "Your Online Store, Simplified",
-    subheadline: "Everything you need to sell online, manage inventory, and grow your business",
+    subheadline:
+      "Everything you need to sell online, manage inventory, and grow your business",
     primaryCTA: {
       text: "Start Selling",
-      href: "/register"
+      href: "/register",
     },
     image: {
       src: "/placeholder.webp",
       alt: "E-commerce dashboard showing products and sales",
       width: 1200,
       height: 675,
-      priority: true
-    }
+      priority: true,
+    },
   },
   // Educational Platform
   {
@@ -82,17 +86,17 @@ export const contentVariations: HeroWithImageProps[] = [
     subheadline: "Access thousands of courses from industry experts",
     primaryCTA: {
       text: "Browse Courses",
-      href: "/courses"
+      href: "/courses",
     },
     secondaryCTA: {
       text: "Free Preview",
-      href: "/preview"
+      href: "/preview",
     },
     image: {
       src: "/placeholder.webp",
       alt: "Online learning platform interface",
       width: 1200,
-      height: 675
-    }
-  }
+      height: 675,
+    },
+  },
 ];

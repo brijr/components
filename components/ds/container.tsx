@@ -13,7 +13,7 @@ import type { DSProps } from "./types";
  */
 export const Container = ({ children, className, id, style }: DSProps) => (
   <div
-    className={cn("max-w-5xl mx-auto p-4 sm:p-6", className)}
+    className={cn("mx-auto max-w-5xl p-4 sm:p-6", className)}
     id={id}
     style={style}
   >

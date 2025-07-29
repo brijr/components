@@ -72,7 +72,7 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <Component
@@ -83,7 +83,7 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
         {children}
       </Component>
     );
-  }
+  },
 );
 
 Stack.displayName = "Stack";

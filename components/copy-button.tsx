@@ -16,7 +16,7 @@ export function CopyButton({ filePath }: CopyButtonProps) {
     try {
       // Fetch the component source code
       const response = await fetch(
-        `/api/component-source?path=${encodeURIComponent(filePath)}`
+        `/api/component-source?path=${encodeURIComponent(filePath)}`,
       );
 
       if (!response.ok) {

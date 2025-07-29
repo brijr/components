@@ -96,14 +96,9 @@ export const HeroWithTestimonialLeft = ({
           {/* Text content and CTAs */}
           <Stack spacing="lg" align="start">
             <Stack spacing="md" align="start" className="max-w-3xl">
-              <Heading level={1}>
-                {headline}
-              </Heading>
+              <Heading level={1}>{headline}</Heading>
               {subheadline && (
-                <Text
-                  variant="lead"
-                  color="muted"
-                >
+                <Text variant="lead" color="muted">
                   {subheadline}
                 </Text>
               )}
@@ -126,7 +121,7 @@ export const HeroWithTestimonialLeft = ({
           </Stack>
 
           {/* Testimonial card */}
-          <Card className="max-w-3xl w-full">
+          <Card className="w-full max-w-3xl">
             <CardContent className="pt-6">
               <Stack spacing="lg">
                 <Text variant="lead" className="italic">
@@ -134,7 +129,7 @@ export const HeroWithTestimonialLeft = ({
                 </Text>
 
                 <Stack spacing="sm" align="start">
-                  <Avatar className="w-12 h-12">
+                  <Avatar className="h-12 w-12">
                     {testimonial.author.avatarUrl && (
                       <AvatarImage
                         src={testimonial.author.avatarUrl}

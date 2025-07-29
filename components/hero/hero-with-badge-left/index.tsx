@@ -76,24 +76,15 @@ export const HeroWithBadgeLeft = ({
           {/* Badge */}
           {badge && (
             <Badge variant={badge.variant} asChild={!!badge.href}>
-              {badge.href ? (
-                <a href={badge.href}>{badge.text}</a>
-              ) : (
-                badge.text
-              )}
+              {badge.href ? <a href={badge.href}>{badge.text}</a> : badge.text}
             </Badge>
           )}
 
           {/* Text content */}
           <Stack spacing="md" align="start" className="max-w-3xl">
-            <Heading level={1}>
-              {headline}
-            </Heading>
+            <Heading level={1}>{headline}</Heading>
             {subheadline && (
-              <Text
-                variant="lead"
-                color="muted"
-              >
+              <Text variant="lead" color="muted">
                 {subheadline}
               </Text>
             )}

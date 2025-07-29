@@ -82,12 +82,16 @@ export const HeroSplit = ({
     <Section>
       <Container>
         <div
-          className={`grid lg:grid-cols-2 gap-8 lg:gap-12 items-center ${
+          className={`grid items-center gap-8 lg:grid-cols-2 lg:gap-12 ${
             reverse ? "lg:grid-flow-dense" : ""
           }`}
         >
           {/* Text content */}
-          <Stack spacing="lg" align="start" className={reverse ? "lg:col-start-2" : ""}>
+          <Stack
+            spacing="lg"
+            align="start"
+            className={reverse ? "lg:col-start-2" : ""}
+          >
             <Stack spacing="md" align="start">
               <Heading level={1}>{headline}</Heading>
               {subheadline && (
@@ -114,14 +118,16 @@ export const HeroSplit = ({
           </Stack>
 
           {/* Hero image */}
-          <div className={`relative overflow-hidden rounded-xl shadow-xl bg-muted ${reverse ? "lg:col-start-1" : ""}`}>
+          <div
+            className={`bg-muted relative overflow-hidden rounded-xl shadow-xl ${reverse ? "lg:col-start-1" : ""}`}
+          >
             <Image
               src={image.src}
               alt={image.alt}
               width={image.width || 600}
               height={image.height || 400}
               priority={image.priority}
-              className="w-full h-auto object-cover"
+              className="h-auto w-full object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>

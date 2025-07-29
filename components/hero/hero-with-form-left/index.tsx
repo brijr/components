@@ -92,14 +92,9 @@ export const HeroWithFormLeft = ({
         <Stack spacing="lg" align="start">
           {/* Text content */}
           <Stack spacing="md" align="start" className="max-w-3xl">
-            <Heading level={1}>
-              {headline}
-            </Heading>
+            <Heading level={1}>{headline}</Heading>
             {subheadline && (
-              <Text
-                variant="lead"
-                color="muted"
-              >
+              <Text variant="lead" color="muted">
                 {subheadline}
               </Text>
             )}

@@ -46,7 +46,8 @@ export const defaultContent: HeroWithStatsLeftProps = {
 export const contentVariations: HeroWithStatsLeftProps[] = [
   {
     headline: "Results that speak for themselves",
-    subheadline: "Our platform delivers measurable impact for businesses of all sizes",
+    subheadline:
+      "Our platform delivers measurable impact for businesses of all sizes",
     stats: [
       {
         prefix: "+",

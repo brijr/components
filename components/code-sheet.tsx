@@ -25,7 +25,7 @@ export function CodeSheet({ filePath }: CodeSheetProps) {
 
         // Fetch the component source code
         const response = await fetch(
-          `/api/component-source?path=${encodeURIComponent(filePath)}`
+          `/api/component-source?path=${encodeURIComponent(filePath)}`,
         );
 
         if (!response.ok) {
@@ -67,7 +67,7 @@ export function CodeSheet({ filePath }: CodeSheetProps) {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-96 text-muted-foreground">
+      <div className="text-muted-foreground flex h-96 items-center justify-center">
         <Loader2 className="animate-spin" />
       </div>
     );
@@ -75,7 +75,7 @@ export function CodeSheet({ filePath }: CodeSheetProps) {
 
   if (error) {
     return (
-      <div className="flex items-center justify-center h-96 text-destructive">
+      <div className="text-destructive flex h-96 items-center justify-center">
         Error: {error}
       </div>
     );
@@ -88,7 +88,7 @@ export function CodeSheet({ filePath }: CodeSheetProps) {
           variant="outline"
           size="sm"
           onClick={handleCopy}
-          className="gap-2 cursor-pointer"
+          className="cursor-pointer gap-2"
         >
           {copied ? (
             <>
@@ -103,7 +103,7 @@ export function CodeSheet({ filePath }: CodeSheetProps) {
           )}
         </Button>
       </div>
-      <div className="h-full overflow-auto pb-24 no-scrollbar">
+      <div className="no-scrollbar h-full overflow-auto pb-24">
         <div
           className="p-6 text-sm [&_pre]:!bg-transparent [&_pre]:!p-0"
           dangerouslySetInnerHTML={{ __html: highlightedCode }}

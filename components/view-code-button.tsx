@@ -36,7 +36,7 @@ export function ViewCodeButton({
       </Button>
       <SheetContent
         side="right"
-        className="w-[90%] sm:w-[80%] sm:max-w-4xl p-0 gap-0"
+        className="w-[90%] gap-0 p-0 sm:w-[80%] sm:max-w-4xl"
       >
         <SheetHeader className="border-b">
           <SheetTitle>{componentName}</SheetTitle>

@@ -82,35 +82,24 @@ export const HeroWithStatsLeft = ({
         <Stack spacing="2xl" align="start">
           {/* Text content */}
           <Stack spacing="md" align="start" className="max-w-3xl">
-            <Heading level={1}>
-              {headline}
-            </Heading>
+            <Heading level={1}>{headline}</Heading>
             {subheadline && (
-              <Text
-                variant="lead"
-                color="muted"
-              >
+              <Text variant="lead" color="muted">
                 {subheadline}
               </Text>
             )}
           </Stack>
 
           {/* Stats grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 w-full max-w-4xl">
+          <div className="grid w-full max-w-4xl grid-cols-2 gap-8 md:grid-cols-4 md:gap-12">
             {stats.map((stat, index) => (
               <Stack key={index} spacing="xs" align="start">
-                <Text
-                  className="text-4xl sm:text-5xl font-bold"
-                  as="div"
-                >
+                <Text className="text-4xl font-bold sm:text-5xl" as="div">
                   {stat.prefix}
                   {stat.value}
                   {stat.suffix}
                 </Text>
-                <Text
-                  variant="small"
-                  color="muted"
-                >
+                <Text variant="small" color="muted">
                   {stat.label}
                 </Text>
               </Stack>

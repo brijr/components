@@ -114,14 +114,14 @@ export const HeroWithImage = ({
           </Stack>
 
           {/* Hero image */}
-          <div className="relative w-full overflow-hidden rounded-xl shadow-2xl bg-muted">
+          <div className="bg-muted relative w-full overflow-hidden rounded-xl shadow-2xl">
             <Image
               src={image.src}
               alt={image.alt}
               width={image.width || 1200}
               height={image.height || 675}
               priority={image.priority}
-              className="w-full h-auto"
+              className="h-auto w-full"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
             />
           </div>

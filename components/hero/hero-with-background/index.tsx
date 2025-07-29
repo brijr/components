@@ -88,7 +88,7 @@ export const HeroWithBackground = ({
           sizes="100vw"
         />
         <div
-          className="absolute inset-0 bg-background"
+          className="bg-background absolute inset-0"
           style={{ opacity: overlayOpacity / 100 }}
         />
       </div>

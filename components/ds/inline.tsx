@@ -82,20 +82,20 @@ export const Inline = React.forwardRef<HTMLDivElement, InlineProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <Component
         ref={ref}
         className={cn(
-          inlineVariants({ spacing, align, justify, wrap, className })
+          inlineVariants({ spacing, align, justify, wrap, className }),
         )}
         {...props}
       >
         {children}
       </Component>
     );
-  }
+  },
 );
 
 Inline.displayName = "Inline";

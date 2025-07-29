@@ -14,14 +14,14 @@ export function ComponentWrapper({
   filePath,
 }: ComponentWrapperProps) {
   return (
-    <section className="max-w-screen-xl w-full border mx-auto rounded-lg overflow-hidden bg-background">
-      <div className="h-12 bg-accent/50 border-b grid grid-cols-3 items-center pl-4 pr-2 text-muted-foreground">
+    <section className="bg-background mx-auto w-full max-w-screen-xl overflow-hidden rounded-lg border">
+      <div className="bg-accent/50 text-muted-foreground grid h-12 grid-cols-3 items-center border-b pr-2 pl-4">
         <div className="flex items-center gap-1.5">
           <Circle size={12} />
           <Circle size={12} />
           <Circle size={12} />
         </div>
-        <div className="text-sm text-center">{name}</div>
+        <div className="text-center text-sm">{name}</div>
         <div className="flex items-center justify-end">
           <ViewCodeButton filePath={filePath} componentName={name} />
           <CopyButton filePath={filePath} />

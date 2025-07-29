@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
   if (!path) {
     return NextResponse.json(
       { error: "Path parameter is required" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
   } catch {
     return NextResponse.json(
       { error: "Failed to read component source" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
