@@ -25,6 +25,20 @@ import { defaultContent as heroWithTabsContent } from "./components/hero/hero-wi
 import { HeroCentered } from "./components/hero/hero-centered";
 import { defaultContent as heroCenteredContent } from "./components/hero/hero-centered/content";
 
+// Left-aligned hero variants
+import { HeroMinimalLeft } from "./components/hero/hero-minimal-left";
+import { defaultContent as heroMinimalLeftContent } from "./components/hero/hero-minimal-left/content";
+import { HeroWithBadgeLeft } from "./components/hero/hero-with-badge-left";
+import { defaultContent as heroWithBadgeLeftContent } from "./components/hero/hero-with-badge-left/content";
+import { HeroWithStatsLeft } from "./components/hero/hero-with-stats-left";
+import { defaultContent as heroWithStatsLeftContent } from "./components/hero/hero-with-stats-left/content";
+import { HeroWithTestimonialLeft } from "./components/hero/hero-with-testimonial-left";
+import { defaultContent as heroWithTestimonialLeftContent } from "./components/hero/hero-with-testimonial-left/content";
+import { HeroWithFormLeft } from "./components/hero/hero-with-form-left";
+import { defaultContent as heroWithFormLeftContent } from "./components/hero/hero-with-form-left/content";
+import { HeroWithTabsLeft } from "./components/hero/hero-with-tabs-left";
+import { defaultContent as heroWithTabsLeftContent } from "./components/hero/hero-with-tabs-left/content";
+
 type RegistryItem = {
   name: string;
   type: "hero" | "utility" | "feature";
@@ -152,5 +166,61 @@ export const registry: RegistryItem[] = [
     description: "Ultra-minimal centered hero with large typography.",
     props: heroCenteredContent,
     filePath: "./components/hero/hero-centered/index.tsx",
+  },
+  
+  // Left-aligned variants
+  {
+    name: "Hero Minimal (Left)",
+    type: "hero",
+    slug: "hero-minimal-left",
+    Component: HeroMinimalLeft,
+    description: "Minimal hero section with left-aligned text and optional CTAs.",
+    props: heroMinimalLeftContent,
+    filePath: "./components/hero/hero-minimal-left/index.tsx",
+  },
+  {
+    name: "Hero with Badge (Left)",
+    type: "hero",
+    slug: "hero-with-badge-left",
+    Component: HeroWithBadgeLeft,
+    description: "Hero section with a badge/announcement above the left-aligned headline.",
+    props: heroWithBadgeLeftContent,
+    filePath: "./components/hero/hero-with-badge-left/index.tsx",
+  },
+  {
+    name: "Hero with Stats (Left)",
+    type: "hero",
+    slug: "hero-with-stats-left",
+    Component: HeroWithStatsLeft,
+    description: "Hero section with left-aligned text and prominent statistics display.",
+    props: heroWithStatsLeftContent,
+    filePath: "./components/hero/hero-with-stats-left/index.tsx",
+  },
+  {
+    name: "Hero with Testimonial (Left)",
+    type: "hero",
+    slug: "hero-with-testimonial-left",
+    Component: HeroWithTestimonialLeft,
+    description: "Hero section with left-aligned text and a featured testimonial for social proof.",
+    props: heroWithTestimonialLeftContent,
+    filePath: "./components/hero/hero-with-testimonial-left/index.tsx",
+  },
+  {
+    name: "Hero with Form (Left)",
+    type: "hero",
+    slug: "hero-with-form-left",
+    Component: HeroWithFormLeft,
+    description: "Hero section with left-aligned text and an inline form for lead capture.",
+    props: heroWithFormLeftContent,
+    filePath: "./components/hero/hero-with-form-left/index.tsx",
+  },
+  {
+    name: "Hero with Tabs (Left)",
+    type: "hero",
+    slug: "hero-with-tabs-left",
+    Component: HeroWithTabsLeft,
+    description: "Hero section with left-aligned text and tabbed content panels.",
+    props: heroWithTabsLeftContent,
+    filePath: "./components/hero/hero-with-tabs-left/index.tsx",
   },
 ];
