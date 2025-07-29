@@ -44,7 +44,7 @@ export interface HeroTextImageProps {
 /**
  * Hero section component with text content followed by an image
  * Uses the Prose component for automatic text styling
- * 
+ *
  * @example
  * ```tsx
  * <HeroTextImage
@@ -53,10 +53,10 @@ export interface HeroTextImageProps {
  *   subheadline="Our platform helps teams ship amazing software with confidence"
  *   primaryCTA={{ text: "Get Started", href: "/signup" }}
  *   secondaryCTA={{ text: "Learn More", href: "/features" }}
- *   image={{ 
- *     src: "/hero-image.jpg", 
+ *   image={{
+ *     src: "/hero-image.jpg",
  *     alt: "Product screenshot",
- *     priority: true 
+ *     priority: true
  *   }}
  *   textAlign="center"
  * />
@@ -94,16 +94,20 @@ export const HeroTextImage: React.FC<HeroTextImageProps> = ({
             {/* Prose wrapper for all text content */}
             <Prose className={cn(alignmentClasses[textAlign], "mb-8")}>
               <h1>{headline}</h1>
-              {subheadline && <p className="text-muted-foreground">{subheadline}</p>}
+              {subheadline && (
+                <p className="text-muted-foreground">{subheadline}</p>
+              )}
             </Prose>
 
             {/* CTAs - Outside Prose */}
             {(primaryCTA || secondaryCTA) && (
-              <div className={cn(
-                "flex flex-col sm:flex-row gap-4",
-                textAlign === "center" && "justify-center",
-                textAlign === "right" && "justify-end"
-              )}>
+              <div
+                className={cn(
+                  "flex flex-col sm:flex-row gap-4",
+                  textAlign === "center" && "justify-center",
+                  textAlign === "right" && "justify-end"
+                )}
+              >
                 {primaryCTA && (
                   <Button
                     size="lg"
