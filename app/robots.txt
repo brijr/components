@@ -1,7 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /play
-
-Sitemap: https://components.work/sitemap.xml
-
-Github: https://github.com/brijr/components
