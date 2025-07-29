@@ -40,9 +40,31 @@ import { defaultContent as heroWithTestimonialLeftContent } from "./components/h
 import { defaultContent as heroWithFormLeftContent } from "./components/hero/hero-with-form-left/content";
 import { defaultContent as heroWithTabsLeftContent } from "./components/hero/hero-with-tabs-left/content";
 
+// Feature components
+import { FeatureGrid } from "./components/feature/feature-grid";
+import { defaultContent as featureGridContent } from "./components/feature/feature-grid/content";
+import { FeatureGridLeft } from "./components/feature/feature-grid-left";
+import { defaultContent as featureGridLeftContent } from "./components/feature/feature-grid-left/content";
+import { FeatureList } from "./components/feature/feature-list";
+import { defaultContent as featureListContent } from "./components/feature/feature-list/content";
+import { FeatureListLeft } from "./components/feature/feature-list-left";
+import { defaultContent as featureListLeftContent } from "./components/feature/feature-list-left/content";
+import { FeatureCards } from "./components/feature/feature-cards";
+import { defaultContent as featureCardsContent } from "./components/feature/feature-cards/content";
+import { FeatureCardsLeft } from "./components/feature/feature-cards-left";
+import { defaultContent as featureCardsLeftContent } from "./components/feature/feature-cards-left/content";
+import { FeatureComparison } from "./components/feature/feature-comparison";
+import { defaultContent as featureComparisonContent } from "./components/feature/feature-comparison/content";
+import { FeatureShowcase } from "./components/feature/feature-showcase";
+import { defaultContent as featureShowcaseContent } from "./components/feature/feature-showcase/content";
+import { FeatureShowcaseLeft } from "./components/feature/feature-showcase-left";
+import { defaultContent as featureShowcaseLeftContent } from "./components/feature/feature-showcase-left/content";
+import { FeatureTimeline } from "./components/feature/feature-timeline";
+import { defaultContent as featureTimelineContent } from "./components/feature/feature-timeline/content";
+
 type RegistryItem = {
   name: string;
-  type: "hero" | "utility" | "feature";
+  type: "hero" | "feature" | "cta" | "pricing" | "testimonial" | "faq" | "contact" | "stats" | "logo" | "team" | "footer" | "newsletter" | "blog";
   slug: string;
   Component: React.ComponentType<any>;
   description?: string;
@@ -233,5 +255,97 @@ export const registry: RegistryItem[] = [
       "Hero section with left-aligned text and tabbed content panels.",
     props: heroWithTabsLeftContent,
     filePath: "./components/hero/hero-with-tabs-left/index.tsx",
+  },
+
+  // Feature components
+  {
+    name: "Feature Grid",
+    type: "feature",
+    slug: "feature-grid",
+    Component: FeatureGrid,
+    description: "Grid layout for showcasing multiple features with icons, centered text.",
+    props: featureGridContent,
+    filePath: "./components/feature/feature-grid/index.tsx",
+  },
+  {
+    name: "Feature Grid (Left)",
+    type: "feature",
+    slug: "feature-grid-left",
+    Component: FeatureGridLeft,
+    description: "Grid layout for showcasing multiple features with icons, left-aligned text.",
+    props: featureGridLeftContent,
+    filePath: "./components/feature/feature-grid-left/index.tsx",
+  },
+  {
+    name: "Feature List",
+    type: "feature",
+    slug: "feature-list",
+    Component: FeatureList,
+    description: "List layout with alternating sides for features with images.",
+    props: featureListContent,
+    filePath: "./components/feature/feature-list/index.tsx",
+  },
+  {
+    name: "Feature List (Left)",
+    type: "feature",
+    slug: "feature-list-left",
+    Component: FeatureListLeft,
+    description: "List layout with consistent left-aligned features and images.",
+    props: featureListLeftContent,
+    filePath: "./components/feature/feature-list-left/index.tsx",
+  },
+  {
+    name: "Feature Cards",
+    type: "feature",
+    slug: "feature-cards",
+    Component: FeatureCards,
+    description: "Card-based feature layout with hover effects, centered design.",
+    props: featureCardsContent,
+    filePath: "./components/feature/feature-cards/index.tsx",
+  },
+  {
+    name: "Feature Cards (Left)",
+    type: "feature",
+    slug: "feature-cards-left",
+    Component: FeatureCardsLeft,
+    description: "Card-based feature layout with hover effects, left-aligned content.",
+    props: featureCardsLeftContent,
+    filePath: "./components/feature/feature-cards-left/index.tsx",
+  },
+  {
+    name: "Feature Comparison",
+    type: "feature",
+    slug: "feature-comparison",
+    Component: FeatureComparison,
+    description: "Comparison table for plans, products, or feature sets.",
+    props: featureComparisonContent,
+    filePath: "./components/feature/feature-comparison/index.tsx",
+  },
+  {
+    name: "Feature Showcase",
+    type: "feature",
+    slug: "feature-showcase",
+    Component: FeatureShowcase,
+    description: "Large feature showcase with screenshot and key points, centered text.",
+    props: featureShowcaseContent,
+    filePath: "./components/feature/feature-showcase/index.tsx",
+  },
+  {
+    name: "Feature Showcase (Left)",
+    type: "feature",
+    slug: "feature-showcase-left",
+    Component: FeatureShowcaseLeft,
+    description: "Large feature showcase with screenshot and key points, left-aligned text.",
+    props: featureShowcaseLeftContent,
+    filePath: "./components/feature/feature-showcase-left/index.tsx",
+  },
+  {
+    name: "Feature Timeline",
+    type: "feature",
+    slug: "feature-timeline",
+    Component: FeatureTimeline,
+    description: "Timeline/process steps layout for onboarding flows or roadmaps.",
+    props: featureTimelineContent,
+    filePath: "./components/feature/feature-timeline/index.tsx",
   },
 ];
