@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Copy, Check } from "lucide-react";
 import { toast } from "sonner";
+import { Button } from "./ui/button";
 
 interface CopyButtonProps {
   filePath: string;
@@ -37,12 +38,17 @@ export function CopyButton({ filePath }: CopyButtonProps) {
   };
 
   return (
-    <button onClick={handleCopy} className="transition-all">
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={handleCopy}
+      className="cursor-pointer"
+    >
       {copied ? (
         <Check size={16} className="text-green-500" />
       ) : (
         <Copy size={16} />
       )}
-    </button>
+    </Button>
   );
 }
