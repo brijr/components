@@ -19,7 +19,7 @@ import { Heading, Text } from "@/components/ds";
 ```tsx
 import { Section, Container, Stack, Inline } from "@/components/ds";
 
-<Section>                                      // Has built-in padding (py-2 sm:py-4)
+<Section>                                      // Has built-in padding (py-4 sm:py-8)
   <Container>                                  // Has built-in padding and max-width
     <Stack spacing="lg">                       // Vertical spacing between children
       <Heading>Title</Heading>
@@ -33,7 +33,10 @@ import { Section, Container, Stack, Inline } from "@/components/ds";
 </Section>
 ```
 
-**Note:** Section and Container have built-in padding. Only add extra classes for special cases.
+**IMPORTANT:** 
+- Section has built-in padding (`py-4 sm:py-8`). DO NOT add padding classes like `py-16` or `py-24`.
+- Container has built-in padding and max-width. DO NOT add extra padding.
+- Only add classes for styling needs like backgrounds, borders, or special effects.
 
 ### Spacing Scale
 - `xs`: gap-1
@@ -208,6 +211,8 @@ export const heroMinimalSchema = {
 - [ ] Includes JSON schema
 - [ ] Has defaultContent in content.ts
 - [ ] Added to registry.ts
+- [ ] Section components used WITHOUT extra padding classes
+- [ ] Container components used WITHOUT extra padding classes
 
 ## Common Patterns
 
