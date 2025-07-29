@@ -1,14 +1,17 @@
+import { Main } from "@/components/ds";
 import { registry } from "@/registry";
 
 export default function HomePage() {
   return (
-    <div className="p-6 space-y-12">
-      <h1 className="text-3xl font-bold mb-6">My Component Gallery</h1>
+    <Main>
+      <div className="py-12 bg-accent/40 border-t">
+        <h1 className="text-center font-mono">My Component Gallery</h1>
+      </div>
       {registry.map(({ name, slug, Component, props }) => (
-        <div key={slug}>
+        <div className="border-t" key={slug}>
           <Component {...(props || {})} />
         </div>
       ))}
-    </div>
+    </Main>
   );
 }
