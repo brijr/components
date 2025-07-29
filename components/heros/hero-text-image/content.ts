@@ -6,7 +6,8 @@ import { HeroTextImageProps } from "./index";
 export const defaultContent: HeroTextImageProps = {
   badge: "Introducing v3.0",
   headline: "The Modern Way to Build Digital Products",
-  subheadline: "Ship faster with our comprehensive toolkit. Everything you need to go from idea to production in record time.",
+  subheadline:
+    "Ship faster with our comprehensive toolkit. Everything you need to go from idea to production in record time.",
   primaryCTA: {
     text: "Start Building",
     href: "/get-started",
@@ -16,7 +17,7 @@ export const defaultContent: HeroTextImageProps = {
     href: "/demo",
   },
   image: {
-    src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600&h=900&q=80",
+    src: "/placeholder.webp",
     alt: "Abstract geometric design representing modern digital products",
     priority: true,
   },
@@ -31,7 +32,7 @@ export const contentVariations = {
     headline: "Simplify Your Workflow",
     subheadline: "One platform, endless possibilities.",
     image: {
-      src: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1600&h=900&q=80",
+      src: "/placeholder.webp",
       alt: "Clean minimal workspace",
     },
     textAlign: "center",
@@ -40,7 +41,8 @@ export const contentVariations = {
   leftAligned: {
     badge: "New Features",
     headline: "Powerful Tools for Modern Teams",
-    subheadline: "Collaborate seamlessly, ship confidently, and scale effortlessly with our integrated platform designed for the way you work.",
+    subheadline:
+      "Collaborate seamlessly, ship confidently, and scale effortlessly with our integrated platform designed for the way you work.",
     primaryCTA: {
       text: "Get Started Free",
       href: "/signup",
@@ -50,7 +52,7 @@ export const contentVariations = {
       href: "/contact",
     },
     image: {
-      src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&h=900&q=80",
+      src: "/placeholder.webp",
       alt: "Team collaboration in modern office",
       priority: true,
     },
@@ -59,13 +61,14 @@ export const contentVariations = {
 
   rightAligned: {
     headline: "Transform Your Business",
-    subheadline: "Join thousands of companies using our platform to accelerate growth and innovation.",
+    subheadline:
+      "Join thousands of companies using our platform to accelerate growth and innovation.",
     primaryCTA: {
       text: "Start Free Trial",
       href: "/trial",
     },
     image: {
-      src: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1600&h=900&q=80",
+      src: "/placeholder.webp",
       alt: "Business growth visualization",
     },
     textAlign: "right",
@@ -73,7 +76,8 @@ export const contentVariations = {
 
   withoutBadge: {
     headline: "Build Something Amazing",
-    subheadline: "Turn your ideas into reality with the most powerful development platform.",
+    subheadline:
+      "Turn your ideas into reality with the most powerful development platform.",
     primaryCTA: {
       text: "Get Started",
       href: "/start",
@@ -83,7 +87,7 @@ export const contentVariations = {
       href: "/about",
     },
     image: {
-      src: "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=1600&h=900&q=80",
+      src: "/placeholder.webp",
       alt: "Creative workspace with technology",
     },
     textAlign: "center",
@@ -97,7 +101,8 @@ export const industryExamples = {
   saas: {
     badge: "Trusted by 10,000+ teams",
     headline: "The All-in-One Platform for SaaS Success",
-    subheadline: "From user onboarding to revenue optimization, we've got everything you need to grow your SaaS business.",
+    subheadline:
+      "From user onboarding to revenue optimization, we've got everything you need to grow your SaaS business.",
     primaryCTA: {
       text: "Start 14-Day Trial",
       href: "/trial",
@@ -107,7 +112,7 @@ export const industryExamples = {
       href: "/pricing",
     },
     image: {
-      src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&h=900&q=80",
+      src: "/placeholder.webp",
       alt: "SaaS analytics dashboard",
       priority: true,
     },
@@ -117,7 +122,8 @@ export const industryExamples = {
   ecommerce: {
     badge: "Black Friday Sale",
     headline: "Your Store, Supercharged",
-    subheadline: "Sell more with AI-powered recommendations, seamless checkout, and advanced analytics.",
+    subheadline:
+      "Sell more with AI-powered recommendations, seamless checkout, and advanced analytics.",
     primaryCTA: {
       text: "Create Your Store",
       href: "/create-store",
@@ -127,7 +133,7 @@ export const industryExamples = {
       href: "/showcase",
     },
     image: {
-      src: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1600&h=900&q=80",
+      src: "/placeholder.webp",
       alt: "E-commerce platform interface",
     },
     textAlign: "center",
@@ -136,7 +142,8 @@ export const industryExamples = {
   developer: {
     badge: "For Developers",
     headline: "Code Less, Ship More",
-    subheadline: "The developer platform that scales with you. From prototype to production in minutes, not months.",
+    subheadline:
+      "The developer platform that scales with you. From prototype to production in minutes, not months.",
     primaryCTA: {
       text: "View Documentation",
       href: "/docs",
@@ -146,7 +153,7 @@ export const industryExamples = {
       href: "/playground",
     },
     image: {
-      src: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=1600&h=900&q=80",
+      src: "/placeholder.webp",
       alt: "Code editor with modern UI",
       priority: true,
     },
