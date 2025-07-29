@@ -33,6 +33,21 @@ import { Section, Container, Stack, Inline } from "@/components/ds";
 </Section>
 ```
 
+### When to Use Design System vs Tailwind
+
+**Use Design System Components:**
+- Typography (Heading, Text, Prose)
+- Layout structure (Section, Container, Main)
+- Spacing between elements (Stack, Inline)
+- Common patterns with built-in accessibility
+
+**Use Tailwind Classes:**
+- Visual styling (backgrounds, borders, shadows)
+- Grid layouts (`grid grid-cols-3 gap-6`)
+- Flexbox adjustments (`items-center justify-between`)
+- Responsive modifiers (`md:flex lg:grid-cols-4`)
+- Custom spacing for specific design needs
+
 **IMPORTANT:** 
 - Section has built-in padding (`py-4 sm:py-8`). DO NOT add padding classes like `py-16` or `py-24`.
 - Container has built-in padding and max-width. DO NOT add extra padding.
@@ -46,6 +61,28 @@ import { Section, Container, Stack, Inline } from "@/components/ds";
 - `xl`: gap-8
 - `2xl`: gap-12
 - `3xl`: gap-16
+
+## TypeScript Best Practices
+
+### Component Typing
+**DO NOT use React.FC or React.FunctionComponent**. Instead, use direct function declarations with typed props:
+
+```tsx
+// ❌ DO NOT USE
+export const Component: React.FC<Props> = ({ prop }) => { ... }
+
+// ✅ DO USE
+export const Component = ({ prop }: Props) => { ... }
+
+// ✅ ALSO GOOD - with explicit return type if needed
+export function Component({ prop }: Props): JSX.Element { ... }
+```
+
+### Why avoid React.FC?
+- Adds unnecessary verbosity
+- Implicitly adds `children` prop which may not be needed
+- Modern TypeScript infers return types correctly
+- Industry best practice has moved away from React.FC
 
 ## Component Requirements
 
@@ -128,12 +165,12 @@ export interface HeroMinimalProps {
   };
 }
 
-export const HeroMinimal: React.FC<HeroMinimalProps> = ({
+export const HeroMinimal = ({
   headline,
   subheadline,
   primaryCTA,
   secondaryCTA,
-}) => {
+}: HeroMinimalProps) => {
   return (
     <Section>
       <Container>
@@ -204,6 +241,18 @@ export const heroMinimalSchema = {
 
 ## Component Best Practices
 
+### React Server Components (RSC)
+- All components should be RSC by default
+- Only add `"use client"` when absolutely necessary (forms, interactivity)
+- Keep client components small and focused
+- Pass server data to client components via props
+
+### Performance
+- Use dynamic imports for heavy client components
+- Implement loading states with Suspense boundaries
+- Optimize images with Next.js Image component
+- Lazy load below-the-fold content when appropriate
+
 ### Images
 - Vary aspect ratios based on content type (16:9 for dashboards, 4:3 for products, etc.)
 - Always include width and height for Next.js Image optimization
@@ -223,10 +272,31 @@ export const heroMinimalSchema = {
   ```
 - This ensures proper styling and accessibility with shadcn/ui
 
+### Accessibility Requirements
+- **Keyboard Navigation**: All interactive elements must be keyboard accessible
+- **Focus Management**: Visible focus indicators on all interactive elements
+- **ARIA Labels**: Use aria-label for icon-only buttons
+- **Semantic HTML**: Use proper HTML5 elements (nav, main, article, etc.)
+- **Skip Links**: Include skip-to-content links for keyboard users
+- **Color Contrast**: Ensure WCAG AA compliance (4.5:1 for normal text)
+- **Screen Reader Announcements**: Use aria-live for dynamic content
+- **Form Labels**: All form inputs must have associated labels
+
 ### Spacing
 - Use Stack/Inline for ALL spacing needs
 - Never add margins between elements
 - Section and Container have built-in padding - don't add more
+
+## Do NOT Use (Antipatterns)
+
+1. **React.FC** - Never use `React.FC<Props>` or `React.FunctionComponent<Props>`
+2. **Raw padding on Section/Container** - These have built-in spacing
+3. **Inline styles** - Use Tailwind classes or design system props
+4. **Hardcoded text** - All content must come from props
+5. **Direct margins between components** - Use Stack/Inline for spacing
+6. **className on design system components** - Use their props instead
+7. **Nested Containers** - One Container per Section is enough
+8. **Multiple H1s** - Only one H1 per page/component
 
 ## Quality Checklist
 - [ ] Uses design system components (Stack, Inline, Heading, Text, etc.)
@@ -278,6 +348,57 @@ export const heroMinimalSchema = {
     </Card>
   ))}
 </div>
+```
+
+## Error Handling Patterns
+
+### Loading States
+```tsx
+if (isLoading) {
+  return (
+    <Section>
+      <Container>
+        <Stack spacing="md" align="center">
+          <Skeleton className="h-8 w-64" />
+          <Skeleton className="h-4 w-96" />
+        </Stack>
+      </Container>
+    </Section>
+  );
+}
+```
+
+### Error States
+```tsx
+if (error) {
+  return (
+    <Section>
+      <Container>
+        <Stack spacing="md" align="center">
+          <Heading level={2}>Something went wrong</Heading>
+          <Text color="muted">{error.message}</Text>
+          <Button onClick={retry}>Try again</Button>
+        </Stack>
+      </Container>
+    </Section>
+  );
+}
+```
+
+### Empty States
+```tsx
+if (!data || data.length === 0) {
+  return (
+    <Section>
+      <Container>
+        <Stack spacing="md" align="center">
+          <Heading level={2}>No items found</Heading>
+          <Text color="muted">Try adjusting your filters or search terms</Text>
+        </Stack>
+      </Container>
+    </Section>
+  );
+}
 ```
 
 ## Component Types to Build
