@@ -95,10 +95,7 @@ export const HeroWithBackground: React.FC<HeroWithBackgroundProps> = ({
 
       {/* Content */}
       <Container>
-        <div
-          className="flex items-center justify-center"
-          style={{ minHeight }}
-        >
+        <div className="flex items-center justify-center" style={{ minHeight }}>
           <Stack spacing="lg" align="center" className="max-w-3xl">
             <Stack spacing="md" align="center">
               <Heading level={1} align="center">
