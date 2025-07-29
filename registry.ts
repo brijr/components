@@ -32,6 +32,7 @@ type RegistryItem = {
   Component: React.ComponentType<any>;
   description?: string;
   props?: any;
+  filePath: string;
 };
 
 export const registry: RegistryItem[] = [
@@ -42,6 +43,7 @@ export const registry: RegistryItem[] = [
     Component: HeroMinimal,
     description: "Minimal hero section with centered text and optional CTAs.",
     props: heroMinimalContent,
+    filePath: "./components/hero/hero-minimal/index.tsx",
   },
   {
     name: "Hero with Image",
@@ -50,6 +52,7 @@ export const registry: RegistryItem[] = [
     Component: HeroWithImage,
     description: "Hero section with centered text, CTAs, and an image below.",
     props: heroWithImageContent,
+    filePath: "./components/hero/hero-with-image/index.tsx",
   },
   {
     name: "Hero Left Aligned",
@@ -58,6 +61,7 @@ export const registry: RegistryItem[] = [
     Component: HeroLeftAligned,
     description: "Hero section with left-aligned text, CTAs, and an image below.",
     props: heroLeftAlignedContent,
+    filePath: "./components/hero/hero-left-aligned/index.tsx",
   },
   {
     name: "Hero Split",
@@ -66,6 +70,7 @@ export const registry: RegistryItem[] = [
     Component: HeroSplit,
     description: "Hero section with split layout - text on one side, image on the other.",
     props: heroSplitContent,
+    filePath: "./components/hero/hero-split/index.tsx",
   },
   {
     name: "Hero with Background",
@@ -74,6 +79,7 @@ export const registry: RegistryItem[] = [
     Component: HeroWithBackground,
     description: "Hero section with full-width background image and text overlay.",
     props: heroWithBackgroundContent,
+    filePath: "./components/hero/hero-with-background/index.tsx",
   },
   {
     name: "Hero with Video",
@@ -82,6 +88,7 @@ export const registry: RegistryItem[] = [
     Component: HeroWithVideo,
     description: "Hero section with centered text and embedded video below.",
     props: heroWithVideoContent,
+    filePath: "./components/hero/hero-with-video/index.tsx",
   },
   {
     name: "Hero with Features",
@@ -90,6 +97,7 @@ export const registry: RegistryItem[] = [
     Component: HeroWithFeatures,
     description: "Hero section with headline, CTAs, and feature cards below.",
     props: heroWithFeaturesContent,
+    filePath: "./components/hero/hero-with-features/index.tsx",
   },
   {
     name: "Hero with Badge",
@@ -98,6 +106,7 @@ export const registry: RegistryItem[] = [
     Component: HeroWithBadge,
     description: "Minimal hero section with a badge/announcement above the headline.",
     props: heroWithBadgeContent,
+    filePath: "./components/hero/hero-with-badge/index.tsx",
   },
   {
     name: "Hero with Stats",
@@ -106,6 +115,7 @@ export const registry: RegistryItem[] = [
     Component: HeroWithStats,
     description: "Hero section with prominent statistics display.",
     props: heroWithStatsContent,
+    filePath: "./components/hero/hero-with-stats/index.tsx",
   },
   {
     name: "Hero with Testimonial",
@@ -114,6 +124,7 @@ export const registry: RegistryItem[] = [
     Component: HeroWithTestimonial,
     description: "Hero section with a featured testimonial for social proof.",
     props: heroWithTestimonialContent,
+    filePath: "./components/hero/hero-with-testimonial/index.tsx",
   },
   {
     name: "Hero with Form",
@@ -122,6 +133,7 @@ export const registry: RegistryItem[] = [
     Component: HeroWithForm,
     description: "Hero section with an inline form for lead capture.",
     props: heroWithFormContent,
+    filePath: "./components/hero/hero-with-form/index.tsx",
   },
   {
     name: "Hero with Tabs",
@@ -130,6 +142,7 @@ export const registry: RegistryItem[] = [
     Component: HeroWithTabs,
     description: "Hero section with tabbed content panels.",
     props: heroWithTabsContent,
+    filePath: "./components/hero/hero-with-tabs/index.tsx",
   },
   {
     name: "Hero Centered",
@@ -138,5 +151,6 @@ export const registry: RegistryItem[] = [
     Component: HeroCentered,
     description: "Ultra-minimal centered hero with large typography.",
     props: heroCenteredContent,
+    filePath: "./components/hero/hero-centered/index.tsx",
   },
 ];

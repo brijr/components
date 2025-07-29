@@ -131,14 +131,10 @@ export const HeroWithTestimonial = ({
           <Card className="max-w-3xl w-full">
             <CardContent className="pt-6">
               <Stack spacing="lg">
-                <Text
-                  variant="lead"
-                  className="italic"
-                  align="center"
-                >
+                <Text variant="lead" className="italic" align="center">
                   "{testimonial.quote}"
                 </Text>
-                
+
                 <Stack spacing="sm" align="center">
                   <Avatar className="w-12 h-12">
                     {testimonial.author.avatarUrl && (
@@ -148,18 +144,20 @@ export const HeroWithTestimonial = ({
                       />
                     )}
                     <AvatarFallback>
-                      {testimonial.author.avatarFallback || 
-                       testimonial.author.name.split(' ').map(n => n[0]).join('')}
+                      {testimonial.author.avatarFallback ||
+                        testimonial.author.name
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}
                     </AvatarFallback>
                   </Avatar>
-                  
+
                   <Stack spacing="xs" align="center">
-                    <Text weight="semibold">
-                      {testimonial.author.name}
-                    </Text>
+                    <Text weight="semibold">{testimonial.author.name}</Text>
                     <Text variant="small" color="muted">
                       {testimonial.author.role}
-                      {testimonial.author.company && `, ${testimonial.author.company}`}
+                      {testimonial.author.company &&
+                        `, ${testimonial.author.company}`}
                     </Text>
                   </Stack>
                 </Stack>
