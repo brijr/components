@@ -61,13 +61,13 @@ export interface HeroWithVideoProps {
  * />
  * ```
  */
-export const HeroWithVideo: React.FC<HeroWithVideoProps> = ({
+export const HeroWithVideo = ({
   headline,
   subheadline,
   primaryCTA,
   secondaryCTA,
   video,
-}) => {
+}: HeroWithVideoProps) => {
   // Parse aspect ratio for padding calculation
   const aspectRatio = video.aspectRatio || "16:9";
   const [width, height] = aspectRatio.split(":").map(Number);

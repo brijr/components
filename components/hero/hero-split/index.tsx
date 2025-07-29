@@ -70,14 +70,14 @@ export interface HeroSplitProps {
  * />
  * ```
  */
-export const HeroSplit: React.FC<HeroSplitProps> = ({
+export const HeroSplit = ({
   headline,
   subheadline,
   primaryCTA,
   secondaryCTA,
   image,
   reverse = false,
-}) => {
+}: HeroSplitProps) => {
   return (
     <Section>
       <Container>

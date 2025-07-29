@@ -47,12 +47,12 @@ export interface HeroMinimalProps {
  * />
  * ```
  */
-export const HeroMinimal: React.FC<HeroMinimalProps> = ({
+export const HeroMinimal = ({
   headline,
   subheadline,
   primaryCTA,
   secondaryCTA,
-}) => {
+}: HeroMinimalProps) => {
   return (
     <Section>
       <Container>

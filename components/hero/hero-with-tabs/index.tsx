@@ -91,14 +91,14 @@ export interface HeroWithTabsProps {
  * />
  * ```
  */
-export const HeroWithTabs: React.FC<HeroWithTabsProps> = ({
+export const HeroWithTabs = ({
   headline,
   subheadline,
   tabs,
   defaultTab,
   primaryCTA,
   secondaryCTA,
-}) => {
+}: HeroWithTabsProps) => {
   const defaultValue = defaultTab || tabs[0]?.value;
 
   return (

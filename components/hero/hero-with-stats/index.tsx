@@ -69,13 +69,13 @@ export interface HeroWithStatsProps {
  * />
  * ```
  */
-export const HeroWithStats: React.FC<HeroWithStatsProps> = ({
+export const HeroWithStats = ({
   headline,
   subheadline,
   stats,
   primaryCTA,
   secondaryCTA,
-}) => {
+}: HeroWithStatsProps) => {
   return (
     <Section>
       <Container>

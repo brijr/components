@@ -79,13 +79,13 @@ export interface HeroWithFeaturesProps {
  * />
  * ```
  */
-export const HeroWithFeatures: React.FC<HeroWithFeaturesProps> = ({
+export const HeroWithFeatures = ({
   headline,
   subheadline,
   primaryCTA,
   secondaryCTA,
   features,
-}) => {
+}: HeroWithFeaturesProps) => {
   return (
     <Section>
       <Container>

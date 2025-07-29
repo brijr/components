@@ -82,13 +82,13 @@ export interface HeroWithTestimonialProps {
  * />
  * ```
  */
-export const HeroWithTestimonial: React.FC<HeroWithTestimonialProps> = ({
+export const HeroWithTestimonial = ({
   headline,
   subheadline,
   primaryCTA,
   secondaryCTA,
   testimonial,
-}) => {
+}: HeroWithTestimonialProps) => {
   return (
     <Section>
       <Container>

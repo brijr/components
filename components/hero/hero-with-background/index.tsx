@@ -65,14 +65,14 @@ export interface HeroWithBackgroundProps {
  * />
  * ```
  */
-export const HeroWithBackground: React.FC<HeroWithBackgroundProps> = ({
+export const HeroWithBackground = ({
   headline,
   subheadline,
   primaryCTA,
   secondaryCTA,
   backgroundImage,
   minHeight = "500px",
-}) => {
+}: HeroWithBackgroundProps) => {
   const overlayOpacity = backgroundImage.overlayOpacity ?? 50;
 
   return (

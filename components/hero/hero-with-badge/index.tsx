@@ -62,13 +62,13 @@ export interface HeroWithBadgeProps {
  * />
  * ```
  */
-export const HeroWithBadge: React.FC<HeroWithBadgeProps> = ({
+export const HeroWithBadge = ({
   badge,
   headline,
   subheadline,
   primaryCTA,
   secondaryCTA,
-}) => {
+}: HeroWithBadgeProps) => {
   return (
     <Section>
       <Container>

@@ -44,11 +44,11 @@ export interface HeroCenteredProps {
  * />
  * ```
  */
-export const HeroCentered: React.FC<HeroCenteredProps> = ({
+export const HeroCentered = ({
   headline,
   subheadline,
   cta,
-}) => {
+}: HeroCenteredProps) => {
   return (
     <Section className="min-h-[60vh] flex items-center">
       <Container>

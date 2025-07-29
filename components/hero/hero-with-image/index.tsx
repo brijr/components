@@ -68,13 +68,13 @@ export interface HeroWithImageProps {
  * />
  * ```
  */
-export const HeroWithImage: React.FC<HeroWithImageProps> = ({
+export const HeroWithImage = ({
   headline,
   subheadline,
   primaryCTA,
   secondaryCTA,
   image,
-}) => {
+}: HeroWithImageProps) => {
   return (
     <Section>
       <Container>

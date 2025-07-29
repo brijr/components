@@ -69,13 +69,13 @@ export interface HeroWithFormProps {
  * />
  * ```
  */
-export const HeroWithForm: React.FC<HeroWithFormProps> = ({
+export const HeroWithForm = ({
   headline,
   subheadline,
   form,
   helperText,
   secondaryCTA,
-}) => {
+}: HeroWithFormProps) => {
   const [value, setValue] = React.useState("");
 
   const handleSubmit = (e: React.FormEvent) => {

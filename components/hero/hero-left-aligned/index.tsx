@@ -68,13 +68,13 @@ export interface HeroLeftAlignedProps {
  * />
  * ```
  */
-export const HeroLeftAligned: React.FC<HeroLeftAlignedProps> = ({
+export const HeroLeftAligned = ({
   headline,
   subheadline,
   primaryCTA,
   secondaryCTA,
   image,
-}) => {
+}: HeroLeftAlignedProps) => {
   return (
     <Section>
       <Container>
