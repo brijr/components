@@ -1,40 +1,43 @@
+// Hero components
 import { HeroMinimal } from "./components/hero/hero-minimal";
-import { defaultContent as heroMinimalContent } from "./components/hero/hero-minimal/content";
 import { HeroWithImage } from "./components/hero/hero-with-image";
-import { defaultContent as heroWithImageContent } from "./components/hero/hero-with-image/content";
 import { HeroLeftAligned } from "./components/hero/hero-left-aligned";
-import { defaultContent as heroLeftAlignedContent } from "./components/hero/hero-left-aligned/content";
 import { HeroSplit } from "./components/hero/hero-split";
-import { defaultContent as heroSplitContent } from "./components/hero/hero-split/content";
 import { HeroWithBackground } from "./components/hero/hero-with-background";
-import { defaultContent as heroWithBackgroundContent } from "./components/hero/hero-with-background/content";
 import { HeroWithVideo } from "./components/hero/hero-with-video";
-import { defaultContent as heroWithVideoContent } from "./components/hero/hero-with-video/content";
 import { HeroWithFeatures } from "./components/hero/hero-with-features";
-import { defaultContent as heroWithFeaturesContent } from "./components/hero/hero-with-features/content";
 import { HeroWithBadge } from "./components/hero/hero-with-badge";
-import { defaultContent as heroWithBadgeContent } from "./components/hero/hero-with-badge/content";
 import { HeroWithStats } from "./components/hero/hero-with-stats";
-import { defaultContent as heroWithStatsContent } from "./components/hero/hero-with-stats/content";
 import { HeroWithTestimonial } from "./components/hero/hero-with-testimonial";
-import { defaultContent as heroWithTestimonialContent } from "./components/hero/hero-with-testimonial/content";
 import { HeroWithForm } from "./components/hero/hero-with-form";
-import { defaultContent as heroWithFormContent } from "./components/hero/hero-with-form/content";
 import { HeroWithTabs } from "./components/hero/hero-with-tabs";
-import { defaultContent as heroWithTabsContent } from "./components/hero/hero-with-tabs/content";
 import { HeroCentered } from "./components/hero/hero-centered";
-import { defaultContent as heroCenteredContent } from "./components/hero/hero-centered/content";
 import { HeroMinimalLeft } from "./components/hero/hero-minimal-left";
-import { defaultContent as heroMinimalLeftContent } from "./components/hero/hero-minimal-left/content";
 import { HeroWithBadgeLeft } from "./components/hero/hero-with-badge-left";
-import { defaultContent as heroWithBadgeLeftContent } from "./components/hero/hero-with-badge-left/content";
 import { HeroWithStatsLeft } from "./components/hero/hero-with-stats-left";
-import { defaultContent as heroWithStatsLeftContent } from "./components/hero/hero-with-stats-left/content";
 import { HeroWithTestimonialLeft } from "./components/hero/hero-with-testimonial-left";
-import { defaultContent as heroWithTestimonialLeftContent } from "./components/hero/hero-with-testimonial-left/content";
 import { HeroWithFormLeft } from "./components/hero/hero-with-form-left";
-import { defaultContent as heroWithFormLeftContent } from "./components/hero/hero-with-form-left/content";
 import { HeroWithTabsLeft } from "./components/hero/hero-with-tabs-left";
+
+// Hero content
+import { defaultContent as heroMinimalContent } from "./components/hero/hero-minimal/content";
+import { defaultContent as heroWithImageContent } from "./components/hero/hero-with-image/content";
+import { defaultContent as heroLeftAlignedContent } from "./components/hero/hero-left-aligned/content";
+import { defaultContent as heroSplitContent } from "./components/hero/hero-split/content";
+import { defaultContent as heroWithBackgroundContent } from "./components/hero/hero-with-background/content";
+import { defaultContent as heroWithVideoContent } from "./components/hero/hero-with-video/content";
+import { defaultContent as heroWithFeaturesContent } from "./components/hero/hero-with-features/content";
+import { defaultContent as heroWithBadgeContent } from "./components/hero/hero-with-badge/content";
+import { defaultContent as heroWithStatsContent } from "./components/hero/hero-with-stats/content";
+import { defaultContent as heroWithTestimonialContent } from "./components/hero/hero-with-testimonial/content";
+import { defaultContent as heroWithFormContent } from "./components/hero/hero-with-form/content";
+import { defaultContent as heroWithTabsContent } from "./components/hero/hero-with-tabs/content";
+import { defaultContent as heroCenteredContent } from "./components/hero/hero-centered/content";
+import { defaultContent as heroMinimalLeftContent } from "./components/hero/hero-minimal-left/content";
+import { defaultContent as heroWithBadgeLeftContent } from "./components/hero/hero-with-badge-left/content";
+import { defaultContent as heroWithStatsLeftContent } from "./components/hero/hero-with-stats-left/content";
+import { defaultContent as heroWithTestimonialLeftContent } from "./components/hero/hero-with-testimonial-left/content";
+import { defaultContent as heroWithFormLeftContent } from "./components/hero/hero-with-form-left/content";
 import { defaultContent as heroWithTabsLeftContent } from "./components/hero/hero-with-tabs-left/content";
 
 type RegistryItem = {
@@ -48,6 +51,16 @@ type RegistryItem = {
 };
 
 export const registry: RegistryItem[] = [
+  {
+    name: "Hero Left Aligned",
+    type: "hero",
+    slug: "hero-left-aligned",
+    Component: HeroLeftAligned,
+    description:
+      "Hero section with left-aligned text, CTAs, and an image below.",
+    props: heroLeftAlignedContent,
+    filePath: "./components/hero/hero-left-aligned/index.tsx",
+  },
   {
     name: "Hero Minimal",
     type: "hero",
@@ -65,16 +78,6 @@ export const registry: RegistryItem[] = [
     description: "Hero section with centered text, CTAs, and an image below.",
     props: heroWithImageContent,
     filePath: "./components/hero/hero-with-image/index.tsx",
-  },
-  {
-    name: "Hero Left Aligned",
-    type: "hero",
-    slug: "hero-left-aligned",
-    Component: HeroLeftAligned,
-    description:
-      "Hero section with left-aligned text, CTAs, and an image below.",
-    props: heroLeftAlignedContent,
-    filePath: "./components/hero/hero-left-aligned/index.tsx",
   },
   {
     name: "Hero Split",
