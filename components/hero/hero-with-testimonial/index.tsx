@@ -132,7 +132,7 @@ export const HeroWithTestimonial = ({
             <CardContent className="pt-6">
               <Stack spacing="lg">
                 <Text variant="lead" className="italic" align="center">
-                  "{testimonial.quote}"
+                  &ldquo;{testimonial.quote}&rdquo;
                 </Text>
 
                 <Stack spacing="sm" align="center">

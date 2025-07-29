@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
   try {
     const source = await getComponentSource(path);
     return NextResponse.json({ source });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to read component source" },
       { status: 500 }

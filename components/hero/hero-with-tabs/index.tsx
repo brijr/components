@@ -1,4 +1,5 @@
 import * as React from "react";
+import Image from "next/image";
 import {
   Section,
   Container,
@@ -156,9 +157,11 @@ export const HeroWithTabs = ({
                   )}
 
                   {tab.image && (
-                    <img
+                    <Image
                       src={tab.image.src}
                       alt={tab.image.alt}
+                      width={600}
+                      height={400}
                       className="rounded-lg shadow-lg max-w-full"
                     />
                   )}
