@@ -146,6 +146,32 @@ import { defaultContent as logoCloudCarouselContent } from "./components/logo-cl
 import { LogoCloudWithTitle } from "./components/logo-cloud/logo-cloud-with-title";
 import { defaultContent as logoCloudWithTitleContent } from "./components/logo-cloud/logo-cloud-with-title/content";
 
+// Footer components
+import { FooterSimple } from "./components/footer/footer-simple";
+import { defaultContent as footerSimpleContent } from "./components/footer/footer-simple/content";
+import { FooterDetailed } from "./components/footer/footer-detailed";
+import { defaultContent as footerDetailedContent } from "./components/footer/footer-detailed/content";
+import { FooterMinimal } from "./components/footer/footer-minimal";
+import { defaultContent as footerMinimalContent } from "./components/footer/footer-minimal/content";
+import { FooterCentered } from "./components/footer/footer-centered";
+import { defaultContent as footerCenteredContent } from "./components/footer/footer-centered/content";
+
+// Newsletter components
+import { NewsletterSimple } from "./components/newsletter/newsletter-simple";
+import { defaultContent as newsletterSimpleContent } from "./components/newsletter/newsletter-simple/content";
+import { NewsletterWithBenefits } from "./components/newsletter/newsletter-with-benefits";
+import { defaultContent as newsletterWithBenefitsContent } from "./components/newsletter/newsletter-with-benefits/content";
+import { NewsletterInline } from "./components/newsletter/newsletter-inline";
+import { defaultContent as newsletterInlineContent } from "./components/newsletter/newsletter-inline/content";
+
+// Blog components
+import { BlogGrid } from "./components/blog/blog-grid";
+import { defaultContent as blogGridContent } from "./components/blog/blog-grid/content";
+import { BlogList } from "./components/blog/blog-list";
+import { defaultContent as blogListContent } from "./components/blog/blog-list/content";
+import { BlogFeatured } from "./components/blog/blog-featured";
+import { defaultContent as blogFeaturedContent } from "./components/blog/blog-featured/content";
+
 type RegistryItem = {
   name: string;
   type: "hero" | "feature" | "cta" | "pricing" | "testimonial" | "faq" | "contact" | "stats" | "logo" | "team" | "footer" | "newsletter" | "blog";
@@ -760,5 +786,101 @@ export const registry: RegistryItem[] = [
     description: "Logo cloud with section title and optional descriptions.",
     props: logoCloudWithTitleContent,
     filePath: "./components/logo-cloud/logo-cloud-with-title/index.tsx",
+  },
+
+  // Footer components
+  {
+    name: "Footer Simple",
+    type: "footer",
+    slug: "footer-simple",
+    Component: FooterSimple,
+    description: "Simple footer with links and copyright. Clean and minimal design.",
+    props: footerSimpleContent,
+    filePath: "./components/footer/footer-simple/index.tsx",
+  },
+  {
+    name: "Footer Detailed",
+    type: "footer",
+    slug: "footer-detailed",
+    Component: FooterDetailed,
+    description: "Detailed footer with multiple columns, newsletter, and comprehensive links.",
+    props: footerDetailedContent,
+    filePath: "./components/footer/footer-detailed/index.tsx",
+  },
+  {
+    name: "Footer Minimal",
+    type: "footer",
+    slug: "footer-minimal",
+    Component: FooterMinimal,
+    description: "Minimal footer with just copyright and essential links.",
+    props: footerMinimalContent,
+    filePath: "./components/footer/footer-minimal/index.tsx",
+  },
+  {
+    name: "Footer Centered",
+    type: "footer",
+    slug: "footer-centered",
+    Component: FooterCentered,
+    description: "Centered footer with brand, links, and social icons.",
+    props: footerCenteredContent,
+    filePath: "./components/footer/footer-centered/index.tsx",
+  },
+
+  // Newsletter components
+  {
+    name: "Newsletter Simple",
+    type: "newsletter",
+    slug: "newsletter-simple",
+    Component: NewsletterSimple,
+    description: "Simple newsletter signup form. Clean design focused on email capture.",
+    props: newsletterSimpleContent,
+    filePath: "./components/newsletter/newsletter-simple/index.tsx",
+  },
+  {
+    name: "Newsletter with Benefits",
+    type: "newsletter",
+    slug: "newsletter-with-benefits",
+    Component: NewsletterWithBenefits,
+    description: "Newsletter signup with benefits list. Emphasizes value proposition.",
+    props: newsletterWithBenefitsContent,
+    filePath: "./components/newsletter/newsletter-with-benefits/index.tsx",
+  },
+  {
+    name: "Newsletter Inline",
+    type: "newsletter",
+    slug: "newsletter-inline",
+    Component: NewsletterInline,
+    description: "Inline newsletter form for embedding in other components.",
+    props: newsletterInlineContent,
+    filePath: "./components/newsletter/newsletter-inline/index.tsx",
+  },
+
+  // Blog components
+  {
+    name: "Blog Grid",
+    type: "blog",
+    slug: "blog-grid",
+    Component: BlogGrid,
+    description: "Blog posts displayed in a responsive grid layout.",
+    props: blogGridContent,
+    filePath: "./components/blog/blog-grid/index.tsx",
+  },
+  {
+    name: "Blog List",
+    type: "blog",
+    slug: "blog-list",
+    Component: BlogList,
+    description: "Blog posts in a vertical list layout. Ideal for archives.",
+    props: blogListContent,
+    filePath: "./components/blog/blog-list/index.tsx",
+  },
+  {
+    name: "Blog Featured",
+    type: "blog",
+    slug: "blog-featured",
+    Component: BlogFeatured,
+    description: "Blog section with featured post and secondary posts.",
+    props: blogFeaturedContent,
+    filePath: "./components/blog/blog-featured/index.tsx",
   },
 ];
