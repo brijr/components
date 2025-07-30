@@ -106,6 +106,18 @@ import { defaultContent as testimonialWallContent } from "./components/testimoni
 import { TestimonialVideo } from "./components/testimonial/testimonial-video";
 import { defaultContent as testimonialVideoContent } from "./components/testimonial/testimonial-video/content";
 
+// FAQ components
+import { FAQAccordion } from "./components/faq/faq-accordion";
+import { defaultContent as faqAccordionContent } from "./components/faq/faq-accordion/content";
+import { FAQGrid } from "./components/faq/faq-grid";
+import { defaultContent as faqGridContent } from "./components/faq/faq-grid/content";
+import { FAQWithSidebar } from "./components/faq/faq-with-sidebar";
+import { defaultContent as faqWithSidebarContent } from "./components/faq/faq-with-sidebar/content";
+import { FAQCategories } from "./components/faq/faq-categories";
+import { defaultContent as faqCategoriesContent } from "./components/faq/faq-categories/content";
+import { FAQSearch } from "./components/faq/faq-search";
+import { defaultContent as faqSearchContent } from "./components/faq/faq-search/content";
+
 type RegistryItem = {
   name: string;
   type: "hero" | "feature" | "cta" | "pricing" | "testimonial" | "faq" | "contact" | "stats" | "logo" | "team" | "footer" | "newsletter" | "blog";
@@ -568,5 +580,52 @@ export const registry: RegistryItem[] = [
     description: "Video testimonials layout for powerful customer stories.",
     props: testimonialVideoContent,
     filePath: "./components/testimonial/testimonial-video/index.tsx",
+  },
+
+  // FAQ components
+  {
+    name: "FAQ Accordion",
+    type: "faq",
+    slug: "faq-accordion",
+    Component: FAQAccordion,
+    description: "Classic accordion-style FAQ for expandable Q&A sections.",
+    props: faqAccordionContent,
+    filePath: "./components/faq/faq-accordion/index.tsx",
+  },
+  {
+    name: "FAQ Grid",
+    type: "faq",
+    slug: "faq-grid",
+    Component: FAQGrid,
+    description: "Grid layout for FAQs with optional icons and contact info.",
+    props: faqGridContent,
+    filePath: "./components/faq/faq-grid/index.tsx",
+  },
+  {
+    name: "FAQ with Sidebar",
+    type: "faq",
+    slug: "faq-with-sidebar",
+    Component: FAQWithSidebar,
+    description: "FAQs with contact sidebar for integrated support options.",
+    props: faqWithSidebarContent,
+    filePath: "./components/faq/faq-with-sidebar/index.tsx",
+  },
+  {
+    name: "FAQ Categories",
+    type: "faq",
+    slug: "faq-categories",
+    Component: FAQCategories,
+    description: "Categorized FAQs with tab navigation for organized content.",
+    props: faqCategoriesContent,
+    filePath: "./components/faq/faq-categories/index.tsx",
+  },
+  {
+    name: "FAQ Search",
+    type: "faq",
+    slug: "faq-search",
+    Component: FAQSearch,
+    description: "Searchable FAQs with real-time filtering and highlighting.",
+    props: faqSearchContent,
+    filePath: "./components/faq/faq-search/index.tsx",
   },
 ];
