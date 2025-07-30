@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 import {
   Select,
   SelectContent,
@@ -19,7 +20,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
 
 /**
  * Contact form field configuration
@@ -122,33 +122,23 @@ export const ContactSimple = ({
   contactInfo,
 }: ContactSimpleProps) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
-  const { toast } = useToast();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
 
     const formData = new FormData(event.currentTarget);
-    const data = Object.fromEntries(formData);
 
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Show success message
-      toast({
-        title: "Message sent!",
-        description: successMessage,
-      });
+      toast.success(successMessage);
+      console.log(formData);
 
       // Reset form
       event.currentTarget.reset();
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "Something went wrong. Please try again.",
-        variant: "destructive",
-      });
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -156,7 +146,7 @@ export const ContactSimple = ({
 
   return (
     <Section>
-      <Container size="md">
+      <Container>
         <Stack spacing="2xl">
           {/* Header */}
           <Stack spacing="md" align="center" className="text-center">

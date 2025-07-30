@@ -15,7 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Mail, Phone, MapPin, Clock, MessageCircle, Headphones } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 
 /**
  * Contact method configuration
@@ -135,7 +135,6 @@ export const ContactSplit = ({
   additionalInfo,
 }: ContactSplitProps) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
-  const { toast } = useToast();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -144,19 +143,11 @@ export const ContactSplit = ({
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      toast({
-        title: "Message sent!",
-        description: form.successMessage || "We'll get back to you soon.",
-      });
+      toast.success(form.successMessage || "We'll get back to you soon.");
 
       event.currentTarget.reset();
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "Something went wrong. Please try again.",
-        variant: "destructive",
-      });
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -200,10 +191,10 @@ export const ContactSplit = ({
                               </Badge>
                             )}
                           </div>
-                          <Text size="sm" color="muted" className="mb-2">
+                          <Text className="mb-2">
                             {method.description}
                           </Text>
-                          <Text size="sm" className="text-primary group-hover:underline">
+                          <Text className="text-primary group-hover:underline">
                             {method.action}
                           </Text>
                         </div>
@@ -222,7 +213,7 @@ export const ContactSplit = ({
                           <Text className="font-semibold mb-3">{info.title}</Text>
                           <Stack spacing="sm">
                             {info.items.map((item, itemIndex) => (
-                              <Text key={itemIndex} size="sm" color="muted">
+                              <Text key={itemIndex}>
                                 {item}
                               </Text>
                             ))}
@@ -247,7 +238,7 @@ export const ContactSplit = ({
                         </Heading>
                       )}
                       {form.description && (
-                        <Text size="sm" color="muted">
+                        <Text>
                           {form.description}
                         </Text>
                       )}

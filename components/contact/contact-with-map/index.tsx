@@ -14,10 +14,10 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 
 /**
- * Location details
+ * Location details 
  */
 export interface ContactLocation {
   /** Location name/title */
@@ -125,7 +125,6 @@ export const ContactWithMap = ({
   showMap = true,
 }: ContactWithMapProps) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
-  const { toast } = useToast();
 
   const mainLocation = locations.find(loc => loc.isMain) || locations[0];
   const mapUrl = mapEmbedUrl || mainLocation?.mapUrl;
@@ -138,18 +137,11 @@ export const ContactWithMap = ({
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      toast({
-        title: "Message sent!",
-        description: form.successMessage || "We'll get back to you soon.",
-      });
+      toast.success(form.successMessage || "We'll get back to you soon.");
 
       event.currentTarget.reset();
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "Something went wrong. Please try again.",
-        variant: "destructive",
-      });
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
