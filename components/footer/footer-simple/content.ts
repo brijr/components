@@ -1,4 +1,5 @@
 import { Github, Twitter, Linkedin, Facebook } from "lucide-react";
+import React from "react";
 
 export const defaultContent = {
   brandName: "Acme Inc",
@@ -16,17 +17,17 @@ export const defaultContent = {
     {
       platform: "GitHub",
       href: "https://github.com",
-      icon: Github
+      icon: React.createElement(Github, { className: "w-5 h-5" })
     },
     {
       platform: "Twitter",
       href: "https://twitter.com",
-      icon: Twitter
+      icon: React.createElement(Twitter, { className: "w-5 h-5" })
     },
     {
       platform: "LinkedIn",
       href: "https://linkedin.com",
-      icon: Linkedin
+      icon: React.createElement(Linkedin, { className: "w-5 h-5" })
     }
   ]
 };
@@ -60,22 +61,22 @@ export const contentVariations = [
       {
         platform: "GitHub",
         href: "https://github.com/techcorp",
-        icon: Github
+        icon: React.createElement(Github, { className: "w-5 h-5" })
       },
       {
         platform: "Twitter",
         href: "https://twitter.com/techcorp",
-        icon: Twitter
+        icon: React.createElement(Twitter, { className: "w-5 h-5" })
       },
       {
         platform: "LinkedIn",
         href: "https://linkedin.com/company/techcorp",
-        icon: Linkedin
+        icon: React.createElement(Linkedin, { className: "w-5 h-5" })
       },
       {
         platform: "Facebook",
         href: "https://facebook.com/techcorp",
-        icon: Facebook
+        icon: React.createElement(Facebook, { className: "w-5 h-5" })
       }
     ]
   }

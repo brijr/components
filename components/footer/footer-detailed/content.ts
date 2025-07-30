@@ -1,4 +1,5 @@
 import { Github, Twitter, Linkedin, Facebook, Youtube, Instagram } from "lucide-react";
+import React from "react";
 
 export const defaultContent = {
   brand: {
@@ -54,22 +55,22 @@ export const defaultContent = {
       {
         platform: "GitHub",
         href: "https://github.com",
-        icon: Github
+        icon: React.createElement(Github, { className: "w-5 h-5" })
       },
       {
         platform: "Twitter",
         href: "https://twitter.com",
-        icon: Twitter
+        icon: React.createElement(Twitter, { className: "w-5 h-5" })
       },
       {
         platform: "LinkedIn",
         href: "https://linkedin.com",
-        icon: Linkedin
+        icon: React.createElement(Linkedin, { className: "w-5 h-5" })
       },
       {
         platform: "YouTube",
         href: "https://youtube.com",
-        icon: Youtube
+        icon: React.createElement(Youtube, { className: "w-5 h-5" })
       }
     ]
   }
@@ -131,22 +132,22 @@ export const contentVariations = [
         {
           platform: "Facebook",
           href: "https://facebook.com",
-          icon: Facebook
+          icon: React.createElement(Facebook, { className: "w-5 h-5" })
         },
         {
           platform: "Instagram",
           href: "https://instagram.com",
-          icon: Instagram
+          icon: React.createElement(Instagram, { className: "w-5 h-5" })
         },
         {
           platform: "Twitter",
           href: "https://twitter.com",
-          icon: Twitter
+          icon: React.createElement(Twitter, { className: "w-5 h-5" })
         },
         {
           platform: "YouTube",
           href: "https://youtube.com",
-          icon: Youtube
+          icon: React.createElement(Youtube, { className: "w-5 h-5" })
         }
       ]
     }
@@ -210,17 +211,17 @@ export const contentVariations = [
         {
           platform: "GitHub",
           href: "https://github.com/cloudtools",
-          icon: Github
+          icon: React.createElement(Github, { className: "w-5 h-5" })
         },
         {
           platform: "Twitter",
           href: "https://twitter.com/cloudtools",
-          icon: Twitter
+          icon: React.createElement(Twitter, { className: "w-5 h-5" })
         },
         {
           platform: "LinkedIn",
           href: "https://linkedin.com/company/cloudtools",
-          icon: Linkedin
+          icon: React.createElement(Linkedin, { className: "w-5 h-5" })
         }
       ]
     }

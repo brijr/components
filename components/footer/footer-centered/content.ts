@@ -1,4 +1,5 @@
 import { Github, Twitter, Linkedin, Instagram, Dribbble } from "lucide-react";
+import React from "react";
 
 export const defaultContent = {
   brand: {
@@ -17,17 +18,17 @@ export const defaultContent = {
     {
       platform: "GitHub",
       href: "https://github.com",
-      icon: Github,
+      icon: React.createElement(Github, { className: "w-5 h-5" }),
     },
     {
       platform: "Twitter",
       href: "https://twitter.com",
-      icon: Twitter,
+      icon: React.createElement(Twitter, { className: "w-5 h-5" }),
     },
     {
       platform: "LinkedIn",
       href: "https://linkedin.com",
-      icon: Linkedin,
+      icon: React.createElement(Linkedin, { className: "w-5 h-5" }),
     },
   ],
   copyright: "All rights reserved.",
@@ -50,17 +51,17 @@ export const contentVariations = [
       {
         platform: "Instagram",
         href: "https://instagram.com",
-        icon: Instagram,
+        icon: React.createElement(Instagram, { className: "w-5 h-5" }),
       },
       {
         platform: "Dribbble",
         href: "https://dribbble.com",
-        icon: Dribbble,
+        icon: React.createElement(Dribbble, { className: "w-5 h-5" }),
       },
       {
         platform: "Twitter",
         href: "https://twitter.com",
-        icon: Twitter,
+        icon: React.createElement(Twitter, { className: "w-5 h-5" }),
       },
     ],
     copyright: "Crafted with passion.",
@@ -82,12 +83,12 @@ export const contentVariations = [
       {
         platform: "Twitter",
         href: "https://twitter.com/launchpad",
-        icon: Twitter,
+        icon: React.createElement(Twitter, { className: "w-5 h-5" }),
       },
       {
         platform: "LinkedIn",
         href: "https://linkedin.com/company/launchpad",
-        icon: Linkedin,
+        icon: React.createElement(Linkedin, { className: "w-5 h-5" }),
       },
     ],
     copyright: "Made for founders, by founders.",
