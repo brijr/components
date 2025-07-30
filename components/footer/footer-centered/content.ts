@@ -3,7 +3,7 @@ import { Github, Twitter, Linkedin, Instagram, Dribbble } from "lucide-react";
 export const defaultContent = {
   brand: {
     name: "Acme Inc",
-    tagline: "Building amazing products for everyone"
+    tagline: "Building amazing products for everyone",
   },
   links: [
     { text: "Features", href: "/features" },
@@ -11,26 +11,26 @@ export const defaultContent = {
     { text: "About", href: "/about" },
     { text: "Blog", href: "/blog" },
     { text: "Careers", href: "/careers" },
-    { text: "Contact", href: "/contact" }
+    { text: "Contact", href: "/contact" },
   ],
   socialLinks: [
     {
       platform: "GitHub",
       href: "https://github.com",
-      icon: <Github className="w-5 h-5" />
+      icon: Github,
     },
     {
       platform: "Twitter",
       href: "https://twitter.com",
-      icon: <Twitter className="w-5 h-5" />
+      icon: Twitter,
     },
     {
       platform: "LinkedIn",
       href: "https://linkedin.com",
-      icon: <Linkedin className="w-5 h-5" />
-    }
+      icon: Linkedin,
+    },
   ],
-  copyright: "All rights reserved."
+  copyright: "All rights reserved.",
 };
 
 export const contentVariations = [
@@ -38,72 +38,72 @@ export const contentVariations = [
   {
     brand: {
       name: "Studio Creative",
-      tagline: "We craft digital experiences that inspire"
+      tagline: "We craft digital experiences that inspire",
     },
     links: [
       { text: "Work", href: "/work" },
       { text: "Services", href: "/services" },
       { text: "About", href: "/about" },
-      { text: "Contact", href: "/contact" }
+      { text: "Contact", href: "/contact" },
     ],
     socialLinks: [
       {
         platform: "Instagram",
         href: "https://instagram.com",
-        icon: <Instagram className="w-5 h-5" />
+        icon: Instagram,
       },
       {
         platform: "Dribbble",
         href: "https://dribbble.com",
-        icon: <Dribbble className="w-5 h-5" />
+        icon: Dribbble,
       },
       {
         platform: "Twitter",
         href: "https://twitter.com",
-        icon: <Twitter className="w-5 h-5" />
-      }
+        icon: Twitter,
+      },
     ],
-    copyright: "Crafted with passion."
+    copyright: "Crafted with passion.",
   },
   // Startup version
   {
     brand: {
       name: "LaunchPad",
-      tagline: "Your idea, launched"
+      tagline: "Your idea, launched",
     },
     links: [
       { text: "How it Works", href: "/how-it-works" },
       { text: "Success Stories", href: "/stories" },
       { text: "Pricing", href: "/pricing" },
       { text: "Resources", href: "/resources" },
-      { text: "Support", href: "/support" }
+      { text: "Support", href: "/support" },
     ],
     socialLinks: [
       {
         platform: "Twitter",
         href: "https://twitter.com/launchpad",
-        icon: <Twitter className="w-5 h-5" />
+        icon: Twitter,
       },
       {
         platform: "LinkedIn",
         href: "https://linkedin.com/company/launchpad",
-        icon: <Linkedin className="w-5 h-5" />
-      }
+        icon: Linkedin,
+      },
     ],
-    copyright: "Made for founders, by founders."
+    copyright: "Made for founders, by founders.",
   },
   // Minimal version without social links
   {
     brand: {
-      name: "Minimal Co"
+      name: "Minimal Co",
     },
     links: [
       { text: "About", href: "/about" },
       { text: "Work", href: "/work" },
       { text: "Contact", href: "/contact" },
       { text: "Privacy", href: "/privacy" },
-      { text: "Terms", href: "/terms" }
+      { text: "Terms", href: "/terms" },
     ],
-    copyright: "All rights reserved."
-  }
+    copyright: "All rights reserved.",
+  },
 ];
