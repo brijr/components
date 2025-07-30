@@ -16,17 +16,17 @@ export const defaultContent = {
     {
       platform: "GitHub",
       href: "https://github.com",
-      icon: <Github className="w-5 h-5" />
+      icon: Github
     },
     {
       platform: "Twitter",
       href: "https://twitter.com",
-      icon: <Twitter className="w-5 h-5" />
+      icon: Twitter
     },
     {
       platform: "LinkedIn",
       href: "https://linkedin.com",
-      icon: <Linkedin className="w-5 h-5" />
+      icon: Linkedin
     }
   ]
 };
@@ -60,22 +60,22 @@ export const contentVariations = [
       {
         platform: "GitHub",
         href: "https://github.com/techcorp",
-        icon: <Github className="w-5 h-5" />
+        icon: Github
       },
       {
         platform: "Twitter",
         href: "https://twitter.com/techcorp",
-        icon: <Twitter className="w-5 h-5" />
+        icon: Twitter
       },
       {
         platform: "LinkedIn",
         href: "https://linkedin.com/company/techcorp",
-        icon: <Linkedin className="w-5 h-5" />
+        icon: Linkedin
       },
       {
         platform: "Facebook",
         href: "https://facebook.com/techcorp",
-        icon: <Facebook className="w-5 h-5" />
+        icon: Facebook
       }
     ]
   }

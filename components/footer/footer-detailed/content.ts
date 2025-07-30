@@ -54,22 +54,22 @@ export const defaultContent = {
       {
         platform: "GitHub",
         href: "https://github.com",
-        icon: <Github className="w-5 h-5" />
+        icon: Github
       },
       {
         platform: "Twitter",
         href: "https://twitter.com",
-        icon: <Twitter className="w-5 h-5" />
+        icon: Twitter
       },
       {
         platform: "LinkedIn",
         href: "https://linkedin.com",
-        icon: <Linkedin className="w-5 h-5" />
+        icon: Linkedin
       },
       {
         platform: "YouTube",
         href: "https://youtube.com",
-        icon: <Youtube className="w-5 h-5" />
+        icon: Youtube
       }
     ]
   }
@@ -131,22 +131,22 @@ export const contentVariations = [
         {
           platform: "Facebook",
           href: "https://facebook.com",
-          icon: <Facebook className="w-5 h-5" />
+          icon: Facebook
         },
         {
           platform: "Instagram",
           href: "https://instagram.com",
-          icon: <Instagram className="w-5 h-5" />
+          icon: Instagram
         },
         {
           platform: "Twitter",
           href: "https://twitter.com",
-          icon: <Twitter className="w-5 h-5" />
+          icon: Twitter
         },
         {
           platform: "YouTube",
           href: "https://youtube.com",
-          icon: <Youtube className="w-5 h-5" />
+          icon: Youtube
         }
       ]
     }
@@ -210,17 +210,17 @@ export const contentVariations = [
         {
           platform: "GitHub",
           href: "https://github.com/cloudtools",
-          icon: <Github className="w-5 h-5" />
+          icon: Github
         },
         {
           platform: "Twitter",
           href: "https://twitter.com/cloudtools",
-          icon: <Twitter className="w-5 h-5" />
+          icon: Twitter
         },
         {
           platform: "LinkedIn",
           href: "https://linkedin.com/company/cloudtools",
-          icon: <Linkedin className="w-5 h-5" />
+          icon: Linkedin
         }
       ]
     }
