@@ -128,6 +128,16 @@ import { defaultContent as contactSplitContent } from "./components/contact/cont
 import { ContactCards } from "./components/contact/contact-cards";
 import { defaultContent as contactCardsContent } from "./components/contact/contact-cards/content";
 
+// Stats components
+import { StatsSimple } from "./components/stats/stats-simple";
+import { defaultContent as statsSimpleContent } from "./components/stats/stats-simple/content";
+import { StatsWithIcons } from "./components/stats/stats-with-icons";
+import { defaultContent as statsWithIconsContent } from "./components/stats/stats-with-icons/content";
+import { StatsComparison } from "./components/stats/stats-comparison";
+import { defaultContent as statsComparisonContent } from "./components/stats/stats-comparison/content";
+import { StatsAnimated } from "./components/stats/stats-animated";
+import { defaultContent as statsAnimatedContent } from "./components/stats/stats-animated/content";
+
 type RegistryItem = {
   name: string;
   type: "hero" | "feature" | "cta" | "pricing" | "testimonial" | "faq" | "contact" | "stats" | "logo" | "team" | "footer" | "newsletter" | "blog";
@@ -675,5 +685,43 @@ export const registry: RegistryItem[] = [
     description: "Contact options as cards for different departments or purposes.",
     props: contactCardsContent,
     filePath: "./components/contact/contact-cards/index.tsx",
+  },
+
+  // Stats components
+  {
+    name: "Stats Simple",
+    type: "stats",
+    slug: "stats-simple",
+    Component: StatsSimple,
+    description: "Basic stats grid displaying key metrics in a clean layout.",
+    props: statsSimpleContent,
+    filePath: "./components/stats/stats-simple/index.tsx",
+  },
+  {
+    name: "Stats with Icons",
+    type: "stats",
+    slug: "stats-with-icons",
+    Component: StatsWithIcons,
+    description: "Stats with icon indicators displayed in cards.",
+    props: statsWithIconsContent,
+    filePath: "./components/stats/stats-with-icons/index.tsx",
+  },
+  {
+    name: "Stats Comparison",
+    type: "stats",
+    slug: "stats-comparison",
+    Component: StatsComparison,
+    description: "Before/after or comparative stats showing changes over time.",
+    props: statsComparisonContent,
+    filePath: "./components/stats/stats-comparison/index.tsx",
+  },
+  {
+    name: "Stats Animated",
+    type: "stats",
+    slug: "stats-animated",
+    Component: StatsAnimated,
+    description: "Stats with count-up animation and progress bars.",
+    props: statsAnimatedContent,
+    filePath: "./components/stats/stats-animated/index.tsx",
   },
 ];
