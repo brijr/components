@@ -138,6 +138,14 @@ import { defaultContent as statsComparisonContent } from "./components/stats/sta
 import { StatsAnimated } from "./components/stats/stats-animated";
 import { defaultContent as statsAnimatedContent } from "./components/stats/stats-animated/content";
 
+// Logo Cloud components
+import { LogoCloudSimple } from "./components/logo-cloud/logo-cloud-simple";
+import { defaultContent as logoCloudSimpleContent } from "./components/logo-cloud/logo-cloud-simple/content";
+import { LogoCloudCarousel } from "./components/logo-cloud/logo-cloud-carousel";
+import { defaultContent as logoCloudCarouselContent } from "./components/logo-cloud/logo-cloud-carousel/content";
+import { LogoCloudWithTitle } from "./components/logo-cloud/logo-cloud-with-title";
+import { defaultContent as logoCloudWithTitleContent } from "./components/logo-cloud/logo-cloud-with-title/content";
+
 type RegistryItem = {
   name: string;
   type: "hero" | "feature" | "cta" | "pricing" | "testimonial" | "faq" | "contact" | "stats" | "logo" | "team" | "footer" | "newsletter" | "blog";
@@ -723,5 +731,34 @@ export const registry: RegistryItem[] = [
     description: "Stats with count-up animation and progress bars.",
     props: statsAnimatedContent,
     filePath: "./components/stats/stats-animated/index.tsx",
+  },
+
+  // Logo Cloud components
+  {
+    name: "Logo Cloud Simple",
+    type: "logo",
+    slug: "logo-cloud-simple",
+    Component: LogoCloudSimple,
+    description: "Basic logo grid showcasing partner or client companies.",
+    props: logoCloudSimpleContent,
+    filePath: "./components/logo-cloud/logo-cloud-simple/index.tsx",
+  },
+  {
+    name: "Logo Cloud Carousel",
+    type: "logo",
+    slug: "logo-cloud-carousel",
+    Component: LogoCloudCarousel,
+    description: "Auto-scrolling logo carousel with infinite loop.",
+    props: logoCloudCarouselContent,
+    filePath: "./components/logo-cloud/logo-cloud-carousel/index.tsx",
+  },
+  {
+    name: "Logo Cloud with Title",
+    type: "logo",
+    slug: "logo-cloud-with-title",
+    Component: LogoCloudWithTitle,
+    description: "Logo cloud with section title and optional descriptions.",
+    props: logoCloudWithTitleContent,
+    filePath: "./components/logo-cloud/logo-cloud-with-title/index.tsx",
   },
 ];
