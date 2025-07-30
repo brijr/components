@@ -118,6 +118,16 @@ import { defaultContent as faqCategoriesContent } from "./components/faq/faq-cat
 import { FAQSearch } from "./components/faq/faq-search";
 import { defaultContent as faqSearchContent } from "./components/faq/faq-search/content";
 
+// Contact components
+import { ContactSimple } from "./components/contact/contact-simple";
+import { defaultContent as contactSimpleContent } from "./components/contact/contact-simple/content";
+import { ContactWithMap } from "./components/contact/contact-with-map";
+import { defaultContent as contactWithMapContent } from "./components/contact/contact-with-map/content";
+import { ContactSplit } from "./components/contact/contact-split";
+import { defaultContent as contactSplitContent } from "./components/contact/contact-split/content";
+import { ContactCards } from "./components/contact/contact-cards";
+import { defaultContent as contactCardsContent } from "./components/contact/contact-cards/content";
+
 type RegistryItem = {
   name: string;
   type: "hero" | "feature" | "cta" | "pricing" | "testimonial" | "faq" | "contact" | "stats" | "logo" | "team" | "footer" | "newsletter" | "blog";
@@ -627,5 +637,43 @@ export const registry: RegistryItem[] = [
     description: "Searchable FAQs with real-time filtering and highlighting.",
     props: faqSearchContent,
     filePath: "./components/faq/faq-search/index.tsx",
+  },
+
+  // Contact components
+  {
+    name: "Contact Simple",
+    type: "contact",
+    slug: "contact-simple",
+    Component: ContactSimple,
+    description: "Simple contact form with configurable fields.",
+    props: contactSimpleContent,
+    filePath: "./components/contact/contact-simple/index.tsx",
+  },
+  {
+    name: "Contact with Map",
+    type: "contact",
+    slug: "contact-with-map",
+    Component: ContactWithMap,
+    description: "Contact form with integrated map and location details.",
+    props: contactWithMapContent,
+    filePath: "./components/contact/contact-with-map/index.tsx",
+  },
+  {
+    name: "Contact Split",
+    type: "contact",
+    slug: "contact-split",
+    Component: ContactSplit,
+    description: "Split layout with contact methods and form side by side.",
+    props: contactSplitContent,
+    filePath: "./components/contact/contact-split/index.tsx",
+  },
+  {
+    name: "Contact Cards",
+    type: "contact",
+    slug: "contact-cards",
+    Component: ContactCards,
+    description: "Contact options as cards for different departments or purposes.",
+    props: contactCardsContent,
+    filePath: "./components/contact/contact-cards/index.tsx",
   },
 ];
