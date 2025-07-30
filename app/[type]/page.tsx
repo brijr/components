@@ -36,15 +36,22 @@ const typeLabels: Record<ComponentType, string> = {
   blog: "Blog Sections",
 };
 
-export default function TypePage({ params }: { params: { type: string } }) {
-  const type = params.type as ComponentType;
+export default async function TypePage({
+  params,
+}: {
+  params: Promise<{ type: string }>;
+}) {
+  const { type } = await params;
+  const componentType = type as ComponentType;
 
-  if (!componentTypes.includes(type)) {
+  if (!componentTypes.includes(componentType)) {
     notFound();
   }
 
-  const components = registry.filter((component) => component.type === type);
-  const label = typeLabels[type];
+  const components = registry.filter(
+    (component) => component.type === componentType,
+  );
+  const label = typeLabels[componentType];
 
   return (
     <Main>
@@ -52,7 +59,7 @@ export default function TypePage({ params }: { params: { type: string } }) {
         <SidebarTrigger className="md:hidden" />
         <div className="flex-1">
           <h1 className="text-center font-mono text-sm">
-            components.bridger.to / {type}
+            components.bridger.to / {componentType}
           </h1>
           <p className="mt-2 text-center text-2xl font-semibold">{label}</p>
         </div>
