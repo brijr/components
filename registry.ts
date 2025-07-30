@@ -92,6 +92,20 @@ import { defaultContent as pricingTieredContent } from "./components/pricing/pri
 import { PricingEnterprise } from "./components/pricing/pricing-enterprise";
 import { defaultContent as pricingEnterpriseContent } from "./components/pricing/pricing-enterprise/content";
 
+// Testimonial components
+import { TestimonialGrid } from "./components/testimonial/testimonial-grid";
+import { defaultContent as testimonialGridContent } from "./components/testimonial/testimonial-grid/content";
+import { TestimonialCarousel } from "./components/testimonial/testimonial-carousel";
+import { defaultContent as testimonialCarouselContent } from "./components/testimonial/testimonial-carousel/content";
+import { TestimonialSingle } from "./components/testimonial/testimonial-single";
+import { defaultContent as testimonialSingleContent } from "./components/testimonial/testimonial-single/content";
+import { TestimonialWithStats } from "./components/testimonial/testimonial-with-stats";
+import { defaultContent as testimonialWithStatsContent } from "./components/testimonial/testimonial-with-stats/content";
+import { TestimonialWall } from "./components/testimonial/testimonial-wall";
+import { defaultContent as testimonialWallContent } from "./components/testimonial/testimonial-wall/content";
+import { TestimonialVideo } from "./components/testimonial/testimonial-video";
+import { defaultContent as testimonialVideoContent } from "./components/testimonial/testimonial-video/content";
+
 type RegistryItem = {
   name: string;
   type: "hero" | "feature" | "cta" | "pricing" | "testimonial" | "faq" | "contact" | "stats" | "logo" | "team" | "footer" | "newsletter" | "blog";
@@ -498,5 +512,61 @@ export const registry: RegistryItem[] = [
     description: "Enterprise pricing focused on custom solutions and features.",
     props: pricingEnterpriseContent,
     filePath: "./components/pricing/pricing-enterprise/index.tsx",
+  },
+
+  // Testimonial components
+  {
+    name: "Testimonial Grid",
+    type: "testimonial",
+    slug: "testimonial-grid",
+    Component: TestimonialGrid,
+    description: "Grid layout of testimonial cards showcasing customer feedback.",
+    props: testimonialGridContent,
+    filePath: "./components/testimonial/testimonial-grid/index.tsx",
+  },
+  {
+    name: "Testimonial Carousel",
+    type: "testimonial",
+    slug: "testimonial-carousel",
+    Component: TestimonialCarousel,
+    description: "Sliding carousel of testimonials with navigation controls.",
+    props: testimonialCarouselContent,
+    filePath: "./components/testimonial/testimonial-carousel/index.tsx",
+  },
+  {
+    name: "Testimonial Single",
+    type: "testimonial",
+    slug: "testimonial-single",
+    Component: TestimonialSingle,
+    description: "Featured single testimonial with prominent display.",
+    props: testimonialSingleContent,
+    filePath: "./components/testimonial/testimonial-single/index.tsx",
+  },
+  {
+    name: "Testimonial with Stats",
+    type: "testimonial",
+    slug: "testimonial-with-stats",
+    Component: TestimonialWithStats,
+    description: "Testimonials combined with impressive metrics for social proof.",
+    props: testimonialWithStatsContent,
+    filePath: "./components/testimonial/testimonial-with-stats/index.tsx",
+  },
+  {
+    name: "Testimonial Wall",
+    type: "testimonial",
+    slug: "testimonial-wall",
+    Component: TestimonialWall,
+    description: "Masonry/wall layout of varied testimonials for visual impact.",
+    props: testimonialWallContent,
+    filePath: "./components/testimonial/testimonial-wall/index.tsx",
+  },
+  {
+    name: "Testimonial Video",
+    type: "testimonial",
+    slug: "testimonial-video",
+    Component: TestimonialVideo,
+    description: "Video testimonials layout for powerful customer stories.",
+    props: testimonialVideoContent,
+    filePath: "./components/testimonial/testimonial-video/index.tsx",
   },
 ];
