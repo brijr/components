@@ -111,7 +111,7 @@ export const TestimonialGrid = ({
                           <Star
                             key={i}
                             className={`w-4 h-4 ${
-                              i < testimonial.rating
+                              i < (testimonial.rating || 0)
                                 ? "fill-primary text-primary"
                                 : "fill-muted text-muted"
                             }`}
@@ -126,7 +126,7 @@ export const TestimonialGrid = ({
                         <Quote className="absolute -top-2 -left-2 w-8 h-8 text-muted-foreground/20" />
                       )}
                       <Text className={showQuoteIcon ? "relative" : ""}>
-                        "{testimonial.quote}"
+                        &ldquo;{testimonial.quote}&rdquo;
                       </Text>
                     </blockquote>
                   </Stack>
@@ -149,7 +149,7 @@ export const TestimonialGrid = ({
                       <div className="font-semibold truncate">
                         {testimonial.author}
                       </div>
-                      <Text size="sm" color="muted" className="truncate">
+                      <Text variant="small" color="muted" className="truncate">
                         {testimonial.role}
                         {testimonial.company && ` at ${testimonial.company}`}
                       </Text>

@@ -110,7 +110,7 @@ export const FeatureComparison = ({
                 <CardHeader className="text-center h-32 flex flex-col justify-center">
                   <CardTitle>{optionAName}</CardTitle>
                   {optionADescription && (
-                    <Text size="sm" color="muted" align="center">
+                    <Text variant="small" color="muted" align="center">
                       {optionADescription}
                     </Text>
                   )}
@@ -136,7 +136,7 @@ export const FeatureComparison = ({
                 <CardHeader className="text-center h-32 flex flex-col justify-center">
                   <CardTitle>{optionBName}</CardTitle>
                   {optionBDescription && (
-                    <Text size="sm" color="muted" align="center">
+                    <Text variant="small" color="muted" align="center">
                       {optionBDescription}
                     </Text>
                   )}

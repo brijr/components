@@ -1,4 +1,5 @@
 import * as React from "react";
+import Image from "next/image";
 import {
   Section,
   Container,
@@ -9,15 +10,13 @@ import {
 } from "@/components/ds";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Building2, Shield, Zap, Users, HeadphonesIcon, Globe } from "lucide-react";
-import { LucideIcon } from "lucide-react";
 
 /**
  * Enterprise feature configuration
  */
 export interface EnterpriseFeature {
   /** Feature icon */
-  icon?: React.ReactElement<LucideIcon>;
+  icon?: React.ReactNode;
   /** Feature title */
   title: string;
   /** Feature description */
@@ -152,10 +151,12 @@ export const PricingEnterprise = ({
               </Text>
               <div className="flex flex-wrap items-center justify-center gap-8 opacity-60">
                 {logos.images.map((logo, index) => (
-                  <img
+                  <Image
                     key={index}
                     src={logo.src}
                     alt={logo.alt}
+                    width={120}
+                    height={32}
                     className="h-8 w-auto grayscale hover:grayscale-0 transition-all"
                   />
                 ))}

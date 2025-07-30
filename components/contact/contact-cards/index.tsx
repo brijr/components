@@ -159,7 +159,7 @@ export const ContactCards = ({
                     <Stack spacing="md">
                       {card.details.map((detail, detailIndex) => (
                         <div key={detailIndex} className="flex justify-between items-start">
-                          <Text size="sm" className="font-medium">
+                          <Text variant="small" className="font-medium">
                             {detail.label}:
                           </Text>
                           {detail.href ? (
@@ -170,7 +170,7 @@ export const ContactCards = ({
                               {detail.value}
                             </a>
                           ) : (
-                            <Text size="sm" color="muted" className="text-right">
+                            <Text variant="small" color="muted" className="text-right">
                               {detail.value}
                             </Text>
                           )}

@@ -105,7 +105,7 @@ export const NewsletterWithBenefits = ({
       
       // Reset form
       setEmail("");
-    } catch (error) {
+    } catch {
       toast.error("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);

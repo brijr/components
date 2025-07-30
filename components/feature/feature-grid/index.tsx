@@ -7,7 +7,6 @@ import {
   Text,
 } from "@/components/ds";
 import { Card, CardContent } from "@/components/ui/card";
-import { LucideIcon } from "lucide-react";
 
 /**
  * Feature item configuration
@@ -18,7 +17,7 @@ export interface FeatureItem {
   /** Feature description */
   description: string;
   /** Optional icon component */
-  icon?: React.ReactElement<LucideIcon>;
+  icon?: React.ReactNode;
 }
 
 /**

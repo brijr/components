@@ -123,7 +123,7 @@ export const FAQAccordion = ({
                 Still have questions?
               </Heading>
               <Text align="center" color="muted">
-                Can't find the answer you're looking for? Our support team is here to help.
+                Can&apos;t find the answer you&apos;re looking for? Our support team is here to help.
               </Text>
               {cta && (
                 <Button asChild>

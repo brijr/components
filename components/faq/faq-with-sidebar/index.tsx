@@ -175,7 +175,7 @@ export const FAQWithSidebar = ({
                           <div className="flex items-start gap-3">
                             <Mail className="w-5 h-5 text-muted-foreground mt-0.5" />
                             <div className="flex-1">
-                              <Text size="sm" className="font-medium">
+                              <Text variant="small" className="font-medium">
                                 {sidebar.contactOptions.email.label}
                               </Text>
                               <a
@@ -192,7 +192,7 @@ export const FAQWithSidebar = ({
                           <div className="flex items-start gap-3">
                             <Phone className="w-5 h-5 text-muted-foreground mt-0.5" />
                             <div className="flex-1">
-                              <Text size="sm" className="font-medium">
+                              <Text variant="small" className="font-medium">
                                 {sidebar.contactOptions.phone.label}
                               </Text>
                               <a
@@ -212,10 +212,10 @@ export const FAQWithSidebar = ({
                           >
                             <MessageCircle className="w-5 h-5 text-muted-foreground mt-0.5" />
                             <div className="flex-1">
-                              <Text size="sm" className="font-medium">
+                              <Text variant="small" className="font-medium">
                                 {sidebar.contactOptions.chat.label}
                               </Text>
-                              <Text size="sm" color="muted">
+                              <Text variant="small" color="muted">
                                 Available 24/7
                               </Text>
                             </div>
@@ -229,10 +229,10 @@ export const FAQWithSidebar = ({
                           >
                             <FileText className="w-5 h-5 text-muted-foreground mt-0.5" />
                             <div className="flex-1">
-                              <Text size="sm" className="font-medium">
+                              <Text variant="small" className="font-medium">
                                 {sidebar.contactOptions.docs.label}
                               </Text>
-                              <Text size="sm" color="muted">
+                              <Text variant="small" color="muted">
                                 Guides & tutorials
                               </Text>
                             </div>

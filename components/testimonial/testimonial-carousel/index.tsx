@@ -145,7 +145,7 @@ export const TestimonialCarousel = ({
                         <Star
                           key={i}
                           className={`w-5 h-5 ${
-                            i < currentTestimonial.rating
+                            i < (currentTestimonial.rating || 0)
                               ? "fill-primary text-primary"
                               : "fill-muted text-muted"
                           }`}
@@ -157,7 +157,7 @@ export const TestimonialCarousel = ({
                   {/* Quote */}
                   <blockquote className="text-center max-w-2xl">
                     <Text variant="lead" align="center">
-                      "{currentTestimonial.quote}"
+                      &ldquo;{currentTestimonial.quote}&rdquo;
                     </Text>
                   </blockquote>
 
@@ -178,7 +178,7 @@ export const TestimonialCarousel = ({
                       <div className="font-semibold">
                         {currentTestimonial.author}
                       </div>
-                      <Text size="sm" color="muted">
+                      <Text variant="small" color="muted">
                         {currentTestimonial.role}
                         {currentTestimonial.company && ` at ${currentTestimonial.company}`}
                       </Text>

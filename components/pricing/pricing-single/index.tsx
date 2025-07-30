@@ -5,7 +5,6 @@ import {
   Stack,
   Heading,
   Text,
-  Inline,
 } from "@/components/ds";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -108,7 +107,7 @@ export const PricingSingle = ({
                     )}
                   </div>
                   {priceDescription && (
-                    <Text size="sm" color="muted" align="center">
+                    <Text variant="small" color="muted" align="center">
                       {priceDescription}
                     </Text>
                   )}
@@ -138,7 +137,7 @@ export const PricingSingle = ({
 
                 {/* Guarantee */}
                 {guarantee && (
-                  <Text size="sm" color="muted" align="center">
+                  <Text variant="small" color="muted" align="center">
                     {guarantee}
                   </Text>
                 )}

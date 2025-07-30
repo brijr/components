@@ -14,7 +14,6 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Mail, Phone, MapPin, Clock, MessageCircle, Headphones } from "lucide-react";
 import { toast } from "sonner";
 
 /**
@@ -146,7 +145,7 @@ export const ContactSplit = ({
       toast.success(form.successMessage || "We'll get back to you soon.");
 
       event.currentTarget.reset();
-    } catch (error) {
+    } catch {
       toast.error("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);

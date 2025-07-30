@@ -126,7 +126,7 @@ export const TestimonialWithStats = ({
                 <Star
                   key={i}
                   className={`w-4 h-4 ${
-                    i < testimonial.rating
+                    i < (testimonial.rating || 0)
                       ? "fill-primary text-primary"
                       : "fill-muted text-muted"
                   }`}
@@ -138,7 +138,7 @@ export const TestimonialWithStats = ({
           {/* Quote */}
           <blockquote>
             <Text variant="lead">
-              "{testimonial.quote}"
+              &ldquo;{testimonial.quote}&rdquo;
             </Text>
           </blockquote>
 
@@ -159,7 +159,7 @@ export const TestimonialWithStats = ({
               <div className="font-semibold">
                 {testimonial.author}
               </div>
-              <Text size="sm" color="muted">
+              <Text variant="small" color="muted">
                 {testimonial.role}
                 {testimonial.company && ` at ${testimonial.company}`}
               </Text>

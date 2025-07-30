@@ -56,8 +56,6 @@ export interface ContactSimpleProps {
   fields: ContactFormField[];
   /** Submit button text */
   submitText?: string;
-  /** Form submission endpoint */
-  action?: string;
   /** Success message */
   successMessage?: string;
   /** Optional contact information */
@@ -117,7 +115,6 @@ export const ContactSimple = ({
   subheadline,
   fields,
   submitText = "Send message",
-  action = "/api/contact",
   successMessage = "Thank you for your message. We'll get back to you soon!",
   contactInfo,
 }: ContactSimpleProps) => {
@@ -137,7 +134,7 @@ export const ContactSimple = ({
 
       // Reset form
       event.currentTarget.reset();
-    } catch (error) {
+    } catch {
       toast.error("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);

@@ -98,8 +98,6 @@ export const PricingTiered = ({
   tiers,
   showDecorations = false,
 }: PricingTieredProps) => {
-  const recommendedIndex = tiers.findIndex(tier => tier.recommended);
-
   return (
     <Section>
       <Container>

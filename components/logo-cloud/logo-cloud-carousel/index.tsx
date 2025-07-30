@@ -5,9 +5,6 @@ import Image from "next/image";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
 } from "@/components/ds";
 
 /**

@@ -72,7 +72,7 @@ export const NewsletterInline = ({
       
       // Reset form
       setEmail("");
-    } catch (error) {
+    } catch {
       toast.error("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -100,7 +100,6 @@ export const NewsletterInline = ({
               required
               disabled={isSubmitting}
               className="flex-1"
-              size={variant === "compact" ? "sm" : "default"}
             />
             <Button 
               type="submit" 

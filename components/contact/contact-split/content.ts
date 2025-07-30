@@ -1,5 +1,5 @@
 import { ContactSplitProps } from "./index";
-import { Mail, Phone, MessageCircle, MapPin, Headphones, Clock } from "lucide-react";
+import { Mail, Phone, MessageCircle, MapPin, Headphones } from "lucide-react";
 import React from "react";
 
 export const defaultContent: ContactSplitProps = {

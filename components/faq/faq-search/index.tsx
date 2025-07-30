@@ -191,7 +191,7 @@ export const FAQSearch = ({
 
           {/* Results Count */}
           {searchQuery && (
-            <Text size="sm" color="muted" align="center">
+            <Text variant="small" color="muted" align="center">
               {filteredItems.length === 0
                 ? noResultsMessage
                 : `Found ${filteredItems.length} ${

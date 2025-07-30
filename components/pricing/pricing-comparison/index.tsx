@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -155,7 +154,7 @@ export const PricingComparison = ({
                           {plan.name}
                         </div>
                         {plan.description && (
-                          <Text size="sm" color="muted">
+                          <Text variant="small" color="muted">
                             {plan.description}
                           </Text>
                         )}
@@ -207,7 +206,7 @@ export const PricingComparison = ({
                           <div>
                             {feature.name}
                             {feature.description && (
-                              <Text size="sm" color="muted" className="mt-0.5">
+                              <Text variant="small" color="muted" className="mt-0.5">
                                 {feature.description}
                               </Text>
                             )}

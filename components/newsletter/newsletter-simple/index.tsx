@@ -95,7 +95,7 @@ export const NewsletterSimple = ({
       // Reset form
       setEmail("");
       setName("");
-    } catch (error) {
+    } catch {
       toast.error("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);

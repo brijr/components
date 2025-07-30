@@ -7,7 +7,6 @@ import {
   Text,
 } from "@/components/ds";
 import Image from "next/image";
-import { LucideIcon } from "lucide-react";
 
 /**
  * Feature point configuration
@@ -18,7 +17,7 @@ export interface FeaturePoint {
   /** Feature description */
   description: string;
   /** Optional icon component */
-  icon?: React.ReactElement<LucideIcon>;
+  icon?: React.ReactNode;
 }
 
 /**
@@ -105,7 +104,7 @@ export const FeatureShowcase = ({
               <Heading level={4} className="mb-1">
                 {feature.title}
               </Heading>
-              <Text size="sm" color="muted">
+              <Text variant="small" color="muted">
                 {feature.description}
               </Text>
             </div>

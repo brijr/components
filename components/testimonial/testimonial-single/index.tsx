@@ -117,7 +117,7 @@ export const TestimonialSingle = ({
           variant="lead" 
           className="relative text-2xl md:text-3xl font-medium leading-relaxed"
         >
-          "{quote}"
+          &ldquo;{quote}&rdquo;
         </Text>
       </blockquote>
 

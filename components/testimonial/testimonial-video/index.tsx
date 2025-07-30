@@ -126,7 +126,7 @@ export const TestimonialVideo = ({
             <blockquote className="relative">
               <Quote className="absolute -top-2 -left-2 w-6 h-6 text-muted-foreground/20" />
               <Text className="relative line-clamp-2">
-                "{testimonial.quote}"
+                &ldquo;{testimonial.quote}&rdquo;
               </Text>
             </blockquote>
           )}
@@ -134,7 +134,7 @@ export const TestimonialVideo = ({
           {/* Author */}
           <div>
             <div className="font-semibold">{testimonial.author}</div>
-            <Text size="sm" color="muted">
+            <Text variant="small" color="muted">
               {testimonial.role}
               {testimonial.company && ` at ${testimonial.company}`}
             </Text>

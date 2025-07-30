@@ -113,7 +113,7 @@ export const StatsComparison = ({
     4: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
   };
 
-  const getChangeIcon = (type: ComparisonStatItem["change"]["type"]) => {
+  const getChangeIcon = (type: "increase" | "decrease" | "neutral") => {
     switch (type) {
       case "increase":
         return <ArrowUp className="w-4 h-4" />;
@@ -125,7 +125,7 @@ export const StatsComparison = ({
   };
 
   const getChangeColor = (
-    type: ComparisonStatItem["change"]["type"],
+    type: "increase" | "decrease" | "neutral",
     isPositive?: boolean
   ) => {
     if (type === "neutral") return "text-muted-foreground";
@@ -186,7 +186,7 @@ export const StatsComparison = ({
                               <div>
                                 <div className="font-medium">{stat.label}</div>
                                 {stat.description && (
-                                  <Text size="sm" color="muted">
+                                  <Text variant="small" color="muted">
                                     {stat.description}
                                   </Text>
                                 )}
@@ -341,7 +341,7 @@ export const StatsComparison = ({
                 <CardContent>
                   <div className="space-y-3">
                     <div>
-                      <Text size="sm" color="muted">
+                      <Text variant="small" color="muted">
                         {periodLabels.current}
                       </Text>
                       <div className="text-2xl font-bold">
@@ -351,7 +351,7 @@ export const StatsComparison = ({
                       </div>
                     </div>
                     <div>
-                      <Text size="sm" color="muted">
+                      <Text variant="small" color="muted">
                         {periodLabels.previous}
                       </Text>
                       <div className="text-lg text-muted-foreground">

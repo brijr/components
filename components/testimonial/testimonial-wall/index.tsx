@@ -144,7 +144,7 @@ export const TestimonialWall = ({
                               <Star
                                 key={i}
                                 className={`w-3 h-3 ${
-                                  i < testimonial.rating
+                                  i < (testimonial.rating || 0)
                                     ? "fill-primary text-primary"
                                     : "fill-muted text-muted"
                                 }`}
@@ -160,7 +160,7 @@ export const TestimonialWall = ({
                             testimonial.size === "large" ? "text-lg" : ""
                           }
                         >
-                          "{testimonial.quote}"
+                          &ldquo;{testimonial.quote}&rdquo;
                         </Text>
 
                         {/* Author */}
@@ -186,7 +186,7 @@ export const TestimonialWall = ({
                             </div>
                             {(testimonial.role || testimonial.company) && (
                               <Text 
-                                size="sm" 
+                                variant="small" 
                                 color="muted" 
                                 className={testimonial.size === "small" ? "text-xs" : ""}
                               >

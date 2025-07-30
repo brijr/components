@@ -63,7 +63,7 @@ const useCountUp = (
 ) => {
   const [count, setCount] = React.useState(0);
   const countRef = React.useRef(0);
-  const rafRef = React.useRef<number>();
+  const rafRef = React.useRef<number | undefined>(undefined);
 
   React.useEffect(() => {
     if (!isInView) return;
@@ -182,7 +182,7 @@ const AnimatedStat = ({
           </div>
           <Progress value={progressValue} className="h-2" />
           {stat.description && (
-            <Text size="sm" color="muted" className="mt-2">
+            <Text variant="small" color="muted" className="mt-2">
               {stat.description}
             </Text>
           )}
@@ -203,11 +203,11 @@ const AnimatedStat = ({
         {animatedValue}
         {stat.suffix}
       </div>
-      <Text variant="base" color="muted" align="center">
+      <Text color="muted" align="center">
         {stat.label}
       </Text>
       {stat.description && (
-        <Text size="sm" color="muted" align="center">
+        <Text variant="small" color="muted" align="center">
           {stat.description}
         </Text>
       )}

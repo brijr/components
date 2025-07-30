@@ -127,7 +127,7 @@ export const LogoCloudWithTitle = ({
         </div>
         {showDescriptions && logo.description && (
           <Text
-            size="sm"
+            variant="small"
             color="muted"
             align="center"
             className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity"
@@ -181,11 +181,11 @@ export const LogoCloudWithTitle = ({
                 <Stack spacing="md" align="center">
                   <Quote className="w-8 h-8 text-muted-foreground" />
                   <blockquote className="text-center">
-                    <Text variant="lead">"{testimonial.quote}"</Text>
+                    <Text variant="lead">&ldquo;{testimonial.quote}&rdquo;</Text>
                   </blockquote>
                   <div className="text-center">
                     <Text className="font-semibold">{testimonial.author}</Text>
-                    <Text size="sm" color="muted">
+                    <Text variant="small" color="muted">
                       {testimonial.role} at {testimonial.company}
                     </Text>
                   </div>

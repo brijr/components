@@ -185,7 +185,7 @@ export const FAQCategories = ({
           {cta && (
             <Stack spacing="md" align="center" className="max-w-xl mx-auto text-center">
               <Text color="muted">
-                Can't find what you're looking for?
+                Can&apos;t find what you&apos;re looking for?
               </Text>
               <Button asChild>
                 <a href={cta.href}>{cta.text}</a>

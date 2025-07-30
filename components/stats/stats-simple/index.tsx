@@ -115,7 +115,7 @@ export const StatsSimple = ({
                   )}
                 </div>
                 <Text
-                  variant={variant === "compact" ? "small" : "base"}
+                  variant={variant === "compact" ? "small" : "body"}
                   color="muted"
                   align="center"
                 >

@@ -140,7 +140,7 @@ export const ContactWithMap = ({
       toast.success(form.successMessage || "We'll get back to you soon.");
 
       event.currentTarget.reset();
-    } catch (error) {
+    } catch {
       toast.error("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
