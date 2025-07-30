@@ -27,7 +27,7 @@ export function ComponentWrapper({
           <CopyButton filePath={filePath} />
         </div>
       </div>
-      <div className="max-h-[720px] overflow-y-auto [&_a]:pointer-events-none">
+      <div className="[&_a]:pointer-events-none">
         {children}
       </div>
     </section>
