@@ -50,13 +50,13 @@
     "react-day-picker": "^9.8.1",
     "react-dom": "19.1.1",
     "react-hook-form": "^7.61.1",
-    "react-resizable-panels": "^3.0.3",
+    "react-resizable-panels": "^3.0.4",
     "recharts": "2.15.4",
     "shiki": "^3.8.1",
     "sonner": "^2.0.6",
     "tailwind-merge": "^3.3.1",
     "vaul": "^1.1.2",
-    "zod": "^4.0.13"
+    "zod": "^4.0.14"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
