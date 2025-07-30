@@ -121,6 +121,20 @@ interface DesignSystemProviderProps {
   children: React.ReactNode;
 }
 
+// Helper function to map spacing numbers to keys
+function getSpacingKey(num: string): string {
+  const map: Record<string, string> = {
+    "1": "xs",
+    "2": "sm",
+    "4": "md",
+    "6": "lg",
+    "8": "xl",
+    "12": "2xl",
+    "16": "3xl"
+  };
+  return map[num] || num;
+}
+
 export function DesignSystemProvider({ children }: DesignSystemProviderProps) {
   const [tokens, setTokens] = React.useState<DesignTokens>(() => {
     if (typeof window !== "undefined") {
@@ -155,6 +169,220 @@ export function DesignSystemProvider({ children }: DesignSystemProviderProps) {
     
     // Generate CSS that directly uses the CSS variables
     const dynamicCSS = `
+      /* Dynamic typography overrides */
+      .ds-text-h1 {
+        font-size: var(--ds-text-4xl) !important;
+        line-height: var(--ds-leading-heading) !important;
+      }
+      
+      .ds-text-h2 {
+        font-size: var(--ds-text-3xl) !important;
+        line-height: var(--ds-leading-heading) !important;
+      }
+      
+      .ds-text-h3 {
+        font-size: var(--ds-text-2xl) !important;
+        line-height: var(--ds-leading-heading) !important;
+      }
+      
+      .ds-text-h4 {
+        font-size: var(--ds-text-xl) !important;
+        line-height: var(--ds-leading-heading) !important;
+      }
+      
+      .ds-text-h5 {
+        font-size: var(--ds-text-lg) !important;
+        line-height: var(--ds-leading-heading) !important;
+      }
+      
+      .ds-text-h6 {
+        font-size: var(--ds-text-base) !important;
+        line-height: var(--ds-leading-heading) !important;
+      }
+      
+      .ds-text-body {
+        font-size: var(--ds-text-base) !important;
+        line-height: var(--ds-leading-body) !important;
+      }
+      
+      .ds-text-lead {
+        font-size: var(--ds-text-lg) !important;
+        line-height: var(--ds-leading-loose) !important;
+      }
+      
+      .ds-text-large {
+        font-size: var(--ds-text-lg) !important;
+        line-height: var(--ds-leading-body) !important;
+      }
+      
+      .ds-text-small {
+        font-size: var(--ds-text-sm) !important;
+        line-height: var(--ds-leading-snug) !important;
+      }
+      
+      .ds-text-muted {
+        font-size: var(--ds-text-sm) !important;
+        line-height: var(--ds-leading-snug) !important;
+      }
+      
+      .ds-text-caption {
+        font-size: var(--ds-text-xs) !important;
+        line-height: var(--ds-leading-snug) !important;
+      }
+      
+      .ds-text-code {
+        font-size: var(--ds-text-sm) !important;
+      }
+      
+      /* Responsive text sizes */
+      @media (min-width: 640px) {
+        .ds-text-h1 {
+          font-size: var(--ds-text-5xl-sm) !important;
+        }
+        
+        .ds-text-h2 {
+          font-size: var(--ds-text-4xl-sm) !important;
+        }
+        
+        .ds-text-h3 {
+          font-size: var(--ds-text-3xl-sm) !important;
+        }
+        
+        .ds-text-h4 {
+          font-size: var(--ds-text-2xl-sm) !important;
+        }
+        
+        .ds-text-h5 {
+          font-size: var(--ds-text-xl-sm) !important;
+        }
+        
+        .ds-text-h6 {
+          font-size: var(--ds-text-lg-sm) !important;
+        }
+        
+        .ds-text-lead {
+          font-size: var(--ds-text-xl-sm) !important;
+        }
+      }
+      
+      /* Heading Component Styles */
+      .ds-heading-1 {
+        font-size: var(--ds-heading-1) !important;
+        line-height: var(--ds-leading-heading) !important;
+      }
+      
+      .ds-heading-2 {
+        font-size: var(--ds-heading-2) !important;
+        line-height: var(--ds-leading-heading) !important;
+      }
+      
+      .ds-heading-3 {
+        font-size: var(--ds-heading-3) !important;
+        line-height: var(--ds-leading-heading) !important;
+      }
+      
+      .ds-heading-4 {
+        font-size: var(--ds-heading-4) !important;
+        line-height: var(--ds-leading-heading) !important;
+      }
+      
+      .ds-heading-5 {
+        font-size: var(--ds-heading-5) !important;
+        line-height: var(--ds-leading-heading) !important;
+      }
+      
+      .ds-heading-6 {
+        font-size: var(--ds-heading-6) !important;
+        line-height: var(--ds-leading-heading) !important;
+      }
+      
+      /* Responsive heading sizes */
+      @media (min-width: 640px) {
+        .ds-heading-1 {
+          font-size: var(--ds-heading-1-sm) !important;
+        }
+        
+        .ds-heading-2 {
+          font-size: var(--ds-heading-2-sm) !important;
+        }
+        
+        .ds-heading-3 {
+          font-size: var(--ds-heading-3-sm) !important;
+        }
+        
+        .ds-heading-4 {
+          font-size: var(--ds-heading-4-sm) !important;
+        }
+        
+        .ds-heading-5 {
+          font-size: var(--ds-heading-5-sm) !important;
+        }
+        
+        .ds-heading-6 {
+          font-size: var(--ds-heading-6-sm) !important;
+        }
+      }
+      
+      /* Dynamic spacing overrides */
+      .ds-stack-gap-none {
+        gap: var(--ds-stack-gap-none) !important;
+      }
+      
+      .ds-stack-gap-xs {
+        gap: var(--ds-stack-gap-xs) !important;
+      }
+      
+      .ds-stack-gap-sm {
+        gap: var(--ds-stack-gap-sm) !important;
+      }
+      
+      .ds-stack-gap-md {
+        gap: var(--ds-stack-gap-md) !important;
+      }
+      
+      .ds-stack-gap-lg {
+        gap: var(--ds-stack-gap-lg) !important;
+      }
+      
+      .ds-stack-gap-xl {
+        gap: var(--ds-stack-gap-xl) !important;
+      }
+      
+      .ds-stack-gap-2xl {
+        gap: var(--ds-stack-gap-2xl) !important;
+      }
+      
+      .ds-stack-gap-3xl {
+        gap: var(--ds-stack-gap-3xl) !important;
+      }
+      
+      /* Section Component Styles */
+      .ds-section {
+        padding-top: var(--ds-section-py) !important;
+        padding-bottom: var(--ds-section-py) !important;
+      }
+      
+      @media (min-width: 640px) {
+        .ds-section {
+          padding-top: var(--ds-section-py-sm) !important;
+          padding-bottom: var(--ds-section-py-sm) !important;
+        }
+      }
+      
+      /* Container Component Styles */
+      .ds-container {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        max-width: var(--ds-container-max-w) !important;
+        padding: var(--ds-container-p) !important;
+      }
+      
+      @media (min-width: 640px) {
+        .ds-container {
+          padding: var(--ds-container-p-sm) !important;
+        }
+      }
+      
       /* Dynamic color overrides */
       .text-primary { color: var(--primary) !important; }
       .bg-primary { background-color: var(--primary) !important; }
@@ -286,6 +514,44 @@ export function DesignSystemProvider({ children }: DesignSystemProviderProps) {
       const cssVarName = key.replace(/([A-Z])/g, "-$1").toLowerCase().replace(/^-/, "ds-");
       updateCSSVariable(cssVarName, value);
       
+      // Also update responsive variants for typography
+      if (key.startsWith("text")) {
+        // Handle text sizes
+        const sizeMap: Record<string, string> = {
+          "textXs": "xs",
+          "textSm": "sm",
+          "textBase": "base",
+          "textLg": "lg",
+          "textXl": "xl",
+          "text2xl": "2xl",
+          "text3xl": "3xl",
+          "text4xl": "4xl",
+          "text5xl": "5xl"
+        };
+        const size = sizeMap[key];
+        if (size) {
+          updateCSSVariable(`ds-text-${size}-sm`, value);
+        }
+      }
+      if (key.startsWith("heading")) {
+        const num = key.replace("heading", "");
+        updateCSSVariable(`ds-heading-${num}-sm`, value);
+      }
+      
+      // Also update responsive variants for spacing
+      if (key === "sectionPy") {
+        updateCSSVariable("ds-section-py-sm", `${parseFloat(value) * 2}rem`);
+      }
+      if (key === "containerP") {
+        updateCSSVariable("ds-container-p-sm", `${parseFloat(value) * 1.5}rem`);
+      }
+      
+      // Update spacing scale variables
+      if (key.startsWith("space")) {
+        const num = key.replace("space", "");
+        updateCSSVariable(`ds-stack-gap-${getSpacingKey(num)}`, value);
+      }
+      
       // Special handling for color variables
       if (["primary", "secondary", "background", "foreground", "muted", "mutedForeground", "accent", "accentForeground", "destructive", "border"].includes(key)) {
         // Convert camelCase to kebab-case for CSS variable names
@@ -328,6 +594,44 @@ export function DesignSystemProvider({ children }: DesignSystemProviderProps) {
       Object.entries(newTokens).forEach(([key, value]) => {
         const cssVarName = key.replace(/([A-Z])/g, "-$1").toLowerCase().replace(/^-/, "ds-");
         updateCSSVariable(cssVarName, value);
+        
+        // Also update responsive variants for typography
+        if (key.startsWith("text")) {
+          // Handle text sizes
+          const sizeMap: Record<string, string> = {
+            "textXs": "xs",
+            "textSm": "sm",
+            "textBase": "base",
+            "textLg": "lg",
+            "textXl": "xl",
+            "text2xl": "2xl",
+            "text3xl": "3xl",
+            "text4xl": "4xl",
+            "text5xl": "5xl"
+          };
+          const size = sizeMap[key];
+          if (size) {
+            updateCSSVariable(`ds-text-${size}-sm`, value);
+          }
+        }
+        if (key.startsWith("heading")) {
+          const num = key.replace("heading", "");
+          updateCSSVariable(`ds-heading-${num}-sm`, value);
+        }
+        
+        // Also update responsive variants for spacing
+        if (key === "sectionPy") {
+          updateCSSVariable("ds-section-py-sm", `${parseFloat(value) * 2}rem`);
+        }
+        if (key === "containerP") {
+          updateCSSVariable("ds-container-p-sm", `${parseFloat(value) * 1.5}rem`);
+        }
+        
+        // Update spacing scale variables
+        if (key.startsWith("space")) {
+          const num = key.replace("space", "");
+          updateCSSVariable(`ds-stack-gap-${getSpacingKey(num)}`, value);
+        }
         
         // Special handling for color variables
         if (["primary", "secondary", "background", "foreground", "muted", "mutedForeground", "accent", "accentForeground", "destructive", "border"].includes(key)) {
