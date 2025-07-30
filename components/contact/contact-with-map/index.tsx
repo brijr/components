@@ -221,7 +221,7 @@ export const ContactWithMap = ({
                       {location.address && (
                         <div className="flex items-start gap-3">
                           <MapPin className="w-5 h-5 text-muted-foreground mt-0.5" />
-                          <Text size="sm" color="muted">
+                          <Text as="p" color="muted">
                             {location.address}
                           </Text>
                         </div>
@@ -254,7 +254,7 @@ export const ContactWithMap = ({
                       {location.hours && (
                         <div className="flex items-start gap-3">
                           <Clock className="w-5 h-5 text-muted-foreground mt-0.5" />
-                          <Text size="sm" color="muted">
+                          <Text as="p" color="muted">
                             {location.hours}
                           </Text>
                         </div>
