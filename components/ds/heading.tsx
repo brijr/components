@@ -5,12 +5,12 @@ import { cn } from "@/lib/utils";
 const headingVariants = cva("", {
   variants: {
     level: {
-      1: "text-4xl sm:text-5xl font-medium tracking-tight text-balance",
-      2: "text-3xl sm:text-4xl font-medium tracking-tight text-balance",
-      3: "text-2xl sm:text-3xl font-medium tracking-tight text-balance",
-      4: "text-xl sm:text-2xl tracking-tight text-balance",
-      5: "text-lg sm:text-xl tracking-tight text-balance",
-      6: "text-base sm:text-lg tracking-tight text-balance",
+      1: "ds-heading-1 font-medium tracking-tight text-balance",
+      2: "ds-heading-2 font-medium tracking-tight text-balance",
+      3: "ds-heading-3 font-medium tracking-tight text-balance",
+      4: "ds-heading-4 tracking-tight text-balance",
+      5: "ds-heading-5 tracking-tight text-balance",
+      6: "ds-heading-6 tracking-tight text-balance",
     },
     color: {
       default: "",

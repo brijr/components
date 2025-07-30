@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/app-sidebar";
+import { DesignSystemProvider } from "@/providers/design-system-provider";
+import { DesignSystemEditor } from "@/components/design-system-editor";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -32,11 +34,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} bg-accent/30 antialiased`}
       >
-        <SidebarProvider>
-          <AppSidebar />
-          <SidebarInset>{children}</SidebarInset>
-        </SidebarProvider>
-        <Toaster />
+        <DesignSystemProvider>
+          <SidebarProvider>
+            <AppSidebar />
+            <SidebarInset>{children}</SidebarInset>
+          </SidebarProvider>
+          <DesignSystemEditor />
+          <Toaster />
+        </DesignSystemProvider>
       </body>
     </html>
   );

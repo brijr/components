@@ -5,14 +5,14 @@ import { cn } from "@/lib/utils";
 const inlineVariants = cva("flex flex-wrap", {
   variants: {
     spacing: {
-      none: "gap-0",
-      xs: "gap-1",
-      sm: "gap-2",
-      md: "gap-4",
-      lg: "gap-6",
-      xl: "gap-8",
-      "2xl": "gap-12",
-      "3xl": "gap-16",
+      none: "ds-stack-gap-none",
+      xs: "ds-stack-gap-xs",
+      sm: "ds-stack-gap-sm",
+      md: "ds-stack-gap-md",
+      lg: "ds-stack-gap-lg",
+      xl: "ds-stack-gap-xl",
+      "2xl": "ds-stack-gap-2xl",
+      "3xl": "ds-stack-gap-3xl",
     },
     align: {
       start: "items-start",
