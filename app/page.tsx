@@ -8,7 +8,7 @@ export default function HomePage() {
       <div className="py-6">
         <h1 className="text-center font-mono text-sm">components.bridger.to</h1>
       </div>
-      <div className="grid gap-8">
+      <div className="grid gap-8 px-4">
         {registry.map(({ name, slug, Component, props, filePath }) => (
           <ComponentWrapper key={slug} name={name} filePath={filePath}>
             <Component {...(props || {})} />
