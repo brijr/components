@@ -117,7 +117,7 @@ export const Inline = React.forwardRef<HTMLDivElement, InlineProps>(
         ref={ref}
         className={cn(
           inlineVariants({ 
-            spacing: isCustomSpacing ? undefined : finalSpacing, 
+            spacing: isCustomSpacing ? undefined : finalSpacing as "none" | "sm" | "md" | "lg" | "xl", 
             align, 
             justify, 
             wrap 

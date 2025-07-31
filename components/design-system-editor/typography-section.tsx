@@ -108,7 +108,7 @@ export function TypographySection() {
         {
           key: "textXs",
           label: "Text XS",
-          preview: <Text variant="caption">Extra small text for captions</Text>,
+          preview: <Text variant="small" subdued>Extra small text for captions</Text>,
           min: 0.5,
           max: 1,
           step: 0.0625,
@@ -132,7 +132,7 @@ export function TypographySection() {
         {
           key: "textLg",
           label: "Text LG",
-          preview: <Text variant="large">Large text for emphasis</Text>,
+          preview: <Text>Large text for emphasis</Text>,
           min: 1,
           max: 2,
           step: 0.125,

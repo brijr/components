@@ -7,7 +7,6 @@ import { Text } from "../text";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 
 interface ContentBlockProps {
   /** Section title */

@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Inline } from "../inline";
-import { cn } from "@/lib/utils";
 
 interface ButtonGroupProps {
   /** Spacing between buttons: sm, md, lg */

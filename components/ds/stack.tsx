@@ -102,7 +102,7 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
         ref={ref}
         className={cn(
           stackVariants({ 
-            spacing: isCustomSpacing ? undefined : finalSpacing, 
+            spacing: isCustomSpacing ? undefined : finalSpacing as "none" | "sm" | "md" | "lg" | "xl", 
             align, 
             justify 
           }),
