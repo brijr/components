@@ -1,4 +1,3 @@
-import { Main } from "@/components/ds";
 import { ComponentWrapper } from "@/components/component-wrapper";
 import { registry } from "@/registry";
 import { notFound } from "next/navigation";
@@ -53,7 +52,7 @@ export default async function TypePage({
   const label = typeLabels[componentType];
 
   return (
-    <Main>
+    <main>
       <div className="py-6">
         <h1 className="text-center font-mono text-sm">
           components.bridger.to / {componentType}
@@ -82,7 +81,7 @@ export default async function TypePage({
           </a>
         </p>
       </div>
-    </Main>
+    </main>
   );
 }
 
