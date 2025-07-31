@@ -5,26 +5,16 @@ import { cn } from "@/lib/utils";
 const textVariants = cva("", {
   variants: {
     variant: {
-      h1: "ds-text-h1 font-medium tracking-tight text-balance",
-      h2: "ds-text-h2 font-medium tracking-tight text-balance",
-      h3: "ds-text-h3 font-medium tracking-tight text-balance",
-      h4: "ds-text-h4 tracking-tight text-balance",
-      h5: "ds-text-h5 tracking-tight text-balance",
-      h6: "ds-text-h6 tracking-tight text-balance",
-      body: "ds-text-body text-pretty",
-      lead: "ds-text-lead text-pretty",
-      large: "ds-text-large text-pretty",
-      small: "ds-text-small",
-      muted: "ds-text-muted text-muted-foreground",
-      caption: "ds-text-caption text-muted-foreground",
-      code: "rounded border bg-muted/50 px-1 py-px font-mono ds-text-code font-medium",
-      link: "text-primary dark:text-primary/50 transition-all no-underline hover:underline hover:text-primary/100 underline-offset-2 decoration-primary/50 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary/50",
+      body: "text-base leading-7 text-pretty",
+      lead: "text-lg sm:text-xl leading-8 text-pretty",
+      small: "text-sm leading-normal",
+      muted: "text-sm text-muted-foreground leading-normal",
+      code: "rounded border bg-muted/50 px-1 py-px font-mono text-sm font-medium",
+      link: "text-primary transition-colors no-underline hover:underline hover:text-primary/80 underline-offset-2 decoration-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
     },
     color: {
       default: "",
       muted: "text-muted-foreground",
-      primary: "text-primary",
-      destructive: "text-destructive",
     },
     weight: {
       normal: "font-normal",
@@ -49,6 +39,7 @@ const textVariants = cva("", {
 interface TextProps
   extends Omit<React.HTMLAttributes<HTMLElement>, "color">,
     VariantProps<typeof textVariants> {
+  /** HTML element to render */
   as?:
     | "p"
     | "span"
@@ -62,19 +53,35 @@ interface TextProps
     | "sup"
     | "code"
     | "a";
+  /** Shorthand for align="center" */
+  centered?: boolean;
+  /** Shorthand for color="muted" */
+  subdued?: boolean;
   children?: React.ReactNode;
 }
 
 /**
  * Text component for consistent typography across the application.
- * Extracts typography styles from the Prose component for reusability.
+ * For headings, use the Heading component instead.
  *
  * @example
  * ```tsx
- * <Text variant="h1">Main Heading</Text>
- * <Text variant="body" color="muted">Description text</Text>
- * <Text variant="caption">Small caption</Text>
- * <Text variant="link" as="a" href="/about">Learn more</Text>
+ * // Basic usage
+ * <Text>Regular body text</Text>
+ * <Text variant="lead">Introductory paragraph</Text>
+ * <Text variant="small" subdued>Fine print</Text>
+ * 
+ * // With convenience props
+ * <Text centered>Centered text</Text>
+ * <Text subdued>Muted secondary text</Text>
+ * 
+ * // Special variants
+ * <Text variant="code">const example = true</Text>
+ * <Text variant="link" as="a" href="/docs">Documentation</Text>
+ * 
+ * // With modifiers
+ * <Text weight="semibold">Important note</Text>
+ * <Text variant="lead" centered>Hero subtitle</Text>
  * ```
  */
 export const Text = React.forwardRef<HTMLElement, TextProps>(
@@ -85,19 +92,30 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
       color,
       weight,
       align,
+      centered,
+      subdued,
       as: Component = "p",
       children,
       ...props
     },
     ref,
   ) => {
+    // Apply convenience props
+    const finalAlign = centered ? "center" : align;
+    const finalColor = subdued ? "muted" : color;
+    
     const Comp = Component as React.ElementType;
 
     return (
       <Comp
         ref={ref}
         className={cn(
-          textVariants({ variant, color, weight, align }),
+          textVariants({ 
+            variant, 
+            color: finalColor, 
+            weight, 
+            align: finalAlign 
+          }),
           className,
         )}
         {...props}

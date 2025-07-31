@@ -5,14 +5,11 @@ import { cn } from "@/lib/utils";
 const inlineVariants = cva("flex flex-wrap", {
   variants: {
     spacing: {
-      none: "ds-stack-gap-none",
-      xs: "ds-stack-gap-xs",
-      sm: "ds-stack-gap-sm",
-      md: "ds-stack-gap-md",
-      lg: "ds-stack-gap-lg",
-      xl: "ds-stack-gap-xl",
-      "2xl": "ds-stack-gap-2xl",
-      "3xl": "ds-stack-gap-3xl",
+      none: "gap-0",
+      sm: "gap-2",
+      md: "gap-4",
+      lg: "gap-6",
+      xl: "gap-8",
     },
     align: {
       start: "items-start",
@@ -45,7 +42,12 @@ const inlineVariants = cva("flex flex-wrap", {
 
 interface InlineProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof inlineVariants> {
+    Omit<VariantProps<typeof inlineVariants>, "spacing"> {
+  /** Spacing between items: sm (8px), md (16px), lg (24px), xl (32px) */
+  spacing?: "none" | "sm" | "md" | "lg" | "xl" | string;
+  /** Shorthand for spacing="sm" */
+  compact?: boolean;
+  /** HTML element to render */
   as?: React.ElementType;
   children?: React.ReactNode;
 }
@@ -56,26 +58,45 @@ interface InlineProps
  *
  * @example
  * ```tsx
+ * // Basic usage
  * <Inline spacing="sm">
  *   <Badge>New</Badge>
  *   <Badge>Featured</Badge>
  *   <Badge>Popular</Badge>
  * </Inline>
  *
- * <Inline spacing="lg" align="center">
- *   <Button>Primary</Button>
- *   <Button variant="outline">Secondary</Button>
- *   <Text color="muted">or</Text>
- *   <Button variant="link">Skip</Button>
+ * // Button group
+ * <Inline spacing="md">
+ *   <Button>Save</Button>
+ *   <Button variant="outline">Cancel</Button>
+ * </Inline>
+ * 
+ * // Compact spacing
+ * <Inline compact>
+ *   <Icon />
+ *   <Text>Settings</Text>
+ * </Inline>
+ * 
+ * // With custom gap class
+ * <Inline spacing="gap-1">
+ *   <Chip>One</Chip>
+ *   <Chip>Two</Chip>
+ * </Inline>
+ *
+ * // Mixed content
+ * <Inline spacing="lg" align="baseline">
+ *   <Text weight="semibold">Sort:</Text>
+ *   <Button variant="ghost" size="sm">Date</Button>
+ *   <Button variant="ghost" size="sm">Name</Button>
  * </Inline>
  * ```
  */
-
 export const Inline = React.forwardRef<HTMLDivElement, InlineProps>(
   (
     {
       className,
       spacing,
+      compact,
       align,
       justify,
       wrap,
@@ -85,11 +106,24 @@ export const Inline = React.forwardRef<HTMLDivElement, InlineProps>(
     },
     ref,
   ) => {
+    // Apply compact prop
+    const finalSpacing = compact ? "sm" : spacing;
+    
+    // Check if spacing is a custom Tailwind class
+    const isCustomSpacing = finalSpacing && !["none", "sm", "md", "lg", "xl"].includes(finalSpacing);
+    
     return (
       <Component
         ref={ref}
         className={cn(
-          inlineVariants({ spacing, align, justify, wrap, className }),
+          inlineVariants({ 
+            spacing: isCustomSpacing ? undefined : finalSpacing, 
+            align, 
+            justify, 
+            wrap 
+          }),
+          isCustomSpacing && finalSpacing,
+          className
         )}
         {...props}
       >

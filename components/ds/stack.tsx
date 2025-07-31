@@ -5,14 +5,11 @@ import { cn } from "@/lib/utils";
 const stackVariants = cva("flex flex-col", {
   variants: {
     spacing: {
-      none: "ds-stack-gap-none",
-      xs: "ds-stack-gap-xs",
-      sm: "ds-stack-gap-sm",
-      md: "ds-stack-gap-md",
-      lg: "ds-stack-gap-lg",
-      xl: "ds-stack-gap-xl",
-      "2xl": "ds-stack-gap-2xl",
-      "3xl": "ds-stack-gap-3xl",
+      none: "gap-0",
+      sm: "gap-2",
+      md: "gap-4",
+      lg: "gap-6",
+      xl: "gap-8",
     },
     align: {
       start: "items-start",
@@ -38,7 +35,12 @@ const stackVariants = cva("flex flex-col", {
 
 interface StackProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof stackVariants> {
+    Omit<VariantProps<typeof stackVariants>, "spacing"> {
+  /** Spacing between items: sm (8px), md (16px), lg (24px), xl (32px) */
+  spacing?: "none" | "sm" | "md" | "lg" | "xl" | string;
+  /** Shorthand for spacing="sm" */
+  compact?: boolean;
+  /** HTML element to render */
   as?: React.ElementType;
   children?: React.ReactNode;
 }
@@ -49,13 +51,27 @@ interface StackProps
  *
  * @example
  * ```tsx
+ * // Basic usage
  * <Stack spacing="lg">
- *   <Heading level={2}>Feature Title</Heading>
+ *   <Heading size={2}>Feature Title</Heading>
  *   <Text>Feature description...</Text>
  *   <Button>Learn More</Button>
  * </Stack>
  *
- * <Stack spacing="sm" align="center">
+ * // Compact spacing
+ * <Stack compact>
+ *   <Badge>New</Badge>
+ *   <Heading size={3}>Product Name</Heading>
+ * </Stack>
+ * 
+ * // With custom gap class
+ * <Stack spacing="gap-10">
+ *   <Component1 />
+ *   <Component2 />
+ * </Stack>
+ * 
+ * // Centered content
+ * <Stack spacing="md" align="center">
  *   <Avatar />
  *   <Text>User Name</Text>
  * </Stack>
@@ -66,6 +82,7 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
     {
       className,
       spacing,
+      compact,
       align,
       justify,
       as: Component = "div",
@@ -74,10 +91,24 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
     },
     ref,
   ) => {
+    // Apply compact prop
+    const finalSpacing = compact ? "sm" : spacing;
+    
+    // Check if spacing is a custom Tailwind class
+    const isCustomSpacing = finalSpacing && !["none", "sm", "md", "lg", "xl"].includes(finalSpacing);
+    
     return (
       <Component
         ref={ref}
-        className={cn(stackVariants({ spacing, align, justify, className }))}
+        className={cn(
+          stackVariants({ 
+            spacing: isCustomSpacing ? undefined : finalSpacing, 
+            align, 
+            justify 
+          }),
+          isCustomSpacing && finalSpacing,
+          className
+        )}
         {...props}
       >
         {children}
