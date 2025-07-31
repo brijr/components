@@ -14,7 +14,7 @@ export function ComponentWrapper({
   filePath,
 }: ComponentWrapperProps) {
   return (
-    <section className="bg-background mx-auto w-full max-w-screen-xl overflow-hidden rounded-lg border">
+    <section className="bg-background mx-auto w-full max-w-screen-xl overflow-hidden rounded-lg border shadow-sm transition-shadow hover:shadow-md">
       <div className="bg-accent/50 text-muted-foreground grid h-12 grid-cols-3 items-center border-b pr-2 pl-4">
         <div className="flex items-center gap-1.5">
           <Circle size={12} />
@@ -27,9 +27,7 @@ export function ComponentWrapper({
           <CopyButton filePath={filePath} />
         </div>
       </div>
-      <div className="[&_a]:pointer-events-none">
-        {children}
-      </div>
+      <div className="[&_a]:pointer-events-none">{children}</div>
     </section>
   );
 }
