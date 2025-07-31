@@ -12,6 +12,7 @@ import type { DSProps } from "./types";
  * @param {string} [props.containerClassName] - Additional class names for the inner container.
  * @returns {JSX.Element} A nav element with a centered inner container.
  */
+
 export const Nav = ({
   children,
   className,

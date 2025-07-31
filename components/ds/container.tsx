@@ -11,12 +11,9 @@ import type { DSProps } from "./types";
  * @param {React.CSSProperties} [props.style] - Inline styles.
  * @returns {JSX.Element} A div element acting as a container.
  */
+
 export const Container = ({ children, className, id, style }: DSProps) => (
-  <div
-    className={cn("ds-container", className)}
-    id={id}
-    style={style}
-  >
+  <div className={cn("ds-container", className)} id={id} style={style}>
     {children}
   </div>
 );

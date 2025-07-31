@@ -15,6 +15,7 @@ import type { DSProps } from "./types";
  * @param {boolean} [props.isSpaced=false] - If true, adds spacing between elements.
  * @returns {JSX.Element} A div or article element containing styled rich text.
  */
+
 export const Prose = ({
   children,
   className,

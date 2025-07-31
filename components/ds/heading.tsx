@@ -5,12 +5,12 @@ import { cn } from "@/lib/utils";
 const headingVariants = cva("", {
   variants: {
     level: {
-      1: "ds-heading-1 font-medium tracking-tight text-balance",
-      2: "ds-heading-2 font-medium tracking-tight text-balance",
-      3: "ds-heading-3 font-medium tracking-tight text-balance",
-      4: "ds-heading-4 tracking-tight text-balance",
-      5: "ds-heading-5 tracking-tight text-balance",
-      6: "ds-heading-6 tracking-tight text-balance",
+      1: "ds-heading-1 font-medium tracking-tight text-balance ds-leading-tight",
+      2: "ds-heading-2 font-medium tracking-tight text-balance ds-leading-tight",
+      3: "ds-heading-3 font-medium tracking-tight text-balance ds-leading-tight",
+      4: "ds-heading-4 tracking-tight text-balance ds-leading-tight",
+      5: "ds-heading-5 tracking-tight text-balance ds-leading-tight",
+      6: "ds-heading-6 tracking-tight text-balance ds-leading-tight",
     },
     color: {
       default: "",
@@ -50,6 +50,7 @@ interface HeadingProps
  * <Heading as="h2" level={4}>Semantic H2 with H4 styling</Heading>
  * ```
  */
+
 export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
   ({ className, level = 2, color, align, as, children, ...props }, ref) => {
     // Use 'as' prop if provided, otherwise use level to determine element

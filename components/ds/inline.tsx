@@ -70,6 +70,7 @@ interface InlineProps
  * </Inline>
  * ```
  */
+
 export const Inline = React.forwardRef<HTMLDivElement, InlineProps>(
   (
     {

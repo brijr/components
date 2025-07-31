@@ -1,14 +1,11 @@
-import { Main } from "@/components/ds";
 import { ComponentWrapper } from "@/components/component-wrapper";
 import { registry } from "@/registry";
 
 export default function HomePage() {
   return (
-    <Main>
+    <main>
       <div className="py-6">
-        <h1 className="text-center font-mono text-sm">
-          components.bridger.to
-        </h1>
+        <h1 className="text-center font-mono text-sm">components.bridger.to</h1>
         <p className="mt-2 text-center text-2xl font-semibold">
           All Components
         </p>
@@ -28,6 +25,6 @@ export default function HomePage() {
           </a>
         </p>
       </div>
-    </Main>
+    </main>
   );
 }
