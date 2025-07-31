@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
-import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/app-sidebar";
+import { DualSidebarLayout } from "@/components/dual-sidebar-layout";
 import { DesignSystemProvider } from "@/providers/design-system-provider";
-import { DesignSystemEditor } from "@/components/design-system-editor";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -35,11 +33,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} bg-accent/30 antialiased`}
       >
         <DesignSystemProvider>
-          <SidebarProvider>
-            <AppSidebar />
-            <SidebarInset>{children}</SidebarInset>
-          </SidebarProvider>
-          <DesignSystemEditor />
+          <DualSidebarLayout>
+            {children}
+          </DualSidebarLayout>
           <Toaster />
         </DesignSystemProvider>
       </body>

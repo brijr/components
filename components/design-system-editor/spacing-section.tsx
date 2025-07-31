@@ -60,6 +60,7 @@ export function SpacingSection() {
               <div className="h-8 rounded bg-primary/20" />
             </Stack>
           ),
+          min: 0,
           max: 1,
           step: 0.125,
         },
@@ -72,6 +73,7 @@ export function SpacingSection() {
               <div className="h-8 rounded bg-primary/20" />
             </Stack>
           ),
+          min: 0,
           max: 2,
           step: 0.125,
         },
@@ -84,6 +86,7 @@ export function SpacingSection() {
               <div className="h-8 rounded bg-primary/20" />
             </Stack>
           ),
+          min: 0,
           max: 3,
           step: 0.25,
         },
@@ -96,6 +99,7 @@ export function SpacingSection() {
               <div className="h-8 rounded bg-primary/20" />
             </Stack>
           ),
+          min: 0,
           max: 4,
           step: 0.25,
         },
@@ -108,6 +112,7 @@ export function SpacingSection() {
               <div className="h-8 rounded bg-primary/20" />
             </Stack>
           ),
+          min: 0,
           max: 6,
           step: 0.5,
         },
@@ -128,6 +133,7 @@ export function SpacingSection() {
               </Section>
             </div>
           ),
+          min: 0,
           max: 4,
           step: 0.25,
         },
@@ -142,6 +148,7 @@ export function SpacingSection() {
               </Container>
             </div>
           ),
+          min: 0,
           max: 4,
           step: 0.25,
         },

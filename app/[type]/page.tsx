@@ -2,7 +2,6 @@ import { Main } from "@/components/ds";
 import { ComponentWrapper } from "@/components/component-wrapper";
 import { registry } from "@/registry";
 import { notFound } from "next/navigation";
-import { SidebarTrigger } from "@/components/ui/sidebar";
 
 const componentTypes = [
   "hero",
@@ -55,14 +54,11 @@ export default async function TypePage({
 
   return (
     <Main>
-      <div className="flex items-center gap-2 py-6">
-        <SidebarTrigger className="md:hidden" />
-        <div className="flex-1">
-          <h1 className="text-center font-mono text-sm">
-            components.bridger.to / {componentType}
-          </h1>
-          <p className="mt-2 text-center text-2xl font-semibold">{label}</p>
-        </div>
+      <div className="py-6">
+        <h1 className="text-center font-mono text-sm">
+          components.bridger.to / {componentType}
+        </h1>
+        <p className="mt-2 text-center text-2xl font-semibold">{label}</p>
       </div>
       <div className="grid gap-8 px-4">
         {components.map(({ name, slug, Component, props, filePath }) => (

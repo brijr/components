@@ -1,21 +1,17 @@
 import { Main } from "@/components/ds";
 import { ComponentWrapper } from "@/components/component-wrapper";
 import { registry } from "@/registry";
-import { SidebarTrigger } from "@/components/ui/sidebar";
 
 export default function HomePage() {
   return (
     <Main>
-      <div className="flex items-center gap-2 py-6">
-        <SidebarTrigger className="md:hidden" />
-        <div className="flex-1">
-          <h1 className="text-center font-mono text-sm">
-            components.bridger.to
-          </h1>
-          <p className="mt-2 text-center text-2xl font-semibold">
-            All Components
-          </p>
-        </div>
+      <div className="py-6">
+        <h1 className="text-center font-mono text-sm">
+          components.bridger.to
+        </h1>
+        <p className="mt-2 text-center text-2xl font-semibold">
+          All Components
+        </p>
       </div>
       <div className="grid gap-8 px-4">
         {registry.map(({ name, slug, Component, props, filePath }) => (
