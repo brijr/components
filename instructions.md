@@ -13,9 +13,13 @@ Use the design system from `@/components/ds` instead of raw Tailwind classes:
 ```tsx
 import { Heading, Text } from "@/components/ds";
 
-<Heading level={1}>Main Title</Heading>        // H1
+<Heading size={1}>Main Title</Heading>         // H1
+<Heading size={2} subdued>Section Title</Heading> // H2 with muted color
+<Heading size={3} centered>Centered Title</Heading> // H3 centered
+
 <Text variant="lead">Intro paragraph</Text>    // Large body text
-<Text color="muted">Secondary info</Text>      // Muted text
+<Text subdued>Secondary info</Text>            // Muted text
+<Text variant="small" centered>Fine print</Text> // Small centered text
 ```
 
 ### Layout & Spacing
@@ -25,14 +29,14 @@ import { Section, Container, Stack, Inline } from "@/components/ds";
 
 <Section>
   {" "}
-  // Has built-in padding (py-4 sm:py-8)
+  // Has built-in padding (py-2 sm:py-4)
   <Container>
     {" "}
     // Has built-in padding and max-width
     <Stack spacing="lg">
       {" "}
       // Vertical spacing between children
-      <Heading>Title</Heading>
+      <Heading size={2}>Title</Heading>
       <Text>Description</Text>
       <Inline spacing="sm">
         {" "}
@@ -64,19 +68,90 @@ import { Section, Container, Stack, Inline } from "@/components/ds";
 
 **IMPORTANT:**
 
-- Section has built-in padding (`py-4 sm:py-8`). DO NOT add padding classes like `py-16` or `py-24`.
-- Container has built-in padding and max-width. DO NOT add extra padding.
+- Section has built-in padding (`py-2 sm:py-4`). DO NOT add padding classes like `py-16` or `py-24`.
+- Container has built-in padding (`p-4 sm:p-6`) and max-width (`max-w-5xl`). DO NOT add extra padding.
 - Only add classes for styling needs like backgrounds, borders, or special effects.
 
 ### Spacing Scale
 
-- `xs`: gap-1
-- `sm`: gap-2
-- `md`: gap-4 (default)
-- `lg`: gap-6
-- `xl`: gap-8
-- `2xl`: gap-12
-- `3xl`: gap-16
+- `sm`: gap-2 (8px)
+- `md`: gap-4 (16px) - default
+- `lg`: gap-6 (24px)
+- `xl`: gap-8 (32px)
+- Custom: Any Tailwind gap class (e.g., `spacing="gap-12"`)
+
+**New:** Use `compact` prop for tight spacing:
+```tsx
+<Stack compact>  // Same as spacing="sm"
+  <Badge>New</Badge>
+  <Text>Compact layout</Text>
+</Stack>
+```
+
+## Pattern Components
+
+Use these pre-built patterns for common UI needs:
+
+### PageHeader
+Complete page header with title, subtitle, badge, and actions:
+
+```tsx
+import { PageHeader, ButtonGroup } from "@/components/ds/patterns";
+import { Button } from "@/components/ui/button";
+
+<PageHeader
+  badge="New"
+  title="Build Better Products"
+  subtitle="The modern way to ship software"
+  centered
+>
+  <ButtonGroup>
+    <Button size="lg">Get Started</Button>
+    <Button size="lg" variant="outline">Learn More</Button>
+  </ButtonGroup>
+</PageHeader>
+```
+
+### ContentBlock
+Feature sections with optional image:
+
+```tsx
+import { ContentBlock } from "@/components/ds/patterns";
+
+<ContentBlock
+  title="Advanced Analytics"
+  description="Get insights into your performance"
+  image="/analytics.jpg"
+  imagePosition="right"
+  buttonText="View Demo"
+  buttonHref="/demo"
+/>
+```
+
+### ButtonGroup
+Pre-configured button layouts:
+
+```tsx
+import { ButtonGroup } from "@/components/ds/patterns";
+import { Button } from "@/components/ui/button";
+
+<ButtonGroup spacing="md">
+  <Button>Save</Button>
+  <Button variant="outline">Cancel</Button>
+</ButtonGroup>
+```
+
+### When to Use Patterns vs Primitives
+
+**Use Pattern Components when:**
+- Building common UI sections (heroes, features, CTAs)
+- You want consistent, tested layouts
+- Speed is more important than customization
+
+**Use Primitive Components when:**
+- Building custom layouts
+- Need fine-grained control
+- Creating new patterns
 
 ## TypeScript Best Practices
 
@@ -173,6 +248,12 @@ import { defaultContent } from "./components/[type]/[component-name]/content";
 ```tsx
 // components/hero/hero-minimal/index.tsx
 import * as React from "react";
+
+// Option 1: Using pattern components (recommended for common patterns)
+import { PageHeader, ButtonGroup } from "@/components/ds/patterns";
+import { Button } from "@/components/ui/button";
+
+// Option 2: Using primitive components (for custom layouts)
 import {
   Section,
   Container,
@@ -207,11 +288,11 @@ export const HeroMinimal = ({
       <Container>
         <Stack spacing="lg" align="center">
           <Stack spacing="md" align="center">
-            <Heading level={1} align="center">
+            <Heading size={1} centered>
               {headline}
             </Heading>
             {subheadline && (
-              <Text variant="lead" align="center" color="muted">
+              <Text variant="lead" centered subdued>
                 {subheadline}
               </Text>
             )}
@@ -355,8 +436,8 @@ export const heroMinimalSchema = {
 
 ```tsx
 <Stack spacing="md" align="center">
-  <Heading level={2}>Section Title</Heading>
-  <Text variant="lead" color="muted">
+  <Heading size={2}>Section Title</Heading>
+  <Text variant="lead" subdued>
     Description
   </Text>
   <Button>Action</Button>
@@ -368,11 +449,21 @@ export const heroMinimalSchema = {
 ```tsx
 <div className="grid items-center gap-8 md:grid-cols-2">
   <Stack spacing="md">
-    <Heading level={2}>Feature</Heading>
+    <Heading size={2}>Feature</Heading>
     <Text>Description</Text>
   </Stack>
   <div>{/* Image or other content */}</div>
 </div>
+```
+
+**Or use ContentBlock pattern:**
+```tsx
+<ContentBlock
+  title="Feature"
+  description="Description"
+  image="/feature.jpg"
+  imagePosition="right"
+/>
 ```
 
 ### Card Grid
@@ -382,7 +473,7 @@ export const heroMinimalSchema = {
   {items.map((item) => (
     <Card key={item.id}>
       <CardHeader>
-        <Heading level={3}>{item.title}</Heading>
+        <Heading size={3}>{item.title}</Heading>
       </CardHeader>
       <CardContent>
         <Text>{item.description}</Text>
@@ -419,8 +510,8 @@ if (error) {
     <Section>
       <Container>
         <Stack spacing="md" align="center">
-          <Heading level={2}>Something went wrong</Heading>
-          <Text color="muted">{error.message}</Text>
+          <Heading size={2}>Something went wrong</Heading>
+          <Text subdued>{error.message}</Text>
           <Button onClick={retry}>Try again</Button>
         </Stack>
       </Container>
@@ -437,8 +528,8 @@ if (!data || data.length === 0) {
     <Section>
       <Container>
         <Stack spacing="md" align="center">
-          <Heading level={2}>No items found</Heading>
-          <Text color="muted">Try adjusting your filters or search terms</Text>
+          <Heading size={2}>No items found</Heading>
+          <Text subdued>Try adjusting your filters or search terms</Text>
         </Stack>
       </Container>
     </Section>
@@ -462,3 +553,73 @@ if (!data || data.length === 0) {
 - **Newsletter**: Email signup forms
 - **Blog Sections**: Blog post previews
 - **Gallery**: Image/video galleries
+
+## Migration Guide
+
+### Updated Design System API
+
+If you're updating existing components to use the new design system:
+
+#### Heading Changes
+```tsx
+// Old
+<Heading level={1}>Title</Heading>
+<Heading level={2} align="center" color="muted">Subtitle</Heading>
+
+// New
+<Heading size={1}>Title</Heading>
+<Heading size={2} centered subdued>Subtitle</Heading>
+```
+
+#### Text Changes
+```tsx
+// Old
+<Text variant="h1">Heading Text</Text>
+<Text variant="large">Large Text</Text>
+<Text variant="caption">Caption</Text>
+<Text color="muted">Muted Text</Text>
+
+// New
+<Heading size={1}>Heading Text</Heading>  // Use Heading for h1-h6
+<Text variant="lead">Large Text</Text>
+<Text variant="small" subdued>Caption</Text>
+<Text subdued>Muted Text</Text>
+```
+
+#### Stack/Inline Changes
+```tsx
+// Old
+<Stack spacing="2xl">
+<Stack spacing="xs">
+
+// New
+<Stack spacing="xl">     // or spacing="gap-12" for custom
+<Stack compact>          // replaces spacing="xs"
+```
+
+#### Pattern Components
+Consider replacing common component patterns with the new pattern components:
+
+```tsx
+// Old: Manual hero composition
+<Section>
+  <Container>
+    <Stack spacing="lg" align="center">
+      <Heading size={1} centered>{title}</Heading>
+      <Text variant="lead" centered subdued>{subtitle}</Text>
+      <Inline spacing="md">
+        <Button>CTA</Button>
+      </Inline>
+    </Stack>
+  </Container>
+</Section>
+
+// New: Use PageHeader pattern
+<PageHeader
+  title={title}
+  subtitle={subtitle}
+  centered
+>
+  <Button>CTA</Button>
+</PageHeader>
+```
