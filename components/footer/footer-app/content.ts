@@ -67,8 +67,6 @@ export const defaultContent: FooterAppProps = {
     preview: {
       src: "/placeholder.svg",
       alt: "TaskFlow App Preview",
-      width: 300,
-      height: 600,
     },
   },
   links: [

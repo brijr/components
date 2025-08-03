@@ -72,10 +72,6 @@ export interface FooterAppProps {
       src: string;
       /** Alt text */
       alt: string;
-      /** Image width */
-      width: number;
-      /** Image height */
-      height: number;
     };
   };
   /** Company links */
@@ -229,13 +225,14 @@ export const FooterApp = ({
                         aria-label={`Download from ${store.name}`}
                       >
                         {typeof store.badge === "string" ? (
-                          <Image
-                            src={store.badge}
-                            alt={store.alt || `Download from ${store.name}`}
-                            width={140}
-                            height={42}
-                            className="h-12 w-auto"
-                          />
+                          <div className="relative h-12 w-40">
+                            <Image
+                              src={store.badge}
+                              alt={store.alt || `Download from ${store.name}`}
+                              fill
+                              className="object-contain"
+                            />
+                          </div>
                         ) : (
                           store.badge
                         )}
@@ -246,13 +243,14 @@ export const FooterApp = ({
                   {/* QR Code */}
                   {app.qrCode && (
                     <div className="flex items-center gap-3 p-4 rounded-lg bg-muted/50 max-w-fit">
-                      <Image
-                        src={app.qrCode.src}
-                        alt="QR Code"
-                        width={80}
-                        height={80}
-                        className="rounded"
-                      />
+                      <div className="relative w-20 h-20">
+                        <Image
+                          src={app.qrCode.src}
+                          alt="QR Code"
+                          fill
+                          className="rounded object-contain"
+                        />
+                      </div>
                       <Stack spacing="sm" compact>
                         <Text variant="small" className="font-medium">
                           {app.qrCode.text}
@@ -269,16 +267,17 @@ export const FooterApp = ({
               {/* Preview side */}
               {app.preview && (
                 <div className="relative flex justify-center lg:justify-end">
-                  <div className="relative">
+                  <div className="relative w-full max-w-[300px] lg:max-w-[400px]">
                     <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-primary/5 blur-3xl" />
-                    <Image
-                      src={app.preview.src}
-                      alt={app.preview.alt}
-                      width={app.preview.width}
-                      height={app.preview.height}
-                      className="relative z-10 rounded-2xl shadow-2xl"
-                      priority
-                    />
+                    <div className="relative aspect-[9/16] w-full">
+                      <Image
+                        src={app.preview.src}
+                        alt={app.preview.alt}
+                        fill
+                        className="rounded-2xl shadow-2xl object-cover"
+                        priority
+                      />
+                    </div>
                   </div>
                 </div>
               )}
@@ -444,16 +443,8 @@ export const footerAppSchema = {
               type: "string",
               description: "Alt text",
             },
-            width: {
-              type: "number",
-              description: "Image width",
-            },
-            height: {
-              type: "number",
-              description: "Image height",
-            },
           },
-          required: ["src", "alt", "width", "height"],
+          required: ["src", "alt"],
           description: "App preview image",
         },
       },

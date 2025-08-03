@@ -61,6 +61,16 @@ import { FeatureShowcaseLeft } from "./components/feature/feature-showcase-left"
 import { defaultContent as featureShowcaseLeftContent } from "./components/feature/feature-showcase-left/content";
 import { FeatureTimeline } from "./components/feature/feature-timeline";
 import { defaultContent as featureTimelineContent } from "./components/feature/feature-timeline/content";
+import { FeatureBento } from "./components/feature/feature-bento";
+import { defaultContent as featureBentoContent } from "./components/feature/feature-bento/content";
+import { FeatureTabs } from "./components/feature/feature-tabs";
+import { defaultContent as featureTabsContent } from "./components/feature/feature-tabs/content";
+import { FeatureAccordion } from "./components/feature/feature-accordion";
+import { defaultContent as featureAccordionContent } from "./components/feature/feature-accordion/content";
+import { FeatureMatrix } from "./components/feature/feature-matrix";
+import { defaultContent as featureMatrixContent } from "./components/feature/feature-matrix/content";
+import { FeatureSpotlight } from "./components/feature/feature-spotlight";
+import { defaultContent as featureSpotlightContent } from "./components/feature/feature-spotlight/content";
 
 // CTA components
 import { CTASimple } from "./components/cta/cta-simple";
@@ -465,6 +475,51 @@ export const registry: RegistryItem[] = [
     description: "Timeline/process steps layout for onboarding flows or roadmaps.",
     props: featureTimelineContent,
     filePath: "./components/feature/feature-timeline/index.tsx",
+  },
+  {
+    name: "Feature Bento",
+    type: "feature",
+    slug: "feature-bento",
+    Component: FeatureBento,
+    description: "Bento grid feature section with different sized cards for visual hierarchy.",
+    props: featureBentoContent,
+    filePath: "./components/feature/feature-bento/index.tsx",
+  },
+  {
+    name: "Feature Tabs",
+    type: "feature",
+    slug: "feature-tabs",
+    Component: FeatureTabs,
+    description: "Tabbed feature section for showcasing features with detailed content.",
+    props: featureTabsContent,
+    filePath: "./components/feature/feature-tabs/index.tsx",
+  },
+  {
+    name: "Feature Accordion",
+    type: "feature",
+    slug: "feature-accordion",
+    Component: FeatureAccordion,
+    description: "Accordion-style feature section for expandable feature details.",
+    props: featureAccordionContent,
+    filePath: "./components/feature/feature-accordion/index.tsx",
+  },
+  {
+    name: "Feature Matrix",
+    type: "feature",
+    slug: "feature-matrix",
+    Component: FeatureMatrix,
+    description: "Feature comparison matrix for showcasing plan differences.",
+    props: featureMatrixContent,
+    filePath: "./components/feature/feature-matrix/index.tsx",
+  },
+  {
+    name: "Feature Spotlight",
+    type: "feature",
+    slug: "feature-spotlight",
+    Component: FeatureSpotlight,
+    description: "Feature spotlight section with large images and detailed content.",
+    props: featureSpotlightContent,
+    filePath: "./components/feature/feature-spotlight/index.tsx",
   },
 
   // CTA components
