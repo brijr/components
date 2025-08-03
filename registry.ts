@@ -155,6 +155,14 @@ import { FooterMinimal } from "./components/footer/footer-minimal";
 import { defaultContent as footerMinimalContent } from "./components/footer/footer-minimal/content";
 import { FooterCentered } from "./components/footer/footer-centered";
 import { defaultContent as footerCenteredContent } from "./components/footer/footer-centered/content";
+import { FooterSocial } from "./components/footer/footer-social";
+import { defaultContent as footerSocialContent } from "./components/footer/footer-social/content";
+import { FooterNewsletter } from "./components/footer/footer-newsletter";
+import { defaultContent as footerNewsletterContent } from "./components/footer/footer-newsletter/content";
+import { FooterApp } from "./components/footer/footer-app";
+import { defaultContent as footerAppContent } from "./components/footer/footer-app/content";
+import { FooterMega } from "./components/footer/footer-mega";
+import { defaultContent as footerMegaContent } from "./components/footer/footer-mega/content";
 
 // Newsletter components
 import { NewsletterSimple } from "./components/newsletter/newsletter-simple";
@@ -824,6 +832,42 @@ export const registry: RegistryItem[] = [
     description: "Centered footer with brand, links, and social icons.",
     props: footerCenteredContent,
     filePath: "./components/footer/footer-centered/index.tsx",
+  },
+  {
+    name: "Footer Social",
+    type: "footer",
+    slug: "footer-social",
+    Component: FooterSocial,
+    description: "Social media focused footer with prominent social icons and follower counts.",
+    props: footerSocialContent,
+    filePath: "./components/footer/footer-social/index.tsx",
+  },
+  {
+    name: "Footer Newsletter",
+    type: "footer",
+    slug: "footer-newsletter",
+    Component: FooterNewsletter,
+    description: "Newsletter-centric footer with prominent signup form and benefits.",
+    props: footerNewsletterContent,
+    filePath: "./components/footer/footer-newsletter/index.tsx",
+  },
+  {
+    name: "Footer App",
+    type: "footer",
+    slug: "footer-app",
+    Component: FooterApp,
+    description: "App download focused footer with store badges and QR code.",
+    props: footerAppContent,
+    filePath: "./components/footer/footer-app/index.tsx",
+  },
+  {
+    name: "Footer Mega",
+    type: "footer",
+    slug: "footer-mega",
+    Component: FooterMega,
+    description: "Mega menu style footer with detailed navigation and featured content.",
+    props: footerMegaContent,
+    filePath: "./components/footer/footer-mega/index.tsx",
   },
 
   // Newsletter components
