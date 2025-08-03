@@ -13,7 +13,7 @@ export const defaultContent: HeroLeftAlignedProps = {
     href: "/components",
   },
   image: {
-    src: "/placeholder.webp",
+    src: "/placeholder.svg",
     alt: "Component library interface showing various UI elements",
     width: 1200,
     height: 675,
@@ -36,7 +36,7 @@ export const contentVariations: HeroLeftAlignedProps[] = [
       href: "/demo",
     },
     image: {
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       alt: "Project management dashboard with kanban board",
       width: 1200,
       height: 675,
@@ -57,7 +57,7 @@ export const contentVariations: HeroLeftAlignedProps[] = [
       href: "/features",
     },
     image: {
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       alt: "Marketing automation dashboard showing campaign analytics",
       width: 1200,
       height: 675,
@@ -73,7 +73,7 @@ export const contentVariations: HeroLeftAlignedProps[] = [
       href: "/start",
     },
     image: {
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       alt: "Data visualization dashboard with charts and graphs",
       width: 1200,
       height: 675,
@@ -94,7 +94,7 @@ export const contentVariations: HeroLeftAlignedProps[] = [
       href: "/contact",
     },
     image: {
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       alt: "Design tool interface with component library",
       width: 1200,
       height: 675,

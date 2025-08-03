@@ -13,7 +13,7 @@ export const defaultContent: HeroWithImageProps = {
     href: "/components",
   },
   image: {
-    src: "/placeholder.webp",
+    src: "/placeholder.svg",
     alt: "Dashboard interface showing modern design components",
     width: 1200,
     height: 675,
@@ -36,7 +36,7 @@ export const contentVariations: HeroWithImageProps[] = [
       href: "/demo",
     },
     image: {
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       alt: "Analytics dashboard with charts and metrics",
       width: 1200,
       height: 675,
@@ -57,7 +57,7 @@ export const contentVariations: HeroWithImageProps[] = [
       href: "/docs",
     },
     image: {
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       alt: "Code editor interface with syntax highlighting",
       width: 1200,
       height: 675,
@@ -73,7 +73,7 @@ export const contentVariations: HeroWithImageProps[] = [
       href: "/register",
     },
     image: {
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       alt: "E-commerce dashboard showing products and sales",
       width: 1200,
       height: 675,
@@ -93,7 +93,7 @@ export const contentVariations: HeroWithImageProps[] = [
       href: "/preview",
     },
     image: {
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       alt: "Online learning platform interface",
       width: 1200,
       height: 675,

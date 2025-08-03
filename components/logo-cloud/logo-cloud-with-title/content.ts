@@ -2,11 +2,12 @@ import { LogoCloudWithTitleProps } from "./index";
 
 export const defaultContent: LogoCloudWithTitleProps = {
   headline: "Trusted by industry leaders",
-  subheadline: "Join thousands of companies already transforming their business with our platform",
+  subheadline:
+    "Join thousands of companies already transforming their business with our platform",
   logos: [
     {
       name: "Fortune 500 Corp",
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       width: 140,
       height: 40,
       description: "Leading global enterprise",
@@ -14,7 +15,7 @@ export const defaultContent: LogoCloudWithTitleProps = {
     },
     {
       name: "Tech Innovators",
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       width: 120,
       height: 40,
       description: "Pioneering the future",
@@ -22,7 +23,7 @@ export const defaultContent: LogoCloudWithTitleProps = {
     },
     {
       name: "Global Retail",
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       width: 130,
       height: 40,
       description: "Worldwide commerce leader",
@@ -30,7 +31,7 @@ export const defaultContent: LogoCloudWithTitleProps = {
     },
     {
       name: "Finance Plus",
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       width: 110,
       height: 40,
       description: "Trusted financial services",
@@ -38,7 +39,7 @@ export const defaultContent: LogoCloudWithTitleProps = {
     },
     {
       name: "Health Systems",
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       width: 140,
       height: 40,
       description: "Healthcare innovation",
@@ -46,7 +47,7 @@ export const defaultContent: LogoCloudWithTitleProps = {
     },
     {
       name: "EduTech Pro",
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       width: 120,
       height: 40,
       description: "Education technology leader",
@@ -54,7 +55,7 @@ export const defaultContent: LogoCloudWithTitleProps = {
     },
     {
       name: "Media Giant",
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       width: 130,
       height: 40,
       description: "Global media network",
@@ -62,7 +63,7 @@ export const defaultContent: LogoCloudWithTitleProps = {
     },
     {
       name: "Auto Leaders",
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       width: 120,
       height: 40,
       description: "Driving innovation",
@@ -70,7 +71,8 @@ export const defaultContent: LogoCloudWithTitleProps = {
     },
   ],
   testimonial: {
-    quote: "This platform has fundamentally transformed how we operate. The efficiency gains have been remarkable.",
+    quote:
+      "This platform has fundamentally transformed how we operate. The efficiency gains have been remarkable.",
     author: "Sarah Johnson",
     role: "Chief Technology Officer",
     company: "Fortune 500 Corp",
@@ -89,31 +91,31 @@ export const contentVariations: LogoCloudWithTitleProps[] = [
     logos: [
       {
         name: "Microsoft",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 130,
         height: 40,
       },
       {
         name: "Google",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 110,
         height: 40,
       },
       {
         name: "Amazon",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 120,
         height: 40,
       },
       {
         name: "Apple",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 100,
         height: 40,
       },
       {
         name: "Meta",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 110,
         height: 40,
       },
@@ -127,43 +129,44 @@ export const contentVariations: LogoCloudWithTitleProps[] = [
     logos: [
       {
         name: "Startup Inc",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 120,
         height: 40,
       },
       {
         name: "Scale Fast",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 110,
         height: 40,
       },
       {
         name: "Growth Co",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 130,
         height: 40,
       },
       {
         name: "Innovate Labs",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 140,
         height: 40,
       },
       {
         name: "Future Tech",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 120,
         height: 40,
       },
       {
         name: "Digital First",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 130,
         height: 40,
       },
     ],
     testimonial: {
-      quote: "We've tried many solutions, but this is the only one that truly delivers on its promises. Our team productivity has increased by 40%.",
+      quote:
+        "We've tried many solutions, but this is the only one that truly delivers on its promises. Our team productivity has increased by 40%.",
       author: "Michael Chen",
       role: "Founder & CEO",
       company: "Scale Fast",
@@ -179,7 +182,7 @@ export const contentVariations: LogoCloudWithTitleProps[] = [
     logos: [
       {
         name: "Enterprise Alpha",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 160,
         height: 50,
         description: "Reduced operational costs by 35% in 6 months",
@@ -187,7 +190,7 @@ export const contentVariations: LogoCloudWithTitleProps[] = [
       },
       {
         name: "Global Beta",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 150,
         height: 50,
         description: "Scaled from 100 to 10,000 users seamlessly",
@@ -195,7 +198,7 @@ export const contentVariations: LogoCloudWithTitleProps[] = [
       },
       {
         name: "Innovation Gamma",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 170,
         height: 50,
         description: "Launched 5 new products using our platform",
@@ -213,42 +216,42 @@ export const contentVariations: LogoCloudWithTitleProps[] = [
     logos: [
       {
         name: "ISO Certified",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 100,
         height: 40,
         description: "ISO 27001 certified",
       },
       {
         name: "SOC 2",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 90,
         height: 40,
         description: "Type II compliant",
       },
       {
         name: "GDPR Ready",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 110,
         height: 40,
         description: "Fully GDPR compliant",
       },
       {
         name: "HIPAA Secure",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 120,
         height: 40,
         description: "HIPAA compliant",
       },
       {
         name: "PCI DSS",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 100,
         height: 40,
         description: "Level 1 certified",
       },
       {
         name: "CCPA Ready",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 110,
         height: 40,
         description: "CCPA compliant",
@@ -266,28 +269,28 @@ export const contentVariations: LogoCloudWithTitleProps[] = [
     logos: [
       {
         name: "Venture Capital A",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 140,
         height: 40,
         href: "https://vca.com",
       },
       {
         name: "Growth Partners",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 150,
         height: 40,
         href: "https://growth.com",
       },
       {
         name: "Innovation Fund",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 160,
         height: 40,
         href: "https://innovation.com",
       },
       {
         name: "Tech Ventures",
-        src: "/placeholder.webp",
+        src: "/placeholder.svg",
         width: 140,
         height: 40,
         href: "https://techventures.com",

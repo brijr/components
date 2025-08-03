@@ -16,7 +16,7 @@ export const defaultContent: HeroSplitProps = {
     href: "/demo",
   },
   image: {
-    src: "/placeholder.webp",
+    src: "/placeholder.svg",
     alt: "Workflow automation dashboard interface",
     width: 600,
     height: 400,
@@ -37,7 +37,7 @@ export const contentVariations: HeroSplitProps[] = [
       href: "/signup",
     },
     image: {
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       alt: "Analytics dashboard with charts and graphs",
       width: 600,
       height: 400,
@@ -57,7 +57,7 @@ export const contentVariations: HeroSplitProps[] = [
       href: "/features",
     },
     image: {
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       alt: "Team collaboration interface showing shared workspace",
       width: 600,
       height: 400,

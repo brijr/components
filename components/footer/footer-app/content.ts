@@ -1,4 +1,14 @@
-import { Cloud, Shield, Zap, Globe, Lock, Sparkles, Twitter, Facebook, Instagram } from "lucide-react";
+import {
+  Cloud,
+  Shield,
+  Zap,
+  Globe,
+  Lock,
+  Sparkles,
+  Twitter,
+  Facebook,
+  Instagram,
+} from "lucide-react";
 import React from "react";
 import type { FooterAppProps } from "./index";
 
@@ -6,7 +16,8 @@ export const defaultContent: FooterAppProps = {
   app: {
     name: "TaskFlow",
     tagline: "Your personal productivity companion",
-    description: "Join millions of users who've transformed their daily workflow. Available on all your devices.",
+    description:
+      "Join millions of users who've transformed their daily workflow. Available on all your devices.",
     rating: {
       score: 4.8,
       reviews: "50K+",
@@ -37,22 +48,24 @@ export const defaultContent: FooterAppProps = {
       {
         name: "App Store",
         href: "https://apps.apple.com/app/taskflow",
-        badge: "https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg",
+        badge:
+          "https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg",
         alt: "Download on the App Store",
       },
       {
         name: "Google Play",
         href: "https://play.google.com/store/apps/details?id=com.taskflow",
-        badge: "https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png",
+        badge:
+          "https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png",
         alt: "Get it on Google Play",
       },
     ],
     qrCode: {
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       text: "Scan to download",
     },
     preview: {
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       alt: "TaskFlow App Preview",
       width: 300,
       height: 600,
@@ -92,7 +105,8 @@ export const contentVariations = [
     app: {
       name: "Epic Quest",
       tagline: "Adventure awaits",
-      description: "Embark on the ultimate mobile RPG experience. Play with friends, conquer dungeons, and become a legend.",
+      description:
+        "Embark on the ultimate mobile RPG experience. Play with friends, conquer dungeons, and become a legend.",
       rating: {
         score: 4.9,
         reviews: "1M+",
@@ -113,13 +127,15 @@ export const contentVariations = [
         {
           name: "App Store",
           href: "https://apps.apple.com/app/epic-quest",
-          badge: "https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg",
+          badge:
+            "https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg",
           alt: "Download on the App Store",
         },
         {
           name: "Google Play",
           href: "https://play.google.com/store/apps/details?id=com.epicquest",
-          badge: "https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png",
+          badge:
+            "https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png",
           alt: "Get it on Google Play",
         },
       ],
@@ -136,7 +152,8 @@ export const contentVariations = [
     app: {
       name: "WealthTrack",
       tagline: "Smart investing made simple",
-      description: "Take control of your financial future with intelligent portfolio management.",
+      description:
+        "Take control of your financial future with intelligent portfolio management.",
       features: [
         {
           icon: React.createElement(Lock, { className: "w-5 h-5" }),
@@ -153,13 +170,15 @@ export const contentVariations = [
         {
           name: "App Store",
           href: "https://apps.apple.com/app/wealthtrack",
-          badge: "https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg",
+          badge:
+            "https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg",
           alt: "Download on the App Store",
         },
         {
           name: "Google Play",
           href: "https://play.google.com/store/apps/details?id=com.wealthtrack",
-          badge: "https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png",
+          badge:
+            "https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png",
           alt: "Get it on Google Play",
         },
       ],

@@ -16,7 +16,7 @@ export const defaultContent: HeroWithBackgroundProps = {
     href: "/features",
   },
   backgroundImage: {
-    src: "/placeholder.webp",
+    src: "/placeholder.svg",
     alt: "Abstract technology background",
     overlayOpacity: 60,
   },
@@ -35,7 +35,7 @@ export const contentVariations: HeroWithBackgroundProps[] = [
       href: "/signup",
     },
     backgroundImage: {
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       alt: "Futuristic cityscape",
       overlayOpacity: 70,
     },
@@ -54,7 +54,7 @@ export const contentVariations: HeroWithBackgroundProps[] = [
       href: "/contact",
     },
     backgroundImage: {
-      src: "/placeholder.webp",
+      src: "/placeholder.svg",
       alt: "Global team collaboration",
       overlayOpacity: 40,
     },

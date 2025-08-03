@@ -76,7 +76,7 @@ export const contentVariations: HeroWithTabsProps[] = [
           "Priority support",
         ],
         image: {
-          src: "/placeholder.webp",
+          src: "/placeholder.svg",
           alt: "Startup dashboard",
         },
       },
@@ -87,7 +87,7 @@ export const contentVariations: HeroWithTabsProps[] = [
         description: "Trusted by Fortune 500 companies worldwide",
         features: ["SOC 2 compliance", "Custom SLAs", "Dedicated support"],
         image: {
-          src: "/placeholder.webp",
+          src: "/placeholder.svg",
           alt: "Enterprise features",
         },
       },

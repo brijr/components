@@ -81,8 +81,11 @@ import { Section, Container, Stack, Inline } from "@/components/ds";
 - Custom: Any Tailwind gap class (e.g., `spacing="gap-12"`)
 
 **New:** Use `compact` prop for tight spacing:
+
 ```tsx
-<Stack compact>  // Same as spacing="sm"
+<Stack compact>
+  {" "}
+  // Same as spacing="sm"
   <Badge>New</Badge>
   <Text>Compact layout</Text>
 </Stack>
@@ -93,6 +96,7 @@ import { Section, Container, Stack, Inline } from "@/components/ds";
 Use these pre-built patterns for common UI needs:
 
 ### PageHeader
+
 Complete page header with title, subtitle, badge, and actions:
 
 ```tsx
@@ -107,12 +111,15 @@ import { Button } from "@/components/ui/button";
 >
   <ButtonGroup>
     <Button size="lg">Get Started</Button>
-    <Button size="lg" variant="outline">Learn More</Button>
+    <Button size="lg" variant="outline">
+      Learn More
+    </Button>
   </ButtonGroup>
-</PageHeader>
+</PageHeader>;
 ```
 
 ### ContentBlock
+
 Feature sections with optional image:
 
 ```tsx
@@ -125,10 +132,11 @@ import { ContentBlock } from "@/components/ds/patterns";
   imagePosition="right"
   buttonText="View Demo"
   buttonHref="/demo"
-/>
+/>;
 ```
 
 ### ButtonGroup
+
 Pre-configured button layouts:
 
 ```tsx
@@ -138,17 +146,19 @@ import { Button } from "@/components/ui/button";
 <ButtonGroup spacing="md">
   <Button>Save</Button>
   <Button variant="outline">Cancel</Button>
-</ButtonGroup>
+</ButtonGroup>;
 ```
 
 ### When to Use Patterns vs Primitives
 
 **Use Pattern Components when:**
+
 - Building common UI sections (heroes, features, CTAs)
 - You want consistent, tested layouts
 - Speed is more important than customization
 
 **Use Primitive Components when:**
+
 - Building custom layouts
 - Need fine-grained control
 - Creating new patterns
@@ -215,7 +225,7 @@ export const contentVariations = [
 ### Image Requirements
 
 - Use Next.js Image component from `next/image`
-- Default to `/placeholder.webp` for examples
+- Default to `/placeholder.svg` for examples
 - Include width/height in props
 - Always include alt text
 
@@ -457,6 +467,7 @@ export const heroMinimalSchema = {
 ```
 
 **Or use ContentBlock pattern:**
+
 ```tsx
 <ContentBlock
   title="Feature"
@@ -561,6 +572,7 @@ if (!data || data.length === 0) {
 If you're updating existing components to use the new design system:
 
 #### Heading Changes
+
 ```tsx
 // Old
 <Heading level={1}>Title</Heading>
@@ -572,6 +584,7 @@ If you're updating existing components to use the new design system:
 ```
 
 #### Text Changes
+
 ```tsx
 // Old
 <Text variant="h1">Heading Text</Text>
@@ -587,6 +600,7 @@ If you're updating existing components to use the new design system:
 ```
 
 #### Stack/Inline Changes
+
 ```tsx
 // Old
 <Stack spacing="2xl">
@@ -598,6 +612,7 @@ If you're updating existing components to use the new design system:
 ```
 
 #### Pattern Components
+
 Consider replacing common component patterns with the new pattern components:
 
 ```tsx
