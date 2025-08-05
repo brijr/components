@@ -37,41 +37,41 @@ interface CenterProps
 
 /**
  * Center component for easily centering content
- * 
+ *
  * @example
  * ```tsx
  * // Center content both horizontally and vertically
  * <Center className="h-screen">
  *   <Card>Centered Content</Card>
  * </Center>
- * 
+ *
  * // Center only horizontally
  * <Center direction="horizontal">
  *   <Button>Centered Button</Button>
  * </Center>
- * 
+ *
  * // Center with max width constraint
  * <Center maxW="800px">
  *   <Text>This content won't exceed 800px width</Text>
  * </Center>
- * 
+ *
  * // Responsive max width
  * <Center maxW={{ base: "100%", md: "768px", lg: "1024px" }}>
  *   <Content />
  * </Center>
- * 
+ *
  * // Center text content
  * <Center text>
  *   <Heading>Centered Heading</Heading>
  *   <Text>This text is also centered</Text>
  * </Center>
- * 
+ *
  * // Inline centering
  * <Center inline>
  *   <Icon />
  *   <span>Centered with icon</span>
  * </Center>
- * 
+ *
  * // Full viewport centering
  * <Center minH="100vh">
  *   <Stack spacing="md">
@@ -95,7 +95,7 @@ export const Center = React.forwardRef<HTMLDivElement, CenterProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     // Handle max width
     const maxWidthClasses = maxW
@@ -103,7 +103,11 @@ export const Center = React.forwardRef<HTMLDivElement, CenterProps>(
           if (typeof value === "number") {
             return `max-w-[${value}px]`;
           }
-          if (value.includes("px") || value.includes("rem") || value.includes("%")) {
+          if (
+            value.includes("px") ||
+            value.includes("rem") ||
+            value.includes("%")
+          ) {
             return `max-w-[${value}]`;
           }
           // Assume it's a Tailwind class like "2xl" or "prose"
@@ -117,7 +121,12 @@ export const Center = React.forwardRef<HTMLDivElement, CenterProps>(
           if (typeof value === "number") {
             return `min-h-[${value}px]`;
           }
-          if (value.includes("px") || value.includes("vh") || value.includes("rem") || value.includes("%")) {
+          if (
+            value.includes("px") ||
+            value.includes("vh") ||
+            value.includes("rem") ||
+            value.includes("%")
+          ) {
             return `min-h-[${value}]`;
           }
           // Assume it's a Tailwind class like "screen" or "full"
@@ -129,7 +138,8 @@ export const Center = React.forwardRef<HTMLDivElement, CenterProps>(
     const textClasses = text ? "text-center" : "";
 
     // Add width classes for horizontal centering with max width
-    const widthClasses = maxW && direction !== "vertical" ? "w-full mx-auto" : "";
+    const widthClasses =
+      maxW && direction !== "vertical" ? "w-full mx-auto" : "";
 
     return (
       <Component
@@ -140,7 +150,7 @@ export const Center = React.forwardRef<HTMLDivElement, CenterProps>(
           minHeightClasses,
           textClasses,
           widthClasses,
-          className
+          className,
         )}
         style={style}
         {...props}
@@ -148,7 +158,7 @@ export const Center = React.forwardRef<HTMLDivElement, CenterProps>(
         {children}
       </Component>
     );
-  }
+  },
 );
 
 Center.displayName = "Center";

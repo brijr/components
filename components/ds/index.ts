@@ -28,13 +28,13 @@ export { Divider } from "./divider";
 export { PageHeader, ContentBlock, ButtonGroup } from "./patterns";
 
 // Utilities
-export { 
+export {
   type ResponsiveValue,
   responsive,
   isResponsiveValue,
   useBreakpoint,
   useResponsive,
-  createResponsiveProp 
+  createResponsiveProp,
 } from "./utils/responsive";
 
 // Design Tokens (simplified)

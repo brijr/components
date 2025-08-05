@@ -1,14 +1,14 @@
 /**
  * Design System Examples
- * 
+ *
  * Copy-paste ready examples of common UI patterns using the design system.
  * These examples demonstrate best practices and common use cases.
  */
 
 export const examples = {
   // Hero Sections
-  heroSimple: `<PageHeader 
-  title="Welcome to Our Platform" 
+  heroSimple: `<PageHeader
+  title="Welcome to Our Platform"
   subtitle="Build amazing products with our powerful tools"
 />`,
 
@@ -87,7 +87,7 @@ export const examples = {
         <Heading size={2} centered>Choose Your Plan</Heading>
         <Text variant="lead" subdued centered>Simple pricing that scales with your business</Text>
       </Stack>
-      
+
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {plans.map((plan) => (
           <Card key={plan.name}>
@@ -118,24 +118,24 @@ export const examples = {
         <Heading size={2} centered>Get in Touch</Heading>
         <Text subdued centered>We'd love to hear from you</Text>
       </Stack>
-      
+
       <form>
         <Stack spacing="md">
           <div>
             <Label htmlFor="name">Name</Label>
             <Input id="name" placeholder="John Doe" />
           </div>
-          
+
           <div>
             <Label htmlFor="email">Email</Label>
             <Input id="email" type="email" placeholder="john@example.com" />
           </div>
-          
+
           <div>
             <Label htmlFor="message">Message</Label>
             <Textarea id="message" placeholder="Your message..." rows={4} />
           </div>
-          
+
           <Button type="submit" className="w-full">Send Message</Button>
         </Stack>
       </form>
@@ -165,7 +165,7 @@ export const examples = {
           <Heading size={4}>Company</Heading>
           <Text subdued>Building the future of development</Text>
         </Stack>
-        
+
         <Inline spacing="xl">
           <Stack spacing="sm">
             <Text weight="semibold">Product</Text>
@@ -175,7 +175,7 @@ export const examples = {
               <Text variant="small" as="a" href="#">Docs</Text>
             </Stack>
           </Stack>
-          
+
           <Stack spacing="sm">
             <Text weight="semibold">Company</Text>
             <Stack spacing="xs">
@@ -186,7 +186,7 @@ export const examples = {
           </Stack>
         </Inline>
       </Inline>
-      
+
       <Inline spacing="sm" justify="between" className="border-t pt-6">
         <Text variant="small" subdued>© 2024 Company. All rights reserved.</Text>
         <Inline spacing="md">
@@ -224,7 +224,7 @@ export const examples = {
   <Container>
     <Stack spacing="lg">
       <Heading size={2} centered>Trusted by teams worldwide</Heading>
-      
+
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => (
           <Stack key={stat.label} spacing="xs" align="center">

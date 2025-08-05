@@ -11,7 +11,7 @@ import type { DSProps } from "./types";
  * @param {string} [props.id] - HTML id attribute.
  * @param {React.CSSProperties} [props.style] - Inline styles.
  * @returns {JSX.Element} A section element.
- * 
+ *
  * @example
  * ```tsx
  * <Section>

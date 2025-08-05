@@ -100,28 +100,28 @@ interface DividerProps
 
 /**
  * Divider component for visual separation between content
- * 
+ *
  * @example
  * ```tsx
  * // Simple horizontal divider
  * <Divider />
- * 
+ *
  * // Divider with text
  * <Divider>OR</Divider>
- * 
+ *
  * // Vertical divider in a flex container
  * <div className="flex items-center gap-4">
  *   <span>Option A</span>
  *   <Divider orientation="vertical" className="h-6" />
  *   <span>Option B</span>
  * </div>
- * 
+ *
  * // Dashed divider with custom color
  * <Divider variant="dashed" color="primary" />
- * 
+ *
  * // Thick divider
  * <Divider thickness="thick" />
- * 
+ *
  * // Divider with aligned text
  * <Divider textAlign="left">Section Title</Divider>
  * ```
@@ -139,7 +139,7 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     // If there's no content, render a simple divider
     if (!children) {
@@ -154,12 +154,12 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
               ? color === "default"
                 ? "border-border"
                 : color === "muted"
-                ? "border-muted"
-                : color === "primary"
-                ? "border-primary"
-                : "border-secondary"
+                  ? "border-muted"
+                  : color === "primary"
+                    ? "border-primary"
+                    : "border-secondary"
               : "",
-            className
+            className,
           )}
           {...props}
         />
@@ -178,17 +178,17 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
         ? color === "default"
           ? "border-border"
           : color === "muted"
-          ? "border-muted"
-          : color === "primary"
-          ? "border-primary"
-          : "border-secondary"
+            ? "border-muted"
+            : color === "primary"
+              ? "border-primary"
+              : "border-secondary"
         : "",
-      "flex-1"
+      "flex-1",
     );
 
     const textClasses = cn(
       isHorizontal ? "px-3" : "py-3",
-      "text-sm text-muted-foreground flex-shrink-0"
+      "text-sm text-muted-foreground flex-shrink-0",
     );
 
     // Determine the order of elements based on text alignment
@@ -200,7 +200,7 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
       if (textAlign === "left") {
         return (
           <div ref={ref} className={cn(containerClasses, className)} {...props}>
-            <div className={cn(lineClasses, "flex-none w-4")} />
+            <div className={cn(lineClasses, "w-4 flex-none")} />
             {content}
             {rightLine}
           </div>
@@ -211,7 +211,7 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
           <div ref={ref} className={cn(containerClasses, className)} {...props}>
             {leftLine}
             {content}
-            <div className={cn(lineClasses, "flex-none w-4")} />
+            <div className={cn(lineClasses, "w-4 flex-none")} />
           </div>
         );
       }
@@ -231,7 +231,7 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
         {rightLine}
       </div>
     );
-  }
+  },
 );
 
 Divider.displayName = "Divider";

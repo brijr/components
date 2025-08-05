@@ -17,6 +17,7 @@ import * as React from "react";
  * @property {boolean} [isArticle] - If true, renders the element as an article.
  * @property {boolean} [isSpaced] - If true, adds spacing between children elements.
  */
+
 export type DSProps = {
   className?: string;
   children?: React.ReactNode;

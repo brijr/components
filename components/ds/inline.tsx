@@ -70,13 +70,13 @@ interface InlineProps
  *   <Button>Save</Button>
  *   <Button variant="outline">Cancel</Button>
  * </Inline>
- * 
+ *
  * // Compact spacing
  * <Inline compact>
  *   <Icon />
  *   <Text>Settings</Text>
  * </Inline>
- * 
+ *
  * // With custom gap class
  * <Inline spacing="gap-1">
  *   <Chip>One</Chip>
@@ -108,22 +108,25 @@ export const Inline = React.forwardRef<HTMLDivElement, InlineProps>(
   ) => {
     // Apply compact prop
     const finalSpacing = compact ? "sm" : spacing;
-    
+
     // Check if spacing is a custom Tailwind class
-    const isCustomSpacing = finalSpacing && !["none", "sm", "md", "lg", "xl"].includes(finalSpacing);
-    
+    const isCustomSpacing =
+      finalSpacing && !["none", "sm", "md", "lg", "xl"].includes(finalSpacing);
+
     return (
       <Component
         ref={ref}
         className={cn(
-          inlineVariants({ 
-            spacing: isCustomSpacing ? undefined : finalSpacing as "none" | "sm" | "md" | "lg" | "xl", 
-            align, 
-            justify, 
-            wrap 
+          inlineVariants({
+            spacing: isCustomSpacing
+              ? undefined
+              : (finalSpacing as "none" | "sm" | "md" | "lg" | "xl"),
+            align,
+            justify,
+            wrap,
           }),
           isCustomSpacing && finalSpacing,
-          className
+          className,
         )}
         {...props}
       >

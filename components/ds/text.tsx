@@ -70,15 +70,15 @@ interface TextProps
  * <Text>Regular body text</Text>
  * <Text variant="lead">Introductory paragraph</Text>
  * <Text variant="small" subdued>Fine print</Text>
- * 
+ *
  * // With convenience props
  * <Text centered>Centered text</Text>
  * <Text subdued>Muted secondary text</Text>
- * 
+ *
  * // Special variants
  * <Text variant="code">const example = true</Text>
  * <Text variant="link" as="a" href="/docs">Documentation</Text>
- * 
+ *
  * // With modifiers
  * <Text weight="semibold">Important note</Text>
  * <Text variant="lead" centered>Hero subtitle</Text>
@@ -103,18 +103,18 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
     // Apply convenience props
     const finalAlign = centered ? "center" : align;
     const finalColor = subdued ? "muted" : color;
-    
+
     const Comp = Component as React.ElementType;
 
     return (
       <Comp
         ref={ref}
         className={cn(
-          textVariants({ 
-            variant, 
-            color: finalColor, 
-            weight, 
-            align: finalAlign 
+          textVariants({
+            variant,
+            color: finalColor,
+            weight,
+            align: finalAlign,
           }),
           className,
         )}

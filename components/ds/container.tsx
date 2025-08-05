@@ -11,7 +11,7 @@ import type { DSProps } from "./types";
  * @param {string} [props.id] - HTML id attribute.
  * @param {React.CSSProperties} [props.style] - Inline styles.
  * @returns {JSX.Element} A div element acting as a container.
- * 
+ *
  * @example
  * ```tsx
  * <Container>
@@ -20,10 +20,11 @@ import type { DSProps } from "./types";
  * </Container>
  * ```
  */
+
 export const Container = ({ children, className, id, style }: DSProps) => (
-  <div 
-    className={cn("mx-auto max-w-5xl p-4 sm:p-6", className)} 
-    id={id} 
+  <div
+    className={cn("mx-auto max-w-5xl p-4 sm:p-6", className)}
+    id={id}
     style={style}
   >
     {children}

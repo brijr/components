@@ -1,6 +1,10 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { type ResponsiveValue, responsive, isResponsiveValue } from "./utils/responsive";
+import {
+  type ResponsiveValue,
+  responsive,
+  isResponsiveValue,
+} from "./utils/responsive";
 
 type HeadingSize = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -32,41 +36,44 @@ interface HeadingProps
  * // Basic usage
  * <Heading size={1}>Page Title</Heading>
  * <Heading size={2}>Section Title</Heading>
- * 
+ *
  * // With convenience props
  * <Heading size={1} centered>Centered Hero Title</Heading>
  * <Heading size={2} subdued>Muted Section Title</Heading>
- * 
+ *
  * // With custom styling
  * <Heading size={3} className="text-primary">Custom Color</Heading>
  * ```
  */
 export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ 
-    className, 
-    size, 
-    level, 
-    color, 
-    align, 
-    centered, 
-    subdued, 
-    as, 
-    children, 
-    ...props 
-  }, ref) => {
+  (
+    {
+      className,
+      size,
+      level,
+      color,
+      align,
+      centered,
+      subdued,
+      as,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
     // Support legacy 'level' prop
     const headingSize = size || level || 2;
-    
+
     // Apply convenience props
     const finalAlign = centered ? "center" : align;
     const finalColor = subdued ? "muted" : color;
-    
+
     // Determine the semantic element
     // If size is responsive, use the base value for the element
-    const semanticSize = isResponsiveValue(headingSize) 
+    const semanticSize = isResponsiveValue(headingSize)
       ? headingSize.base || headingSize.sm || headingSize.md || 2
       : headingSize;
-    
+
     // Use 'as' prop if provided, otherwise use size to determine element
     const Component = as || (`h${semanticSize}` as React.ElementType);
 
@@ -84,7 +91,7 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
     });
 
     // Generate responsive classes for alignment
-    const alignClasses = finalAlign 
+    const alignClasses = finalAlign
       ? responsive(finalAlign, (value) => {
           const alignMap = {
             left: "text-left",
@@ -102,7 +109,7 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
           sizeClasses,
           alignClasses,
           finalColor === "muted" && "text-muted-foreground",
-          className
+          className,
         )}
         {...props}
       >
