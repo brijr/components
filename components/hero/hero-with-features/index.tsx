@@ -5,7 +5,8 @@ import {
   Stack,
   Heading,
   Text,
-  Inline,
+  Grid,
+  ButtonGroup,
 } from "@/components/ds";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
@@ -89,18 +90,18 @@ export const HeroWithFeatures = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="3xl" align="center">
+        <Stack spacing="lg" align="center">
           {/* Text content and CTAs */}
-          <Stack spacing="lg" align="center">
-            <Stack spacing="md" align="center">
-              <Heading level={1} align="center">
+          <Stack spacing="md" align="center">
+            <Stack spacing="sm" align="center">
+              <Heading size={{ base: 2, md: 1 }} centered>
                 {headline}
               </Heading>
               {subheadline && (
                 <Text
                   variant="lead"
-                  align="center"
-                  color="muted"
+                  centered
+                  subdued
                   className="max-w-2xl"
                 >
                   {subheadline}
@@ -109,7 +110,7 @@ export const HeroWithFeatures = ({
             </Stack>
 
             {(primaryCTA || secondaryCTA) && (
-              <Inline spacing="md">
+              <ButtonGroup>
                 {primaryCTA && (
                   <Button size="lg" asChild>
                     <a href={primaryCTA.href}>{primaryCTA.text}</a>
@@ -120,12 +121,16 @@ export const HeroWithFeatures = ({
                     <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
                   </Button>
                 )}
-              </Inline>
+              </ButtonGroup>
             )}
           </Stack>
 
           {/* Feature cards */}
-          <div className="grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <Grid 
+            cols={{ base: 1, sm: 2, lg: 3 }} 
+            gap="md"
+            className="w-full"
+          >
             {features.map((feature, index) => (
               <Card key={index}>
                 <CardHeader>
@@ -133,15 +138,15 @@ export const HeroWithFeatures = ({
                     {feature.icon && (
                       <div className="text-primary">{feature.icon}</div>
                     )}
-                    <Heading level={3}>{feature.title}</Heading>
+                    <Heading size={3}>{feature.title}</Heading>
                   </Stack>
                 </CardHeader>
                 <CardContent>
-                  <Text color="muted">{feature.description}</Text>
+                  <Text subdued>{feature.description}</Text>
                 </CardContent>
               </Card>
             ))}
-          </div>
+          </Grid>
         </Stack>
       </Container>
     </Section>

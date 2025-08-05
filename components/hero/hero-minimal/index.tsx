@@ -5,7 +5,7 @@ import {
   Stack,
   Heading,
   Text,
-  Inline,
+  ButtonGroup,
 } from "@/components/ds";
 import { Button } from "@/components/ui/button";
 
@@ -56,16 +56,16 @@ export const HeroMinimal = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="lg" align="center">
-          <Stack spacing="md" align="center">
-            <Heading level={1} align="center">
+        <Stack spacing="md" align="center">
+          <Stack spacing="sm" align="center">
+            <Heading size={{ base: 2, md: 1 }} centered>
               {headline}
             </Heading>
             {subheadline && (
               <Text
                 variant="lead"
-                align="center"
-                color="muted"
+                centered
+                subdued
                 className="max-w-2xl"
               >
                 {subheadline}
@@ -74,7 +74,7 @@ export const HeroMinimal = ({
           </Stack>
 
           {(primaryCTA || secondaryCTA) && (
-            <Inline spacing="md">
+            <ButtonGroup>
               {primaryCTA && (
                 <Button size="lg" asChild>
                   <a href={primaryCTA.href}>{primaryCTA.text}</a>
@@ -85,7 +85,7 @@ export const HeroMinimal = ({
                   <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
                 </Button>
               )}
-            </Inline>
+            </ButtonGroup>
           )}
         </Stack>
       </Container>

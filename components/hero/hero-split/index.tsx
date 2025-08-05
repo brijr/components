@@ -6,7 +6,9 @@ import {
   Stack,
   Heading,
   Text,
-  Inline,
+  Grid,
+  AspectRatio,
+  ButtonGroup,
 } from "@/components/ds";
 import { Button } from "@/components/ui/button";
 
@@ -81,28 +83,29 @@ export const HeroSplit = ({
   return (
     <Section>
       <Container>
-        <div
-          className={`grid items-center gap-8 lg:grid-cols-2 lg:gap-12 ${
-            reverse ? "lg:grid-flow-dense" : ""
-          }`}
+        <Grid
+          cols={{ base: 1, lg: 2 }}
+          gap={{ base: "md", lg: "lg" }}
+          align="center"
+          flow={reverse ? "col-dense" : undefined}
         >
           {/* Text content */}
           <Stack
-            spacing="lg"
+            spacing="md"
             align="start"
             className={reverse ? "lg:col-start-2" : ""}
           >
-            <Stack spacing="md" align="start">
-              <Heading level={1}>{headline}</Heading>
+            <Stack spacing="sm" align="start">
+              <Heading size={{ base: 2, md: 1 }}>{headline}</Heading>
               {subheadline && (
-                <Text variant="lead" color="muted">
+                <Text variant="lead" subdued>
                   {subheadline}
                 </Text>
               )}
             </Stack>
 
             {(primaryCTA || secondaryCTA) && (
-              <Inline spacing="md">
+              <ButtonGroup>
                 {primaryCTA && (
                   <Button size="lg" asChild>
                     <a href={primaryCTA.href}>{primaryCTA.text}</a>
@@ -113,25 +116,25 @@ export const HeroSplit = ({
                     <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
                   </Button>
                 )}
-              </Inline>
+              </ButtonGroup>
             )}
           </Stack>
 
           {/* Hero image */}
-          <div
-            className={`bg-muted relative overflow-hidden rounded-xl shadow-xl ${reverse ? "lg:col-start-1" : ""}`}
-          >
-            <Image
-              src={image.src}
-              alt={image.alt}
-              width={image.width || 600}
-              height={image.height || 400}
-              priority={image.priority}
-              className="h-auto w-full object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
+          <div className={`bg-muted relative overflow-hidden rounded-xl shadow-xl ${reverse ? "lg:col-start-1" : ""}`}>
+            <AspectRatio ratio="3/2">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={image.width || 600}
+                height={image.height || 400}
+                priority={image.priority}
+                className="h-full w-full object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </AspectRatio>
           </div>
-        </div>
+        </Grid>
       </Container>
     </Section>
   );

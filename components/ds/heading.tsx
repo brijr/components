@@ -1,46 +1,19 @@
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { type ResponsiveValue, responsive, isResponsiveValue } from "./utils/responsive";
-
-const headingVariants = cva("", {
-  variants: {
-    size: {
-      1: "text-4xl sm:text-5xl font-medium tracking-tight text-balance leading-tight",
-      2: "text-3xl sm:text-4xl font-medium tracking-tight text-balance leading-tight",
-      3: "text-2xl sm:text-3xl font-medium tracking-tight text-balance leading-tight",
-      4: "text-xl sm:text-2xl tracking-tight text-balance leading-tight",
-      5: "text-lg sm:text-xl tracking-tight text-balance leading-tight",
-      6: "text-base sm:text-lg tracking-tight text-balance leading-tight",
-    },
-    color: {
-      default: "",
-      muted: "text-muted-foreground",
-    },
-    align: {
-      left: "text-left",
-      center: "text-center",
-      right: "text-right",
-    },
-  },
-  defaultVariants: {
-    size: 2,
-    color: "default",
-    align: "left",
-  },
-});
 
 type HeadingSize = 1 | 2 | 3 | 4 | 5 | 6;
 
 interface HeadingProps
-  extends Omit<React.HTMLAttributes<HTMLHeadingElement>, "color">,
-    Omit<VariantProps<typeof headingVariants>, "size" | "align"> {
+  extends Omit<React.HTMLAttributes<HTMLHeadingElement>, "color"> {
   /** Heading size (1-6). Controls both visual size and semantic HTML element. Can be responsive */
   size?: ResponsiveValue<HeadingSize>;
   /** @deprecated Use `size` instead */
   level?: HeadingSize;
   /** Text alignment. Can be responsive */
   align?: ResponsiveValue<"left" | "center" | "right">;
+  /** Text color */
+  color?: "default" | "muted";
   /** Shorthand for align="center" */
   centered?: boolean;
   /** Shorthand for color="muted" */
@@ -99,7 +72,15 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
 
     // Generate responsive classes for size
     const sizeClasses = responsive(headingSize, (value) => {
-      return headingVariants({ size: value, color: undefined, align: undefined });
+      const sizeMap = {
+        1: "text-4xl sm:text-5xl font-medium tracking-tight text-balance leading-[1.1]",
+        2: "text-3xl sm:text-4xl font-medium tracking-tight text-balance leading-[1.2]",
+        3: "text-2xl sm:text-3xl font-medium tracking-tight text-balance leading-[1.3]",
+        4: "text-xl sm:text-2xl tracking-tight text-balance leading-tight",
+        5: "text-lg sm:text-xl tracking-tight text-balance leading-tight",
+        6: "text-base sm:text-lg tracking-tight text-balance leading-tight",
+      };
+      return sizeMap[value as 1 | 2 | 3 | 4 | 5 | 6];
     });
 
     // Generate responsive classes for alignment

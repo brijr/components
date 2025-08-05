@@ -37,43 +37,8 @@ export {
   createResponsiveProp 
 } from "./utils/responsive";
 
-// Design Tokens
-export { 
-  // Spacing
-  spacing,
-  semanticSpacing,
-  componentSpacing,
-  // Typography
-  fontSize,
-  fontWeight,
-  lineHeight,
-  letterSpacing,
-  typographyPresets,
-  // Colors
-  colors,
-  opacity,
-  semanticColors,
-  // Breakpoints
-  breakpoints,
-  mediaQueries,
-  containers,
-  responsivePatterns,
-  // Radii
-  radii,
-  semanticRadii,
-  componentRadii,
-  // Shadows
-  shadows,
-  elevation,
-  componentShadows,
-  focusRing,
-  // Animations
-  durations,
-  easings,
-  transitions,
-  animations,
-  delays
-} from "./tokens";
+// Design Tokens (simplified)
+export * from "./tokens";
 
 // Examples
 export { examples } from "./examples";

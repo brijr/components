@@ -4,9 +4,8 @@ import {
   type ResponsiveValue, 
   responsive 
 } from "./utils/responsive";
-import { spacing as spacingTokens } from "./tokens/spacing";
 
-type SpacingValue = keyof typeof spacingTokens | number | string;
+type SpacingValue = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | number | string;
 
 interface SpacerProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Size of the spacer. Can be responsive, a token key, number (rem), or custom class */
@@ -90,56 +89,31 @@ export const Spacer = React.forwardRef<HTMLDivElement, SpacerProps>(
         return value;
       }
       
-      // If it's a spacing token key
-      if (typeof value === "string" && value in spacingTokens) {
-        const tokenValue = spacingTokens[value as keyof typeof spacingTokens];
-        if (axis === "horizontal") {
-          return `w-[${tokenValue}]`;
-        } else if (axis === "vertical") {
-          return `h-[${tokenValue}]`;
-        } else {
-          return `w-[${tokenValue}] h-[${tokenValue}]`;
-        }
-      }
-      
-      // If it's a semantic spacing value
-      const semanticMap: Record<string, string> = {
-        xs: "1",
-        sm: "2", 
-        md: "4",
-        lg: "6",
-        xl: "8",
-        "2xl": "12",
-        "3xl": "16",
-        "4xl": "20",
-        "5xl": "24",
-        "6xl": "32",
+      // Simple spacing map
+      const spacingMap: Record<string, string> = {
+        xs: "0.125rem", // 2px
+        sm: "0.5rem",   // 8px
+        md: "1rem",     // 16px
+        lg: "1.5rem",   // 24px
+        xl: "2rem",     // 32px
+        "2xl": "3rem",  // 48px
+        "3xl": "4rem",  // 64px
       };
       
-      if (typeof value === "string" && value in semanticMap) {
-        const mappedValue = spacingTokens[semanticMap[value] as keyof typeof spacingTokens];
+      // If it's a semantic spacing value
+      if (typeof value === "string" && value in spacingMap) {
+        const size = spacingMap[value];
         if (axis === "horizontal") {
-          return `w-[${mappedValue}]`;
+          return `w-[${size}]`;
         } else if (axis === "vertical") {
-          return `h-[${mappedValue}]`;
+          return `h-[${size}]`;
         } else {
-          return `w-[${mappedValue}] h-[${mappedValue}]`;
+          return `w-[${size}] h-[${size}]`;
         }
       }
       
-      // If it's a number, treat as spacing scale key
+      // If it's a number, use as rem value
       if (typeof value === "number") {
-        const tokenValue = spacingTokens[value as keyof typeof spacingTokens];
-        if (tokenValue) {
-          if (axis === "horizontal") {
-            return `w-[${tokenValue}]`;
-          } else if (axis === "vertical") {
-            return `h-[${tokenValue}]`;
-          } else {
-            return `w-[${tokenValue}] h-[${tokenValue}]`;
-          }
-        }
-        // Fallback to rem value
         const remValue = `${value}rem`;
         if (axis === "horizontal") {
           return `w-[${remValue}]`;

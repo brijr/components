@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Section, Container, Stack, Heading, Text } from "@/components/ds";
+import { Section, Container, Stack, Heading, Text, Center, ButtonGroup } from "@/components/ds";
 import { Button } from "@/components/ui/button";
 
 /**
@@ -44,41 +44,44 @@ export const HeroCentered = ({
   cta,
 }: HeroCenteredProps) => {
   return (
-    <Section className="flex min-h-[60vh] items-center">
+    <Section>
       <Container>
-        <Stack spacing="xl" align="center">
-          <Stack spacing="lg" align="center">
-            <Heading
-              level={1}
-              align="center"
-              className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
-            >
-              {headline}
-            </Heading>
-
-            {subheadline && (
-              <Text
-                variant="lead"
-                align="center"
-                color="muted"
-                className="text-xl sm:text-2xl"
+        <Center minH="60vh">
+          <Stack spacing="md" align="center">
+            <Stack spacing="sm" align="center">
+              <Heading
+                size={1}
+                centered
+                className="font-bold"
               >
-                {subheadline}
-              </Text>
+                {headline}
+              </Heading>
+
+              {subheadline && (
+                <Text
+                  variant="lead"
+                  centered
+                  subdued
+                  className="max-w-2xl"
+                >
+                  {subheadline}
+                </Text>
+              )}
+            </Stack>
+
+            {cta && (
+              <ButtonGroup>
+                <Button
+                  size="lg"
+                  variant={cta.variant || "default"}
+                  asChild
+                >
+                  <a href={cta.href}>{cta.text}</a>
+                </Button>
+              </ButtonGroup>
             )}
           </Stack>
-
-          {cta && (
-            <Button
-              size="lg"
-              variant={cta.variant || "default"}
-              asChild
-              className="text-base"
-            >
-              <a href={cta.href}>{cta.text}</a>
-            </Button>
-          )}
-        </Stack>
+        </Center>
       </Container>
     </Section>
   );

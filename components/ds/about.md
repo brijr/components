@@ -437,22 +437,23 @@ Pre-configured Inline for buttons.
 4. **Section + Container for structure** - They handle responsive padding
 5. **Pattern components for common UI** - PageHeader, ContentBlock save time
 
-## Using Design Tokens
+## Design Tokens (Simplified)
+
+The design system includes minimal, essential tokens:
 
 ```tsx
-import { 
-  spacing, 
-  colors, 
-  typography, 
-  breakpoints,
-  transitions 
-} from "@/components/ds/tokens";
+import { spacing, breakpoints, radius, transitions } from "@/components/ds/tokens";
 
-// Use in custom components
+// Available tokens:
+// spacing: none, xs, sm, md, lg, xl, 2xl, 3xl
+// radius: none, sm, md, lg, xl, 2xl, full
+// transitions: fast, base, slow
+
+// Example usage:
 const customStyles = {
-  padding: spacing[4], // 1rem
-  fontSize: typography.fontSize.lg,
-  transition: transitions.button,
+  padding: spacing.md,     // "1rem"
+  borderRadius: radius.lg, // "0.5rem"
+  transition: `all ${transitions.base}`,
 };
 ```
 

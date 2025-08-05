@@ -6,7 +6,8 @@ import {
   Stack,
   Heading,
   Text,
-  Inline,
+  AspectRatio,
+  ButtonGroup,
 } from "@/components/ds";
 import { Button } from "@/components/ui/button";
 
@@ -78,18 +79,18 @@ export const HeroWithImage = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl" align="center">
+        <Stack spacing={{ base: "md", md: "lg" }} align="center">
           {/* Text content */}
-          <Stack spacing="lg" align="center">
-            <Stack spacing="md" align="center">
-              <Heading level={1} align="center">
+          <Stack spacing="md" align="center">
+            <Stack spacing="sm" align="center">
+              <Heading size={{ base: 2, md: 1 }} centered>
                 {headline}
               </Heading>
               {subheadline && (
                 <Text
                   variant="lead"
-                  align="center"
-                  color="muted"
+                  centered
+                  subdued
                   className="max-w-2xl"
                 >
                   {subheadline}
@@ -98,7 +99,7 @@ export const HeroWithImage = ({
             </Stack>
 
             {(primaryCTA || secondaryCTA) && (
-              <Inline spacing="md">
+              <ButtonGroup>
                 {primaryCTA && (
                   <Button size="lg" asChild>
                     <a href={primaryCTA.href}>{primaryCTA.text}</a>
@@ -109,21 +110,25 @@ export const HeroWithImage = ({
                     <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
                   </Button>
                 )}
-              </Inline>
+              </ButtonGroup>
             )}
           </Stack>
 
           {/* Hero image */}
-          <div className="bg-muted relative w-full overflow-hidden rounded-xl shadow-2xl">
-            <Image
-              src={image.src}
-              alt={image.alt}
-              width={image.width || 1200}
-              height={image.height || 675}
-              priority={image.priority}
-              className="h-auto w-full"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
-            />
+          <div className="w-full max-w-5xl mx-auto">
+            <AspectRatio ratio="16/9">
+              <div className="bg-muted relative h-full w-full overflow-hidden rounded-xl shadow-2xl">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width || 1200}
+                  height={image.height || 675}
+                  priority={image.priority}
+                  className="h-full w-full object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
+                />
+              </div>
+            </AspectRatio>
           </div>
         </Stack>
       </Container>
