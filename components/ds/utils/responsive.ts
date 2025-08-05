@@ -3,7 +3,7 @@ import * as React from "react";
 /**
  * Breakpoint values matching Tailwind's default breakpoints
  */
-export const breakpoints = {
+const responsiveBreakpoints = {
   base: 0,
   sm: 640,
   md: 768,
@@ -12,7 +12,7 @@ export const breakpoints = {
   "2xl": 1536,
 } as const;
 
-export type Breakpoint = keyof typeof breakpoints;
+export type Breakpoint = keyof typeof responsiveBreakpoints;
 
 /**
  * A value that can be responsive across breakpoints
@@ -30,7 +30,7 @@ export function isResponsiveValue<T>(
     typeof value === "object" &&
     value !== null &&
     !Array.isArray(value) &&
-    Object.keys(value).some((key) => key in breakpoints)
+    Object.keys(value).some((key) => key in responsiveBreakpoints)
   );
 }
 
@@ -61,7 +61,7 @@ export function responsive<T>(
   }
 
   const classes: string[] = [];
-  const sortedBreakpoints = Object.keys(breakpoints) as Breakpoint[];
+  const sortedBreakpoints = Object.keys(responsiveBreakpoints) as Breakpoint[];
 
   sortedBreakpoints.forEach((bp) => {
     if (bp in value) {
@@ -112,7 +112,7 @@ export function useBreakpoint(): Breakpoint {
   React.useEffect(() => {
     const getBreakpoint = (): Breakpoint => {
       const width = window.innerWidth;
-      const sortedBreakpoints = Object.entries(breakpoints)
+      const sortedBreakpoints = Object.entries(responsiveBreakpoints)
         .sort(([, a], [, b]) => b - a) as [Breakpoint, number][];
 
       for (const [bp, minWidth] of sortedBreakpoints) {
@@ -152,7 +152,7 @@ export function useResponsive<T>(value: ResponsiveValue<T>): T {
   }
 
   // Find the value for current breakpoint or fall back to smaller ones
-  const sortedBreakpoints = Object.keys(breakpoints) as Breakpoint[];
+  const sortedBreakpoints = Object.keys(responsiveBreakpoints) as Breakpoint[];
   const currentIndex = sortedBreakpoints.indexOf(breakpoint);
 
   for (let i = currentIndex; i >= 0; i--) {

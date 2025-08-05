@@ -28,10 +28,52 @@ export { Divider } from "./divider";
 export { PageHeader, ContentBlock, ButtonGroup } from "./patterns";
 
 // Utilities
-export * from "./utils/responsive";
+export { 
+  type ResponsiveValue,
+  responsive,
+  isResponsiveValue,
+  useBreakpoint,
+  useResponsive,
+  createResponsiveProp 
+} from "./utils/responsive";
 
 // Design Tokens
-export * from "./tokens";
+export { 
+  // Spacing
+  spacing,
+  semanticSpacing,
+  componentSpacing,
+  // Typography
+  fontSize,
+  fontWeight,
+  lineHeight,
+  letterSpacing,
+  typographyPresets,
+  // Colors
+  colors,
+  opacity,
+  semanticColors,
+  // Breakpoints
+  breakpoints,
+  mediaQueries,
+  containers,
+  responsivePatterns,
+  // Radii
+  radii,
+  semanticRadii,
+  componentRadii,
+  // Shadows
+  shadows,
+  elevation,
+  componentShadows,
+  focusRing,
+  // Animations
+  durations,
+  easings,
+  transitions,
+  animations,
+  delays
+} from "./tokens";
 
 // Examples
 export { examples } from "./examples";

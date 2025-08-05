@@ -88,7 +88,7 @@ const dividerVariants = cva("", {
 });
 
 interface DividerProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "color">,
     VariantProps<typeof dividerVariants> {
   /** Text or element to display in the middle of the divider */
   children?: React.ReactNode;
@@ -147,7 +147,7 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
         <div
           ref={ref}
           role={decorative ? "presentation" : "separator"}
-          aria-orientation={orientation}
+          aria-orientation={orientation as "horizontal" | "vertical"}
           className={cn(
             dividerVariants({ orientation, variant, thickness, color }),
             variant === "dashed" || variant === "dotted"
@@ -222,7 +222,7 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
       <div
         ref={ref}
         role={decorative ? "presentation" : "separator"}
-        aria-orientation={orientation}
+        aria-orientation={orientation as "horizontal" | "vertical"}
         className={cn(containerClasses, className)}
         {...props}
       >
