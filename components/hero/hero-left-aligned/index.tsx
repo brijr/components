@@ -82,7 +82,9 @@ export const HeroLeftAligned = ({
           {/* Text content - left aligned */}
           <Stack spacing="lg" align="start">
             <Stack spacing="md" align="start" className="max-w-3xl">
-              <Heading level={1}>{headline}</Heading>
+              <Heading size={1} as="h1">
+                {headline}
+              </Heading>
               {subheadline && (
                 <Text variant="lead" color="muted">
                   {subheadline}
@@ -107,14 +109,13 @@ export const HeroLeftAligned = ({
           </Stack>
 
           {/* Hero image */}
-          <div className="bg-muted relative w-full overflow-hidden rounded-xl shadow-2xl">
+          <div className="bg-muted relative aspect-video w-full overflow-hidden rounded-lg object-fill shadow-2xl">
             <Image
               src={image.src}
               alt={image.alt}
               width={image.width || 1200}
               height={image.height || 675}
               priority={image.priority}
-              className="h-auto w-full"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
             />
           </div>

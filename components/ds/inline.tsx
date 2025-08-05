@@ -1,50 +1,21 @@
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { type ResponsiveValue, responsive } from "./utils/responsive";
 
-const inlineVariants = cva("flex flex-wrap", {
-  variants: {
-    spacing: {
-      none: "gap-0",
-      sm: "gap-2",
-      md: "gap-4",
-      lg: "gap-6",
-      xl: "gap-8",
-    },
-    align: {
-      start: "items-start",
-      center: "items-center",
-      end: "items-end",
-      baseline: "items-baseline",
-      stretch: "items-stretch",
-    },
-    justify: {
-      start: "justify-start",
-      center: "justify-center",
-      end: "justify-end",
-      between: "justify-between",
-      around: "justify-around",
-      evenly: "justify-evenly",
-    },
-    wrap: {
-      wrap: "flex-wrap",
-      nowrap: "flex-nowrap",
-      reverse: "flex-wrap-reverse",
-    },
-  },
-  defaultVariants: {
-    spacing: "md",
-    align: "center",
-    justify: "start",
-    wrap: "wrap",
-  },
-});
+type SpacingValue = "none" | "sm" | "md" | "lg" | "xl";
+type AlignValue = "start" | "center" | "end" | "baseline" | "stretch";
+type JustifyValue = "start" | "center" | "end" | "between" | "around" | "evenly";
+type WrapValue = "wrap" | "nowrap" | "reverse";
 
-interface InlineProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    Omit<VariantProps<typeof inlineVariants>, "spacing"> {
-  /** Spacing between items: sm (8px), md (16px), lg (24px), xl (32px) */
-  spacing?: "none" | "sm" | "md" | "lg" | "xl" | string;
+interface InlineProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Spacing between items. Can be responsive or custom Tailwind class */
+  spacing?: ResponsiveValue<SpacingValue> | string;
+  /** Alignment of items. Can be responsive */
+  align?: ResponsiveValue<AlignValue>;
+  /** Justification of items. Can be responsive */
+  justify?: ResponsiveValue<JustifyValue>;
+  /** Wrap behavior. Can be responsive */
+  wrap?: ResponsiveValue<WrapValue>;
   /** Shorthand for spacing="sm" */
   compact?: boolean;
   /** HTML element to render */
@@ -65,10 +36,16 @@ interface InlineProps
  *   <Badge>Popular</Badge>
  * </Inline>
  *
- * // Button group
- * <Inline spacing="md">
+ * // Responsive spacing
+ * <Inline spacing={{ base: "sm", md: "md", lg: "lg" }}>
  *   <Button>Save</Button>
  *   <Button variant="outline">Cancel</Button>
+ * </Inline>
+ *
+ * // Responsive alignment
+ * <Inline align={{ base: "center", md: "start" }} justify={{ base: "center", md: "between" }}>
+ *   <Logo />
+ *   <Navigation />
  * </Inline>
  *
  * // Compact spacing
@@ -83,7 +60,7 @@ interface InlineProps
  *   <Chip>Two</Chip>
  * </Inline>
  *
- * // Mixed content
+ * // Mixed content with baseline alignment
  * <Inline spacing="lg" align="baseline">
  *   <Text weight="semibold">Sort:</Text>
  *   <Button variant="ghost" size="sm">Date</Button>
@@ -97,9 +74,9 @@ export const Inline = React.forwardRef<HTMLDivElement, InlineProps>(
       className,
       spacing,
       compact,
-      align,
-      justify,
-      wrap,
+      align = "center",
+      justify = "start",
+      wrap = "wrap",
       as: Component = "div",
       children,
       ...props
@@ -107,25 +84,94 @@ export const Inline = React.forwardRef<HTMLDivElement, InlineProps>(
     ref,
   ) => {
     // Apply compact prop
-    const finalSpacing = compact ? "sm" : spacing;
+    const finalSpacing = compact ? "sm" : spacing || "md";
 
     // Check if spacing is a custom Tailwind class
     const isCustomSpacing =
-      finalSpacing && !["none", "sm", "md", "lg", "xl"].includes(finalSpacing);
+      typeof finalSpacing === "string" &&
+      !["none", "sm", "md", "lg", "xl"].includes(finalSpacing);
+
+    // Build spacing classes
+    const spacingClasses = isCustomSpacing
+      ? finalSpacing
+      : responsive(finalSpacing as ResponsiveValue<SpacingValue>, (value) => {
+          switch (value) {
+            case "none":
+              return "gap-0";
+            case "sm":
+              return "gap-2";
+            case "md":
+              return "gap-4";
+            case "lg":
+              return "gap-6";
+            case "xl":
+              return "gap-8";
+            default:
+              return "gap-4";
+          }
+        });
+
+    // Build alignment classes
+    const alignClasses = responsive(align, (value) => {
+      switch (value) {
+        case "start":
+          return "items-start";
+        case "center":
+          return "items-center";
+        case "end":
+          return "items-end";
+        case "baseline":
+          return "items-baseline";
+        case "stretch":
+          return "items-stretch";
+        default:
+          return "items-center";
+      }
+    });
+
+    // Build justify classes
+    const justifyClasses = responsive(justify, (value) => {
+      switch (value) {
+        case "start":
+          return "justify-start";
+        case "center":
+          return "justify-center";
+        case "end":
+          return "justify-end";
+        case "between":
+          return "justify-between";
+        case "around":
+          return "justify-around";
+        case "evenly":
+          return "justify-evenly";
+        default:
+          return "justify-start";
+      }
+    });
+
+    // Build wrap classes
+    const wrapClasses = responsive(wrap, (value) => {
+      switch (value) {
+        case "wrap":
+          return "flex-wrap";
+        case "nowrap":
+          return "flex-nowrap";
+        case "reverse":
+          return "flex-wrap-reverse";
+        default:
+          return "flex-wrap";
+      }
+    });
 
     return (
       <Component
         ref={ref}
         className={cn(
-          inlineVariants({
-            spacing: isCustomSpacing
-              ? undefined
-              : (finalSpacing as "none" | "sm" | "md" | "lg" | "xl"),
-            align,
-            justify,
-            wrap,
-          }),
-          isCustomSpacing && finalSpacing,
+          "flex",
+          spacingClasses,
+          alignClasses,
+          justifyClasses,
+          wrapClasses,
           className,
         )}
         {...props}

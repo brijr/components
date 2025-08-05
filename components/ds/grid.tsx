@@ -1,5 +1,4 @@
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import {
   type ResponsiveValue,
@@ -7,56 +6,33 @@ import {
   isResponsiveValue,
 } from "./utils/responsive";
 
-const gridVariants = cva("grid", {
-  variants: {
-    gap: {
-      none: "gap-0",
-      sm: "gap-2",
-      md: "gap-4",
-      lg: "gap-6",
-      xl: "gap-8",
-      "2xl": "gap-12",
-    },
-    align: {
-      start: "items-start",
-      center: "items-center",
-      end: "items-end",
-      stretch: "items-stretch",
-      baseline: "items-baseline",
-    },
-    justify: {
-      start: "justify-items-start",
-      center: "justify-items-center",
-      end: "justify-items-end",
-      stretch: "justify-items-stretch",
-    },
-  },
-  defaultVariants: {
-    gap: "md",
-    align: "stretch",
-    justify: "stretch",
-  },
-});
+type GapValue = "none" | "sm" | "md" | "lg" | "xl" | "2xl";
+type AlignValue = "start" | "center" | "end" | "stretch" | "baseline";
+type JustifyValue = "start" | "center" | "end" | "stretch";
 
-interface GridProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    Omit<VariantProps<typeof gridVariants>, "gap"> {
+interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Number of columns. Can be responsive */
   cols?: ResponsiveValue<number | "auto-fit" | "auto-fill">;
   /** Number of rows. Can be responsive */
   rows?: ResponsiveValue<number>;
   /** Gap between items. Can be responsive or custom Tailwind class */
-  gap?: ResponsiveValue<"none" | "sm" | "md" | "lg" | "xl" | "2xl"> | string;
+  gap?: ResponsiveValue<GapValue> | string;
   /** Column gap specifically. Overrides gap for columns */
-  gapX?: ResponsiveValue<"none" | "sm" | "md" | "lg" | "xl" | "2xl"> | string;
+  gapX?: ResponsiveValue<GapValue> | string;
   /** Row gap specifically. Overrides gap for rows */
-  gapY?: ResponsiveValue<"none" | "sm" | "md" | "lg" | "xl" | "2xl"> | string;
+  gapY?: ResponsiveValue<GapValue> | string;
   /** Minimum column width for auto-fit/auto-fill */
   minChildWidth?: ResponsiveValue<string>;
   /** Grid template areas for complex layouts */
   areas?: string[];
   /** Flow direction */
   flow?: "row" | "col" | "row-dense" | "col-dense";
+  /** Alignment of items. Can be responsive */
+  align?: ResponsiveValue<AlignValue>;
+  /** Justification of items. Can be responsive */
+  justify?: ResponsiveValue<JustifyValue>;
+  /** Shorthand for gap="sm" */
+  compact?: boolean;
   /** HTML element to render */
   as?: React.ElementType;
   children?: React.ReactNode;
@@ -79,6 +55,11 @@ interface GridProps
  *   {items.map(item => <Card key={item.id}>{item.name}</Card>)}
  * </Grid>
  *
+ * // Compact spacing
+ * <Grid cols={3} compact>
+ *   {children}
+ * </Grid>
+ *
  * // Different gaps for rows and columns
  * <Grid cols={3} gapX="sm" gapY="lg">
  *   {children}
@@ -98,6 +79,15 @@ interface GridProps
  *   <div style={{ gridArea: "main" }}>Main Content</div>
  *   <div style={{ gridArea: "footer" }}>Footer</div>
  * </Grid>
+ *
+ * // Responsive alignment
+ * <Grid 
+ *   cols={{ base: 1, md: 2 }}
+ *   align={{ base: "center", md: "start" }}
+ *   justify={{ base: "center", md: "stretch" }}
+ * >
+ *   {children}
+ * </Grid>
  * ```
  */
 export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
@@ -112,8 +102,9 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
       minChildWidth,
       areas,
       flow,
-      align,
-      justify,
+      align = "stretch",
+      justify = "stretch",
+      compact,
       as: Component = "div",
       style,
       children,
@@ -121,6 +112,9 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
     },
     ref,
   ) => {
+    // Apply compact prop
+    const finalGap = compact ? "sm" : gap || "md";
+
     // Handle columns
     const colClasses = cols
       ? responsive(cols, (value) => {
@@ -146,30 +140,31 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
 
     // Handle gap
     const isCustomGap =
-      gap &&
-      typeof gap === "string" &&
-      !["none", "sm", "md", "lg", "xl", "2xl"].includes(gap);
+      typeof finalGap === "string" &&
+      !["none", "sm", "md", "lg", "xl", "2xl"].includes(finalGap);
 
     const gapClasses =
-      gap && !gapX && !gapY
+      finalGap && !gapX && !gapY
         ? isCustomGap
-          ? gap
-          : responsive(
-              gap as ResponsiveValue<
-                "none" | "sm" | "md" | "lg" | "xl" | "2xl"
-              >,
-              (value) => {
-                const gapMap = {
-                  none: "gap-0",
-                  sm: "gap-2",
-                  md: "gap-4",
-                  lg: "gap-6",
-                  xl: "gap-8",
-                  "2xl": "gap-12",
-                };
-                return gapMap[value];
-              },
-            )
+          ? finalGap
+          : responsive(finalGap as ResponsiveValue<GapValue>, (value) => {
+              switch (value) {
+                case "none":
+                  return "gap-0";
+                case "sm":
+                  return "gap-2";
+                case "md":
+                  return "gap-4";
+                case "lg":
+                  return "gap-6";
+                case "xl":
+                  return "gap-8";
+                case "2xl":
+                  return "gap-12";
+                default:
+                  return "gap-4";
+              }
+            })
         : "";
 
     // Handle separate X and Y gaps
@@ -177,44 +172,86 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
       ? typeof gapX === "string" &&
         !["none", "sm", "md", "lg", "xl", "2xl"].includes(gapX)
         ? gapX.replace("gap-", "gap-x-")
-        : responsive(
-            gapX as ResponsiveValue<"none" | "sm" | "md" | "lg" | "xl" | "2xl">,
-            (value) => {
-              const gapMap = {
-                none: "gap-x-0",
-                sm: "gap-x-2",
-                md: "gap-x-4",
-                lg: "gap-x-6",
-                xl: "gap-x-8",
-                "2xl": "gap-x-12",
-              };
-              return gapMap[value];
-            },
-          )
+        : responsive(gapX as ResponsiveValue<GapValue>, (value) => {
+            switch (value) {
+              case "none":
+                return "gap-x-0";
+              case "sm":
+                return "gap-x-2";
+              case "md":
+                return "gap-x-4";
+              case "lg":
+                return "gap-x-6";
+              case "xl":
+                return "gap-x-8";
+              case "2xl":
+                return "gap-x-12";
+              default:
+                return "gap-x-4";
+            }
+          })
       : "";
 
     const gapYClasses = gapY
       ? typeof gapY === "string" &&
         !["none", "sm", "md", "lg", "xl", "2xl"].includes(gapY)
         ? gapY.replace("gap-", "gap-y-")
-        : responsive(
-            gapY as ResponsiveValue<"none" | "sm" | "md" | "lg" | "xl" | "2xl">,
-            (value) => {
-              const gapMap = {
-                none: "gap-y-0",
-                sm: "gap-y-2",
-                md: "gap-y-4",
-                lg: "gap-y-6",
-                xl: "gap-y-8",
-                "2xl": "gap-y-12",
-              };
-              return gapMap[value];
-            },
-          )
+        : responsive(gapY as ResponsiveValue<GapValue>, (value) => {
+            switch (value) {
+              case "none":
+                return "gap-y-0";
+              case "sm":
+                return "gap-y-2";
+              case "md":
+                return "gap-y-4";
+              case "lg":
+                return "gap-y-6";
+              case "xl":
+                return "gap-y-8";
+              case "2xl":
+                return "gap-y-12";
+              default:
+                return "gap-y-4";
+            }
+          })
       : "";
 
     // Handle flow
     const flowClasses = flow ? `grid-flow-${flow}` : "";
+
+    // Handle alignment
+    const alignClasses = responsive(align, (value) => {
+      switch (value) {
+        case "start":
+          return "items-start";
+        case "center":
+          return "items-center";
+        case "end":
+          return "items-end";
+        case "stretch":
+          return "items-stretch";
+        case "baseline":
+          return "items-baseline";
+        default:
+          return "items-stretch";
+      }
+    });
+
+    // Handle justification
+    const justifyClasses = responsive(justify, (value) => {
+      switch (value) {
+        case "start":
+          return "justify-items-start";
+        case "center":
+          return "justify-items-center";
+        case "end":
+          return "justify-items-end";
+        case "stretch":
+          return "justify-items-stretch";
+        default:
+          return "justify-items-stretch";
+      }
+    });
 
     // Combine styles for template areas
     const gridStyle = areas
@@ -228,27 +265,15 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
       <Component
         ref={ref}
         className={cn(
-          gridVariants({
-            gap:
-              !isCustomGap && !gapX && !gapY
-                ? (gap as
-                    | "none"
-                    | "sm"
-                    | "md"
-                    | "lg"
-                    | "xl"
-                    | "2xl"
-                    | undefined)
-                : undefined,
-            align,
-            justify,
-          }),
+          "grid",
           colClasses,
           rowClasses,
-          isCustomGap && gapClasses,
+          gapClasses,
           gapXClasses,
           gapYClasses,
           flowClasses,
+          alignClasses,
+          justifyClasses,
           className,
         )}
         style={gridStyle}

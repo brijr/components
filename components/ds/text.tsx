@@ -1,44 +1,27 @@
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { type ResponsiveValue, responsive } from "./utils/responsive";
 
-const textVariants = cva("", {
-  variants: {
-    variant: {
-      body: "text-base text-pretty",
-      lead: "text-lg sm:text-xl text-pretty",
-      small: "text-sm leading-normal",
-      muted: "text-sm text-muted-foreground leading-normal",
-      code: "rounded border bg-muted/50 px-1 py-px font-mono text-sm font-medium",
-      link: "text-primary transition-colors no-underline hover:underline hover:text-primary/80 underline-offset-2 decoration-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
-    },
-    color: {
-      default: "",
-      muted: "text-muted-foreground",
-    },
-    weight: {
-      normal: "font-normal",
-      medium: "font-medium",
-      semibold: "font-semibold",
-      bold: "font-bold",
-    },
-    align: {
-      left: "text-left",
-      center: "text-center",
-      right: "text-right",
-    },
-  },
-  defaultVariants: {
-    variant: "body",
-    color: "default",
-    weight: "normal",
-    align: "left",
-  },
-});
+type TextVariant = "body" | "lead" | "small" | "muted" | "code" | "link";
+type TextAlign = "left" | "center" | "right";
+type TextWeight = "normal" | "medium" | "semibold" | "bold";
+type TextSize = "xs" | "sm" | "base" | "lg" | "xl" | "2xl";
 
-interface TextProps
-  extends Omit<React.HTMLAttributes<HTMLElement>, "color">,
-    VariantProps<typeof textVariants> {
+interface TextProps extends Omit<React.HTMLAttributes<HTMLElement>, "color"> {
+  /** Text variant style */
+  variant?: TextVariant;
+  /** Text size. Can be responsive */
+  size?: ResponsiveValue<TextSize>;
+  /** Text alignment. Can be responsive */
+  align?: ResponsiveValue<TextAlign>;
+  /** Font weight. Can be responsive */
+  weight?: ResponsiveValue<TextWeight>;
+  /** Muted text color */
+  color?: "default" | "muted";
+  /** Shorthand for align="center" */
+  centered?: boolean;
+  /** Shorthand for color="muted" */
+  subdued?: boolean;
   /** HTML element to render */
   as?:
     | "p"
@@ -53,10 +36,6 @@ interface TextProps
     | "sup"
     | "code"
     | "a";
-  /** Shorthand for align="center" */
-  centered?: boolean;
-  /** Shorthand for color="muted" */
-  subdued?: boolean;
   children?: React.ReactNode;
 }
 
@@ -71,9 +50,15 @@ interface TextProps
  * <Text variant="lead">Introductory paragraph</Text>
  * <Text variant="small" subdued>Fine print</Text>
  *
- * // With convenience props
- * <Text centered>Centered text</Text>
- * <Text subdued>Muted secondary text</Text>
+ * // With responsive size
+ * <Text size={{ base: "sm", md: "base", lg: "lg" }}>
+ *   Responsive text size
+ * </Text>
+ *
+ * // With responsive alignment
+ * <Text align={{ base: "center", md: "left" }}>
+ *   Responsive alignment
+ * </Text>
  *
  * // Special variants
  * <Text variant="code">const example = true</Text>
@@ -88,10 +73,11 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
   (
     {
       className,
-      variant,
-      color,
-      weight,
+      variant = "body",
+      size,
       align,
+      weight,
+      color,
       centered,
       subdued,
       as: Component = "p",
@@ -104,18 +90,100 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
     const finalAlign = centered ? "center" : align;
     const finalColor = subdued ? "muted" : color;
 
+    // Build size classes
+    const sizeClasses = size
+      ? responsive(size, (value) => {
+          switch (value) {
+            case "xs":
+              return "text-xs";
+            case "sm":
+              return "text-sm";
+            case "base":
+              return "text-base";
+            case "lg":
+              return "text-lg";
+            case "xl":
+              return "text-xl";
+            case "2xl":
+              return "text-2xl";
+            default:
+              return "text-base";
+          }
+        })
+      : "";
+
+    // Build alignment classes
+    const alignClasses = finalAlign
+      ? responsive(finalAlign, (value) => {
+          switch (value) {
+            case "left":
+              return "text-left";
+            case "center":
+              return "text-center";
+            case "right":
+              return "text-right";
+            default:
+              return "";
+          }
+        })
+      : "";
+
+    // Build weight classes
+    const weightClasses = weight
+      ? responsive(weight, (value) => {
+          switch (value) {
+            case "normal":
+              return "font-normal";
+            case "medium":
+              return "font-medium";
+            case "semibold":
+              return "font-semibold";
+            case "bold":
+              return "font-bold";
+            default:
+              return "";
+          }
+        })
+      : "";
+
+    // Build variant classes
+    const variantClasses = (() => {
+      switch (variant) {
+        case "body":
+          return "text-pretty";
+        case "lead":
+          return size ? "" : "text-lg sm:text-xl text-pretty";
+        case "small":
+          return size ? "leading-normal" : "text-sm leading-normal";
+        case "muted":
+          return size ? "text-muted-foreground leading-normal" : "text-sm text-muted-foreground leading-normal";
+        case "code":
+          return "rounded border bg-muted/50 px-1 py-px font-mono text-sm font-medium";
+        case "link":
+          return "text-primary transition-colors no-underline hover:underline hover:text-primary/80 underline-offset-2 decoration-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50";
+        default:
+          return "";
+      }
+    })();
+
     const Comp = Component as React.ElementType;
 
     return (
       <Comp
         ref={ref}
         className={cn(
-          textVariants({
-            variant,
-            color: finalColor,
-            weight,
-            align: finalAlign,
-          }),
+          // Base styles
+          !size && "text-base",
+          // Variant styles
+          variantClasses,
+          // Size (overrides variant default size)
+          sizeClasses,
+          // Alignment
+          alignClasses,
+          // Weight
+          weightClasses,
+          // Color
+          finalColor === "muted" && "text-muted-foreground",
           className,
         )}
         {...props}

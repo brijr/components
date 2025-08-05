@@ -1,95 +1,22 @@
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { type ResponsiveValue, responsive } from "./utils/responsive";
 
-const dividerVariants = cva("", {
-  variants: {
-    orientation: {
-      horizontal: "w-full",
-      vertical: "h-full",
-    },
-    variant: {
-      solid: "",
-      dashed: "",
-      dotted: "",
-    },
-    thickness: {
-      thin: "",
-      medium: "",
-      thick: "",
-    },
-    color: {
-      default: "bg-border",
-      muted: "bg-muted",
-      primary: "bg-primary",
-      secondary: "bg-secondary",
-    },
-  },
-  compoundVariants: [
-    // Horizontal variants
-    {
-      orientation: "horizontal",
-      thickness: "thin",
-      className: "h-px",
-    },
-    {
-      orientation: "horizontal",
-      thickness: "medium",
-      className: "h-[2px]",
-    },
-    {
-      orientation: "horizontal",
-      thickness: "thick",
-      className: "h-1",
-    },
-    {
-      orientation: "horizontal",
-      variant: "dashed",
-      className: "border-t border-dashed bg-transparent",
-    },
-    {
-      orientation: "horizontal",
-      variant: "dotted",
-      className: "border-t border-dotted bg-transparent",
-    },
-    // Vertical variants
-    {
-      orientation: "vertical",
-      thickness: "thin",
-      className: "w-px",
-    },
-    {
-      orientation: "vertical",
-      thickness: "medium",
-      className: "w-[2px]",
-    },
-    {
-      orientation: "vertical",
-      thickness: "thick",
-      className: "w-1",
-    },
-    {
-      orientation: "vertical",
-      variant: "dashed",
-      className: "border-l border-dashed bg-transparent",
-    },
-    {
-      orientation: "vertical",
-      variant: "dotted",
-      className: "border-l border-dotted bg-transparent",
-    },
-  ],
-  defaultVariants: {
-    orientation: "horizontal",
-    variant: "solid",
-    thickness: "thin",
-    color: "default",
-  },
-});
+type OrientationValue = "horizontal" | "vertical";
+type VariantValue = "solid" | "dashed" | "dotted";
+type ThicknessValue = "thin" | "medium" | "thick";
+type ColorValue = "default" | "muted" | "primary" | "secondary";
 
 interface DividerProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, "color">,
-    VariantProps<typeof dividerVariants> {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "color"> {
+  /** Orientation of the divider. Can be responsive */
+  orientation?: ResponsiveValue<OrientationValue>;
+  /** Visual style variant. Can be responsive */
+  variant?: ResponsiveValue<VariantValue>;
+  /** Thickness of the divider. Can be responsive */
+  thickness?: ResponsiveValue<ThicknessValue>;
+  /** Color of the divider */
+  color?: ColorValue;
   /** Text or element to display in the middle of the divider */
   children?: React.ReactNode;
   /** Position of the text (if provided) */
@@ -116,11 +43,14 @@ interface DividerProps
  *   <span>Option B</span>
  * </div>
  *
+ * // Responsive orientation
+ * <Divider orientation={{ base: "horizontal", md: "vertical" }} />
+ *
  * // Dashed divider with custom color
  * <Divider variant="dashed" color="primary" />
  *
- * // Thick divider
- * <Divider thickness="thick" />
+ * // Responsive thickness
+ * <Divider thickness={{ base: "thin", md: "medium", lg: "thick" }} />
  *
  * // Divider with aligned text
  * <Divider textAlign="left">Section Title</Divider>
@@ -141,24 +71,112 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
     },
     ref,
   ) => {
+    // Build orientation classes
+    const orientationClasses = responsive(orientation, (value) => {
+      return value === "horizontal" ? "w-full" : "h-full";
+    });
+
+    // Build thickness classes
+    const thicknessClasses = responsive(thickness, (value) => {
+      const isHorizontal = 
+        typeof orientation === "string" 
+          ? orientation === "horizontal" 
+          : orientation.base === "horizontal" || orientation.sm === "horizontal";
+      
+      if (isHorizontal) {
+        switch (value) {
+          case "thin":
+            return "h-px";
+          case "medium":
+            return "h-[2px]";
+          case "thick":
+            return "h-1";
+          default:
+            return "h-px";
+        }
+      } else {
+        switch (value) {
+          case "thin":
+            return "w-px";
+          case "medium":
+            return "w-[2px]";
+          case "thick":
+            return "w-1";
+          default:
+            return "w-px";
+        }
+      }
+    });
+
+    // Build variant classes
+    const variantClasses = responsive(variant, (value) => {
+      const isHorizontal = 
+        typeof orientation === "string" 
+          ? orientation === "horizontal" 
+          : orientation.base === "horizontal" || orientation.sm === "horizontal";
+      
+      switch (value) {
+        case "dashed":
+          return isHorizontal 
+            ? "border-t border-dashed bg-transparent" 
+            : "border-l border-dashed bg-transparent";
+        case "dotted":
+          return isHorizontal 
+            ? "border-t border-dotted bg-transparent" 
+            : "border-l border-dotted bg-transparent";
+        case "solid":
+        default:
+          return "";
+      }
+    });
+
+    // Build color classes
+    const colorClasses = (() => {
+      const isBorder = variant === "dashed" || variant === "dotted";
+      
+      if (isBorder) {
+        switch (color) {
+          case "muted":
+            return "border-muted";
+          case "primary":
+            return "border-primary";
+          case "secondary":
+            return "border-secondary";
+          case "default":
+          default:
+            return "border-border";
+        }
+      } else {
+        switch (color) {
+          case "muted":
+            return "bg-muted";
+          case "primary":
+            return "bg-primary";
+          case "secondary":
+            return "bg-secondary";
+          case "default":
+          default:
+            return "bg-border";
+        }
+      }
+    })();
+
     // If there's no content, render a simple divider
     if (!children) {
       return (
         <div
           ref={ref}
           role={decorative ? "presentation" : "separator"}
-          aria-orientation={orientation as "horizontal" | "vertical"}
+          aria-orientation={
+            typeof orientation === "string" 
+              ? orientation as "horizontal" | "vertical"
+              : "horizontal"
+          }
           className={cn(
-            dividerVariants({ orientation, variant, thickness, color }),
-            variant === "dashed" || variant === "dotted"
-              ? color === "default"
-                ? "border-border"
-                : color === "muted"
-                  ? "border-muted"
-                  : color === "primary"
-                    ? "border-primary"
-                    : "border-secondary"
-              : "",
+            orientationClasses,
+            thicknessClasses,
+            variantClasses,
+            colorClasses,
             className,
           )}
           {...props}
@@ -167,22 +185,20 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
     }
 
     // Render divider with content
-    const isHorizontal = orientation === "horizontal";
+    const isHorizontal = 
+      typeof orientation === "string" 
+        ? orientation === "horizontal" 
+        : true; // Default to horizontal for responsive values
+    
     const containerClasses = isHorizontal
       ? "flex items-center w-full"
       : "flex flex-col items-center h-full";
 
     const lineClasses = cn(
-      dividerVariants({ orientation, variant, thickness, color }),
-      variant === "dashed" || variant === "dotted"
-        ? color === "default"
-          ? "border-border"
-          : color === "muted"
-            ? "border-muted"
-            : color === "primary"
-              ? "border-primary"
-              : "border-secondary"
-        : "",
+      orientationClasses,
+      thicknessClasses,
+      variantClasses,
+      colorClasses,
       "flex-1",
     );
 
@@ -222,7 +238,11 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
       <div
         ref={ref}
         role={decorative ? "presentation" : "separator"}
-        aria-orientation={orientation as "horizontal" | "vertical"}
+        aria-orientation={
+          typeof orientation === "string" 
+            ? orientation as "horizontal" | "vertical"
+            : "horizontal"
+        }
         className={cn(containerClasses, className)}
         {...props}
       >

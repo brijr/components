@@ -1,32 +1,17 @@
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { type ResponsiveValue, responsive } from "./utils/responsive";
 
-const centerVariants = cva("flex", {
-  variants: {
-    direction: {
-      both: "items-center justify-center",
-      horizontal: "justify-center",
-      vertical: "items-center",
-    },
-    inline: {
-      true: "inline-flex",
-      false: "flex",
-    },
-  },
-  defaultVariants: {
-    direction: "both",
-    inline: false,
-  },
-});
+type DirectionValue = "both" | "horizontal" | "vertical";
 
-interface CenterProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof centerVariants> {
+interface CenterProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Centering direction. Can be responsive */
+  direction?: ResponsiveValue<DirectionValue>;
+  /** Use inline-flex instead of flex */
+  inline?: boolean;
   /** Maximum width constraint. Can be responsive */
   maxW?: ResponsiveValue<string | number>;
-  /** Minimum height for vertical centering */
+  /** Minimum height for vertical centering. Can be responsive */
   minH?: ResponsiveValue<string | number>;
   /** Whether to use text-align: center for inline content */
   text?: boolean;
@@ -48,6 +33,11 @@ interface CenterProps
  * // Center only horizontally
  * <Center direction="horizontal">
  *   <Button>Centered Button</Button>
+ * </Center>
+ *
+ * // Responsive direction
+ * <Center direction={{ base: "both", md: "horizontal" }}>
+ *   <Content />
  * </Center>
  *
  * // Center with max width constraint
@@ -97,6 +87,20 @@ export const Center = React.forwardRef<HTMLDivElement, CenterProps>(
     },
     ref,
   ) => {
+    // Build direction classes
+    const directionClasses = responsive(direction, (value) => {
+      switch (value) {
+        case "both":
+          return "items-center justify-center";
+        case "horizontal":
+          return "justify-center";
+        case "vertical":
+          return "items-center";
+        default:
+          return "items-center justify-center";
+      }
+    });
+
     // Handle max width
     const maxWidthClasses = maxW
       ? responsive(maxW, (value) => {
@@ -104,9 +108,10 @@ export const Center = React.forwardRef<HTMLDivElement, CenterProps>(
             return `max-w-[${value}px]`;
           }
           if (
-            value.includes("px") ||
-            value.includes("rem") ||
-            value.includes("%")
+            typeof value === "string" &&
+            (value.includes("px") ||
+              value.includes("rem") ||
+              value.includes("%"))
           ) {
             return `max-w-[${value}]`;
           }
@@ -122,10 +127,11 @@ export const Center = React.forwardRef<HTMLDivElement, CenterProps>(
             return `min-h-[${value}px]`;
           }
           if (
-            value.includes("px") ||
-            value.includes("vh") ||
-            value.includes("rem") ||
-            value.includes("%")
+            typeof value === "string" &&
+            (value.includes("px") ||
+              value.includes("vh") ||
+              value.includes("rem") ||
+              value.includes("%"))
           ) {
             return `min-h-[${value}]`;
           }
@@ -139,13 +145,16 @@ export const Center = React.forwardRef<HTMLDivElement, CenterProps>(
 
     // Add width classes for horizontal centering with max width
     const widthClasses =
-      maxW && direction !== "vertical" ? "w-full mx-auto" : "";
+      maxW && (direction === "horizontal" || direction === "both")
+        ? "w-full mx-auto"
+        : "";
 
     return (
       <Component
         ref={ref}
         className={cn(
-          centerVariants({ direction, inline }),
+          inline ? "inline-flex" : "flex",
+          directionClasses,
           maxWidthClasses,
           minHeightClasses,
           textClasses,
