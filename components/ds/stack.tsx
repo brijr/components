@@ -1,43 +1,19 @@
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { type ResponsiveValue, responsive } from "./utils/responsive";
 
-const stackVariants = cva("flex flex-col", {
-  variants: {
-    spacing: {
-      none: "gap-0",
-      sm: "gap-2",
-      md: "gap-4",
-      lg: "gap-6",
-      xl: "gap-8",
-    },
-    align: {
-      start: "items-start",
-      center: "items-center",
-      end: "items-end",
-      stretch: "items-stretch",
-    },
-    justify: {
-      start: "justify-start",
-      center: "justify-center",
-      end: "justify-end",
-      between: "justify-between",
-      around: "justify-around",
-      evenly: "justify-evenly",
-    },
-  },
-  defaultVariants: {
-    spacing: "md",
-    align: "stretch",
-    justify: "start",
-  },
-});
+type SpacingValue = "none" | "sm" | "md" | "lg" | "xl";
+type AlignValue = "start" | "center" | "end" | "stretch";
+type JustifyValue = "start" | "center" | "end" | "between" | "around" | "evenly";
 
 interface StackProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    Omit<VariantProps<typeof stackVariants>, "spacing"> {
-  /** Spacing between items: sm (8px), md (16px), lg (24px), xl (32px) */
-  spacing?: "none" | "sm" | "md" | "lg" | "xl" | string;
+  extends React.HTMLAttributes<HTMLDivElement> {
+  /** Spacing between items. Can be responsive or custom Tailwind class */
+  spacing?: ResponsiveValue<SpacingValue> | string;
+  /** Alignment of items. Can be responsive */
+  align?: ResponsiveValue<AlignValue>;
+  /** Justification of items. Can be responsive */
+  justify?: ResponsiveValue<JustifyValue>;
   /** Shorthand for spacing="sm" */
   compact?: boolean;
   /** HTML element to render */
@@ -94,19 +70,60 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
     // Apply compact prop
     const finalSpacing = compact ? "sm" : spacing;
     
-    // Check if spacing is a custom Tailwind class
-    const isCustomSpacing = finalSpacing && !["none", "sm", "md", "lg", "xl"].includes(finalSpacing);
+    // Check if spacing is a custom Tailwind class (string but not a preset)
+    const isCustomSpacing = typeof finalSpacing === "string" && 
+      !["none", "sm", "md", "lg", "xl"].includes(finalSpacing);
+    
+    // Generate responsive spacing classes
+    const spacingClasses = finalSpacing && !isCustomSpacing
+      ? responsive(finalSpacing as ResponsiveValue<SpacingValue>, (value) => {
+          const spacingMap = {
+            none: "gap-0",
+            sm: "gap-2",
+            md: "gap-4",
+            lg: "gap-6",
+            xl: "gap-8",
+          };
+          return spacingMap[value];
+        })
+      : "";
+    
+    // Generate responsive align classes
+    const alignClasses = align
+      ? responsive(align, (value) => {
+          const alignMap = {
+            start: "items-start",
+            center: "items-center",
+            end: "items-end",
+            stretch: "items-stretch",
+          };
+          return alignMap[value];
+        })
+      : "";
+    
+    // Generate responsive justify classes
+    const justifyClasses = justify
+      ? responsive(justify, (value) => {
+          const justifyMap = {
+            start: "justify-start",
+            center: "justify-center",
+            end: "justify-end",
+            between: "justify-between",
+            around: "justify-around",
+            evenly: "justify-evenly",
+          };
+          return justifyMap[value];
+        })
+      : "";
     
     return (
       <Component
         ref={ref}
         className={cn(
-          stackVariants({ 
-            spacing: isCustomSpacing ? undefined : finalSpacing as "none" | "sm" | "md" | "lg" | "xl", 
-            align, 
-            justify 
-          }),
-          isCustomSpacing && finalSpacing,
+          "flex flex-col",
+          spacingClasses || (isCustomSpacing && finalSpacing),
+          alignClasses || (!align && "items-stretch"),
+          justifyClasses || (!justify && "justify-start"),
           className
         )}
         {...props}

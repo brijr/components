@@ -9,6 +9,9 @@
 export { Container } from "./container";
 export { Section } from "./section";
 export { Nav } from "./nav";
+export { Grid } from "./grid";
+export { Center } from "./center";
+export { AspectRatio } from "./aspect-ratio";
 
 // Typography Components
 export { Heading } from "./heading";
@@ -18,9 +21,17 @@ export { Text } from "./text";
 // Spacing Components
 export { Inline } from "./inline";
 export { Stack } from "./stack";
+export { Spacer } from "./spacer";
+export { Divider } from "./divider";
 
 // Pattern Components (re-export for convenience)
 export { PageHeader, ContentBlock, ButtonGroup } from "./patterns";
+
+// Utilities
+export * from "./utils/responsive";
+
+// Design Tokens
+export * from "./tokens";
 
 // Examples
 export { examples } from "./examples";

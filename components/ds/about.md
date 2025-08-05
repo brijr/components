@@ -1,4 +1,26 @@
-# Design System Documentation
+# Design System Documentation v2
+
+## What's New in v2
+
+### 🎯 Responsive Props
+All components now support responsive values:
+```tsx
+<Heading size={{ base: 3, md: 2, lg: 1 }}>
+<Stack spacing={{ base: "sm", md: "md", lg: "xl" }}>
+<Grid cols={{ base: 1, md: 2, lg: 3 }}>
+```
+
+### 🧩 New Layout Components
+- **Grid** - Responsive grid layouts with auto-fit/fill
+- **Divider** - Visual separators with text support
+- **Spacer** - Flexible spacing utility
+- **Center** - Easy content centering
+- **AspectRatio** - Maintain media aspect ratios
+
+### 🎨 Design Tokens
+Centralized tokens for consistency:
+- Spacing, typography, colors, animations
+- Import from `@/components/ds/tokens`
 
 ## Quick Start - Copy & Paste Examples
 
@@ -66,16 +88,128 @@ import { Button } from "@/components/ui/button";
 </ButtonGroup>;
 ```
 
+## New Components
+
+### Grid
+
+Powerful responsive grid layouts:
+
+```tsx
+// Responsive columns
+<Grid cols={{ base: 1, md: 2, lg: 3 }} gap="lg">
+  <Card>Item 1</Card>
+  <Card>Item 2</Card>
+  <Card>Item 3</Card>
+</Grid>
+
+// Auto-fit with minimum width
+<Grid cols="auto-fit" minChildWidth="250px" gap="md">
+  {items.map(item => <Card key={item.id}>{item.name}</Card>)}
+</Grid>
+
+// Different gaps for rows/columns
+<Grid cols={3} gapX="sm" gapY="lg">
+  {children}
+</Grid>
+```
+
+### Divider
+
+Visual separation between content:
+
+```tsx
+// Simple divider
+<Divider />
+
+// With text
+<Divider>OR</Divider>
+
+// Vertical in flex container
+<Inline>
+  <span>Option A</span>
+  <Divider orientation="vertical" className="h-6" />
+  <span>Option B</span>
+</Inline>
+
+// Styled variants
+<Divider variant="dashed" color="primary" thickness="thick" />
+```
+
+### Spacer
+
+Flexible spacing utility:
+
+```tsx
+// Fixed spacing
+<Spacer size={4} /> // 16px
+
+// Responsive spacing
+<Spacer size={{ base: 2, md: 4, lg: 8 }} />
+
+// Flexible spacer
+<Inline>
+  <Button>Left</Button>
+  <Spacer grow />
+  <Button>Right</Button>
+</Inline>
+```
+
+### Center
+
+Easily center content:
+
+```tsx
+// Full viewport centering
+<Center minH="100vh">
+  <Card>Centered Content</Card>
+</Center>
+
+// With max width
+<Center maxW="800px">
+  <Text>Content won't exceed 800px</Text>
+</Center>
+
+// Text centering
+<Center text>
+  <Heading>Centered Text</Heading>
+</Center>
+```
+
+### AspectRatio
+
+Maintain consistent aspect ratios:
+
+```tsx
+// Video ratio (16:9)
+<AspectRatio ratio="video">
+  <Image src="/thumbnail.jpg" alt="Video" fill />
+</AspectRatio>
+
+// Responsive ratios
+<AspectRatio ratio={{ base: "square", md: "video" }}>
+  <video className="h-full w-full object-cover" />
+</AspectRatio>
+
+// Custom ratio
+<AspectRatio ratio="4/3">
+  <iframe src="..." className="h-full w-full" />
+</AspectRatio>
+```
+
 ## Core Components
 
 ### Heading
 
-Semantic heading with automatic sizing. Use `size` prop (1-6) instead of h1-h6.
+Semantic heading with automatic sizing. Use `size` prop (1-6) instead of h1-h6. **Now with responsive support!**
 
 ```tsx
 <Heading size={1}>Main Title</Heading>           // <h1> with largest size
 <Heading size={2} subdued>Section Title</Heading> // <h2> with muted color
 <Heading size={3} centered>Centered Title</Heading> // <h3> centered
+
+// Responsive sizes
+<Heading size={{ base: 3, md: 2, lg: 1 }}>Responsive Title</Heading>
+<Heading align={{ base: "center", md: "left" }}>Responsive Alignment</Heading>
 ```
 
 **Props:**
@@ -109,7 +243,7 @@ Body text component. For headings, use Heading component.
 
 ### Stack
 
-Vertical spacing between elements. Replaces manual margins.
+Vertical spacing between elements. Replaces manual margins. **Now with responsive support!**
 
 ```tsx
 <Stack spacing="md">
@@ -121,6 +255,15 @@ Vertical spacing between elements. Replaces manual margins.
 <Stack compact>  // Same as spacing="sm"
   <Badge>New</Badge>
   <Text>Compact spacing</Text>
+</Stack>
+
+// Responsive spacing and alignment
+<Stack 
+  spacing={{ base: "sm", md: "md", lg: "xl" }}
+  align={{ base: "center", md: "start" }}
+>
+  <Heading>Responsive Stack</Heading>
+  <Text>Adapts to screen size</Text>
 </Stack>
 ```
 
@@ -294,6 +437,25 @@ Pre-configured Inline for buttons.
 4. **Section + Container for structure** - They handle responsive padding
 5. **Pattern components for common UI** - PageHeader, ContentBlock save time
 
+## Using Design Tokens
+
+```tsx
+import { 
+  spacing, 
+  colors, 
+  typography, 
+  breakpoints,
+  transitions 
+} from "@/components/ds/tokens";
+
+// Use in custom components
+const customStyles = {
+  padding: spacing[4], // 1rem
+  fontSize: typography.fontSize.lg,
+  transition: transitions.button,
+};
+```
+
 ## Import Everything
 
 ```tsx
@@ -306,6 +468,12 @@ import {
   Heading,
   Text,
   Prose,
+  // New in v2
+  Grid,
+  Divider,
+  Spacer,
+  Center,
+  AspectRatio,
 } from "@/components/ds";
 
 // Pattern components

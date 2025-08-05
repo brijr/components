@@ -1,6 +1,7 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { type ResponsiveValue, responsive, isResponsiveValue } from "./utils/responsive";
 
 const headingVariants = cva("", {
   variants: {
@@ -29,13 +30,17 @@ const headingVariants = cva("", {
   },
 });
 
+type HeadingSize = 1 | 2 | 3 | 4 | 5 | 6;
+
 interface HeadingProps
   extends Omit<React.HTMLAttributes<HTMLHeadingElement>, "color">,
-    Omit<VariantProps<typeof headingVariants>, "size"> {
-  /** Heading size (1-6). Controls both visual size and semantic HTML element */
-  size?: 1 | 2 | 3 | 4 | 5 | 6;
+    Omit<VariantProps<typeof headingVariants>, "size" | "align"> {
+  /** Heading size (1-6). Controls both visual size and semantic HTML element. Can be responsive */
+  size?: ResponsiveValue<HeadingSize>;
   /** @deprecated Use `size` instead */
-  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  level?: HeadingSize;
+  /** Text alignment. Can be responsive */
+  align?: ResponsiveValue<"left" | "center" | "right">;
   /** Shorthand for align="center" */
   centered?: boolean;
   /** Shorthand for color="muted" */
@@ -83,18 +88,39 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
     const finalAlign = centered ? "center" : align;
     const finalColor = subdued ? "muted" : color;
     
+    // Determine the semantic element
+    // If size is responsive, use the base value for the element
+    const semanticSize = isResponsiveValue(headingSize) 
+      ? headingSize.base || headingSize.sm || headingSize.md || 2
+      : headingSize;
+    
     // Use 'as' prop if provided, otherwise use size to determine element
-    const Component = as || (`h${headingSize}` as React.ElementType);
+    const Component = as || (`h${semanticSize}` as React.ElementType);
+
+    // Generate responsive classes for size
+    const sizeClasses = responsive(headingSize, (value) => {
+      return headingVariants({ size: value, color: undefined, align: undefined });
+    });
+
+    // Generate responsive classes for alignment
+    const alignClasses = finalAlign 
+      ? responsive(finalAlign, (value) => {
+          const alignMap = {
+            left: "text-left",
+            center: "text-center",
+            right: "text-right",
+          };
+          return alignMap[value];
+        })
+      : "";
 
     return (
       <Component
         ref={ref}
         className={cn(
-          headingVariants({ 
-            size: headingSize, 
-            color: finalColor, 
-            align: finalAlign 
-          }), 
+          sizeClasses,
+          alignClasses,
+          finalColor === "muted" && "text-muted-foreground",
           className
         )}
         {...props}
