@@ -1,12 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-  Inline,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
@@ -92,28 +91,25 @@ export const CTAWithImage = ({
   );
 
   const contentComponent = (
-    <Stack spacing="xl">
-      <Stack spacing="md">
-        <Heading level={2}>
+    <Flex direction="column" gap={12}>
+      <Flex direction="column" gap={4}>
+        <Header as="h2">
           {headline}
-        </Heading>
+        </Header>
         {subheadline && (
-          <Text 
-            variant="lead" 
-            color={variant === "primary" ? "default" : "muted"}
-          >
+          <p className={`text-xl ${variant === "primary" ? "" : "text-muted-foreground"}`}>
             {subheadline}
-          </Text>
+          </p>
         )}
-      </Stack>
+      </Flex>
 
-      <Inline spacing="md">
+      <Flex gap={4}>
         <Button 
           size="lg" 
           variant={variant === "primary" ? "secondary" : "default"}
           asChild
         >
-          <a href={primaryCTA.href}>{primaryCTA.text}</a>
+          <Link href={primaryCTA.href}>{primaryCTA.text}</Link>
         </Button>
         {secondaryCTA && (
           <Button 
@@ -122,11 +118,11 @@ export const CTAWithImage = ({
             asChild
             className={variant === "primary" ? "border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary" : ""}
           >
-            <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
+            <Link href={secondaryCTA.href}>{secondaryCTA.text}</Link>
           </Button>
         )}
-      </Inline>
-    </Stack>
+      </Flex>
+    </Flex>
   );
 
   return (

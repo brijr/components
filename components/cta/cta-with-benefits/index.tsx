@@ -1,12 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-  Inline,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 
@@ -88,22 +87,22 @@ export const CTAWithBenefits = ({
           <Check className={`w-5 h-5 flex-shrink-0 mt-0.5 ${
             variant === "primary" ? "text-primary-foreground" : "text-primary"
           }`} />
-          <Text className="flex-1">
+          <p className="flex-1">
             {benefit.text}
-          </Text>
+          </p>
         </li>
       ))}
     </ul>
   );
 
   const ctaButtons = (
-    <Inline spacing="md">
+    <Flex gap={4}>
       <Button 
         size="lg" 
         variant={variant === "primary" ? "secondary" : "default"}
         asChild
       >
-        <a href={primaryCTA.href}>{primaryCTA.text}</a>
+        <Link href={primaryCTA.href}>{primaryCTA.text}</Link>
       </Button>
       {secondaryCTA && (
         <Button 
@@ -112,10 +111,10 @@ export const CTAWithBenefits = ({
           asChild
           className={variant === "primary" ? "border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary" : ""}
         >
-          <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
+          <Link href={secondaryCTA.href}>{secondaryCTA.text}</Link>
         </Button>
       )}
-    </Inline>
+    </Flex>
   );
 
   if (layout === "split") {
@@ -123,22 +122,19 @@ export const CTAWithBenefits = ({
       <Section className={variantStyles[variant]}>
         <Container>
           <div className="grid gap-8 items-center md:grid-cols-2 md:gap-12">
-            <Stack spacing="lg">
-              <Stack spacing="md">
-                <Heading level={2}>
+            <Flex direction="column" gap={6}>
+              <Flex direction="column" gap={4}>
+                <Header as="h2">
                   {headline}
-                </Heading>
+                </Header>
                 {subheadline && (
-                  <Text 
-                    variant="lead" 
-                    color={variant === "primary" ? "default" : "muted"}
-                  >
+                  <p className={`text-xl ${variant === "primary" ? "" : "text-muted-foreground"}`}>
                     {subheadline}
-                  </Text>
+                  </p>
                 )}
-              </Stack>
+              </Flex>
               {ctaButtons}
-            </Stack>
+            </Flex>
             
             <div>
               {benefitsList}
@@ -152,28 +148,24 @@ export const CTAWithBenefits = ({
   return (
     <Section className={variantStyles[variant]}>
       <Container>
-        <Stack spacing="xl" align="center">
-          <Stack spacing="md" align="center" className="max-w-3xl">
-            <Heading level={2} align="center">
+        <Flex direction="column" gap={12} className="items-center">
+          <Flex direction="column" gap={4} className="items-center max-w-3xl">
+            <Header as="h2" className="text-center">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text 
-                variant="lead" 
-                align="center" 
-                color={variant === "primary" ? "default" : "muted"}
-              >
+              <p className={`text-xl text-center ${variant === "primary" ? "" : "text-muted-foreground"}`}>
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           <div className="max-w-md">
             {benefitsList}
           </div>
 
           {ctaButtons}
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

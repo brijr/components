@@ -4,10 +4,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -144,22 +143,22 @@ export const ContactSimple = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex direction="column" gap={12}>
           {/* Header */}
-          <Stack spacing="md" align="center" className="text-center">
-            <Heading level={2}>{headline}</Heading>
+          <Flex direction="column" gap={4} className="text-center">
+            <Header as="h2">{headline}</Header>
             {subheadline && (
-              <Text variant="lead" color="muted">
+              <p className="text-xl text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           <div className="grid gap-8 lg:grid-cols-3">
             {/* Contact Form */}
             <div className="lg:col-span-2">
               <form onSubmit={handleSubmit}>
-                <Stack spacing="lg">
+                <Flex direction="column" gap={6}>
                   {fields.map((field) => (
                     <div key={field.name} className="space-y-2">
                       <Label htmlFor={field.name}>
@@ -205,17 +204,17 @@ export const ContactSimple = ({
                   <Button type="submit" disabled={isSubmitting} className="w-full sm:w-auto">
                     {isSubmitting ? "Sending..." : submitText}
                   </Button>
-                </Stack>
+                </Flex>
               </form>
             </div>
 
             {/* Contact Info */}
             {contactInfo && (
               <div className="lg:col-span-1">
-                <Stack spacing="lg">
+                <Flex direction="column" gap={6}>
                   {contactInfo.email && (
                     <div>
-                      <Text className="font-medium mb-1">Email</Text>
+                      <p className="font-medium mb-1">Email</p>
                       <a
                         href={`mailto:${contactInfo.email}`}
                         className="text-primary hover:underline"
@@ -227,7 +226,7 @@ export const ContactSimple = ({
 
                   {contactInfo.phone && (
                     <div>
-                      <Text className="font-medium mb-1">Phone</Text>
+                      <p className="font-medium mb-1">Phone</p>
                       <a
                         href={`tel:${contactInfo.phone}`}
                         className="text-primary hover:underline"
@@ -239,22 +238,22 @@ export const ContactSimple = ({
 
                   {contactInfo.address && (
                     <div>
-                      <Text className="font-medium mb-1">Address</Text>
-                      <Text color="muted">{contactInfo.address}</Text>
+                      <p className="font-medium mb-1">Address</p>
+                      <p className="text-muted-foreground">{contactInfo.address}</p>
                     </div>
                   )}
 
                   {contactInfo.hours && (
                     <div>
-                      <Text className="font-medium mb-1">Hours</Text>
-                      <Text color="muted">{contactInfo.hours}</Text>
+                      <p className="font-medium mb-1">Hours</p>
+                      <p className="text-muted-foreground">{contactInfo.hours}</p>
                     </div>
                   )}
-                </Stack>
+                </Flex>
               </div>
             )}
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

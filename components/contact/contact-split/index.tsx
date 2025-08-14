@@ -4,10 +4,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -155,23 +154,23 @@ export const ContactSplit = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex direction="column" gap={12}>
           {/* Header */}
-          <Stack spacing="md" className="max-w-3xl">
-            <Heading level={2}>{headline}</Heading>
+          <Flex direction="column" gap={4} className="max-w-3xl">
+            <Header as="h2">{headline}</Header>
             {subheadline && (
-              <Text variant="lead" color="muted">
+              <p className="text-xl text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           <div className="grid gap-12 lg:grid-cols-2">
             {/* Contact Methods */}
             <div>
-              <Stack spacing="xl">
+              <Flex direction="column" gap={8}>
                 {/* Methods List */}
-                <Stack spacing="lg">
+                <Flex direction="column" gap={6}>
                   {contactMethods.map((method, index) => (
                     <div key={index} className="group">
                       <a
@@ -183,69 +182,69 @@ export const ContactSplit = ({
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
-                            <Text className="font-semibold">{method.title}</Text>
+                            <p className="font-semibold">{method.title}</p>
                             {method.badge && (
                               <Badge variant="secondary" className="text-xs">
                                 {method.badge}
                               </Badge>
                             )}
                           </div>
-                          <Text className="mb-2">
+                          <p className="mb-2">
                             {method.description}
-                          </Text>
-                          <Text className="text-primary group-hover:underline">
+                          </p>
+                          <p className="text-primary group-hover:underline">
                             {method.action}
-                          </Text>
+                          </p>
                         </div>
                       </a>
                     </div>
                   ))}
-                </Stack>
+                </Flex>
 
                 {/* Additional Info */}
                 {additionalInfo && additionalInfo.length > 0 && (
                   <>
                     <Separator />
-                    <Stack spacing="lg">
+                    <Flex direction="column" gap={6}>
                       {additionalInfo.map((info, index) => (
                         <div key={index}>
-                          <Text className="font-semibold mb-3">{info.title}</Text>
-                          <Stack spacing="sm">
+                          <p className="font-semibold mb-3">{info.title}</p>
+                          <Flex direction="column" gap={2}>
                             {info.items.map((item, itemIndex) => (
-                              <Text key={itemIndex}>
+                              <p key={itemIndex}>
                                 {item}
-                              </Text>
+                              </p>
                             ))}
-                          </Stack>
+                          </Flex>
                         </div>
                       ))}
-                    </Stack>
+                    </Flex>
                   </>
                 )}
-              </Stack>
+              </Flex>
             </div>
 
             {/* Contact Form */}
             <div>
               <div className="rounded-lg border bg-card p-6 lg:p-8">
-                <Stack spacing="lg">
+                <Flex direction="column" gap={6}>
                   {(form.title || form.description) && (
                     <div>
                       {form.title && (
-                        <Heading level={3} className="mb-2">
+                        <Header as="h3" className="mb-2">
                           {form.title}
-                        </Heading>
+                        </Header>
                       )}
                       {form.description && (
-                        <Text>
+                        <p>
                           {form.description}
-                        </Text>
+                        </p>
                       )}
                     </div>
                   )}
 
                   <form onSubmit={handleSubmit}>
-                    <Stack spacing="lg">
+                    <Flex direction="column" gap={6}>
                       {form.fields.map((field) => (
                         <div key={field.name} className="space-y-2">
                           <Label htmlFor={field.name}>
@@ -282,13 +281,13 @@ export const ContactSplit = ({
                       >
                         {isSubmitting ? "Sending..." : (form.submitText || "Send message")}
                       </Button>
-                    </Stack>
+                    </Flex>
                   </form>
-                </Stack>
+                </Flex>
               </div>
             </div>
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

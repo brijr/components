@@ -1,12 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-  Inline,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 
 /**
@@ -63,28 +62,25 @@ export const CTASplit = ({
     <Section className={variantStyles[variant]}>
       <Container>
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <Stack spacing="sm" className="flex-1 max-w-2xl">
-            <Heading level={2}>
+          <Flex direction="column" gap={2} className="flex-1 max-w-2xl">
+            <Header as="h2">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text 
-                variant="lead" 
-                color={variant === "primary" ? "default" : "muted"}
-              >
+              <p className={`text-xl ${variant === "primary" ? "" : "text-muted-foreground"}`}>
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           <div className="flex-shrink-0">
-            <Inline spacing="md">
+            <Flex gap={4}>
               <Button 
                 size="lg" 
                 variant={variant === "primary" ? "secondary" : "default"}
                 asChild
               >
-                <a href={primaryCTA.href}>{primaryCTA.text}</a>
+                <Link href={primaryCTA.href}>{primaryCTA.text}</Link>
               </Button>
               {secondaryCTA && (
                 <Button 
@@ -93,10 +89,10 @@ export const CTASplit = ({
                   asChild
                   className={variant === "primary" ? "border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary" : ""}
                 >
-                  <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
+                  <Link href={secondaryCTA.href}>{secondaryCTA.text}</Link>
                 </Button>
               )}
-            </Inline>
+            </Flex>
           </div>
         </div>
       </Container>

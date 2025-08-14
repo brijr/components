@@ -1,12 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-  Inline,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 
 /**
@@ -62,29 +61,25 @@ export const CTASimple = ({
   return (
     <Section className={variantStyles[variant]}>
       <Container>
-        <Stack spacing="xl" align="center">
-          <Stack spacing="md" align="center" className="max-w-3xl">
-            <Heading level={2} align="center">
+        <Flex direction="column" gap={12} className="items-center">
+          <Flex direction="column" gap={4} className="items-center max-w-3xl">
+            <Header as="h2" className="text-center">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text 
-                variant="lead" 
-                align="center" 
-                color={variant === "primary" ? "default" : "muted"}
-              >
+              <p className={`text-xl text-center ${variant === "primary" ? "" : "text-muted-foreground"}`}>
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
-          <Inline spacing="md">
+          <Flex gap={4}>
             <Button 
               size="lg" 
               variant={variant === "primary" ? "secondary" : "default"}
               asChild
             >
-              <a href={primaryCTA.href}>{primaryCTA.text}</a>
+              <Link href={primaryCTA.href}>{primaryCTA.text}</Link>
             </Button>
             {secondaryCTA && (
               <Button 
@@ -93,11 +88,11 @@ export const CTASimple = ({
                 asChild
                 className={variant === "primary" ? "border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary" : ""}
               >
-                <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
+                <Link href={secondaryCTA.href}>{secondaryCTA.text}</Link>
               </Button>
             )}
-          </Inline>
-        </Stack>
+          </Flex>
+        </Flex>
       </Container>
     </Section>
   );

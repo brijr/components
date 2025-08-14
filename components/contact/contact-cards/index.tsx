@@ -1,11 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import {
   Card,
   CardContent,
@@ -121,16 +121,16 @@ export const ContactCards = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex direction="column" gap={12}>
           {/* Header */}
-          <Stack spacing="md" align="center" className="text-center">
-            <Heading level={2}>{headline}</Heading>
+          <Flex direction="column" gap={4} className="text-center">
+            <Header as="h2">{headline}</Header>
             {subheadline && (
-              <Text variant="lead" color="muted">
+              <p className="text-xl text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Contact Cards */}
           <div className={`grid gap-6 md:grid-cols-2 ${gridCols[columns]}`}>
@@ -154,14 +154,14 @@ export const ContactCards = ({
                   <CardDescription>{card.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Stack spacing="lg">
+                  <Flex direction="column" gap={6}>
                     {/* Contact Details */}
-                    <Stack spacing="md">
+                    <Flex direction="column" gap={4}>
                       {card.details.map((detail, detailIndex) => (
                         <div key={detailIndex} className="flex justify-between items-start">
-                          <Text variant="small" className="font-medium">
+                          <p className="text-sm font-medium">
                             {detail.label}:
-                          </Text>
+                          </p>
                           {detail.href ? (
                             <a
                               href={detail.href}
@@ -170,13 +170,13 @@ export const ContactCards = ({
                               {detail.value}
                             </a>
                           ) : (
-                            <Text variant="small" color="muted" className="text-right">
+                            <p className="text-sm text-muted-foreground text-right">
                               {detail.value}
-                            </Text>
+                            </p>
                           )}
                         </div>
                       ))}
-                    </Stack>
+                    </Flex>
 
                     {/* Action Button */}
                     {card.action && (
@@ -185,10 +185,10 @@ export const ContactCards = ({
                         className="w-full"
                         asChild
                       >
-                        <a href={card.action.href}>{card.action.text}</a>
+                        <Link href={card.action.href}>{card.action.text}</Link>
                       </Button>
                     )}
-                  </Stack>
+                  </Flex>
                 </CardContent>
               </Card>
             ))}
@@ -198,21 +198,21 @@ export const ContactCards = ({
           {cta && (
             <Card className="bg-muted/50">
               <CardContent className="p-8">
-                <Stack spacing="lg" align="center" className="text-center">
-                  <Stack spacing="md">
-                    <Heading level={3}>{cta.title}</Heading>
+                <Flex direction="column" gap={6} className="text-center">
+                  <Flex direction="column" gap={4}>
+                    <Header as="h3">{cta.title}</Header>
                     {cta.description && (
-                      <Text color="muted">{cta.description}</Text>
+                      <p className="text-muted-foreground">{cta.description}</p>
                     )}
-                  </Stack>
+                  </Flex>
                   <Button size="lg" asChild>
-                    <a href={cta.action.href}>{cta.action.text}</a>
+                    <Link href={cta.action.href}>{cta.action.text}</Link>
                   </Button>
-                </Stack>
+                </Flex>
               </CardContent>
             </Card>
           )}
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

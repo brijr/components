@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { Container, Inline } from "@/components/ds";
+import Link from "next/link";
+import { Container, Flex } from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 
@@ -112,12 +113,12 @@ export const CTAFloating = ({
           </p>
           
           <div className="flex items-center gap-3">
-            <Inline spacing="sm">
+            <Flex gap={2}>
               <Button 
                 size="sm" 
                 asChild
               >
-                <a href={primaryCTA.href}>{primaryCTA.text}</a>
+                <Link href={primaryCTA.href}>{primaryCTA.text}</Link>
               </Button>
               {secondaryCTA && (
                 <Button 
@@ -125,10 +126,10 @@ export const CTAFloating = ({
                   variant="outline" 
                   asChild
                 >
-                  <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
+                  <Link href={secondaryCTA.href}>{secondaryCTA.text}</Link>
                 </Button>
               )}
-            </Inline>
+            </Flex>
             
             {dismissible && (
               <Button

@@ -4,10 +4,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -150,16 +149,16 @@ export const ContactWithMap = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex direction="column" gap={12}>
           {/* Header */}
-          <Stack spacing="md" align="center" className="text-center">
-            <Heading level={2}>{headline}</Heading>
+          <Flex direction="column" gap={4} className="text-center">
+            <Header as="h2">{headline}</Header>
             {subheadline && (
-              <Text variant="lead" color="muted">
+              <p className="text-xl text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           <div className="grid gap-8 lg:grid-cols-2">
             {/* Contact Form */}
@@ -167,7 +166,7 @@ export const ContactWithMap = ({
               <Card>
                 <CardContent className="p-6">
                   <form onSubmit={handleSubmit}>
-                    <Stack spacing="lg">
+                    <Flex direction="column" gap={6}>
                       {form.fields.map((field) => (
                         <div key={field.name} className="space-y-2">
                           <Label htmlFor={field.name}>
@@ -204,26 +203,26 @@ export const ContactWithMap = ({
                       >
                         {isSubmitting ? "Sending..." : (form.submitText || "Send message")}
                       </Button>
-                    </Stack>
+                    </Flex>
                   </form>
                 </CardContent>
               </Card>
 
               {/* Location Details */}
-              <Stack spacing="lg" className="mt-6">
+              <Flex direction="column" gap={6} className="mt-6">
                 {locations.map((location, index) => (
                   <div key={index}>
                     {locations.length > 1 && (
-                      <Text className="font-semibold mb-3">{location.name}</Text>
+                      <p className="font-semibold mb-3">{location.name}</p>
                     )}
                     
-                    <Stack spacing="md">
+                    <Flex direction="column" gap={4}>
                       {location.address && (
                         <div className="flex items-start gap-3">
                           <MapPin className="w-5 h-5 text-muted-foreground mt-0.5" />
-                          <Text as="p" color="muted">
+                          <p className="text-muted-foreground">
                             {location.address}
-                          </Text>
+                          </p>
                         </div>
                       )}
 
@@ -254,15 +253,15 @@ export const ContactWithMap = ({
                       {location.hours && (
                         <div className="flex items-start gap-3">
                           <Clock className="w-5 h-5 text-muted-foreground mt-0.5" />
-                          <Text as="p" color="muted">
+                          <p className="text-muted-foreground">
                             {location.hours}
-                          </Text>
+                          </p>
                         </div>
                       )}
-                    </Stack>
+                    </Flex>
                   </div>
                 ))}
-              </Stack>
+              </Flex>
             </div>
 
             {/* Map */}
@@ -282,7 +281,7 @@ export const ContactWithMap = ({
               </div>
             )}
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );
