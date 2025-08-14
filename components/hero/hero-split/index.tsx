@@ -1,15 +1,12 @@
 import * as React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-  Grid,
-  AspectRatio,
-  ButtonGroup,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 
 /**
@@ -83,58 +80,52 @@ export const HeroSplit = ({
   return (
     <Section>
       <Container>
-        <Grid
-          cols={{ base: 1, lg: 2 }}
-          gap={{ base: "md", lg: "lg" }}
-          align="center"
-          flow={reverse ? "col-dense" : undefined}
-        >
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-center`}>
           {/* Text content */}
-          <Stack
-            spacing="md"
+          <Flex
+            direction="column"
+            gap={4}
             align="start"
             className={reverse ? "lg:col-start-2" : ""}
           >
-            <Stack spacing="sm" align="start">
-              <Heading size={{ base: 2, md: 1 }}>{headline}</Heading>
+            <Flex direction="column" gap={2} align="start">
+              <Header as="h1">{headline}</Header>
               {subheadline && (
-                <Text variant="lead" subdued>
+                <p className="text-xl text-muted-foreground">
                   {subheadline}
-                </Text>
+                </p>
               )}
-            </Stack>
+            </Flex>
 
             {(primaryCTA || secondaryCTA) && (
-              <ButtonGroup>
+              <Flex gap={4}>
                 {primaryCTA && (
                   <Button size="lg" asChild>
-                    <a href={primaryCTA.href}>{primaryCTA.text}</a>
+                    <Link href={primaryCTA.href}>{primaryCTA.text}</Link>
                   </Button>
                 )}
                 {secondaryCTA && (
                   <Button size="lg" variant="outline" asChild>
-                    <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
+                    <Link href={secondaryCTA.href}>{secondaryCTA.text}</Link>
                   </Button>
                 )}
-              </ButtonGroup>
+              </Flex>
             )}
-          </Stack>
+          </Flex>
 
           {/* Hero image */}
-          <div className={`bg-muted relative overflow-hidden rounded-xl shadow-xl ${reverse ? "lg:col-start-1" : ""}`}>
-            <AspectRatio ratio="3/2">
-              <Image
-                src={image.src}
-                alt={image.alt}
-                width={image.width || 600}
-                height={image.height || 400}
-                priority={image.priority}
-                className="h-full w-full object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </AspectRatio>
+          <div className={`bg-muted relative overflow-hidden rounded-xl shadow-xl aspect-[3/2] ${reverse ? "lg:col-start-1" : ""}`}>
+            <Image
+              src={image.src}
+              alt={image.alt}
+              width={image.width || 600}
+              height={image.height || 400}
+              priority={image.priority}
+              className="h-full w-full object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
           </div>
-        </Grid>
+        </div>
       </Container>
     </Section>
   );

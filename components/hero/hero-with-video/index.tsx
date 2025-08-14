@@ -1,12 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-  Inline,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 
 /**
@@ -76,40 +75,35 @@ export const HeroWithVideo = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl" align="center">
+        <Flex direction="column" gap={12} align="center">
           {/* Text content */}
-          <Stack spacing="lg" align="center">
-            <Stack spacing="md" align="center">
-              <Heading level={1} align="center">
+          <Flex direction="column" gap={6} align="center">
+            <Flex direction="column" gap={4} align="center">
+              <Header as="h1" className="text-center">
                 {headline}
-              </Heading>
+              </Header>
               {subheadline && (
-                <Text
-                  variant="lead"
-                  align="center"
-                  color="muted"
-                  className="max-w-2xl"
-                >
+                <p className="text-xl text-muted-foreground text-center max-w-2xl">
                   {subheadline}
-                </Text>
+                </p>
               )}
-            </Stack>
+            </Flex>
 
             {(primaryCTA || secondaryCTA) && (
-              <Inline spacing="md">
+              <Flex gap={4}>
                 {primaryCTA && (
                   <Button size="lg" asChild>
-                    <a href={primaryCTA.href}>{primaryCTA.text}</a>
+                    <Link href={primaryCTA.href}>{primaryCTA.text}</Link>
                   </Button>
                 )}
                 {secondaryCTA && (
                   <Button size="lg" variant="outline" asChild>
-                    <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
+                    <Link href={secondaryCTA.href}>{secondaryCTA.text}</Link>
                   </Button>
                 )}
-              </Inline>
+              </Flex>
             )}
-          </Stack>
+          </Flex>
 
           {/* Video embed */}
           <div className="w-full max-w-4xl">
@@ -126,7 +120,7 @@ export const HeroWithVideo = ({
               />
             </div>
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

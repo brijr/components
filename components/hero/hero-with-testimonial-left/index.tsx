@@ -1,12 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-  Inline,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -92,43 +91,43 @@ export const HeroWithTestimonialLeft = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl" align="start">
+        <Flex direction="column" gap={12} align="start">
           {/* Text content and CTAs */}
-          <Stack spacing="lg" align="start">
-            <Stack spacing="md" align="start" className="max-w-3xl">
-              <Heading level={1}>{headline}</Heading>
+          <Flex direction="column" gap={6} align="start">
+            <Flex direction="column" gap={4} align="start" className="max-w-3xl">
+              <Header as="h1">{headline}</Header>
               {subheadline && (
-                <Text variant="lead" color="muted">
+                <p className="text-xl text-muted-foreground">
                   {subheadline}
-                </Text>
+                </p>
               )}
-            </Stack>
+            </Flex>
 
             {(primaryCTA || secondaryCTA) && (
-              <Inline spacing="md">
+              <Flex gap={4}>
                 {primaryCTA && (
                   <Button size="lg" asChild>
-                    <a href={primaryCTA.href}>{primaryCTA.text}</a>
+                    <Link href={primaryCTA.href}>{primaryCTA.text}</Link>
                   </Button>
                 )}
                 {secondaryCTA && (
                   <Button size="lg" variant="outline" asChild>
-                    <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
+                    <Link href={secondaryCTA.href}>{secondaryCTA.text}</Link>
                   </Button>
                 )}
-              </Inline>
+              </Flex>
             )}
-          </Stack>
+          </Flex>
 
           {/* Testimonial card */}
           <Card className="w-full max-w-3xl">
             <CardContent className="pt-6">
-              <Stack spacing="lg">
-                <Text variant="lead" className="italic">
+              <Flex direction="column" gap={6}>
+                <p className="text-xl italic">
                   &ldquo;{testimonial.quote}&rdquo;
-                </Text>
+                </p>
 
-                <Stack spacing="sm" align="start">
+                <Flex direction="row" gap={2} align="center">
                   <Avatar className="h-12 w-12">
                     {testimonial.author.avatarUrl && (
                       <AvatarImage
@@ -145,19 +144,19 @@ export const HeroWithTestimonialLeft = ({
                     </AvatarFallback>
                   </Avatar>
 
-                  <Stack spacing="xs" align="start">
-                    <Text weight="semibold">{testimonial.author.name}</Text>
-                    <Text variant="small" color="muted">
+                  <Flex direction="column" gap={1} align="start">
+                    <p className="font-semibold">{testimonial.author.name}</p>
+                    <p className="text-sm text-muted-foreground">
                       {testimonial.author.role}
                       {testimonial.author.company &&
                         `, ${testimonial.author.company}`}
-                    </Text>
-                  </Stack>
-                </Stack>
-              </Stack>
+                    </p>
+                  </Flex>
+                </Flex>
+              </Flex>
             </CardContent>
           </Card>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

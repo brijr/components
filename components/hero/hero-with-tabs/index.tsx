@@ -1,13 +1,12 @@
 import * as React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-  Inline,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -105,23 +104,18 @@ export const HeroWithTabs = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl" align="center">
+        <Flex direction="column" gap={12} align="center">
           {/* Text content */}
-          <Stack spacing="md" align="center">
-            <Heading level={1} align="center">
+          <Flex direction="column" gap={4} align="center">
+            <Header as="h1" className="text-center">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text
-                variant="lead"
-                align="center"
-                color="muted"
-                className="max-w-2xl"
-              >
+              <p className="text-xl text-muted-foreground text-center max-w-2xl">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Tabs */}
           <Tabs defaultValue={defaultValue} className="w-full max-w-3xl">
@@ -138,22 +132,22 @@ export const HeroWithTabs = ({
 
             {tabs.map((tab) => (
               <TabsContent key={tab.value} value={tab.value}>
-                <Stack spacing="lg" align="center" className="mt-6">
-                  <Stack spacing="md" align="center">
-                    <Heading level={3} align="center">
+                <Flex direction="column" gap={6} align="center" className="mt-6">
+                  <Flex direction="column" gap={4} align="center">
+                    <Header as="h3" className="text-center">
                       {tab.title}
-                    </Heading>
-                    <Text align="center" color="muted" className="max-w-2xl">
+                    </Header>
+                    <p className="text-center text-muted-foreground max-w-2xl">
                       {tab.description}
-                    </Text>
-                  </Stack>
+                    </p>
+                  </Flex>
 
                   {tab.features && tab.features.length > 0 && (
                     <ul className="grid w-full max-w-xl gap-3 sm:grid-cols-2">
                       {tab.features.map((feature, index) => (
                         <li key={index} className="flex items-start gap-2">
-                          <Text className="text-primary">•</Text>
-                          <Text variant="small">{feature}</Text>
+                          <span className="text-primary">•</span>
+                          <span className="text-sm">{feature}</span>
                         </li>
                       ))}
                     </ul>
@@ -168,27 +162,27 @@ export const HeroWithTabs = ({
                       className="max-w-full rounded-lg shadow-lg"
                     />
                   )}
-                </Stack>
+                </Flex>
               </TabsContent>
             ))}
           </Tabs>
 
           {/* CTAs */}
           {(primaryCTA || secondaryCTA) && (
-            <Inline spacing="md">
+            <Flex gap={4}>
               {primaryCTA && (
                 <Button size="lg" asChild>
-                  <a href={primaryCTA.href}>{primaryCTA.text}</a>
+                  <Link href={primaryCTA.href}>{primaryCTA.text}</Link>
                 </Button>
               )}
               {secondaryCTA && (
                 <Button size="lg" variant="outline" asChild>
-                  <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
+                  <Link href={secondaryCTA.href}>{secondaryCTA.text}</Link>
                 </Button>
               )}
-            </Inline>
+            </Flex>
           )}
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

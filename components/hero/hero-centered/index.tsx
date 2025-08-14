@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Section, Container, Stack, Heading, Text, Center, ButtonGroup } from "@/components/ds";
+import Link from "next/link";
+import { Section, Container, Flex, Header } from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 
 /**
@@ -46,42 +47,33 @@ export const HeroCentered = ({
   return (
     <Section>
       <Container>
-        <Center minH="60vh">
-          <Stack spacing="md" align="center">
-            <Stack spacing="sm" align="center">
-              <Heading
-                size={1}
-                centered
-                className="font-bold"
-              >
+        <Flex
+          justify="center"
+          align="center"
+          className="min-h-[60vh]"
+        >
+          <Flex direction="column" gap={6} align="center">
+            <Flex direction="column" gap={4} align="center">
+              <Header as="h1" className="text-center font-bold">
                 {headline}
-              </Heading>
+              </Header>
 
               {subheadline && (
-                <Text
-                  variant="lead"
-                  centered
-                  subdued
-                  className="max-w-2xl"
-                >
+                <p className="text-xl text-muted-foreground text-center max-w-2xl">
                   {subheadline}
-                </Text>
+                </p>
               )}
-            </Stack>
+            </Flex>
 
             {cta && (
-              <ButtonGroup>
-                <Button
-                  size="lg"
-                  variant={cta.variant || "default"}
-                  asChild
-                >
-                  <a href={cta.href}>{cta.text}</a>
+              <Flex gap={4}>
+                <Button size="lg" variant={cta.variant || "default"} asChild>
+                  <Link href={cta.href}>{cta.text}</Link>
                 </Button>
-              </ButtonGroup>
+              </Flex>
             )}
-          </Stack>
-        </Center>
+          </Flex>
+        </Flex>
       </Container>
     </Section>
   );

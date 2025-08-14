@@ -1,12 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-  Inline,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -72,40 +71,40 @@ export const HeroWithBadgeLeft = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="lg" align="start">
+        <Flex direction="column" gap={6} align="start">
           {/* Badge */}
           {badge && (
             <Badge variant={badge.variant} asChild={!!badge.href}>
-              {badge.href ? <a href={badge.href}>{badge.text}</a> : badge.text}
+              {badge.href ? <Link href={badge.href}>{badge.text}</Link> : badge.text}
             </Badge>
           )}
 
           {/* Text content */}
-          <Stack spacing="md" align="start" className="max-w-3xl">
-            <Heading level={1}>{headline}</Heading>
+          <Flex direction="column" gap={4} align="start" className="max-w-3xl">
+            <Header as="h1">{headline}</Header>
             {subheadline && (
-              <Text variant="lead" color="muted">
+              <p className="text-xl text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* CTAs */}
           {(primaryCTA || secondaryCTA) && (
-            <Inline spacing="md">
+            <Flex gap={4}>
               {primaryCTA && (
                 <Button size="lg" asChild>
-                  <a href={primaryCTA.href}>{primaryCTA.text}</a>
+                  <Link href={primaryCTA.href}>{primaryCTA.text}</Link>
                 </Button>
               )}
               {secondaryCTA && (
                 <Button size="lg" variant="outline" asChild>
-                  <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
+                  <Link href={secondaryCTA.href}>{secondaryCTA.text}</Link>
                 </Button>
               )}
-            </Inline>
+            </Flex>
           )}
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

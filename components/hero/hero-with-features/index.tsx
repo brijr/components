@@ -1,13 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-  Grid,
-  ButtonGroup,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 
@@ -90,64 +88,55 @@ export const HeroWithFeatures = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="lg" align="center">
+        <Flex direction="column" gap={6} align="center">
           {/* Text content and CTAs */}
-          <Stack spacing="md" align="center">
-            <Stack spacing="sm" align="center">
-              <Heading size={{ base: 2, md: 1 }} centered>
+          <Flex direction="column" gap={4} align="center">
+            <Flex direction="column" gap={2} align="center">
+              <Header as="h1" className="text-center">
                 {headline}
-              </Heading>
+              </Header>
               {subheadline && (
-                <Text
-                  variant="lead"
-                  centered
-                  subdued
-                  className="max-w-2xl"
-                >
+                <p className="text-xl text-muted-foreground text-center max-w-2xl">
                   {subheadline}
-                </Text>
+                </p>
               )}
-            </Stack>
+            </Flex>
 
             {(primaryCTA || secondaryCTA) && (
-              <ButtonGroup>
+              <Flex gap={4}>
                 {primaryCTA && (
                   <Button size="lg" asChild>
-                    <a href={primaryCTA.href}>{primaryCTA.text}</a>
+                    <Link href={primaryCTA.href}>{primaryCTA.text}</Link>
                   </Button>
                 )}
                 {secondaryCTA && (
                   <Button size="lg" variant="outline" asChild>
-                    <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
+                    <Link href={secondaryCTA.href}>{secondaryCTA.text}</Link>
                   </Button>
                 )}
-              </ButtonGroup>
+              </Flex>
             )}
-          </Stack>
+          </Flex>
 
           {/* Feature cards */}
-          <Grid 
-            cols={{ base: 1, sm: 2, lg: 3 }} 
-            gap="md"
-            className="w-full"
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
             {features.map((feature, index) => (
               <Card key={index}>
                 <CardHeader>
-                  <Stack spacing="sm" align="start">
+                  <Flex direction="column" gap={2} align="start">
                     {feature.icon && (
                       <div className="text-primary">{feature.icon}</div>
                     )}
-                    <Heading size={3}>{feature.title}</Heading>
-                  </Stack>
+                    <Header as="h3">{feature.title}</Header>
+                  </Flex>
                 </CardHeader>
                 <CardContent>
-                  <Text subdued>{feature.description}</Text>
+                  <p className="text-muted-foreground">{feature.description}</p>
                 </CardContent>
               </Card>
             ))}
-          </Grid>
-        </Stack>
+          </div>
+        </Flex>
       </Container>
     </Section>
   );

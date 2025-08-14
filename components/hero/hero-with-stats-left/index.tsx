@@ -1,12 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-  Inline,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 
 /**
@@ -79,49 +78,49 @@ export const HeroWithStatsLeft = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl" align="start">
+        <Flex direction="column" gap={12} align="start">
           {/* Text content */}
-          <Stack spacing="md" align="start" className="max-w-3xl">
-            <Heading level={1}>{headline}</Heading>
+          <Flex direction="column" gap={4} align="start" className="max-w-3xl">
+            <Header as="h1">{headline}</Header>
             {subheadline && (
-              <Text variant="lead" color="muted">
+              <p className="text-xl text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Stats grid */}
           <div className="grid w-full max-w-4xl grid-cols-2 gap-8 md:grid-cols-4 md:gap-12">
             {stats.map((stat, index) => (
-              <Stack key={index} spacing="xs" align="start">
-                <Text className="text-4xl font-bold sm:text-5xl" as="div">
+              <Flex key={index} direction="column" gap={1} align="start">
+                <div className="text-4xl font-bold sm:text-5xl">
                   {stat.prefix}
                   {stat.value}
                   {stat.suffix}
-                </Text>
-                <Text variant="small" color="muted">
+                </div>
+                <p className="text-sm text-muted-foreground">
                   {stat.label}
-                </Text>
-              </Stack>
+                </p>
+              </Flex>
             ))}
           </div>
 
           {/* CTAs */}
           {(primaryCTA || secondaryCTA) && (
-            <Inline spacing="md">
+            <Flex gap={4}>
               {primaryCTA && (
                 <Button size="lg" asChild>
-                  <a href={primaryCTA.href}>{primaryCTA.text}</a>
+                  <Link href={primaryCTA.href}>{primaryCTA.text}</Link>
                 </Button>
               )}
               {secondaryCTA && (
                 <Button size="lg" variant="outline" asChild>
-                  <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
+                  <Link href={secondaryCTA.href}>{secondaryCTA.text}</Link>
                 </Button>
               )}
-            </Inline>
+            </Flex>
           )}
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

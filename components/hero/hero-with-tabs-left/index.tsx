@@ -1,13 +1,12 @@
 import * as React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-  Inline,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -105,16 +104,16 @@ export const HeroWithTabsLeft = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl" align="start">
+        <Flex direction="column" gap={12} align="start">
           {/* Text content */}
-          <Stack spacing="md" align="start" className="max-w-3xl">
-            <Heading level={1}>{headline}</Heading>
+          <Flex direction="column" gap={4} align="start" className="max-w-3xl">
+            <Header as="h1">{headline}</Header>
             {subheadline && (
-              <Text variant="lead" color="muted">
+              <p className="text-xl text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Tabs */}
           <Tabs defaultValue={defaultValue} className="w-full max-w-3xl">
@@ -131,20 +130,20 @@ export const HeroWithTabsLeft = ({
 
             {tabs.map((tab) => (
               <TabsContent key={tab.value} value={tab.value}>
-                <Stack spacing="lg" align="start" className="mt-6">
-                  <Stack spacing="md" align="start">
-                    <Heading level={3}>{tab.title}</Heading>
-                    <Text color="muted" className="max-w-2xl">
+                <Flex direction="column" gap={6} align="start" className="mt-6">
+                  <Flex direction="column" gap={4} align="start">
+                    <Header as="h3">{tab.title}</Header>
+                    <p className="text-muted-foreground max-w-2xl">
                       {tab.description}
-                    </Text>
-                  </Stack>
+                    </p>
+                  </Flex>
 
                   {tab.features && tab.features.length > 0 && (
                     <ul className="grid w-full max-w-xl gap-3 sm:grid-cols-2">
                       {tab.features.map((feature, index) => (
                         <li key={index} className="flex items-start gap-2">
-                          <Text className="text-primary">•</Text>
-                          <Text variant="small">{feature}</Text>
+                          <span className="text-primary">•</span>
+                          <span className="text-sm">{feature}</span>
                         </li>
                       ))}
                     </ul>
@@ -159,27 +158,27 @@ export const HeroWithTabsLeft = ({
                       className="max-w-full rounded-lg shadow-lg"
                     />
                   )}
-                </Stack>
+                </Flex>
               </TabsContent>
             ))}
           </Tabs>
 
           {/* CTAs */}
           {(primaryCTA || secondaryCTA) && (
-            <Inline spacing="md">
+            <Flex gap={4}>
               {primaryCTA && (
                 <Button size="lg" asChild>
-                  <a href={primaryCTA.href}>{primaryCTA.text}</a>
+                  <Link href={primaryCTA.href}>{primaryCTA.text}</Link>
                 </Button>
               )}
               {secondaryCTA && (
                 <Button size="lg" variant="outline" asChild>
-                  <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
+                  <Link href={secondaryCTA.href}>{secondaryCTA.text}</Link>
                 </Button>
               )}
-            </Inline>
+            </Flex>
           )}
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

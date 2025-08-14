@@ -1,13 +1,7 @@
 import * as React from "react";
 import Image from "next/image";
-import {
-  Section,
-  Container,
-  Stack,
-  Heading,
-  Text,
-  Inline,
-} from "@/components/ds";
+import Link from "next/link";
+import { Section, Container, Flex, Header } from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 
 /**
@@ -78,35 +72,35 @@ export const HeroLeftAligned = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex direction="column" gap={12}>
           {/* Text content - left aligned */}
-          <Stack spacing="lg" align="start">
-            <Stack spacing="md" align="start" className="max-w-3xl">
-              <Heading size={1} as="h1">
+          <Flex direction="column" gap={6} align="start">
+            <Flex direction="column" gap={4} align="start" className="max-w-3xl">
+              <Header as="h1">
                 {headline}
-              </Heading>
+              </Header>
               {subheadline && (
-                <Text variant="lead" color="muted">
+                <p className="text-xl text-muted-foreground">
                   {subheadline}
-                </Text>
+                </p>
               )}
-            </Stack>
+            </Flex>
 
             {(primaryCTA || secondaryCTA) && (
-              <Inline spacing="md">
+              <Flex gap={4}>
                 {primaryCTA && (
                   <Button size="lg" asChild>
-                    <a href={primaryCTA.href}>{primaryCTA.text}</a>
+                    <Link href={primaryCTA.href}>{primaryCTA.text}</Link>
                   </Button>
                 )}
                 {secondaryCTA && (
                   <Button size="lg" variant="outline" asChild>
-                    <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
+                    <Link href={secondaryCTA.href}>{secondaryCTA.text}</Link>
                   </Button>
                 )}
-              </Inline>
+              </Flex>
             )}
-          </Stack>
+          </Flex>
 
           {/* Hero image */}
           <div className="bg-muted relative aspect-video w-full overflow-hidden rounded-lg object-fill shadow-2xl">
@@ -119,7 +113,7 @@ export const HeroLeftAligned = ({
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
             />
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

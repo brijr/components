@@ -1,14 +1,13 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-  Inline,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -89,16 +88,16 @@ export const HeroWithFormLeft = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="lg" align="start">
+        <Flex direction="column" gap={6} align="start">
           {/* Text content */}
-          <Stack spacing="md" align="start" className="max-w-3xl">
-            <Heading level={1}>{headline}</Heading>
+          <Flex direction="column" gap={4} align="start" className="max-w-3xl">
+            <Header as="h1">{headline}</Header>
             {subheadline && (
-              <Text variant="lead" color="muted">
+              <p className="text-xl text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Form */}
           <form
@@ -107,8 +106,8 @@ export const HeroWithFormLeft = ({
             method={form.method || "POST"}
             className="w-full max-w-md"
           >
-            <Stack spacing="sm" align="start">
-              <Inline spacing="sm" className="w-full">
+            <Flex direction="column" gap={2} align="start">
+              <Flex gap={2} className="w-full">
                 <Input
                   type={form.inputType || "email"}
                   name={form.inputName || "email"}
@@ -121,23 +120,23 @@ export const HeroWithFormLeft = ({
                 <Button type="submit" size="lg">
                   {form.buttonText}
                 </Button>
-              </Inline>
+              </Flex>
 
               {helperText && (
-                <Text variant="small" color="muted">
+                <p className="text-sm text-muted-foreground">
                   {helperText}
-                </Text>
+                </p>
               )}
-            </Stack>
+            </Flex>
           </form>
 
           {/* Secondary CTA */}
           {secondaryCTA && (
             <Button variant="link" asChild>
-              <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
+              <Link href={secondaryCTA.href}>{secondaryCTA.text}</Link>
             </Button>
           )}
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );
