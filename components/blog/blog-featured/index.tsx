@@ -1,11 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -152,25 +152,25 @@ export const BlogFeatured = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex direction="column" gap={12}>
           {/* Header */}
-          <Stack spacing="md">
+          <Flex direction="column" gap={4}>
             <div className="flex items-center justify-between">
               <div>
-                <Heading level={2}>{headline}</Heading>
+                <Header as="h2">{headline}</Header>
                 {description && (
-                  <Text variant="lead" color="muted" className="mt-2">
+                  <p className="text-xl text-muted-foreground mt-2">
                     {description}
-                  </Text>
+                  </p>
                 )}
               </div>
               {viewAllLink && (
                 <Button variant="ghost" asChild>
-                  <a href={viewAllLink.href}>{viewAllLink.text}</a>
+                  <Link href={viewAllLink.href}>{viewAllLink.text}</Link>
                 </Button>
               )}
             </div>
-          </Stack>
+          </Flex>
 
           {/* Content */}
           <div className="grid gap-8 lg:grid-cols-12">
@@ -198,17 +198,17 @@ export const BlogFeatured = ({
                   </div>
                 </div>
                 <CardContent className="p-6 lg:p-8">
-                  <Stack spacing="md">
-                    <Stack spacing="sm">
-                      <Heading level={3} className="text-2xl lg:text-3xl group-hover:text-primary transition-colors">
-                        <a href={featuredPost.href} className="hover:underline">
+                  <Flex direction="column" gap={4}>
+                    <Flex direction="column" gap={2}>
+                      <Header as="h3" className="text-2xl lg:text-3xl group-hover:text-primary transition-colors">
+                        <Link href={featuredPost.href} className="hover:underline">
                           {featuredPost.title}
-                        </a>
-                      </Heading>
-                      <Text variant="lead" color="muted" className="line-clamp-3">
+                        </Link>
+                      </Header>
+                      <p className="text-xl text-muted-foreground line-clamp-3">
                         {featuredPost.excerpt}
-                      </Text>
-                    </Stack>
+                      </p>
+                    </Flex>
 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4 text-sm text-muted-foreground">
@@ -234,12 +234,12 @@ export const BlogFeatured = ({
                         </div>
                       </div>
                       <Button variant="ghost" size="sm" asChild>
-                        <a href={featuredPost.href}>
+                        <Link href={featuredPost.href}>
                           {featuredPost.ctaText || "Read more"}
-                        </a>
+                        </Link>
                       </Button>
                     </div>
-                  </Stack>
+                  </Flex>
                 </CardContent>
               </Card>
             </div>
@@ -247,34 +247,34 @@ export const BlogFeatured = ({
             {/* Secondary posts */}
             {secondaryPosts && secondaryPosts.length > 0 && (
               <div className="lg:col-span-4">
-                <Stack spacing="md" className="h-full">
+                <Flex direction="column" gap={4} className="h-full">
                   {secondaryPosts.map((post) => (
                     <Card key={post.id} className="group hover:shadow-md transition-shadow flex-1">
                       <CardContent className="p-4">
-                        <Stack spacing="sm">
+                        <Flex direction="column" gap={2}>
                           <Badge variant="secondary" className="w-fit">
                             {post.category}
                           </Badge>
-                          <Heading level={4} className="group-hover:text-primary transition-colors">
-                            <a href={post.href} className="hover:underline">
+                          <Header as="h4" className="group-hover:text-primary transition-colors">
+                            <Link href={post.href} className="hover:underline">
                               {post.title}
-                            </a>
-                          </Heading>
-                          <Text variant="small" color="muted" className="line-clamp-2">
+                            </Link>
+                          </Header>
+                          <p className="text-sm text-muted-foreground line-clamp-2">
                             {post.excerpt}
-                          </Text>
-                          <Text variant="small" color="muted">
+                          </p>
+                          <p className="text-sm text-muted-foreground">
                             {formatDate(post.date)}
-                          </Text>
-                        </Stack>
+                          </p>
+                        </Flex>
                       </CardContent>
                     </Card>
                   ))}
-                </Stack>
+                </Flex>
               </div>
             )}
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

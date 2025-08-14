@@ -1,11 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -133,19 +133,19 @@ export const BlogList = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex direction="column" gap={12}>
           {/* Header */}
-          <Stack spacing="md">
-            <Heading level={2}>{headline}</Heading>
+          <Flex direction="column" gap={4}>
+            <Header as="h2">{headline}</Header>
             {description && (
-              <Text variant="lead" color="muted" className="max-w-3xl">
+              <p className="text-xl text-muted-foreground max-w-3xl">
                 {description}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Posts list */}
-          <Stack spacing="lg">
+          <Flex direction="column" gap={6}>
             {posts.map((post, index) => (
               <React.Fragment key={post.id}>
                 <article>
@@ -166,7 +166,7 @@ export const BlogList = ({
 
                         {/* Content */}
                         <div className={`flex-1 ${showThumbnails && post.thumbnail ? "p-6" : ""}`}>
-                          <Stack spacing="md">
+                          <Flex direction="column" gap={4}>
                             {/* Categories and featured badge */}
                             <div className="flex items-center gap-2">
                               {post.featured && (
@@ -180,16 +180,16 @@ export const BlogList = ({
                             </div>
 
                             {/* Title and excerpt */}
-                            <Stack spacing="sm">
-                              <Heading level={3} className="hover:text-primary transition-colors">
-                                <a href={post.href} className="hover:underline">
+                            <Flex direction="column" gap={2}>
+                              <Header as="h3" className="hover:text-primary transition-colors">
+                                <Link href={post.href} className="hover:underline">
                                   {post.title}
-                                </a>
-                              </Heading>
-                              <Text color="muted" className="line-clamp-2">
+                                </Link>
+                              </Header>
+                              <p className="text-muted-foreground line-clamp-2">
                                 {post.excerpt}
-                              </Text>
-                            </Stack>
+                              </p>
+                            </Flex>
 
                             {/* Meta information */}
                             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
@@ -226,7 +226,7 @@ export const BlogList = ({
                                 <span>{post.readingTime} min read</span>
                               </div>
                             </div>
-                          </Stack>
+                          </Flex>
                         </div>
                       </div>
                     </CardContent>
@@ -235,7 +235,7 @@ export const BlogList = ({
                 {index < posts.length - 1 && <Separator />}
               </React.Fragment>
             ))}
-          </Stack>
+          </Flex>
 
           {/* Pagination or Load More */}
           {(pagination || loadMore) && (
@@ -266,7 +266,7 @@ export const BlogList = ({
               )}
             </div>
           )}
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );
