@@ -2,10 +2,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, X } from "lucide-react";
 
@@ -76,18 +75,18 @@ export const FeatureComparison = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl" align="center">
+        <Flex direction="column" gap={8} className="text-center">
           {/* Header */}
-          <Stack spacing="md" align="center" className="max-w-3xl">
-            <Heading level={2} align="center">
+          <Flex direction="column" gap={4} className="text-center max-w-3xl">
+            <Header as="h2" className="text-center">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" align="center" color="muted">
+              <p className="text-lg text-center text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Comparison table */}
           <div className="w-full max-w-4xl mx-auto">
@@ -110,9 +109,9 @@ export const FeatureComparison = ({
                 <CardHeader className="text-center h-32 flex flex-col justify-center">
                   <CardTitle>{optionAName}</CardTitle>
                   {optionADescription && (
-                    <Text variant="small" color="muted" align="center">
+                    <p className="text-sm text-muted-foreground text-center">
                       {optionADescription}
-                    </Text>
+                    </p>
                   )}
                 </CardHeader>
                 <CardContent className="p-0">
@@ -136,9 +135,9 @@ export const FeatureComparison = ({
                 <CardHeader className="text-center h-32 flex flex-col justify-center">
                   <CardTitle>{optionBName}</CardTitle>
                   {optionBDescription && (
-                    <Text variant="small" color="muted" align="center">
+                    <p className="text-sm text-muted-foreground text-center">
                       {optionBDescription}
-                    </Text>
+                    </p>
                   )}
                 </CardHeader>
                 <CardContent className="p-0">
@@ -158,7 +157,7 @@ export const FeatureComparison = ({
               </Card>
             </div>
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

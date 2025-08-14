@@ -3,10 +3,9 @@ import Image from "next/image";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
@@ -87,18 +86,18 @@ export const FeatureBento = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="xl">
+        <Flex direction="column" gap={12}>
           {/* Header */}
-          <Stack spacing="md" align="center">
-            <Heading size={2} centered>
+          <Flex direction="column" gap={4} className="text-center">
+            <Header as="h2">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" centered subdued className="max-w-3xl">
+              <p className="text-xl text-center text-muted-foreground max-w-3xl">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Bento Grid */}
           <div className="grid gap-4 md:grid-cols-6 lg:grid-cols-12 auto-rows-[200px]">
@@ -133,27 +132,25 @@ export const FeatureBento = ({
                     )}
 
                     {/* Content */}
-                    <Stack spacing="md" className="relative z-10 h-full">
+                    <Flex direction="column" gap={4} className="relative z-10 h-full">
                       {feature.icon && (
                         <div className="text-primary">
                           {feature.icon}
                         </div>
                       )}
-                      <Stack spacing="sm" className="flex-1">
-                        <Heading size={size === "large" ? 3 : 4}>
+                      <Flex direction="column" gap={2} className="flex-1">
+                        <Header as={size === "large" ? "h3" : "h4"}>
                           {feature.title}
-                        </Heading>
-                        <Text 
-                          subdued 
-                          variant={size === "small" ? "small" : undefined}
-                          className={cn(
-                            size === "large" && "lg:text-lg"
-                          )}
-                        >
+                        </Header>
+                        <p className={cn(
+                          "text-muted-foreground",
+                          size === "small" ? "text-sm" : "",
+                          size === "large" && "lg:text-lg"
+                        )}>
                           {feature.description}
-                        </Text>
-                      </Stack>
-                    </Stack>
+                        </p>
+                      </Flex>
+                    </Flex>
 
                     {/* Hover effect */}
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -162,7 +159,7 @@ export const FeatureBento = ({
               );
             })}
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

@@ -2,10 +2,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 
@@ -73,18 +72,18 @@ export const FeatureCardsLeft = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl" align="start">
+        <Flex direction="column" gap={8}>
           {/* Header */}
-          <Stack spacing="md" align="start" className="max-w-3xl">
-            <Heading level={2}>
+          <Flex direction="column" gap={4} className="max-w-3xl">
+            <Header as="h2">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" color="muted">
+              <p className="text-lg text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Feature cards grid */}
           <div className={`grid gap-6 ${gridCols[columns]}`}>
@@ -99,15 +98,15 @@ export const FeatureCardsLeft = ({
                   />
                 </div>
                 <CardContent className="pt-6">
-                  <Stack spacing="sm">
-                    <Heading level={3}>{feature.title}</Heading>
-                    <Text color="muted">{feature.description}</Text>
-                  </Stack>
+                  <Flex direction="column" gap={2}>
+                    <Header as="h3">{feature.title}</Header>
+                    <p className="text-muted-foreground">{feature.description}</p>
+                  </Flex>
                 </CardContent>
               </Card>
             ))}
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

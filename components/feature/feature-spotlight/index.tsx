@@ -5,10 +5,9 @@ import Image from "next/image";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -138,21 +137,21 @@ export const FeatureSpotlight = ({
   return (
     <Section>
       <Container className="max-w-7xl">
-        <Stack spacing="2xl">
+        <Flex direction="column" gap={8}>
           {/* Header */}
-          <Stack spacing="md" align="center">
-            <Heading size={2} centered>
+          <Flex direction="column" gap={4} className="text-center">
+            <Header as="h2">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" centered subdued className="max-w-3xl">
+              <p className="text-lg text-center text-muted-foreground max-w-3xl">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Features */}
-          <Stack spacing="4xl">
+          <Flex direction="column" gap={16}>
             {features.map((feature, index) => {
               const isLeft = direction === "left" || 
                 (direction === "alternating" && index % 2 === 0);
@@ -168,8 +167,8 @@ export const FeatureSpotlight = ({
                   onMouseEnter={() => setActiveIndex(index)}
                 >
                   {/* Content */}
-                  <Stack spacing="lg" className={cn(!isLeft && "lg:col-start-2")}>
-                    <Stack spacing="md">
+                  <Flex direction="column" gap={6} className={cn(!isLeft && "lg:col-start-2")}>
+                    <Flex direction="column" gap={4}>
                       {feature.badge && (
                         <div>
                           <Badge variant="secondary">
@@ -177,13 +176,13 @@ export const FeatureSpotlight = ({
                           </Badge>
                         </div>
                       )}
-                      <Heading size={3}>
+                      <Header as="h3">
                         {feature.title}
-                      </Heading>
-                      <Text variant="lead" subdued>
+                      </Header>
+                      <p className="text-lg text-muted-foreground">
                         {feature.description}
-                      </Text>
-                    </Stack>
+                      </p>
+                    </Flex>
 
                     {feature.benefits && feature.benefits.length > 0 && (
                       <ul className="space-y-3">
@@ -192,7 +191,7 @@ export const FeatureSpotlight = ({
                             <div className="rounded-full bg-primary/10 p-1 mt-1 flex-shrink-0">
                               <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                             </div>
-                            <Text>{benefit}</Text>
+                            <p>{benefit}</p>
                           </li>
                         ))}
                       </ul>
@@ -201,9 +200,9 @@ export const FeatureSpotlight = ({
                     {feature.testimonial && (
                       <div className="border-l-2 border-primary/20 pl-6 py-2">
                         <blockquote className="space-y-3">
-                          <Text variant="lead" className="italic">
+                          <p className="text-lg italic">
                             &ldquo;{feature.testimonial.quote}&rdquo;
-                          </Text>
+                          </p>
                           <div className="flex items-center gap-3">
                             {feature.testimonial.avatar && (
                               <div className="relative w-10 h-10 rounded-full overflow-hidden">
@@ -216,15 +215,15 @@ export const FeatureSpotlight = ({
                               </div>
                             )}
                             <div>
-                              <Text className="font-medium">
+                              <p className="font-medium">
                                 {feature.testimonial.author}
-                              </Text>
+                              </p>
                               {(feature.testimonial.role || feature.testimonial.company) && (
-                                <Text variant="small" subdued>
+                                <p className="text-sm text-muted-foreground">
                                   {feature.testimonial.role}
                                   {feature.testimonial.role && feature.testimonial.company && ", "}
                                   {feature.testimonial.company}
-                                </Text>
+                                </p>
                               )}
                             </div>
                           </div>
@@ -245,7 +244,7 @@ export const FeatureSpotlight = ({
                         </Button>
                       </div>
                     )}
-                  </Stack>
+                  </Flex>
 
                   {/* Image */}
                   <div className={cn(
@@ -269,8 +268,8 @@ export const FeatureSpotlight = ({
                 </div>
               );
             })}
-          </Stack>
-        </Stack>
+          </Flex>
+        </Flex>
       </Container>
     </Section>
   );

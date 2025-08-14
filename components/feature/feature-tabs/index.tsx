@@ -5,10 +5,9 @@ import Image from "next/image";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 
@@ -111,18 +110,18 @@ export const FeatureTabs = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="xl">
+        <Flex direction="column" gap={12}>
           {/* Header */}
-          <Stack spacing="md" align="center">
-            <Heading size={2} centered>
+          <Flex direction="column" gap={4} className="text-center">
+            <Header as="h2">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" centered subdued className="max-w-3xl">
+              <p className="text-lg text-center text-muted-foreground max-w-3xl">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Tabs */}
           <Tabs defaultValue={defaultValue} className="w-full">
@@ -151,22 +150,22 @@ export const FeatureTabs = ({
               >
                 <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
                   {/* Content */}
-                  <Stack spacing="lg">
-                    <Stack spacing="md">
+                  <Flex direction="column" gap={6}>
+                    <Flex direction="column" gap={4}>
                       <div className="flex items-start gap-3">
-                        <Heading size={3}>
+                        <Header as="h3">
                           {feature.title}
-                        </Heading>
+                        </Header>
                         {feature.badge && (
                           <Badge variant="secondary">
                             {feature.badge}
                           </Badge>
                         )}
                       </div>
-                      <Text variant="lead" subdued>
+                      <p className="text-lg text-muted-foreground">
                         {feature.description}
-                      </Text>
-                    </Stack>
+                      </p>
+                    </Flex>
 
                     {feature.benefits && feature.benefits.length > 0 && (
                       <ul className="space-y-3">
@@ -175,12 +174,12 @@ export const FeatureTabs = ({
                             <div className="rounded-full bg-primary/10 p-1 mt-1">
                               <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                             </div>
-                            <Text>{benefit}</Text>
+                            <p>{benefit}</p>
                           </li>
                         ))}
                       </ul>
                     )}
-                  </Stack>
+                  </Flex>
 
                   {/* Image */}
                   {feature.image && (
@@ -197,7 +196,7 @@ export const FeatureTabs = ({
               </TabsContent>
             ))}
           </Tabs>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

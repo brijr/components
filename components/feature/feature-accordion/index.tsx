@@ -4,10 +4,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import {
   Accordion,
   AccordionContent,
@@ -107,18 +106,18 @@ export const FeatureAccordion = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="xl">
+        <Flex direction="column" gap={12}>
           {/* Header */}
-          <Stack spacing="md" align="center">
-            <Heading size={2} centered>
+          <Flex direction="column" gap={4} className="text-center">
+            <Header as="h2">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" centered subdued className="max-w-3xl">
+              <p className="text-xl text-center text-muted-foreground max-w-3xl">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Accordion */}
           <div className="max-w-4xl mx-auto w-full">
@@ -150,8 +149,8 @@ export const FeatureAccordion = ({
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
-                    <Stack spacing="md">
-                      <Text subdued>{feature.description}</Text>
+                    <Flex direction="column" gap={4}>
+                      <p className="text-muted-foreground">{feature.description}</p>
                       {feature.points && feature.points.length > 0 && (
                         <ul className="space-y-2 ml-4">
                           {feature.points.map((point, index) => (
@@ -159,12 +158,12 @@ export const FeatureAccordion = ({
                               <div className="rounded-full bg-primary/10 p-1 mt-1">
                                 <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                               </div>
-                              <Text variant="small">{point}</Text>
+                              <p className="text-sm">{point}</p>
                             </li>
                           ))}
                         </ul>
                       )}
-                    </Stack>
+                    </Flex>
                   </AccordionContent>
                 </AccordionItem>
               ))}
@@ -197,8 +196,8 @@ export const FeatureAccordion = ({
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
-                    <Stack spacing="md">
-                      <Text subdued>{feature.description}</Text>
+                    <Flex direction="column" gap={4}>
+                      <p className="text-muted-foreground">{feature.description}</p>
                       {feature.points && feature.points.length > 0 && (
                         <ul className="space-y-2 ml-4">
                           {feature.points.map((point, index) => (
@@ -206,19 +205,19 @@ export const FeatureAccordion = ({
                               <div className="rounded-full bg-primary/10 p-1 mt-1">
                                 <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                               </div>
-                              <Text variant="small">{point}</Text>
+                              <p className="text-sm">{point}</p>
                             </li>
                           ))}
                         </ul>
                       )}
-                    </Stack>
+                    </Flex>
                   </AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
             )}
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

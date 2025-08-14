@@ -2,10 +2,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Check, X, Minus } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -154,18 +153,18 @@ export const FeatureMatrix = ({
   return (
     <Section>
       <Container className="max-w-7xl">
-        <Stack spacing="xl">
+        <Flex direction="column" gap={12}>
           {/* Header */}
-          <Stack spacing="md" align="center">
-            <Heading size={2} centered>
+          <Flex direction="column" gap={4} className="text-center">
+            <Header as="h2">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" centered subdued className="max-w-3xl">
+              <p className="text-lg text-center text-muted-foreground max-w-3xl">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Matrix Table */}
           <div className="overflow-x-auto">
@@ -183,29 +182,29 @@ export const FeatureMatrix = ({
                         plan.featured && "bg-primary/5"
                       )}
                     >
-                      <Stack spacing="sm" align="center">
+                      <Flex direction="column" gap={2} className="text-center">
                         {plan.badge && (
                           <span className="text-xs font-medium text-primary px-2 py-1 bg-primary/10 rounded-full">
                             {plan.badge}
                           </span>
                         )}
-                        <Heading size={4}>{plan.name}</Heading>
+                        <Header as="h4">{plan.name}</Header>
                         {plan.description && (
-                          <Text variant="small" subdued>
+                          <p className="text-sm text-muted-foreground">
                             {plan.description}
-                          </Text>
+                          </p>
                         )}
                         {plan.price && (
                           <div className="mt-2">
                             <span className="text-2xl font-bold">{plan.price}</span>
                             {plan.period && (
-                              <Text variant="small" subdued>
+                              <p className="text-sm text-muted-foreground">
                                 {" "}{plan.period}
-                              </Text>
+                              </p>
                             )}
                           </div>
                         )}
-                      </Stack>
+                      </Flex>
                     </th>
                   ))}
                 </tr>
@@ -218,14 +217,14 @@ export const FeatureMatrix = ({
                         colSpan={plans.length + 1}
                         className="p-4 bg-muted/50"
                       >
-                        <Heading size={5}>{category.name}</Heading>
+                        <Header as="h5">{category.name}</Header>
                       </td>
                     </tr>
                     {category.features.map((feature, featIndex) => (
                       <tr key={`${catIndex}-${featIndex}`} className="hover:bg-muted/30">
                         <td className="p-4 border-b">
                           <div className="flex items-center gap-2">
-                            <Text>{feature.name}</Text>
+                            <p>{feature.name}</p>
                             {feature.tooltip && (
                               <span
                                 className="text-xs text-muted-foreground cursor-help"
@@ -254,7 +253,7 @@ export const FeatureMatrix = ({
               </tbody>
             </table>
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

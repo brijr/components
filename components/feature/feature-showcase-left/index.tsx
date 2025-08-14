@@ -2,10 +2,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import Image from "next/image";
 
 /**
@@ -81,18 +80,18 @@ export const FeatureShowcaseLeft = ({
   );
 
   const contentComponent = (
-    <Stack spacing="lg">
-      <Stack spacing="md" className="max-w-3xl">
-        <Heading level={2}>
+    <Flex direction="column" gap={6}>
+      <Flex direction="column" gap={4} className="max-w-3xl">
+        <Header as="h2">
           {headline}
-        </Heading>
+        </Header>
         {subheadline && (
-          <Text variant="lead" color="muted">
+          <p className="text-lg text-muted-foreground">
             {subheadline}
-          </Text>
+          </p>
         )}
-      </Stack>
-      <Stack spacing="md">
+      </Flex>
+      <Flex direction="column" gap={4}>
         {features.map((feature, index) => (
           <div key={index} className="flex gap-3">
             {feature.icon && (
@@ -101,17 +100,17 @@ export const FeatureShowcaseLeft = ({
               </div>
             )}
             <div>
-              <Heading level={4} className="mb-1">
+              <Header as="h4" className="mb-1">
                 {feature.title}
-              </Heading>
-              <Text variant="small" color="muted">
+              </Header>
+              <p className="text-sm text-muted-foreground">
                 {feature.description}
-              </Text>
+              </p>
             </div>
           </div>
         ))}
-      </Stack>
-    </Stack>
+      </Flex>
+    </Flex>
   );
 
   return (

@@ -2,10 +2,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 
 /**
  * Timeline step configuration
@@ -66,18 +65,18 @@ export const FeatureTimeline = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl" align="center">
+        <Flex direction="column" gap={8} className="text-center">
           {/* Header */}
-          <Stack spacing="md" align="center" className="max-w-3xl">
-            <Heading level={2} align="center">
+          <Flex direction="column" gap={4} className="text-center max-w-3xl">
+            <Header as="h2" className="text-center">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" align="center" color="muted">
+              <p className="text-lg text-center text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Timeline */}
           {orientation === "vertical" ? (
@@ -85,7 +84,7 @@ export const FeatureTimeline = ({
               {/* Vertical line */}
               <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-border" />
               
-              <Stack spacing="lg">
+              <Flex direction="column" gap={6}>
                 {steps.map((step, index) => (
                   <div key={index} className="relative flex gap-6">
                     {/* Step indicator */}
@@ -101,16 +100,16 @@ export const FeatureTimeline = ({
                     
                     {/* Content */}
                     <div className="flex-1 pb-8">
-                      <Heading level={3} className="mb-2">
+                      <Header as="h3" className="mb-2">
                         {step.title}
-                      </Heading>
-                      <Text color="muted">
+                      </Header>
+                      <p className="text-muted-foreground">
                         {step.description}
-                      </Text>
+                      </p>
                     </div>
                   </div>
                 ))}
-              </Stack>
+              </Flex>
             </div>
           ) : (
             /* Horizontal timeline */
@@ -135,12 +134,12 @@ export const FeatureTimeline = ({
                         </div>
                         
                         {/* Content */}
-                        <Heading level={3} className="mb-2">
+                        <Header as="h3" className="mb-2">
                           {step.title}
-                        </Heading>
-                        <Text color="muted" align="center">
+                        </Header>
+                        <p className="text-muted-foreground text-center">
                           {step.description}
-                        </Text>
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -148,7 +147,7 @@ export const FeatureTimeline = ({
               </div>
             </div>
           )}
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

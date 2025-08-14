@@ -2,10 +2,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 
 /**
  * Feature item configuration
@@ -70,22 +69,22 @@ export const FeatureListLeft = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl" align="start">
+        <Flex direction="column" gap={8}>
           {/* Header */}
-          <Stack spacing="md" align="start" className="max-w-3xl">
-            <Heading level={2}>
+          <Flex direction="column" gap={4} className="max-w-3xl">
+            <Header as="h2">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" color="muted">
+              <p className="text-lg text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Features list */}
           <div className={`${maxWidthClasses[maxWidth]} w-full`}>
-            <Stack spacing="lg">
+            <Flex direction="column" gap={6}>
               {features.map((feature, index) => (
                 <div key={index} className="flex gap-4">
                   {feature.icon && (
@@ -94,18 +93,18 @@ export const FeatureListLeft = ({
                     </div>
                   )}
                   <div className="flex-1">
-                    <Heading level={3} className="mb-2">
+                    <Header as="h3" className="mb-2">
                       {feature.title}
-                    </Heading>
-                    <Text color="muted">
+                    </Header>
+                    <p className="text-muted-foreground">
                       {feature.description}
-                    </Text>
+                    </p>
                   </div>
                 </div>
               ))}
-            </Stack>
+            </Flex>
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

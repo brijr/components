@@ -2,10 +2,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Card, CardContent } from "@/components/ui/card";
 
 /**
@@ -70,38 +69,38 @@ export const FeatureGrid = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl" align="center">
+        <Flex direction="column" gap={8} className="text-center">
           {/* Header */}
-          <Stack spacing="md" align="center" className="max-w-3xl">
-            <Heading level={2} align="center">
+          <Flex direction="column" gap={4} className="text-center max-w-3xl">
+            <Header as="h2" className="text-center">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" align="center" color="muted">
+              <p className="text-lg text-center text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Features grid */}
           <div className={`grid gap-6 ${gridCols[columns]}`}>
             {features.map((feature, index) => (
               <Card key={index} className="relative">
                 <CardContent className="pt-6">
-                  <Stack spacing="sm">
+                  <Flex direction="column" gap={2}>
                     {feature.icon && (
                       <div className="text-primary mb-2">
                         {feature.icon}
                       </div>
                     )}
-                    <Heading level={3}>{feature.title}</Heading>
-                    <Text color="muted">{feature.description}</Text>
-                  </Stack>
+                    <Header as="h3">{feature.title}</Header>
+                    <p className="text-muted-foreground">{feature.description}</p>
+                  </Flex>
                 </CardContent>
               </Card>
             ))}
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );
