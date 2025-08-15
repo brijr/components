@@ -2,10 +2,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import {
   Card,
   CardContent,
@@ -107,9 +106,9 @@ export const TestimonialWithStats = ({
               <span className="text-3xl md:text-4xl">{stat.suffix}</span>
             )}
           </div>
-          <Text color="muted" className="mt-2">
+          <p className="text-muted-foreground mt-2">
             {stat.label}
-          </Text>
+          </p>
         </div>
       ))}
     </div>
@@ -118,7 +117,7 @@ export const TestimonialWithStats = ({
   const testimonialComponent = (
     <Card className={layout === "split" ? "" : "max-w-3xl mx-auto"}>
       <CardContent className="p-6 md:p-8">
-        <Stack spacing="md">
+        <Flex gap="md">
           {/* Rating */}
           {testimonial.rating && (
             <div className="flex gap-0.5">
@@ -137,9 +136,9 @@ export const TestimonialWithStats = ({
 
           {/* Quote */}
           <blockquote>
-            <Text variant="lead">
+            <p className="text-xl">
               &ldquo;{testimonial.quote}&rdquo;
-            </Text>
+            </p>
           </blockquote>
 
           {/* Author */}
@@ -159,13 +158,13 @@ export const TestimonialWithStats = ({
               <div className="font-semibold">
                 {testimonial.author}
               </div>
-              <Text variant="small" color="muted">
+              <p className="text-sm text-muted-foreground">
                 {testimonial.role}
                 {testimonial.company && ` at ${testimonial.company}`}
-              </Text>
+              </p>
             </div>
           </div>
-        </Stack>
+        </Flex>
       </CardContent>
     </Card>
   );
@@ -174,23 +173,23 @@ export const TestimonialWithStats = ({
     return (
       <Section>
         <Container>
-          <Stack spacing="2xl">
+          <Flex gap="2xl">
             {/* Header */}
-            <Stack spacing="md">
-              <Heading level={2}>{headline}</Heading>
+            <Flex gap="md">
+              <Header as="h2">{headline}</Header>
               {subheadline && (
-                <Text variant="lead" color="muted">
+                <p className="text-xl text-muted-foreground">
                   {subheadline}
-                </Text>
+                </p>
               )}
-            </Stack>
+            </Flex>
 
             {/* Content */}
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
               {statsComponent}
               {testimonialComponent}
             </div>
-          </Stack>
+          </Flex>
         </Container>
       </Section>
     );
@@ -199,25 +198,25 @@ export const TestimonialWithStats = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl" align="center">
+        <Flex gap="2xl" className="text-center">
           {/* Header */}
-          <Stack spacing="md" align="center" className="max-w-3xl">
-            <Heading level={2} align="center">
+          <Flex gap="md" className="text-center max-w-3xl">
+            <Header as="h2" className="text-center">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" align="center" color="muted">
+              <p className="text-xl text-center text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Stats */}
           {statsComponent}
 
           {/* Testimonial */}
           {testimonialComponent}
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

@@ -2,10 +2,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Star, Quote } from "lucide-react";
 import Image from "next/image";
@@ -113,12 +112,9 @@ export const TestimonialSingle = ({
               : "text-muted-foreground/20"
           }`} 
         />
-        <Text 
-          variant="lead" 
-          className="relative text-2xl md:text-3xl font-medium leading-relaxed"
-        >
+        <p className="relative text-2xl md:text-3xl font-medium leading-relaxed">
           &ldquo;{quote}&rdquo;
-        </Text>
+        </p>
       </blockquote>
 
       {/* Author */}
@@ -135,12 +131,10 @@ export const TestimonialSingle = ({
         )}
         <div>
           <div className="font-semibold text-lg">{author}</div>
-          <Text 
-            color={background === "primary" ? "default" : "muted"}
-          >
+          <p className={background === "primary" ? "" : "text-muted-foreground"}>
             {role}
             {company && ` at ${company}`}
-          </Text>
+          </p>
         </div>
       </div>
 
@@ -166,12 +160,12 @@ export const TestimonialSingle = ({
       <Section className={backgroundStyles[background]}>
         <Container>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-            <Stack spacing="lg">
+            <Flex direction="column" gap={6}>
               {headline && (
-                <Heading level={2}>{headline}</Heading>
+                <Header as="h2">{headline}</Header>
               )}
               {content}
-            </Stack>
+            </Flex>
             <div className="relative aspect-square lg:aspect-[4/3] rounded-lg overflow-hidden bg-muted">
               {avatar ? (
                 <Image
@@ -199,12 +193,12 @@ export const TestimonialSingle = ({
   return (
     <Section className={backgroundStyles[background]}>
       <Container>
-        <Stack spacing="xl" align="center" className="max-w-4xl mx-auto text-center">
+        <Flex direction="column" gap={8} className="items-center max-w-4xl mx-auto text-center">
           {headline && (
-            <Heading level={2} align="center">{headline}</Heading>
+            <Header as="h2" className="text-center">{headline}</Header>
           )}
           {content}
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

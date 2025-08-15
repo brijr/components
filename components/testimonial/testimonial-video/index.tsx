@@ -2,10 +2,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import {
   Card,
   CardContent,
@@ -120,26 +119,26 @@ export const TestimonialVideo = ({
       </div>
 
       <CardContent className="p-6">
-        <Stack spacing="md">
+        <Flex gap="md">
           {/* Quote Preview */}
           {testimonial.quote && (
             <blockquote className="relative">
               <Quote className="absolute -top-2 -left-2 w-6 h-6 text-muted-foreground/20" />
-              <Text className="relative line-clamp-2">
+              <p className="relative line-clamp-2">
                 &ldquo;{testimonial.quote}&rdquo;
-              </Text>
+              </p>
             </blockquote>
           )}
 
           {/* Author */}
           <div>
             <div className="font-semibold">{testimonial.author}</div>
-            <Text variant="small" color="muted">
+            <p className="text-sm text-muted-foreground">
               {testimonial.role}
               {testimonial.company && ` at ${testimonial.company}`}
-            </Text>
+            </p>
           </div>
-        </Stack>
+        </Flex>
       </CardContent>
     </Card>
   );
@@ -150,18 +149,18 @@ export const TestimonialVideo = ({
     return (
       <Section>
         <Container>
-          <Stack spacing="2xl">
+          <Flex gap="2xl">
             {/* Header */}
-            <Stack spacing="md" align="center" className="max-w-3xl mx-auto">
-              <Heading level={2} align="center">
+            <Flex gap="md" className="items-center max-w-3xl mx-auto">
+              <Header as="h2" className="text-center">
                 {headline}
-              </Heading>
+              </Header>
               {subheadline && (
-                <Text variant="lead" align="center" color="muted">
+                <p className="text-xl text-center text-muted-foreground">
                   {subheadline}
-                </Text>
+                </p>
               )}
-            </Stack>
+            </Flex>
 
             {/* Featured Video */}
             <div className="max-w-4xl mx-auto w-full">
@@ -176,7 +175,7 @@ export const TestimonialVideo = ({
                 ))}
               </div>
             )}
-          </Stack>
+          </Flex>
         </Container>
       </Section>
     );
@@ -185,18 +184,18 @@ export const TestimonialVideo = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex gap="2xl">
           {/* Header */}
-          <Stack spacing="md" align="center" className="max-w-3xl mx-auto">
-            <Heading level={2} align="center">
+          <Flex gap="md" className="items-center max-w-3xl mx-auto">
+            <Header as="h2" className="text-center">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" align="center" color="muted">
+              <p className="text-xl text-center text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Video Grid */}
           <div className={`grid gap-6 ${
@@ -207,7 +206,7 @@ export const TestimonialVideo = ({
               <VideoCard key={index} testimonial={testimonial} />
             ))}
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

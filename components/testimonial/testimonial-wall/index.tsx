@@ -2,10 +2,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Star } from "lucide-react";
@@ -108,18 +107,18 @@ export const TestimonialWall = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex gap="2xl">
           {/* Header */}
-          <Stack spacing="md" align="center" className="max-w-3xl mx-auto">
-            <Heading level={2} align="center">
+          <Flex gap="md" className="items-center max-w-3xl mx-auto">
+            <Header as="h2" className="text-center">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" align="center" color="muted">
+              <p className="text-xl text-center text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Testimonial Wall */}
           <div className={`grid gap-4 ${
@@ -136,7 +135,7 @@ export const TestimonialWall = ({
                     }`}
                   >
                     <CardContent className="p-0">
-                      <Stack spacing="sm">
+                      <Flex gap="sm">
                         {/* Rating */}
                         {showRatings && testimonial.rating && (
                           <div className="flex gap-0.5">
@@ -154,14 +153,14 @@ export const TestimonialWall = ({
                         )}
 
                         {/* Quote */}
-                        <Text 
+                        <p 
                           className={
                             testimonial.size === "small" ? "text-sm" : 
                             testimonial.size === "large" ? "text-lg" : ""
                           }
                         >
                           &ldquo;{testimonial.quote}&rdquo;
-                        </Text>
+                        </p>
 
                         {/* Author */}
                         <div className="flex items-center gap-2">
@@ -185,26 +184,24 @@ export const TestimonialWall = ({
                               {testimonial.author}
                             </div>
                             {(testimonial.role || testimonial.company) && (
-                              <Text 
-                                variant="small" 
-                                color="muted" 
-                                className={testimonial.size === "small" ? "text-xs" : ""}
+                              <p 
+                                className={`text-sm text-muted-foreground ${testimonial.size === "small" ? "text-xs" : ""}`}
                               >
                                 {testimonial.role}
                                 {testimonial.role && testimonial.company && ", "}
                                 {testimonial.company}
-                              </Text>
+                              </p>
                             )}
                           </div>
                         </div>
-                      </Stack>
+                      </Flex>
                     </CardContent>
                   </Card>
                 ))}
               </div>
             ))}
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

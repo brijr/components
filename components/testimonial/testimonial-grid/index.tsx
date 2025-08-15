@@ -2,10 +2,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import {
   Card,
   CardContent,
@@ -85,25 +84,25 @@ export const TestimonialGrid = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex gap="2xl">
           {/* Header */}
-          <Stack spacing="md" align="center" className="max-w-3xl mx-auto">
-            <Heading level={2} align="center">
+          <Flex gap="md" className="items-center max-w-3xl mx-auto">
+            <Header as="h2" className="text-center">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" align="center" color="muted">
+              <p className="text-xl text-center text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Testimonials Grid */}
           <div className={`grid gap-6 ${gridCols}`}>
             {testimonials.map((testimonial, index) => (
               <Card key={index} className="h-full">
                 <CardContent className="pt-6">
-                  <Stack spacing="md">
+                  <Flex gap="md">
                     {/* Rating */}
                     {testimonial.rating && (
                       <div className="flex gap-0.5">
@@ -125,11 +124,11 @@ export const TestimonialGrid = ({
                       {showQuoteIcon && (
                         <Quote className="absolute -top-2 -left-2 w-8 h-8 text-muted-foreground/20" />
                       )}
-                      <Text className={showQuoteIcon ? "relative" : ""}>
+                      <p className={showQuoteIcon ? "relative" : ""}>
                         &ldquo;{testimonial.quote}&rdquo;
-                      </Text>
+                      </p>
                     </blockquote>
-                  </Stack>
+                  </Flex>
                 </CardContent>
 
                 <CardFooter>
@@ -149,17 +148,17 @@ export const TestimonialGrid = ({
                       <div className="font-semibold truncate">
                         {testimonial.author}
                       </div>
-                      <Text variant="small" color="muted" className="truncate">
+                      <p className="text-sm text-muted-foreground truncate">
                         {testimonial.role}
                         {testimonial.company && ` at ${testimonial.company}`}
-                      </Text>
+                      </p>
                     </div>
                   </div>
                 </CardFooter>
               </Card>
             ))}
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

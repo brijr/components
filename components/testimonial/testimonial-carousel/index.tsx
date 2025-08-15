@@ -4,10 +4,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import {
   Card,
   CardContent,
@@ -116,18 +115,18 @@ export const TestimonialCarousel = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex gap="2xl">
           {/* Header */}
-          <Stack spacing="md" align="center" className="max-w-3xl mx-auto">
-            <Heading level={2} align="center">
+          <Flex gap="md" className="flex-col items-center max-w-3xl mx-auto">
+            <Header as="h2" className="text-center">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" align="center" color="muted">
+              <p className="text-xl text-center text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Carousel */}
           <div 
@@ -137,7 +136,7 @@ export const TestimonialCarousel = ({
           >
             <Card className="overflow-hidden">
               <CardContent className="p-8 md:p-12">
-                <Stack spacing="lg" align="center">
+                <Flex gap="lg" className="flex-col items-center">
                   {/* Rating */}
                   {currentTestimonial.rating && (
                     <div className="flex gap-0.5">
@@ -156,9 +155,9 @@ export const TestimonialCarousel = ({
 
                   {/* Quote */}
                   <blockquote className="text-center max-w-2xl">
-                    <Text variant="lead" align="center">
+                    <p className="text-xl text-center">
                       &ldquo;{currentTestimonial.quote}&rdquo;
-                    </Text>
+                    </p>
                   </blockquote>
 
                   {/* Author */}
@@ -178,13 +177,13 @@ export const TestimonialCarousel = ({
                       <div className="font-semibold">
                         {currentTestimonial.author}
                       </div>
-                      <Text variant="small" color="muted">
+                      <p className="text-sm text-muted-foreground">
                         {currentTestimonial.role}
                         {currentTestimonial.company && ` at ${currentTestimonial.company}`}
-                      </Text>
+                      </p>
                     </div>
                   </div>
-                </Stack>
+                </Flex>
               </CardContent>
             </Card>
 
@@ -230,7 +229,7 @@ export const TestimonialCarousel = ({
               ))}
             </div>
           )}
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );
