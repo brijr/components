@@ -1,13 +1,13 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import {
   Accordion,
   AccordionContent,
@@ -153,18 +153,18 @@ export const FAQSearch = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex direction="column" gap={12}>
           {/* Header */}
-          <Stack spacing="md" align="center" className="max-w-3xl mx-auto">
-            <Heading level={2} align="center">
+          <Flex direction="column" gap={4} className="text-center max-w-3xl mx-auto">
+            <Header as="h2" className="text-center">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" align="center" color="muted">
+              <p className="text-xl text-center text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Search Input */}
           <div className="max-w-2xl mx-auto w-full">
@@ -191,13 +191,13 @@ export const FAQSearch = ({
 
           {/* Results Count */}
           {searchQuery && (
-            <Text variant="small" color="muted" align="center">
+            <p className="text-sm text-muted-foreground text-center">
               {filteredItems.length === 0
                 ? noResultsMessage
                 : `Found ${filteredItems.length} ${
                     filteredItems.length === 1 ? "result" : "results"
                   }`}
-            </Text>
+            </p>
           )}
 
           {/* FAQ Items */}
@@ -228,11 +228,11 @@ export const FAQSearch = ({
                       </div>
                     </AccordionTrigger>
                     <AccordionContent>
-                      <Text color="muted">
+                      <p className="text-muted-foreground">
                         {searchQuery
                           ? highlightText(item.answer, searchQuery)
                           : item.answer}
-                      </Text>
+                      </p>
                     </AccordionContent>
                   </AccordionItem>
                 ))}
@@ -252,17 +252,17 @@ export const FAQSearch = ({
             </div>
           ) : (
             searchQuery && (
-              <Stack spacing="md" align="center" className="max-w-md mx-auto text-center">
-                <Text color="muted">{noResultsMessage}</Text>
+              <Flex direction="column" gap={4} className="text-center max-w-md mx-auto text-center">
+                <p className="text-muted-foreground">{noResultsMessage}</p>
                 {noResultsCTA && (
                   <Button asChild>
-                    <a href={noResultsCTA.href}>{noResultsCTA.text}</a>
+                    <Link href={noResultsCTA.href}>{noResultsCTA.text}</Link>
                   </Button>
                 )}
-              </Stack>
+              </Flex>
             )
           )}
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

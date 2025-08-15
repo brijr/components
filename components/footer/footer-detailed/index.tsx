@@ -1,13 +1,13 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -157,30 +157,30 @@ export const FooterDetailed = ({
     <footer>
       <Section className="border-t">
         <Container>
-          <Stack spacing="2xl">
+          <Flex direction="column" gap={16}>
             {/* Main footer content */}
             <div className="grid gap-8 lg:grid-cols-12">
               {/* Brand column */}
               <div className="lg:col-span-4">
-                <Stack spacing="md">
+                <Flex direction="column" gap={6}>
                   <div className="flex items-center gap-2">
                     {brand.logo}
-                    <Text className="font-semibold text-lg">{brand.name}</Text>
+                    <p className="font-semibold text-lg">{brand.name}</p>
                   </div>
                   {brand.description && (
-                    <Text color="muted" variant="small">
+                    <p className="text-muted-foreground text-sm">
                       {brand.description}
-                    </Text>
+                    </p>
                   )}
                   
                   {/* Newsletter in brand column for mobile */}
                   {newsletter && (
                     <div className="mt-6 lg:hidden">
-                      <Stack spacing="sm">
-                        <Heading level={4}>{newsletter.title}</Heading>
-                        <Text variant="small" color="muted">
+                      <Flex direction="column" gap={3}>
+                        <Header as="h4">{newsletter.title}</Header>
+                        <p className="text-sm text-muted-foreground">
                           {newsletter.description}
-                        </Text>
+                        </p>
                         <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
                           <Input
                             type="email"
@@ -192,30 +192,30 @@ export const FooterDetailed = ({
                           />
                           <Button type="submit">{newsletter.buttonText}</Button>
                         </form>
-                      </Stack>
+                      </Flex>
                     </div>
                   )}
-                </Stack>
+                </Flex>
               </div>
 
               {/* Link columns */}
               <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-6">
                 {columns.map((column, index) => (
                   <div key={index}>
-                    <Heading level={4} className="mb-3">
+                    <Header as="h4" className="mb-3">
                       {column.title}
-                    </Heading>
+                    </Header>
                     <ul className="space-y-2">
                       {column.links.map((link, linkIndex) => (
                         <li key={linkIndex}>
-                          <a
+                          <Link
                             href={link.href}
                             target={link.external ? "_blank" : undefined}
                             rel={link.external ? "noopener noreferrer" : undefined}
                             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                           >
                             {link.text}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -226,13 +226,13 @@ export const FooterDetailed = ({
               {/* Newsletter for desktop */}
               {newsletter && (
                 <div className="hidden lg:block lg:col-span-2">
-                  <Stack spacing="sm">
-                    <Heading level={4}>{newsletter.title}</Heading>
-                    <Text variant="small" color="muted">
+                  <Flex direction="column" gap={3}>
+                    <Header as="h4">{newsletter.title}</Header>
+                    <p className="text-sm text-muted-foreground">
                       {newsletter.description}
-                    </Text>
+                    </p>
                     <form onSubmit={handleNewsletterSubmit}>
-                      <Stack spacing="sm">
+                      <Flex direction="column" gap={3}>
                         <Input
                           type="email"
                           placeholder={newsletter.placeholder}
@@ -243,9 +243,9 @@ export const FooterDetailed = ({
                         <Button type="submit" className="w-full">
                           {newsletter.buttonText}
                         </Button>
-                      </Stack>
+                      </Flex>
                     </form>
-                  </Stack>
+                  </Flex>
                 </div>
               )}
             </div>
@@ -256,20 +256,20 @@ export const FooterDetailed = ({
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               {/* Copyright and legal links */}
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-                <Text variant="small" color="muted">
+                <p className="text-sm text-muted-foreground">
                   {copyrightText}
-                </Text>
+                </p>
                 {bottom.links && bottom.links.length > 0 && (
                   <nav aria-label="Legal links">
                     <ul className="flex flex-wrap gap-x-4 gap-y-1">
                       {bottom.links.map((link, index) => (
                         <li key={index}>
-                          <a
+                          <Link
                             href={link.href}
                             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                           >
                             {link.text}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -283,7 +283,7 @@ export const FooterDetailed = ({
                   <ul className="flex gap-4">
                     {bottom.socialLinks.map((social, index) => (
                       <li key={index}>
-                        <a
+                        <Link
                           href={social.href}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -291,14 +291,14 @@ export const FooterDetailed = ({
                           aria-label={`Visit our ${social.platform} page`}
                         >
                           {social.icon}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
                 </nav>
               )}
             </div>
-          </Stack>
+          </Flex>
         </Container>
       </Section>
     </footer>

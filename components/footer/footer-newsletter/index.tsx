@@ -1,13 +1,13 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -148,24 +148,24 @@ export const FooterNewsletter = ({
     <footer>
       <Section className="border-t bg-gradient-to-b from-muted/30 to-background">
         <Container>
-          <Stack spacing="xl">
+          <Flex direction="column" gap="xl">
             {/* Newsletter section */}
             <div className="mx-auto max-w-2xl text-center">
-              <Stack spacing="lg" align="center">
+              <Flex direction="column" gap="lg" className="items-center">
                 {newsletter.badge && (
                   <Badge variant="secondary" className="px-4 py-1">
                     {newsletter.badge}
                   </Badge>
                 )}
                 
-                <Stack spacing="md" align="center">
-                  <Heading size={2} centered>
+                <Flex direction="column" gap="md" className="items-center">
+                  <Header as="h2" className="text-center">
                     {newsletter.title}
-                  </Heading>
-                  <Text variant="lead" subdued centered>
+                  </Header>
+                  <p className="text-xl text-muted-foreground text-center">
                     {newsletter.description}
-                  </Text>
-                </Stack>
+                  </p>
+                </Flex>
 
                 {/* Benefits list */}
                 {newsletter.benefits && newsletter.benefits.length > 0 && (
@@ -175,7 +175,7 @@ export const FooterNewsletter = ({
                         {benefit.icon || (
                           <CheckCircle2 className="w-4 h-4 text-green-600 dark:text-green-400 flex-shrink-0" />
                         )}
-                        <Text variant="small">{benefit.text}</Text>
+                        <p className="text-sm">{benefit.text}</p>
                       </div>
                     ))}
                   </div>
@@ -183,7 +183,7 @@ export const FooterNewsletter = ({
 
                 {/* Newsletter form */}
                 <form onSubmit={handleSubmit} className="w-full max-w-md">
-                  <Stack spacing="sm">
+                  <Flex direction="column" gap="sm">
                     <div className="flex gap-2">
                       <Input
                         type="email"
@@ -203,38 +203,38 @@ export const FooterNewsletter = ({
                       </Button>
                     </div>
                     {newsletter.form.helperText && (
-                      <Text variant="small" subdued centered>
+                      <p className="text-sm text-muted-foreground text-center">
                         {newsletter.form.helperText}
-                      </Text>
+                      </p>
                     )}
-                  </Stack>
+                  </Flex>
                 </form>
 
                 {/* Recent editions */}
                 {newsletter.recentEditions && newsletter.recentEditions.length > 0 && (
                   <div className="mt-6 w-full max-w-md">
-                    <Text variant="small" className="font-medium mb-3">
+                    <p className="text-sm font-medium mb-3">
                       Recent editions:
-                    </Text>
-                    <Stack spacing="sm">
+                    </p>
+                    <Flex direction="column" gap="sm">
                       {newsletter.recentEditions.map((edition, index) => (
-                        <a
+                        <Link
                           key={index}
                           href={edition.href}
                           className="flex items-center justify-between p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors group"
                         >
-                          <Text variant="small" className="group-hover:text-primary transition-colors">
+                          <p className="text-sm group-hover:text-primary transition-colors">
                             {edition.title}
-                          </Text>
-                          <Text variant="small" subdued>
+                          </p>
+                          <p className="text-sm text-muted-foreground">
                             {edition.date}
-                          </Text>
-                        </a>
+                          </p>
+                        </Link>
                       ))}
-                    </Stack>
+                    </Flex>
                   </div>
                 )}
-              </Stack>
+              </Flex>
             </div>
 
             <Separator />
@@ -242,32 +242,32 @@ export const FooterNewsletter = ({
             {/* Bottom section */}
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
               {/* Company info and links */}
-              <Stack spacing="md">
-                <Text className="font-semibold">{company.name}</Text>
+              <Flex direction="column" gap="md">
+                <p className="font-semibold">{company.name}</p>
                 <nav aria-label="Footer navigation">
                   <ul className="flex flex-wrap gap-x-6 gap-y-2">
                     {company.links.map((link, index) => (
                       <li key={index}>
-                        <a
+                        <Link
                           href={link.href}
                           className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                         >
                           {link.text}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
                 </nav>
-              </Stack>
+              </Flex>
 
               {/* Copyright and social */}
-              <Stack spacing="sm" align="end">
+              <Flex direction="column" gap="sm" className="items-end">
                 {company.socialLinks && company.socialLinks.length > 0 && (
                   <nav aria-label="Social media links">
                     <ul className="flex gap-4">
                       {company.socialLinks.map((social, index) => (
                         <li key={index}>
-                          <a
+                          <Link
                             href={social.href}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -275,18 +275,18 @@ export const FooterNewsletter = ({
                             aria-label={`Visit our ${social.platform} page`}
                           >
                             {social.icon}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
                   </nav>
                 )}
-                <Text variant="small" subdued>
+                <p className="text-sm text-muted-foreground">
                   {copyrightText}
-                </Text>
-              </Stack>
+                </p>
+              </Flex>
             </div>
-          </Stack>
+          </Flex>
         </Container>
       </Section>
     </footer>

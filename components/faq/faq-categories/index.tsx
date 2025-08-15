@@ -1,13 +1,13 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import {
   Tabs,
   TabsContent,
@@ -120,18 +120,18 @@ export const FAQCategories = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex direction="column" gap={12}>
           {/* Header */}
-          <Stack spacing="md" align="center" className="max-w-3xl mx-auto">
-            <Heading level={2} align="center">
+          <Flex direction="column" gap={4} className="text-center max-w-3xl mx-auto">
+            <Header as="h2" className="text-center">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" align="center" color="muted">
+              <p className="text-xl text-center text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Categorized FAQs */}
           <Tabs defaultValue={defaultValue} className="w-full max-w-5xl mx-auto">
@@ -150,11 +150,11 @@ export const FAQCategories = ({
 
             {categories.map((category) => (
               <TabsContent key={category.id} value={category.id} className="mt-8">
-                <Stack spacing="lg">
+                <Flex direction="column" gap={6}>
                   {category.description && (
-                    <Text color="muted" className="text-center">
+                    <p className="text-muted-foreground text-center">
                       {category.description}
-                    </Text>
+                    </p>
                   )}
 
                   <Accordion type="single" collapsible className="w-full">
@@ -171,28 +171,28 @@ export const FAQCategories = ({
                           </span>
                         </AccordionTrigger>
                         <AccordionContent>
-                          <Text color="muted">{item.answer}</Text>
+                          <p className="text-muted-foreground">{item.answer}</p>
                         </AccordionContent>
                       </AccordionItem>
                     ))}
                   </Accordion>
-                </Stack>
+                </Flex>
               </TabsContent>
             ))}
           </Tabs>
 
           {/* CTA */}
           {cta && (
-            <Stack spacing="md" align="center" className="max-w-xl mx-auto text-center">
-              <Text color="muted">
+            <Flex direction="column" gap={4} className="text-center max-w-xl mx-auto text-center">
+              <p className="text-muted-foreground">
                 Can&apos;t find what you&apos;re looking for?
-              </Text>
+              </p>
               <Button asChild>
-                <a href={cta.href}>{cta.text}</a>
+                <Link href={cta.href}>{cta.text}</Link>
               </Button>
-            </Stack>
+            </Flex>
           )}
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

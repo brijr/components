@@ -1,11 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import {
   Card,
   CardContent,
@@ -99,18 +99,18 @@ export const FAQGrid = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex direction="column" gap={12}>
           {/* Header */}
-          <Stack spacing="md" align="center" className="max-w-3xl mx-auto">
-            <Heading level={2} align="center">
+          <Flex direction="column" gap={4} className="text-center max-w-3xl mx-auto">
+            <Header as="h2" className="text-center">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" align="center" color="muted">
+              <p className="text-xl text-center text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* FAQ Grid */}
           <div className={`grid gap-6 ${gridCols}`}>
@@ -127,7 +127,7 @@ export const FAQGrid = ({
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <Text color="muted">{item.answer}</Text>
+                  <p className="text-muted-foreground">{item.answer}</p>
                 </CardContent>
               </Card>
             ))}
@@ -143,9 +143,9 @@ export const FAQGrid = ({
                     <CardDescription>{contactInfo.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Stack spacing="md">
+                    <Flex direction="column" gap={4}>
                       {contactInfo.email && (
-                        <Text>
+                        <p>
                           Email:{" "}
                           <a 
                             href={`mailto:${contactInfo.email}`}
@@ -153,10 +153,10 @@ export const FAQGrid = ({
                           >
                             {contactInfo.email}
                           </a>
-                        </Text>
+                        </p>
                       )}
                       {contactInfo.phone && (
-                        <Text>
+                        <p>
                           Phone:{" "}
                           <a 
                             href={`tel:${contactInfo.phone}`}
@@ -164,31 +164,31 @@ export const FAQGrid = ({
                           >
                             {contactInfo.phone}
                           </a>
-                        </Text>
+                        </p>
                       )}
                       {contactInfo.cta && (
                         <div className="pt-2">
                           <Button asChild>
-                            <a href={contactInfo.cta.href}>{contactInfo.cta.text}</a>
+                            <Link href={contactInfo.cta.href}>{contactInfo.cta.text}</Link>
                           </Button>
                         </div>
                       )}
-                    </Stack>
+                    </Flex>
                   </CardContent>
                 </Card>
               ) : cta && (
-                <Stack spacing="md" align="center">
-                  <Text color="muted">
+                <Flex direction="column" gap={4} className="text-center">
+                  <p className="text-muted-foreground">
                     Can&apos;t find what you&apos;re looking for?
-                  </Text>
+                  </p>
                   <Button asChild>
-                    <a href={cta.href}>{cta.text}</a>
+                    <Link href={cta.href}>{cta.text}</Link>
                   </Button>
-                </Stack>
+                </Flex>
               )}
             </div>
           )}
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

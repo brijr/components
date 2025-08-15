@@ -1,11 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 
@@ -124,25 +124,25 @@ export const FooterSocial = ({
     <footer>
       <Section className="border-t bg-gradient-to-b from-background to-muted/20">
         <Container>
-          <Stack spacing="xl">
+          <Flex direction="column" gap={12}>
             {/* Social CTA Section */}
             <div className="text-center">
-              <Stack spacing="md" align="center">
+              <Flex direction="column" gap={6} className="items-center">
                 {socialCta && (
                   <>
-                    <Heading size={2} centered>
+                    <Header as="h2" className="text-center">
                       {socialCta.title}
-                    </Heading>
-                    <Text variant="lead" subdued centered className="max-w-2xl">
+                    </Header>
+                    <p className="text-xl text-muted-foreground text-center max-w-2xl">
                       {socialCta.description}
-                    </Text>
+                    </p>
                   </>
                 )}
                 
                 {/* Social Platform Grid */}
                 <div className="grid grid-cols-2 gap-6 sm:flex sm:flex-wrap sm:justify-center sm:gap-8 mt-8">
                   {socialPlatforms.map((platform, index) => (
-                    <a
+                    <Link
                       key={index}
                       href={platform.href}
                       target="_blank"
@@ -153,15 +153,15 @@ export const FooterSocial = ({
                       <div className="text-muted-foreground group-hover:text-current transition-colors">
                         {platform.icon}
                       </div>
-                      <Stack spacing="sm" align="center" compact>
-                        <Text className="font-medium">{platform.name}</Text>
+                      <Flex direction="column" gap={3} className="items-center">
+                        <p className="font-medium">{platform.name}</p>
                         {platform.followers && (
-                          <Text variant="small" subdued>
+                          <p className="text-sm text-muted-foreground">
                             {platform.followers} followers
-                          </Text>
+                          </p>
                         )}
-                      </Stack>
-                    </a>
+                      </Flex>
+                    </Link>
                   ))}
                 </div>
 
@@ -171,7 +171,7 @@ export const FooterSocial = ({
                     {brand.tagline}
                   </Button>
                 )}
-              </Stack>
+              </Flex>
             </div>
 
             <Separator />
@@ -179,12 +179,12 @@ export const FooterSocial = ({
             {/* Bottom section */}
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
               {/* Brand and copyright */}
-              <Stack spacing="sm" compact>
-                <Text className="font-semibold">{brand.name}</Text>
-                <Text variant="small" subdued>
+              <Flex direction="column" gap={3}>
+                <p className="font-semibold">{brand.name}</p>
+                <p className="text-sm text-muted-foreground">
                   {copyrightText}
-                </Text>
-              </Stack>
+                </p>
+              </Flex>
 
               {/* Quick links */}
               {quickLinks && quickLinks.length > 0 && (
@@ -192,19 +192,19 @@ export const FooterSocial = ({
                   <ul className="flex flex-wrap gap-x-6 gap-y-2">
                     {quickLinks.map((link, index) => (
                       <li key={index}>
-                        <a
+                        <Link
                           href={link.href}
                           className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                         >
                           {link.text}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
                 </nav>
               )}
             </div>
-          </Stack>
+          </Flex>
         </Container>
       </Section>
     </footer>

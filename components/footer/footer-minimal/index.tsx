@@ -1,9 +1,9 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Text,
-} from "@/components/ds";
+} from "@/components/site/ds";
 
 /**
  * Props for the FooterMinimal component
@@ -58,9 +58,9 @@ export const FooterMinimal = ({
       <Section className="border-t">
         <Container>
           <div className={`flex flex-col gap-4 ${textAlignClasses[align]} sm:flex-row sm:items-center sm:${alignmentClasses[align]}`}>
-            <Text variant="small" color="muted">
+            <p className="text-sm text-muted-foreground">
               {text}
-            </Text>
+            </p>
             
             {links && links.length > 0 && (
               <nav aria-label="Footer navigation" className={`flex gap-4 ${alignmentClasses[align]}`}>
@@ -71,12 +71,12 @@ export const FooterMinimal = ({
                         ·
                       </span>
                     )}
-                    <a
+                    <Link
                       href={link.href}
                       className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
                       {link.text}
-                    </a>
+                    </Link>
                   </React.Fragment>
                 ))}
               </nav>

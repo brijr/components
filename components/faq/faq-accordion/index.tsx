@@ -1,11 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import {
   Accordion,
   AccordionContent,
@@ -85,18 +85,18 @@ export const FAQAccordion = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl" align="center">
+        <Flex direction="column" gap={12} className="text-center">
           {/* Header */}
-          <Stack spacing="md" align="center" className="max-w-3xl">
-            <Heading level={2} align="center">
+          <Flex direction="column" gap={4} className="text-center max-w-3xl">
+            <Header as="h2" className="text-center">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" align="center" color="muted">
+              <p className="text-xl text-center text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* FAQ Accordion */}
           <Accordion
@@ -110,7 +110,7 @@ export const FAQAccordion = ({
                   {item.question}
                 </AccordionTrigger>
                 <AccordionContent>
-                  <Text color="muted">{item.answer}</Text>
+                  <p className="text-muted-foreground">{item.answer}</p>
                 </AccordionContent>
               </AccordionItem>
             ))}
@@ -118,21 +118,21 @@ export const FAQAccordion = ({
 
           {/* Contact Prompt */}
           {showContactPrompt && (
-            <Stack spacing="md" align="center" className="max-w-xl text-center">
-              <Heading level={3} align="center">
+            <Flex direction="column" gap={4} className="text-center max-w-xl text-center">
+              <Header as="h3" className="text-center">
                 Still have questions?
-              </Heading>
-              <Text align="center" color="muted">
+              </Header>
+              <p className="text-center text-muted-foreground">
                 Can&apos;t find the answer you&apos;re looking for? Our support team is here to help.
-              </Text>
+              </p>
               {cta && (
                 <Button asChild>
-                  <a href={cta.href}>{cta.text}</a>
+                  <Link href={cta.href}>{cta.text}</Link>
                 </Button>
               )}
-            </Stack>
+            </Flex>
           )}
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

@@ -1,11 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Separator } from "@/components/ui/separator";
 
 /**
@@ -86,37 +86,37 @@ export const FooterCentered = ({
     <footer>
       <Section className="border-t">
         <Container>
-          <Stack spacing="xl" align="center">
+          <Flex direction="column" gap={12} className="items-center">
             {/* Brand */}
-            <Stack spacing="sm" align="center">
+            <Flex direction="column" gap={3} className="items-center">
               {brand.logo && (
                 <div className="mb-2">
                   {brand.logo}
                 </div>
               )}
-              <Heading level={3} align="center">
+              <Header as="h3" className="text-center">
                 {brand.name}
-              </Heading>
+              </Header>
               {brand.tagline && (
-                <Text color="muted" align="center">
+                <p className="text-muted-foreground text-center">
                   {brand.tagline}
-                </Text>
+                </p>
               )}
-            </Stack>
+            </Flex>
 
             {/* Navigation links */}
             <nav aria-label="Footer navigation">
               <ul className="flex flex-wrap justify-center gap-x-8 gap-y-2">
                 {links.map((link, index) => (
                   <li key={index}>
-                    <a
+                    <Link
                       href={link.href}
                       target={link.external ? "_blank" : undefined}
                       rel={link.external ? "noopener noreferrer" : undefined}
                       className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
                       {link.text}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -130,7 +130,7 @@ export const FooterCentered = ({
                   <ul className="flex gap-6">
                     {socialLinks.map((social, index) => (
                       <li key={index}>
-                        <a
+                        <Link
                           href={social.href}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -138,7 +138,7 @@ export const FooterCentered = ({
                           aria-label={`Visit our ${social.platform} page`}
                         >
                           {social.icon}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -147,9 +147,9 @@ export const FooterCentered = ({
             )}
 
             {/* Copyright */}
-            <Text variant="small" color="muted" align="center">
+            <p className="text-sm text-muted-foreground text-center">
               {copyrightText}
-            </Text>
+            </p>
           </Stack>
         </Container>
       </Section>

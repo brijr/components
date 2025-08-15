@@ -1,10 +1,10 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Text,
-} from "@/components/ds";
+  Flex,
+} from "@/components/site/ds";
 import { Separator } from "@/components/ui/separator";
 
 /**
@@ -87,25 +87,25 @@ export const FooterSimple = ({
     <footer>
       <Section className="border-t">
         <Container>
-          <Stack spacing="lg">
+          <Flex direction="column" gap={8}>
             {/* Main footer content */}
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
               {/* Brand and links */}
               <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-8">
-                <Text className="font-semibold">{brandName}</Text>
+                <p className="font-semibold">{brandName}</p>
                 
                 <nav aria-label="Footer navigation">
                   <ul className="flex flex-wrap gap-x-6 gap-y-2">
                     {links.map((link, index) => (
                       <li key={index}>
-                        <a
+                        <Link
                           href={link.href}
                           target={link.external ? "_blank" : undefined}
                           rel={link.external ? "noopener noreferrer" : undefined}
                           className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                         >
                           {link.text}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -118,7 +118,7 @@ export const FooterSimple = ({
                   <ul className="flex gap-4">
                     {socialLinks.map((social, index) => (
                       <li key={index}>
-                        <a
+                        <Link
                           href={social.href}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -126,7 +126,7 @@ export const FooterSimple = ({
                           aria-label={`Visit our ${social.platform} page`}
                         >
                           {social.icon}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -137,10 +137,10 @@ export const FooterSimple = ({
             <Separator />
 
             {/* Copyright */}
-            <Text variant="small" color="muted">
+            <p className="text-sm text-muted-foreground">
               {copyrightText}
-            </Text>
-          </Stack>
+            </p>
+          </Flex>
         </Container>
       </Section>
     </footer>

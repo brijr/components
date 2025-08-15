@@ -1,11 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import {
   Accordion,
   AccordionContent,
@@ -125,16 +125,16 @@ export const FAQWithSidebar = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="xl">
+        <Flex direction="column" gap={8}>
           {/* Header */}
-          <Stack spacing="md">
-            <Heading level={2}>{headline}</Heading>
+          <Flex direction="column" gap={4}>
+            <Header as="h2">{headline}</Header>
             {subheadline && (
-              <Text variant="lead" color="muted">
+              <p className="text-xl text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Content Grid */}
           <div className="grid gap-8 lg:grid-cols-3">
@@ -151,7 +151,7 @@ export const FAQWithSidebar = ({
                       {item.question}
                     </AccordionTrigger>
                     <AccordionContent>
-                      <Text color="muted">{item.answer}</Text>
+                      <p className="text-muted-foreground">{item.answer}</p>
                     </AccordionContent>
                   </AccordionItem>
                 ))}
@@ -168,16 +168,16 @@ export const FAQWithSidebar = ({
                   )}
                 </CardHeader>
                 <CardContent>
-                  <Stack spacing="md">
+                  <Flex direction="column" gap={4}>
                     {sidebar.contactOptions && (
                       <>
                         {sidebar.contactOptions.email && (
                           <div className="flex items-start gap-3">
                             <Mail className="w-5 h-5 text-muted-foreground mt-0.5" />
                             <div className="flex-1">
-                              <Text variant="small" className="font-medium">
+                              <p className="text-sm font-medium">
                                 {sidebar.contactOptions.email.label}
-                              </Text>
+                              </p>
                               <a
                                 href={`mailto:${sidebar.contactOptions.email.value}`}
                                 className="text-sm text-primary hover:underline"
@@ -192,9 +192,9 @@ export const FAQWithSidebar = ({
                           <div className="flex items-start gap-3">
                             <Phone className="w-5 h-5 text-muted-foreground mt-0.5" />
                             <div className="flex-1">
-                              <Text variant="small" className="font-medium">
+                              <p className="text-sm font-medium">
                                 {sidebar.contactOptions.phone.label}
-                              </Text>
+                              </p>
                               <a
                                 href={`tel:${sidebar.contactOptions.phone.value}`}
                                 className="text-sm text-primary hover:underline"
@@ -212,12 +212,12 @@ export const FAQWithSidebar = ({
                           >
                             <MessageCircle className="w-5 h-5 text-muted-foreground mt-0.5" />
                             <div className="flex-1">
-                              <Text variant="small" className="font-medium">
+                              <p className="text-sm font-medium">
                                 {sidebar.contactOptions.chat.label}
-                              </Text>
-                              <Text variant="small" color="muted">
+                              </p>
+                              <p className="text-sm text-muted-foreground">
                                 Available 24/7
-                              </Text>
+                              </p>
                             </div>
                           </a>
                         )}
@@ -229,12 +229,12 @@ export const FAQWithSidebar = ({
                           >
                             <FileText className="w-5 h-5 text-muted-foreground mt-0.5" />
                             <div className="flex-1">
-                              <Text variant="small" className="font-medium">
+                              <p className="text-sm font-medium">
                                 {sidebar.contactOptions.docs.label}
-                              </Text>
-                              <Text variant="small" color="muted">
+                              </p>
+                              <p className="text-sm text-muted-foreground">
                                 Guides & tutorials
-                              </Text>
+                              </p>
                             </div>
                           </a>
                         )}
@@ -247,15 +247,15 @@ export const FAQWithSidebar = ({
 
                     {sidebar.cta && (
                       <Button className="w-full" asChild>
-                        <a href={sidebar.cta.href}>{sidebar.cta.text}</a>
+                        <Link href={sidebar.cta.href}>{sidebar.cta.text}</Link>
                       </Button>
                     )}
-                  </Stack>
+                  </Flex>
                 </CardContent>
               </Card>
             </div>
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

@@ -1,12 +1,12 @@
 import * as React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 
@@ -170,14 +170,14 @@ export const FooterApp = ({
     <footer>
       <Section className="border-t bg-gradient-to-b from-background to-muted/20">
         <Container>
-          <Stack spacing="xl">
+          <Flex direction="column" gap={12}>
             {/* App download section */}
             <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
               {/* Content side */}
-              <Stack spacing="lg">
-                <Stack spacing="md">
+              <Flex direction="column" gap={8}>
+                <Flex direction="column" gap={6}>
                   <div className="flex items-center gap-3">
-                    <Heading size={2}>{app.name}</Heading>
+                    <Header as="h2">{app.name}</Header>
                     {app.rating && (
                       <Badge variant="secondary" className="flex items-center gap-1">
                         <span className="text-yellow-500">★</span>
@@ -185,13 +185,13 @@ export const FooterApp = ({
                       </Badge>
                     )}
                   </div>
-                  <Text variant="lead" subdued>
+                  <p className="text-xl text-muted-foreground">
                     {app.tagline}
-                  </Text>
-                  <Text subdued>
+                  </p>
+                  <p className="text-muted-foreground">
                     {app.description}
-                  </Text>
-                </Stack>
+                  </p>
+                </Flex>
 
                 {/* Features grid */}
                 {app.features && app.features.length > 0 && (
@@ -201,22 +201,22 @@ export const FooterApp = ({
                         <div className="flex-shrink-0 text-primary">
                           {feature.icon}
                         </div>
-                        <Stack spacing="sm" compact>
-                          <Text className="font-medium">{feature.title}</Text>
-                          <Text variant="small" subdued>
+                        <Flex direction="column" gap={3}>
+                          <p className="font-medium">{feature.title}</p>
+                          <p className="text-sm text-muted-foreground">
                             {feature.description}
-                          </Text>
-                        </Stack>
+                          </p>
+                        </Flex>
                       </div>
                     ))}
                   </div>
                 )}
 
                 {/* Download section */}
-                <Stack spacing="md">
+                <Flex direction="column" gap={6}>
                   <div className="flex flex-col sm:flex-row gap-4">
                     {app.stores.map((store, index) => (
-                      <a
+                      <Link
                         key={index}
                         href={store.href}
                         target="_blank"
@@ -236,7 +236,7 @@ export const FooterApp = ({
                         ) : (
                           store.badge
                         )}
-                      </a>
+                      </Link>
                     ))}
                   </div>
 
@@ -251,18 +251,18 @@ export const FooterApp = ({
                           className="rounded object-contain"
                         />
                       </div>
-                      <Stack spacing="sm" compact>
-                        <Text variant="small" className="font-medium">
+                      <Flex direction="column" gap={3}>
+                        <p className="text-sm font-medium">
                           {app.qrCode.text}
-                        </Text>
-                        <Text variant="small" subdued>
+                        </p>
+                        <p className="text-sm text-muted-foreground">
                           Point your camera here
-                        </Text>
-                      </Stack>
+                        </p>
+                      </Flex>
                     </div>
                   )}
-                </Stack>
-              </Stack>
+                </Flex>
+              </Flex>
 
               {/* Preview side */}
               {app.preview && (
@@ -288,25 +288,25 @@ export const FooterApp = ({
             {/* Bottom section */}
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
               {/* Links and copyright */}
-              <Stack spacing="md">
+              <Flex direction="column" gap={6}>
                 <nav aria-label="Footer navigation">
                   <ul className="flex flex-wrap gap-x-6 gap-y-2">
                     {links.map((link, index) => (
                       <li key={index}>
-                        <a
+                        <Link
                           href={link.href}
                           className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                         >
                           {link.text}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
                 </nav>
-                <Text variant="small" subdued>
+                <p className="text-sm text-muted-foreground">
                   {copyrightText}
-                </Text>
-              </Stack>
+                </p>
+              </Flex>
 
               {/* Social links */}
               {socialLinks && socialLinks.length > 0 && (
@@ -314,7 +314,7 @@ export const FooterApp = ({
                   <ul className="flex gap-4">
                     {socialLinks.map((social, index) => (
                       <li key={index}>
-                        <a
+                        <Link
                           href={social.href}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -322,14 +322,14 @@ export const FooterApp = ({
                           aria-label={`Visit our ${social.platform} page`}
                         >
                           {social.icon}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
                 </nav>
               )}
             </div>
-          </Stack>
+          </Flex>
         </Container>
       </Section>
     </footer>

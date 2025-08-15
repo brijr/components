@@ -1,13 +1,13 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -233,21 +233,21 @@ export const FooterMega = ({
     <footer>
       <Section className="border-t bg-muted/20">
         <Container>
-          <Stack spacing="xl">
+          <Flex direction="column" gap="xl">
             {/* Top section with brand and search */}
             <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
               {/* Brand */}
-              <Stack spacing="sm" className="max-w-sm">
+              <Flex direction="column" gap="sm" className="max-w-sm">
                 <div className="flex items-center gap-2">
                   {brand.logo}
-                  <Text className="font-semibold text-lg">{brand.name}</Text>
+                  <p className="font-semibold text-lg">{brand.name}</p>
                 </div>
                 {brand.description && (
-                  <Text variant="small" subdued>
+                  <p className="text-sm text-muted-foreground">
                     {brand.description}
-                  </Text>
+                  </p>
                 )}
-              </Stack>
+              </Flex>
 
               {/* Search */}
               {search && (
@@ -276,19 +276,19 @@ export const FooterMega = ({
               {/* Navigation columns */}
               {columns.map((column, index) => (
                 <div key={index}>
-                  <Stack spacing="md">
-                    <Stack spacing="sm" compact>
-                      <Heading size={4}>{column.title}</Heading>
+                  <Flex direction="column" gap="md">
+                    <Flex direction="column" gap="sm">
+                      <Header as="h4">{column.title}</Header>
                       {column.description && (
-                        <Text variant="small" subdued>
+                        <p className="text-sm text-muted-foreground">
                           {column.description}
-                        </Text>
+                        </p>
                       )}
-                    </Stack>
+                    </Flex>
                     <ul className="space-y-3">
                       {column.links.map((link, linkIndex) => (
                         <li key={linkIndex}>
-                          <a
+                          <Link
                             href={link.href}
                             className="group flex items-start gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
                           >
@@ -297,7 +297,7 @@ export const FooterMega = ({
                                 {link.icon}
                               </span>
                             )}
-                            <Stack spacing="sm" compact>
+                            <Flex direction="column" gap="sm">
                               <div className="flex items-center gap-2">
                                 <span className="group-hover:text-foreground transition-colors">
                                   {link.text}
@@ -309,50 +309,50 @@ export const FooterMega = ({
                                 )}
                               </div>
                               {link.description && (
-                                <Text variant="small" subdued>
+                                <p className="text-sm text-muted-foreground">
                                   {link.description}
-                                </Text>
+                                </p>
                               )}
-                            </Stack>
-                          </a>
+                            </Flex>
+                          </Link>
                         </li>
                       ))}
                     </ul>
-                  </Stack>
+                  </Flex>
                 </div>
               ))}
 
               {/* Featured section */}
               {featured && (
                 <div className="sm:col-span-2 lg:col-span-1">
-                  <Stack spacing="md">
-                    <Heading size={4}>{featured.title}</Heading>
-                    <Stack spacing="md">
+                  <Flex direction="column" gap="md">
+                    <Header as="h4">{featured.title}</Header>
+                    <Flex direction="column" gap="md">
                       {featured.items.map((item, index) => (
-                        <a
+                        <Link
                           key={index}
                           href={item.href}
                           className="group block p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
                         >
-                          <Stack spacing="sm" compact>
+                          <Flex direction="column" gap="sm">
                             <div className="flex items-start justify-between gap-2">
-                              <Text className="font-medium group-hover:text-primary transition-colors">
+                              <p className="font-medium group-hover:text-primary transition-colors">
                                 {item.title}
-                              </Text>
+                              </p>
                               {item.badge && (
                                 <Badge variant="default" className="text-xs">
                                   {item.badge}
                                 </Badge>
                               )}
                             </div>
-                            <Text variant="small" subdued>
+                            <p className="text-sm text-muted-foreground">
                               {item.description}
-                            </Text>
-                          </Stack>
-                        </a>
+                            </p>
+                          </Flex>
+                        </Link>
                       ))}
-                    </Stack>
-                  </Stack>
+                    </Flex>
+                  </Flex>
                 </div>
               )}
             </div>
@@ -363,20 +363,20 @@ export const FooterMega = ({
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               {/* Copyright and legal */}
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-                <Text variant="small" subdued>
+                <p className="text-sm text-muted-foreground">
                   {copyrightText}
-                </Text>
+                </p>
                 {bottom.links && bottom.links.length > 0 && (
                   <nav aria-label="Legal links">
                     <ul className="flex flex-wrap gap-x-4 gap-y-1">
                       {bottom.links.map((link, index) => (
                         <li key={index}>
-                          <a
+                          <Link
                             href={link.href}
                             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                           >
                             {link.text}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -390,7 +390,7 @@ export const FooterMega = ({
                   <ul className="flex gap-4">
                     {bottom.socialLinks.map((social, index) => (
                       <li key={index}>
-                        <a
+                        <Link
                           href={social.href}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -398,14 +398,14 @@ export const FooterMega = ({
                           aria-label={`Visit our ${social.platform} page`}
                         >
                           {social.icon}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
                 </nav>
               )}
             </div>
-          </Stack>
+          </Flex>
         </Container>
       </Section>
     </footer>
