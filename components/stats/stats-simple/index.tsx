@@ -2,10 +2,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 
 /**
  * Individual stat configuration
@@ -84,23 +83,23 @@ export const StatsSimple = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex direction="column" gap={10}>
           {/* Header */}
           {(headline || subheadline) && (
-            <Stack spacing="md" align="center" className="text-center">
-              {headline && <Heading level={2}>{headline}</Heading>}
+            <Flex direction="column" gap={4} className="items-center text-center">
+              {headline && <Header as="h2">{headline}</Header>}
               {subheadline && (
-                <Text variant="lead" color="muted">
+                <p className="text-xl text-muted-foreground">
                   {subheadline}
-                </Text>
+                </p>
               )}
-            </Stack>
+            </Flex>
           )}
 
           {/* Stats Grid */}
           <div className={`grid gap-8 md:gap-12 ${gridCols[columns]}`}>
             {stats.map((stat, index) => (
-              <Stack key={index} spacing="xs" align="center">
+              <Flex key={index} direction="column" gap={1} className="items-center">
                 <div className={`font-bold ${getTextSize()}`}>
                   {stat.prefix && (
                     <span className="text-muted-foreground">
@@ -114,17 +113,13 @@ export const StatsSimple = ({
                     </span>
                   )}
                 </div>
-                <Text
-                  variant={variant === "compact" ? "small" : "body"}
-                  color="muted"
-                  align="center"
-                >
+                <p className={`text-center text-muted-foreground ${variant === "compact" ? "text-sm" : ""}`}>
                   {stat.label}
-                </Text>
-              </Stack>
+                </p>
+              </Flex>
             ))}
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

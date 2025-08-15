@@ -1,11 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -97,18 +97,18 @@ export const PricingSimple = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl" align="center">
+        <Flex direction="column" gap={10} className="items-center">
           {/* Header */}
-          <Stack spacing="md" align="center" className="max-w-3xl">
-            <Heading level={2} align="center">
+          <Flex direction="column" gap={4} className="items-center max-w-3xl">
+            <Header as="h2" className="text-center">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" align="center" color="muted">
+              <p className="text-xl text-center text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Pricing Cards */}
           <div className={`grid gap-6 w-full max-w-6xl mx-auto ${
@@ -134,7 +134,7 @@ export const PricingSimple = ({
                 </CardHeader>
                 
                 <CardContent>
-                  <Stack spacing="lg">
+                  <Flex direction="column" gap={6}>
                     <div>
                       <span className="text-4xl font-bold">{plan.price}</span>
                       {plan.period && (
@@ -154,7 +154,7 @@ export const PricingSimple = ({
                         </li>
                       ))}
                     </ul>
-                  </Stack>
+                  </Flex>
                 </CardContent>
                 
                 <CardFooter>
@@ -163,13 +163,13 @@ export const PricingSimple = ({
                     variant={plan.recommended ? "default" : "outline"}
                     asChild
                   >
-                    <a href={plan.cta.href}>{plan.cta.text}</a>
+                    <Link href={plan.cta.href}>{plan.cta.text}</Link>
                   </Button>
                 </CardFooter>
               </Card>
             ))}
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

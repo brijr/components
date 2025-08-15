@@ -2,10 +2,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import {
   Card,
   CardContent,
@@ -129,17 +128,17 @@ export const StatsWithIcons = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex direction="column" gap={10}>
           {/* Header */}
           {(headline || subheadline) && (
-            <Stack spacing="md" align="center" className="text-center">
-              {headline && <Heading level={2}>{headline}</Heading>}
+            <Flex direction="column" gap={4} className="items-center text-center">
+              {headline && <Header as="h2">{headline}</Header>}
               {subheadline && (
-                <Text variant="lead" color="muted">
+                <p className="text-xl text-muted-foreground">
                   {subheadline}
-                </Text>
+                </p>
               )}
-            </Stack>
+            </Flex>
           )}
 
           {/* Stats Cards */}
@@ -162,7 +161,7 @@ export const StatsWithIcons = ({
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <Stack spacing="xs">
+                  <Flex direction="column" gap={1}>
                     <div className="text-3xl font-bold">
                       {stat.prefix}
                       {stat.value}
@@ -189,12 +188,12 @@ export const StatsWithIcons = ({
                         )}
                       </div>
                     )}
-                  </Stack>
+                  </Flex>
                 </CardContent>
               </Card>
             ))}
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

@@ -1,11 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -123,18 +123,18 @@ export const PricingComparison = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex direction="column" gap={10}>
           {/* Header */}
-          <Stack spacing="md" align="center" className="max-w-3xl mx-auto">
-            <Heading level={2} align="center">
+          <Flex direction="column" gap={4} className="items-center max-w-3xl mx-auto">
+            <Header as="h2" className="text-center">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" align="center" color="muted">
+              <p className="text-xl text-center text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Comparison Table */}
           <div className="overflow-x-auto">
@@ -144,7 +144,7 @@ export const PricingComparison = ({
                   <TableHead className="w-[240px]">Features</TableHead>
                   {plans.map((plan, index) => (
                     <TableHead key={index} className="text-center min-w-[200px]">
-                      <Stack spacing="sm" align="center">
+                      <Flex direction="column" gap={2} className="items-center">
                         {plan.recommended && (
                           <Badge variant="default" className="mb-2">
                             Recommended
@@ -154,9 +154,9 @@ export const PricingComparison = ({
                           {plan.name}
                         </div>
                         {plan.description && (
-                          <Text variant="small" color="muted">
+                          <p className="text-sm text-muted-foreground">
                             {plan.description}
-                          </Text>
+                          </p>
                         )}
                         <div className="mt-2">
                           <span className="text-2xl font-bold">{plan.price}</span>
@@ -166,7 +166,7 @@ export const PricingComparison = ({
                             </span>
                           )}
                         </div>
-                      </Stack>
+                      </Flex>
                     </TableHead>
                   ))}
                 </TableRow>
@@ -183,7 +183,7 @@ export const PricingComparison = ({
                         className="w-full max-w-[160px]"
                         asChild
                       >
-                        <a href={plan.cta.href}>{plan.cta.text}</a>
+                        <Link href={plan.cta.href}>{plan.cta.text}</Link>
                       </Button>
                     </TableCell>
                   ))}
@@ -206,9 +206,9 @@ export const PricingComparison = ({
                           <div>
                             {feature.name}
                             {feature.description && (
-                              <Text variant="small" color="muted" className="mt-0.5">
+                              <p className="text-sm text-muted-foreground mt-0.5">
                                 {feature.description}
-                              </Text>
+                              </p>
                             )}
                           </div>
                         </TableCell>
@@ -232,7 +232,7 @@ export const PricingComparison = ({
                         className="w-full max-w-[160px]"
                         asChild
                       >
-                        <a href={plan.cta.href}>{plan.cta.text}</a>
+                        <Link href={plan.cta.href}>{plan.cta.text}</Link>
                       </Button>
                     </TableCell>
                   ))}
@@ -240,7 +240,7 @@ export const PricingComparison = ({
               </TableBody>
             </Table>
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

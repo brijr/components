@@ -1,13 +1,13 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -101,19 +101,19 @@ export const PricingWithToggle = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl" align="center">
+        <Flex direction="column" gap={10} className="items-center">
           {/* Header */}
-          <Stack spacing="lg" align="center" className="max-w-3xl">
-            <Stack spacing="md" align="center">
-              <Heading level={2} align="center">
+          <Flex direction="column" gap={6} className="items-center max-w-3xl">
+            <Flex direction="column" gap={4} className="items-center">
+              <Header as="h2" className="text-center">
                 {headline}
-              </Heading>
+              </Header>
               {subheadline && (
-                <Text variant="lead" align="center" color="muted">
+                <p className="text-xl text-center text-muted-foreground">
                   {subheadline}
-                </Text>
+                </p>
               )}
-            </Stack>
+            </Flex>
 
             {/* Billing Toggle */}
             <div className="flex items-center gap-3">
@@ -136,7 +136,7 @@ export const PricingWithToggle = ({
                 )}
               </div>
             </div>
-          </Stack>
+          </Flex>
 
           {/* Pricing Cards */}
           <div className={`grid gap-6 w-full max-w-6xl mx-auto ${
@@ -162,7 +162,7 @@ export const PricingWithToggle = ({
                 </CardHeader>
                 
                 <CardContent>
-                  <Stack spacing="lg">
+                  <Flex direction="column" gap={6}>
                     <div>
                       <span className="text-4xl font-bold">
                         {isAnnual ? plan.annualPrice : plan.monthlyPrice}
@@ -185,7 +185,7 @@ export const PricingWithToggle = ({
                         </li>
                       ))}
                     </ul>
-                  </Stack>
+                  </Flex>
                 </CardContent>
                 
                 <CardFooter>
@@ -194,15 +194,15 @@ export const PricingWithToggle = ({
                     variant={plan.recommended ? "default" : "outline"}
                     asChild
                   >
-                    <a href={`${plan.cta.href}?billing=${isAnnual ? 'annual' : 'monthly'}`}>
+                    <Link href={`${plan.cta.href}?billing=${isAnnual ? 'annual' : 'monthly'}`}>
                       {plan.cta.text}
-                    </a>
+                    </Link>
                   </Button>
                 </CardFooter>
               </Card>
             ))}
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

@@ -1,11 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -101,18 +101,18 @@ export const PricingTiered = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl" align="center">
+        <Flex direction="column" gap={10} className="items-center">
           {/* Header */}
-          <Stack spacing="md" align="center" className="max-w-3xl">
-            <Heading level={2} align="center">
+          <Flex direction="column" gap={4} className="items-center max-w-3xl">
+            <Header as="h2" className="text-center">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" align="center" color="muted">
+              <p className="text-xl text-center text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Pricing Tiers */}
           <div className={`grid gap-6 w-full max-w-6xl mx-auto ${
@@ -149,7 +149,7 @@ export const PricingTiered = ({
                   </CardHeader>
                   
                   <CardContent>
-                    <Stack spacing="lg">
+                    <Flex direction="column" gap={6}>
                       <div className="text-center">
                         {tier.originalPrice && (
                           <div className="text-sm text-muted-foreground line-through">
@@ -172,7 +172,7 @@ export const PricingTiered = ({
                           </li>
                         ))}
                       </ul>
-                    </Stack>
+                    </Flex>
                   </CardContent>
                   
                   <CardFooter>
@@ -182,14 +182,14 @@ export const PricingTiered = ({
                       size={isRecommended && showDecorations ? "lg" : "default"}
                       asChild
                     >
-                      <a href={tier.cta.href}>{tier.cta.text}</a>
+                      <Link href={tier.cta.href}>{tier.cta.text}</Link>
                     </Button>
                   </CardFooter>
                 </Card>
               );
             })}
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

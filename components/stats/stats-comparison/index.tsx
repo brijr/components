@@ -2,10 +2,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import {
   Card,
   CardContent,
@@ -143,17 +142,17 @@ export const StatsComparison = ({
     return (
       <Section>
         <Container>
-          <Stack spacing="2xl">
+          <Flex gap="2xl" className="flex-col">
             {/* Header */}
             {(headline || subheadline) && (
-              <Stack spacing="md">
-                {headline && <Heading level={2}>{headline}</Heading>}
+              <Flex gap="md" className="flex-col">
+                {headline && <Header as="h2">{headline}</Header>}
                 {subheadline && (
-                  <Text variant="lead" color="muted">
+                  <p className="text-xl text-muted-foreground">
                     {subheadline}
-                  </Text>
+                  </p>
                 )}
-              </Stack>
+              </Flex>
             )}
 
             {/* Table */}
@@ -186,9 +185,9 @@ export const StatsComparison = ({
                               <div>
                                 <div className="font-medium">{stat.label}</div>
                                 {stat.description && (
-                                  <Text variant="small" color="muted">
+                                  <p className="text-sm text-muted-foreground">
                                     {stat.description}
-                                  </Text>
+                                  </p>
                                 )}
                               </div>
                             </div>
@@ -225,7 +224,7 @@ export const StatsComparison = ({
                 </div>
               </CardContent>
             </Card>
-          </Stack>
+          </Flex>
         </Container>
       </Section>
     );
@@ -235,29 +234,29 @@ export const StatsComparison = ({
     return (
       <Section>
         <Container>
-          <Stack spacing="2xl">
+          <Flex gap="2xl" className="flex-col">
             {/* Header */}
             {(headline || subheadline) && (
-              <Stack spacing="md" align="center" className="text-center">
-                {headline && <Heading level={2}>{headline}</Heading>}
+              <Flex gap="md" className="flex-col items-center text-center">
+                {headline && <Header as="h2">{headline}</Header>}
                 {subheadline && (
-                  <Text variant="lead" color="muted">
+                  <p className="text-xl text-muted-foreground">
                     {subheadline}
-                  </Text>
+                  </p>
                 )}
-              </Stack>
+              </Flex>
             )}
 
             {/* Minimal Stats */}
             <div className={`grid gap-8 ${gridCols[columns]}`}>
               {stats.map((stat, index) => (
-                <Stack key={index} spacing="sm" align="center">
+                <Flex key={index} gap="sm" className="flex-col items-center">
                   {stat.icon && (
                     <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                       {stat.icon}
                     </div>
                   )}
-                  <Text className="font-medium text-center">{stat.label}</Text>
+                  <p className="font-medium text-center">{stat.label}</p>
                   <div className="text-3xl font-bold">
                     {stat.current.prefix}
                     {stat.current.value}
@@ -274,10 +273,10 @@ export const StatsComparison = ({
                       <span className="font-medium">{stat.change.value}</span>
                     </div>
                   )}
-                </Stack>
+                </Flex>
               ))}
             </div>
-          </Stack>
+          </Flex>
         </Container>
       </Section>
     );
@@ -287,17 +286,17 @@ export const StatsComparison = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex gap="2xl" className="flex-col">
           {/* Header */}
           {(headline || subheadline) && (
-            <Stack spacing="md">
-              {headline && <Heading level={2}>{headline}</Heading>}
+            <Flex gap="md" className="flex-col">
+              {headline && <Header as="h2">{headline}</Header>}
               {subheadline && (
-                <Text variant="lead" color="muted">
+                <p className="text-xl text-muted-foreground">
                   {subheadline}
-                </Text>
+                </p>
               )}
-            </Stack>
+            </Flex>
           )}
 
           {/* Comparison Cards */}
@@ -341,9 +340,9 @@ export const StatsComparison = ({
                 <CardContent>
                   <div className="space-y-3">
                     <div>
-                      <Text variant="small" color="muted">
+                      <p className="text-sm text-muted-foreground">
                         {periodLabels.current}
-                      </Text>
+                      </p>
                       <div className="text-2xl font-bold">
                         {stat.current.prefix}
                         {stat.current.value}
@@ -351,9 +350,9 @@ export const StatsComparison = ({
                       </div>
                     </div>
                     <div>
-                      <Text variant="small" color="muted">
+                      <p className="text-sm text-muted-foreground">
                         {periodLabels.previous}
-                      </Text>
+                      </p>
                       <div className="text-lg text-muted-foreground">
                         {stat.previous.prefix}
                         {stat.previous.value}
@@ -365,7 +364,7 @@ export const StatsComparison = ({
               </Card>
             ))}
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

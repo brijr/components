@@ -1,11 +1,11 @@
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Check } from "lucide-react";
@@ -79,25 +79,25 @@ export const PricingSingle = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl" align="center">
+        <Flex direction="column" gap={10} className="items-center">
           {/* Header */}
-          <Stack spacing="md" align="center" className="max-w-3xl">
-            <Heading level={2} align="center">
+          <Flex direction="column" gap={4} className="items-center max-w-3xl">
+            <Header as="h2" className="text-center">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" align="center" color="muted">
+              <p className="text-xl text-center text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Pricing Card */}
           <Card className="w-full max-w-lg mx-auto">
             <CardContent className="p-8">
-              <Stack spacing="xl" align="center">
+              <Flex direction="column" gap={8} className="items-center">
                 {/* Price */}
-                <Stack spacing="sm" align="center">
+                <Flex direction="column" gap={2} className="items-center">
                   <div className="flex items-baseline gap-1">
                     <span className="text-5xl font-bold">{price}</span>
                     {period && (
@@ -107,11 +107,11 @@ export const PricingSingle = ({
                     )}
                   </div>
                   {priceDescription && (
-                    <Text variant="small" color="muted" align="center">
+                    <p className="text-sm text-muted-foreground text-center">
                       {priceDescription}
-                    </Text>
+                    </p>
                   )}
-                </Stack>
+                </Flex>
 
                 {/* Features */}
                 <ul className="space-y-3 w-full">
@@ -124,27 +124,27 @@ export const PricingSingle = ({
                 </ul>
 
                 {/* CTAs */}
-                <Stack spacing="md" align="center" className="w-full">
+                <Flex direction="column" gap={4} className="items-center w-full">
                   <Button size="lg" className="w-full" asChild>
-                    <a href={primaryCTA.href}>{primaryCTA.text}</a>
+                    <Link href={primaryCTA.href}>{primaryCTA.text}</Link>
                   </Button>
                   {secondaryCTA && (
                     <Button size="lg" variant="outline" className="w-full" asChild>
-                      <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
+                      <Link href={secondaryCTA.href}>{secondaryCTA.text}</Link>
                     </Button>
                   )}
-                </Stack>
+                </Flex>
 
                 {/* Guarantee */}
                 {guarantee && (
-                  <Text variant="small" color="muted" align="center">
+                  <p className="text-sm text-muted-foreground text-center">
                     {guarantee}
-                  </Text>
+                  </p>
                 )}
-              </Stack>
+              </Flex>
             </CardContent>
           </Card>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

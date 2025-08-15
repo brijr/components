@@ -4,10 +4,9 @@ import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Progress } from "@/components/ui/progress";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -165,7 +164,7 @@ const AnimatedStat = ({
 
   if (stat.showProgress) {
     return (
-      <Stack spacing="sm">
+      <Flex direction="column" gap={2}>
         {stat.icon && (
           <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
             {stat.icon}
@@ -173,26 +172,26 @@ const AnimatedStat = ({
         )}
         <div>
           <div className="flex justify-between items-baseline mb-2">
-            <Text className="font-semibold">{stat.label}</Text>
-            <Text className="text-2xl font-bold">
+            <p className="font-semibold">{stat.label}</p>
+            <p className="text-2xl font-bold">
               {stat.prefix}
               {animatedValue}
               {stat.suffix}
-            </Text>
+            </p>
           </div>
           <Progress value={progressValue} className="h-2" />
           {stat.description && (
-            <Text variant="small" color="muted" className="mt-2">
+            <p className="text-sm text-muted-foreground mt-2">
               {stat.description}
-            </Text>
+            </p>
           )}
         </div>
-      </Stack>
+      </Flex>
     );
   }
 
   return (
-    <Stack spacing="xs" align="center">
+    <Flex direction="column" gap={1} className="items-center">
       {stat.icon && (
         <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary">
           {stat.icon}
@@ -203,15 +202,15 @@ const AnimatedStat = ({
         {animatedValue}
         {stat.suffix}
       </div>
-      <Text color="muted" align="center">
+      <p className="text-muted-foreground text-center">
         {stat.label}
-      </Text>
+      </p>
       {stat.description && (
-        <Text variant="small" color="muted" align="center">
+        <p className="text-sm text-muted-foreground text-center">
           {stat.description}
-        </Text>
+        </p>
       )}
-    </Stack>
+    </Flex>
   );
 };
 
@@ -269,17 +268,17 @@ export const StatsAnimated = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex direction="column" gap={10}>
           {/* Header */}
           {(headline || subheadline) && (
-            <Stack spacing="md" align="center" className="text-center">
-              {headline && <Heading level={2}>{headline}</Heading>}
+            <Flex direction="column" gap={4} className="items-center text-center">
+              {headline && <Header as="h2">{headline}</Header>}
               {subheadline && (
-                <Text variant="lead" color="muted">
+                <p className="text-xl text-muted-foreground">
                   {subheadline}
-                </Text>
+                </p>
               )}
-            </Stack>
+            </Flex>
           )}
 
           {/* Animated Stats */}
@@ -316,7 +315,7 @@ export const StatsAnimated = ({
               </div>
             ))}
           </div>
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

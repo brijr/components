@@ -1,13 +1,12 @@
 import * as React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-  Inline,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
@@ -93,18 +92,18 @@ export const PricingEnterprise = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex direction="column" gap={10}>
           {/* Header */}
-          <Stack spacing="md" align="center" className="max-w-3xl mx-auto text-center">
-            <Heading level={2}>
+          <Flex direction="column" gap={4} className="items-center max-w-3xl mx-auto text-center">
+            <Header as="h2">
               {headline}
-            </Heading>
+            </Header>
             {subheadline && (
-              <Text variant="lead" color="muted">
+              <p className="text-xl text-muted-foreground">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Features Grid */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
@@ -117,13 +116,13 @@ export const PricingEnterprise = ({
                         {feature.icon}
                       </div>
                     )}
-                    <Heading level={4}>{feature.title}</Heading>
+                    <Header as="h4">{feature.title}</Header>
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <Text color="muted" className={feature.icon ? "ml-13" : ""}>
+                  <p className={`text-muted-foreground ${feature.icon ? "ml-13" : ""}`}>
                     {feature.description}
-                  </Text>
+                  </p>
                 </CardContent>
               </Card>
             ))}
@@ -131,24 +130,24 @@ export const PricingEnterprise = ({
 
           {/* CTAs */}
           <div className="text-center">
-            <Inline spacing="md">
+            <Flex gap={4} className="justify-center">
               <Button size="lg" asChild>
-                <a href={primaryCTA.href}>{primaryCTA.text}</a>
+                <Link href={primaryCTA.href}>{primaryCTA.text}</Link>
               </Button>
               {secondaryCTA && (
                 <Button size="lg" variant="outline" asChild>
-                  <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
+                  <Link href={secondaryCTA.href}>{secondaryCTA.text}</Link>
                 </Button>
               )}
-            </Inline>
+            </Flex>
           </div>
 
           {/* Logos Section */}
           {logos && (
-            <Stack spacing="lg" align="center" className="pt-8">
-              <Text variant="lead" color="muted" align="center">
+            <Flex direction="column" gap={6} className="items-center pt-8">
+              <p className="text-xl text-muted-foreground text-center">
                 {logos.headline}
-              </Text>
+              </p>
               <div className="flex flex-wrap items-center justify-center gap-8 opacity-60">
                 {logos.images.map((logo, index) => (
                   <Image
@@ -161,9 +160,9 @@ export const PricingEnterprise = ({
                   />
                 ))}
               </div>
-            </Stack>
+            </Flex>
           )}
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );
