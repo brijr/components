@@ -1,17 +1,12 @@
-"use client";
-
 import * as React from "react";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { toast } from "sonner";
+  Flex,
+  Header,
+} from "@/components/site/ds";
+import { Form } from "@/components/site/form";
 
 /**
  * Props for the NewsletterSimple component
@@ -35,6 +30,8 @@ export interface NewsletterSimpleProps {
     showNameField?: boolean;
     /** Name field placeholder */
     namePlaceholder?: string;
+    /** Webhook URL for form submission */
+    webhookUrl?: string;
   };
   /** Privacy text */
   privacyText?: string;
@@ -72,118 +69,87 @@ export const NewsletterSimple = ({
   privacyLink,
   variant = "default",
 }: NewsletterSimpleProps) => {
-  const [email, setEmail] = React.useState("");
-  const [name, setName] = React.useState("");
-  const [isSubmitting, setIsSubmitting] = React.useState(false);
-
   const backgroundClasses = {
     default: "",
     accent: "bg-accent",
     muted: "bg-muted/50",
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      toast.success(form.successMessage || "Thanks for subscribing!");
-      
-      // Reset form
-      setEmail("");
-      setName("");
-    } catch {
-      toast.error("Something went wrong. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  // Build form fields configuration
+  const fields = [];
+  
+  if (form.showNameField) {
+    fields.push({
+      name: "name",
+      type: "text" as const,
+      label: "Name",
+      placeholder: form.namePlaceholder || "Your name",
+      showLabel: false,
+    });
+  }
+  
+  fields.push({
+    name: form.inputName || "email",
+    type: "email" as const,
+    label: "Email address",
+    placeholder: form.placeholder,
+    validation: {
+      required: true,
+    },
+    showLabel: false,
+  });
 
   return (
     <Section className={backgroundClasses[variant]}>
       <Container>
         <div className="max-w-2xl mx-auto">
-          <Stack spacing="lg" align="center">
+          <Flex direction="column" gap={8} className="items-center">
             {/* Text content */}
-            <Stack spacing="md" align="center">
-              <Heading level={2} align="center">
+            <Flex direction="column" gap={6} className="items-center">
+              <Header as="h2" className="text-center">
                 {headline}
-              </Heading>
+              </Header>
               {description && (
-                <Text
-                  variant="lead"
-                  align="center"
-                  color="muted"
-                  className="max-w-xl"
-                >
+                <p className="text-xl text-center text-muted-foreground max-w-xl">
                   {description}
-                </Text>
+                </p>
               )}
-            </Stack>
+            </Flex>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="w-full max-w-md">
-              <Stack spacing="md">
-                {form.showNameField && (
-                  <div>
-                    <Label htmlFor="newsletter-name" className="sr-only">
-                      Name
-                    </Label>
-                    <Input
-                      id="newsletter-name"
-                      type="text"
-                      name="name"
-                      placeholder={form.namePlaceholder || "Your name"}
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      disabled={isSubmitting}
-                    />
-                  </div>
-                )}
-
-                <div className="flex gap-2">
-                  <Label htmlFor="newsletter-email" className="sr-only">
-                    Email address
-                  </Label>
-                  <Input
-                    id="newsletter-email"
-                    type="email"
-                    name={form.inputName || "email"}
-                    placeholder={form.placeholder}
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    disabled={isSubmitting}
-                    className="flex-1"
-                  />
-                  <Button type="submit" disabled={isSubmitting}>
-                    {isSubmitting ? "Subscribing..." : form.buttonText}
-                  </Button>
-                </div>
-              </Stack>
-            </form>
+            <div className="w-full max-w-md">
+              <Form
+                fields={fields}
+                webhookUrl={form.webhookUrl || "/api/newsletter"}
+                showSuccessMessage={true}
+                successMessage={form.successMessage || "Thanks for subscribing!"}
+                resetOnSubmit={true}
+                submitText={form.buttonText}
+                columns={1}
+                gap={4}
+                showLabels={false}
+                inlineErrors={false}
+              />
+            </div>
 
             {/* Privacy text */}
             {privacyText && (
-              <Text variant="small" color="muted" align="center">
+              <p className="text-sm text-muted-foreground text-center">
                 {privacyText}
                 {privacyLink && (
                   <>
                     {" "}
-                    <a
+                    <Link
                       href={privacyLink}
                       className="underline hover:no-underline"
                     >
                       Privacy Policy
-                    </a>
+                    </Link>
                   </>
                 )}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
         </div>
       </Container>
     </Section>
@@ -233,6 +199,11 @@ export const newsletterSimpleSchema = {
           type: "string",
           description: "Name field placeholder",
           default: "Your name",
+        },
+        webhookUrl: {
+          type: "string",
+          description: "Webhook URL for form submission",
+          default: "/api/newsletter",
         },
       },
       required: ["placeholder", "buttonText"],

@@ -1,11 +1,6 @@
-"use client";
-
 import * as React from "react";
-import { Stack, Text } from "@/components/ds";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { toast } from "sonner";
+import { Flex } from "@/components/site/ds";
+import { Form } from "@/components/site/form";
 
 /**
  * Props for the NewsletterInline component
@@ -21,6 +16,8 @@ export interface NewsletterInlineProps {
     buttonText: string;
     /** Success message */
     successMessage?: string;
+    /** Webhook URL for form submission */
+    webhookUrl?: string;
   };
   /** Component variant */
   variant?: "default" | "compact";
@@ -51,66 +48,51 @@ export const NewsletterInline = ({
   variant = "default",
   align = "left",
 }: NewsletterInlineProps) => {
-  const [email, setEmail] = React.useState("");
-  const [isSubmitting, setIsSubmitting] = React.useState(false);
-
   const alignmentClasses = {
     left: "items-start text-left",
     center: "items-center text-center",
     right: "items-end text-right",
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      toast.success(form.successMessage || "Thanks for subscribing!");
-      
-      // Reset form
-      setEmail("");
-    } catch {
-      toast.error("Something went wrong. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  const fields = [
+    {
+      name: "email",
+      type: "email" as const,
+      label: "Email address",
+      placeholder: form.placeholder,
+      validation: {
+        required: true,
+      },
+      showLabel: false,
+    },
+  ];
 
   return (
     <div className="w-full">
-      <Stack spacing={variant === "compact" ? "sm" : "md"} className={alignmentClasses[align]}>
-        <Text className={variant === "compact" ? "font-medium" : "font-semibold text-lg"}>
+      <Flex 
+        direction="column" 
+        gap={variant === "compact" ? 3 : 6} 
+        className={alignmentClasses[align]}
+      >
+        <p className={variant === "compact" ? "font-medium" : "font-semibold text-lg"}>
           {headline}
-        </Text>
+        </p>
         
-        <form onSubmit={handleSubmit} className="w-full max-w-sm">
-          <div className="flex gap-2">
-            <Label htmlFor="newsletter-inline-email" className="sr-only">
-              Email address
-            </Label>
-            <Input
-              id="newsletter-inline-email"
-              type="email"
-              placeholder={form.placeholder}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              disabled={isSubmitting}
-              className="flex-1"
-            />
-            <Button 
-              type="submit" 
-              disabled={isSubmitting}
-              size={variant === "compact" ? "sm" : "default"}
-            >
-              {isSubmitting ? "..." : form.buttonText}
-            </Button>
-          </div>
-        </form>
-      </Stack>
+        <div className="w-full max-w-sm">
+          <Form
+            fields={fields}
+            webhookUrl={form.webhookUrl || "/api/newsletter"}
+            showSuccessMessage={true}
+            successMessage={form.successMessage || "Thanks for subscribing!"}
+            resetOnSubmit={true}
+            submitText={form.buttonText}
+            columns={1}
+            gap={2}
+            showLabels={false}
+            inlineErrors={false}
+          />
+        </div>
+      </Flex>
     </div>
   );
 };
@@ -139,6 +121,11 @@ export const newsletterInlineSchema = {
         successMessage: {
           type: "string",
           description: "Success message",
+        },
+        webhookUrl: {
+          type: "string",
+          description: "Webhook URL for form submission",
+          default: "/api/newsletter",
         },
       },
       required: ["placeholder", "buttonText"],

@@ -1,18 +1,12 @@
-"use client";
-
 import * as React from "react";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+  Flex,
+  Header,
+} from "@/components/site/ds";
+import { Form } from "@/components/site/form";
 import { CheckCircle2 } from "lucide-react";
-import { toast } from "sonner";
 
 /**
  * Props for the NewsletterWithBenefits component
@@ -34,6 +28,8 @@ export interface NewsletterWithBenefitsProps {
     successMessage?: string;
     /** Layout style */
     layout?: "inline" | "stacked";
+    /** Webhook URL for form submission */
+    webhookUrl?: string;
   };
   /** Trust indicators */
   trustIndicators?: {
@@ -84,33 +80,24 @@ export const NewsletterWithBenefits = ({
   trustIndicators,
   backgroundStyle = "default",
 }: NewsletterWithBenefitsProps) => {
-  const [email, setEmail] = React.useState("");
-  const [isSubmitting, setIsSubmitting] = React.useState(false);
-
   const backgroundClasses = {
     default: "",
     gradient: "bg-gradient-to-br from-primary/5 to-primary/10",
     pattern: "bg-muted/50",
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      toast.success(form.successMessage || "Thanks for subscribing!");
-      
-      // Reset form
-      setEmail("");
-    } catch {
-      toast.error("Something went wrong. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  const fields = [
+    {
+      name: "email",
+      type: "email" as const,
+      label: "Email address",
+      placeholder: form.placeholder,
+      validation: {
+        required: true,
+      },
+      showLabel: false,
+    },
+  ];
 
   return (
     <Section className={backgroundClasses[backgroundStyle]}>
@@ -118,22 +105,22 @@ export const NewsletterWithBenefits = ({
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
           {/* Content side */}
           <div>
-            <Stack spacing="lg">
-              <Stack spacing="md">
-                <Heading level={2}>{headline}</Heading>
+            <Flex direction="column" gap={8}>
+              <Flex direction="column" gap={6}>
+                <Header as="h2">{headline}</Header>
                 {description && (
-                  <Text variant="lead" color="muted">
+                  <p className="text-xl text-muted-foreground">
                     {description}
-                  </Text>
+                  </p>
                 )}
-              </Stack>
+              </Flex>
 
               {/* Benefits list */}
               <ul className="space-y-3">
                 {benefits.map((benefit, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                    <Text>{benefit}</Text>
+                    <p>{benefit}</p>
                   </li>
                 ))}
               </ul>
@@ -158,51 +145,23 @@ export const NewsletterWithBenefits = ({
                   )}
                 </div>
               )}
-            </Stack>
+            </Flex>
           </div>
 
           {/* Form side */}
           <div>
-            <form onSubmit={handleSubmit}>
-              {form.layout === "inline" ? (
-                <div className="flex gap-2">
-                  <Label htmlFor="newsletter-email-benefits" className="sr-only">
-                    Email address
-                  </Label>
-                  <Input
-                    id="newsletter-email-benefits"
-                    type="email"
-                    placeholder={form.placeholder}
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    disabled={isSubmitting}
-                    className="flex-1"
-                  />
-                  <Button type="submit" disabled={isSubmitting} size="lg">
-                    {isSubmitting ? "Subscribing..." : form.buttonText}
-                  </Button>
-                </div>
-              ) : (
-                <Stack spacing="sm">
-                  <Label htmlFor="newsletter-email-benefits" className="sr-only">
-                    Email address
-                  </Label>
-                  <Input
-                    id="newsletter-email-benefits"
-                    type="email"
-                    placeholder={form.placeholder}
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    disabled={isSubmitting}
-                  />
-                  <Button type="submit" disabled={isSubmitting} size="lg" className="w-full">
-                    {isSubmitting ? "Subscribing..." : form.buttonText}
-                  </Button>
-                </Stack>
-              )}
-            </form>
+            <Form
+              fields={fields}
+              webhookUrl={form.webhookUrl || "/api/newsletter"}
+              showSuccessMessage={true}
+              successMessage={form.successMessage || "Thanks for subscribing!"}
+              resetOnSubmit={true}
+              submitText={form.buttonText}
+              columns={1}
+              gap={form.layout === "stacked" ? 3 : 2}
+              showLabels={false}
+              inlineErrors={false}
+            />
           </div>
         </div>
       </Container>
@@ -252,6 +211,11 @@ export const newsletterWithBenefitsSchema = {
           enum: ["inline", "stacked"],
           description: "Layout style",
           default: "inline",
+        },
+        webhookUrl: {
+          type: "string",
+          description: "Webhook URL for form submission",
+          default: "/api/newsletter",
         },
       },
       required: ["placeholder", "buttonText"],
