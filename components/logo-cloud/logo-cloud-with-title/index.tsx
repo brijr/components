@@ -160,7 +160,7 @@ export const LogoCloudWithTitle = ({
   return (
     <Section>
       <Container>
-        <Flex direction="column" gap={16}>
+        <Flex direction="column" gap={12}>
           {/* Header */}
           <Flex direction="column" gap={6} className="items-center text-center">
             <Header as="h2">{headline}</Header>

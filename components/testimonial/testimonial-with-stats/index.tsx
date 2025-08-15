@@ -117,7 +117,7 @@ export const TestimonialWithStats = ({
   const testimonialComponent = (
     <Card className={layout === "split" ? "" : "max-w-3xl mx-auto"}>
       <CardContent className="p-6 md:p-8">
-        <Flex gap="md">
+        <Flex gap={4}>
           {/* Rating */}
           {testimonial.rating && (
             <div className="flex gap-0.5">
@@ -173,9 +173,9 @@ export const TestimonialWithStats = ({
     return (
       <Section>
         <Container>
-          <Flex gap="2xl">
+          <Flex gap={10}>
             {/* Header */}
-            <Flex gap="md">
+            <Flex gap={4}>
               <Header as="h2">{headline}</Header>
               {subheadline && (
                 <p className="text-xl text-muted-foreground">
@@ -198,9 +198,9 @@ export const TestimonialWithStats = ({
   return (
     <Section>
       <Container>
-        <Flex gap="2xl" className="text-center">
+        <Flex gap={10} className="text-center">
           {/* Header */}
-          <Flex gap="md" className="text-center max-w-3xl">
+          <Flex gap={4} className="text-center max-w-3xl">
             <Header as="h2" className="text-center">
               {headline}
             </Header>

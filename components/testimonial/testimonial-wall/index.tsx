@@ -107,9 +107,9 @@ export const TestimonialWall = ({
   return (
     <Section>
       <Container>
-        <Flex gap="2xl">
+        <Flex gap={10}>
           {/* Header */}
-          <Flex gap="md" className="items-center max-w-3xl mx-auto">
+          <Flex gap={4} className="items-center max-w-3xl mx-auto">
             <Header as="h2" className="text-center">
               {headline}
             </Header>
@@ -135,7 +135,7 @@ export const TestimonialWall = ({
                     }`}
                   >
                     <CardContent className="p-0">
-                      <Flex gap="sm">
+                      <Flex gap={2}>
                         {/* Rating */}
                         {showRatings && testimonial.rating && (
                           <div className="flex gap-0.5">

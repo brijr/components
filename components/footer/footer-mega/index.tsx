@@ -233,11 +233,11 @@ export const FooterMega = ({
     <footer>
       <Section className="border-t bg-muted/20">
         <Container>
-          <Flex direction="column" gap="xl">
+          <Flex direction="column" gap={8}>
             {/* Top section with brand and search */}
             <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
               {/* Brand */}
-              <Flex direction="column" gap="sm" className="max-w-sm">
+              <Flex direction="column" gap={2} className="max-w-sm">
                 <div className="flex items-center gap-2">
                   {brand.logo}
                   <p className="font-semibold text-lg">{brand.name}</p>
@@ -276,8 +276,8 @@ export const FooterMega = ({
               {/* Navigation columns */}
               {columns.map((column, index) => (
                 <div key={index}>
-                  <Flex direction="column" gap="md">
-                    <Flex direction="column" gap="sm">
+                  <Flex direction="column" gap={4}>
+                    <Flex direction="column" gap={2}>
                       <Header as="h4">{column.title}</Header>
                       {column.description && (
                         <p className="text-sm text-muted-foreground">
@@ -297,7 +297,7 @@ export const FooterMega = ({
                                 {link.icon}
                               </span>
                             )}
-                            <Flex direction="column" gap="sm">
+                            <Flex direction="column" gap={2}>
                               <div className="flex items-center gap-2">
                                 <span className="group-hover:text-foreground transition-colors">
                                   {link.text}
@@ -325,16 +325,16 @@ export const FooterMega = ({
               {/* Featured section */}
               {featured && (
                 <div className="sm:col-span-2 lg:col-span-1">
-                  <Flex direction="column" gap="md">
+                  <Flex direction="column" gap={4}>
                     <Header as="h4">{featured.title}</Header>
-                    <Flex direction="column" gap="md">
+                    <Flex direction="column" gap={4}>
                       {featured.items.map((item, index) => (
                         <Link
                           key={index}
                           href={item.href}
                           className="group block p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
                         >
-                          <Flex direction="column" gap="sm">
+                          <Flex direction="column" gap={2}>
                             <div className="flex items-start justify-between gap-2">
                               <p className="font-medium group-hover:text-primary transition-colors">
                                 {item.title}

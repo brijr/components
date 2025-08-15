@@ -5,7 +5,7 @@ import { useDesignSystem } from "@/providers/design-system-provider";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Text, Heading } from "@/components/ds";
+import { Header } from "@/components/site/ds";
 
 interface SizeSliderProps {
   label: string;
@@ -54,7 +54,7 @@ export function TypographySection() {
         {
           key: "heading1",
           label: "Heading 1",
-          preview: <Heading level={1}>Main Page Title</Heading>,
+          preview: <Header as="h1">Main Page Title</Header>,
           min: 2,
           max: 4,
           step: 0.125,
@@ -62,7 +62,7 @@ export function TypographySection() {
         {
           key: "heading2",
           label: "Heading 2",
-          preview: <Heading level={2}>Section Title</Heading>,
+          preview: <Header as="h2">Section Title</Header>,
           min: 1.5,
           max: 3,
           step: 0.125,
@@ -70,7 +70,7 @@ export function TypographySection() {
         {
           key: "heading3",
           label: "Heading 3",
-          preview: <Heading level={3}>Subsection Title</Heading>,
+          preview: <Header as="h3">Subsection Title</Header>,
           min: 1.25,
           max: 2.5,
           step: 0.125,
@@ -78,7 +78,7 @@ export function TypographySection() {
         {
           key: "heading4",
           label: "Heading 4",
-          preview: <Heading level={4}>Card Title</Heading>,
+          preview: <Header as="h4">Card Title</Header>,
           min: 1,
           max: 2,
           step: 0.0625,
@@ -86,7 +86,7 @@ export function TypographySection() {
         {
           key: "heading5",
           label: "Heading 5",
-          preview: <Heading level={5}>Small Heading</Heading>,
+          preview: <Header as="h5">Small Heading</Header>,
           min: 0.875,
           max: 1.5,
           step: 0.0625,
@@ -94,7 +94,7 @@ export function TypographySection() {
         {
           key: "heading6",
           label: "Heading 6",
-          preview: <Heading level={6}>Tiny Heading</Heading>,
+          preview: <Header as="h6">Tiny Heading</Header>,
           min: 0.75,
           max: 1.25,
           step: 0.0625,
@@ -108,7 +108,7 @@ export function TypographySection() {
         {
           key: "textXs",
           label: "Text XS",
-          preview: <Text variant="small" subdued>Extra small text for captions</Text>,
+          preview: <p className="text-sm text-muted-foreground">Extra small text for captions</p>,
           min: 0.5,
           max: 1,
           step: 0.0625,
@@ -116,7 +116,7 @@ export function TypographySection() {
         {
           key: "textSm",
           label: "Text SM",
-          preview: <Text variant="small">Small text for secondary content</Text>,
+          preview: <p className="text-sm">Small text for secondary content</p>,
           min: 0.625,
           max: 1.125,
           step: 0.0625,
@@ -124,7 +124,7 @@ export function TypographySection() {
         {
           key: "textBase",
           label: "Text Base",
-          preview: <Text>Default body text size</Text>,
+          preview: <p>Default body text size</p>,
           min: 0.75,
           max: 1.5,
           step: 0.0625,
@@ -132,7 +132,7 @@ export function TypographySection() {
         {
           key: "textLg",
           label: "Text LG",
-          preview: <Text>Large text for emphasis</Text>,
+          preview: <p>Large text for emphasis</p>,
           min: 1,
           max: 2,
           step: 0.125,
@@ -140,7 +140,7 @@ export function TypographySection() {
         {
           key: "textXl",
           label: "Text XL",
-          preview: <Text variant="lead">Extra large lead text</Text>,
+          preview: <p className="text-xl">Extra large lead text</p>,
           min: 1.125,
           max: 2.5,
           step: 0.125,

@@ -115,9 +115,9 @@ export const TestimonialCarousel = ({
   return (
     <Section>
       <Container>
-        <Flex gap="2xl">
+        <Flex gap={10}>
           {/* Header */}
-          <Flex gap="md" className="flex-col items-center max-w-3xl mx-auto">
+          <Flex gap={4} className="flex-col items-center max-w-3xl mx-auto">
             <Header as="h2" className="text-center">
               {headline}
             </Header>
@@ -136,7 +136,7 @@ export const TestimonialCarousel = ({
           >
             <Card className="overflow-hidden">
               <CardContent className="p-8 md:p-12">
-                <Flex gap="lg" className="flex-col items-center">
+                <Flex gap={6} className="flex-col items-center">
                   {/* Rating */}
                   {currentTestimonial.rating && (
                     <div className="flex gap-0.5">

@@ -5,7 +5,7 @@ import { useDesignSystem } from "@/providers/design-system-provider";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Stack, Section, Container } from "@/components/ds";
+import { Flex, Section, Container } from "@/components/site/ds";
 
 interface SpacingSliderProps {
   label: string;
@@ -55,10 +55,10 @@ export function SpacingSection() {
           key: "space1",
           label: "Space 1 (xs)",
           preview: (
-            <Stack spacing="xs">
+            <Flex direction="column" gap={1}>
               <div className="h-8 rounded bg-primary/20" />
               <div className="h-8 rounded bg-primary/20" />
-            </Stack>
+            </Flex>
           ),
           min: 0,
           max: 1,
@@ -68,10 +68,10 @@ export function SpacingSection() {
           key: "space2",
           label: "Space 2 (sm)",
           preview: (
-            <Stack spacing="sm">
+            <Flex direction="column" gap={2}>
               <div className="h-8 rounded bg-primary/20" />
               <div className="h-8 rounded bg-primary/20" />
-            </Stack>
+            </Flex>
           ),
           min: 0,
           max: 2,
@@ -81,10 +81,10 @@ export function SpacingSection() {
           key: "space4",
           label: "Space 4 (md)",
           preview: (
-            <Stack spacing="md">
+            <Flex direction="column" gap={4}>
               <div className="h-8 rounded bg-primary/20" />
               <div className="h-8 rounded bg-primary/20" />
-            </Stack>
+            </Flex>
           ),
           min: 0,
           max: 3,
@@ -94,10 +94,10 @@ export function SpacingSection() {
           key: "space6",
           label: "Space 6 (lg)",
           preview: (
-            <Stack spacing="lg">
+            <Flex direction="column" gap={6}>
               <div className="h-8 rounded bg-primary/20" />
               <div className="h-8 rounded bg-primary/20" />
-            </Stack>
+            </Flex>
           ),
           min: 0,
           max: 4,
@@ -107,10 +107,10 @@ export function SpacingSection() {
           key: "space8",
           label: "Space 8 (xl)",
           preview: (
-            <Stack spacing="xl">
+            <Flex direction="column" gap={8}>
               <div className="h-8 rounded bg-primary/20" />
               <div className="h-8 rounded bg-primary/20" />
-            </Stack>
+            </Flex>
           ),
           min: 0,
           max: 6,

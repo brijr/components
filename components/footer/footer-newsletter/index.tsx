@@ -148,17 +148,17 @@ export const FooterNewsletter = ({
     <footer>
       <Section className="border-t bg-gradient-to-b from-muted/30 to-background">
         <Container>
-          <Flex direction="column" gap="xl">
+          <Flex direction="column" gap={8}>
             {/* Newsletter section */}
             <div className="mx-auto max-w-2xl text-center">
-              <Flex direction="column" gap="lg" className="items-center">
+              <Flex direction="column" gap={6} className="items-center">
                 {newsletter.badge && (
                   <Badge variant="secondary" className="px-4 py-1">
                     {newsletter.badge}
                   </Badge>
                 )}
                 
-                <Flex direction="column" gap="md" className="items-center">
+                <Flex direction="column" gap={4} className="items-center">
                   <Header as="h2" className="text-center">
                     {newsletter.title}
                   </Header>
@@ -183,7 +183,7 @@ export const FooterNewsletter = ({
 
                 {/* Newsletter form */}
                 <form onSubmit={handleSubmit} className="w-full max-w-md">
-                  <Flex direction="column" gap="sm">
+                  <Flex direction="column" gap={2}>
                     <div className="flex gap-2">
                       <Input
                         type="email"
@@ -216,7 +216,7 @@ export const FooterNewsletter = ({
                     <p className="text-sm font-medium mb-3">
                       Recent editions:
                     </p>
-                    <Flex direction="column" gap="sm">
+                    <Flex direction="column" gap={2}>
                       {newsletter.recentEditions.map((edition, index) => (
                         <Link
                           key={index}
@@ -242,7 +242,7 @@ export const FooterNewsletter = ({
             {/* Bottom section */}
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
               {/* Company info and links */}
-              <Flex direction="column" gap="md">
+              <Flex direction="column" gap={4}>
                 <p className="font-semibold">{company.name}</p>
                 <nav aria-label="Footer navigation">
                   <ul className="flex flex-wrap gap-x-6 gap-y-2">
@@ -261,7 +261,7 @@ export const FooterNewsletter = ({
               </Flex>
 
               {/* Copyright and social */}
-              <Flex direction="column" gap="sm" className="items-end">
+              <Flex direction="column" gap={2} className="items-end">
                 {company.socialLinks && company.socialLinks.length > 0 && (
                   <nav aria-label="Social media links">
                     <ul className="flex gap-4">

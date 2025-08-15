@@ -157,7 +157,7 @@ export const FooterDetailed = ({
     <footer>
       <Section className="border-t">
         <Container>
-          <Flex direction="column" gap={16}>
+          <Flex direction="column" gap={12}>
             {/* Main footer content */}
             <div className="grid gap-8 lg:grid-cols-12">
               {/* Brand column */}

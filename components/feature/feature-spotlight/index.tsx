@@ -151,7 +151,7 @@ export const FeatureSpotlight = ({
           </Flex>
 
           {/* Features */}
-          <Flex direction="column" gap={16}>
+          <Flex direction="column" gap={12}>
             {features.map((feature, index) => {
               const isLeft = direction === "left" || 
                 (direction === "alternating" && index % 2 === 0);

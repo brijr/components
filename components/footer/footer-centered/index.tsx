@@ -150,7 +150,7 @@ export const FooterCentered = ({
             <p className="text-sm text-muted-foreground text-center">
               {copyrightText}
             </p>
-          </Stack>
+          </Flex>
         </Container>
       </Section>
     </footer>

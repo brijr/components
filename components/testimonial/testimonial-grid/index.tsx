@@ -84,9 +84,9 @@ export const TestimonialGrid = ({
   return (
     <Section>
       <Container>
-        <Flex gap="2xl">
+        <Flex gap={10}>
           {/* Header */}
-          <Flex gap="md" className="items-center max-w-3xl mx-auto">
+          <Flex gap={4} className="items-center max-w-3xl mx-auto">
             <Header as="h2" className="text-center">
               {headline}
             </Header>
@@ -102,7 +102,7 @@ export const TestimonialGrid = ({
             {testimonials.map((testimonial, index) => (
               <Card key={index} className="h-full">
                 <CardContent className="pt-6">
-                  <Flex gap="md">
+                  <Flex gap={4}>
                     {/* Rating */}
                     {testimonial.rating && (
                       <div className="flex gap-0.5">

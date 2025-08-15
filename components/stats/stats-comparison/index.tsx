@@ -142,10 +142,10 @@ export const StatsComparison = ({
     return (
       <Section>
         <Container>
-          <Flex gap="2xl" className="flex-col">
+          <Flex gap={10} className="flex-col">
             {/* Header */}
             {(headline || subheadline) && (
-              <Flex gap="md" className="flex-col">
+              <Flex gap={4} className="flex-col">
                 {headline && <Header as="h2">{headline}</Header>}
                 {subheadline && (
                   <p className="text-xl text-muted-foreground">
@@ -234,10 +234,10 @@ export const StatsComparison = ({
     return (
       <Section>
         <Container>
-          <Flex gap="2xl" className="flex-col">
+          <Flex gap={10} className="flex-col">
             {/* Header */}
             {(headline || subheadline) && (
-              <Flex gap="md" className="flex-col items-center text-center">
+              <Flex gap={4} className="flex-col items-center text-center">
                 {headline && <Header as="h2">{headline}</Header>}
                 {subheadline && (
                   <p className="text-xl text-muted-foreground">
@@ -250,7 +250,7 @@ export const StatsComparison = ({
             {/* Minimal Stats */}
             <div className={`grid gap-8 ${gridCols[columns]}`}>
               {stats.map((stat, index) => (
-                <Flex key={index} gap="sm" className="flex-col items-center">
+                <Flex key={index} gap={2} className="flex-col items-center">
                   {stat.icon && (
                     <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                       {stat.icon}
@@ -286,10 +286,10 @@ export const StatsComparison = ({
   return (
     <Section>
       <Container>
-        <Flex gap="2xl" className="flex-col">
+        <Flex gap={10} className="flex-col">
           {/* Header */}
           {(headline || subheadline) && (
-            <Flex gap="md" className="flex-col">
+            <Flex gap={4} className="flex-col">
               {headline && <Header as="h2">{headline}</Header>}
               {subheadline && (
                 <p className="text-xl text-muted-foreground">

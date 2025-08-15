@@ -119,7 +119,7 @@ export const TestimonialVideo = ({
       </div>
 
       <CardContent className="p-6">
-        <Flex gap="md">
+        <Flex gap={4}>
           {/* Quote Preview */}
           {testimonial.quote && (
             <blockquote className="relative">
@@ -149,9 +149,9 @@ export const TestimonialVideo = ({
     return (
       <Section>
         <Container>
-          <Flex gap="2xl">
+          <Flex gap={10}>
             {/* Header */}
-            <Flex gap="md" className="items-center max-w-3xl mx-auto">
+            <Flex gap={4} className="items-center max-w-3xl mx-auto">
               <Header as="h2" className="text-center">
                 {headline}
               </Header>
@@ -184,9 +184,9 @@ export const TestimonialVideo = ({
   return (
     <Section>
       <Container>
-        <Flex gap="2xl">
+        <Flex gap={10}>
           {/* Header */}
-          <Flex gap="md" className="items-center max-w-3xl mx-auto">
+          <Flex gap={4} className="items-center max-w-3xl mx-auto">
             <Header as="h2" className="text-center">
               {headline}
             </Header>
