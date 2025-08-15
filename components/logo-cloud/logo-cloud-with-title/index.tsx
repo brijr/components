@@ -1,12 +1,12 @@
 import * as React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Section,
   Container,
-  Stack,
-  Heading,
-  Text,
-} from "@/components/ds";
+  Flex,
+  Header,
+} from "@/components/site/ds";
 import { Card, CardContent } from "@/components/ui/card";
 import { Quote } from "lucide-react";
 
@@ -126,21 +126,18 @@ export const LogoCloudWithTitle = ({
           />
         </div>
         {showDescriptions && logo.description && (
-          <Text
-            variant="small"
-            color="muted"
-            align="center"
-            className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity"
+          <p
+            className="text-sm text-muted-foreground text-center mt-3 opacity-0 group-hover:opacity-100 transition-opacity"
           >
             {logo.description}
-          </Text>
+          </p>
         )}
       </div>
     );
 
     if (logo.href) {
       return (
-        <a
+        <Link
           key={index}
           href={logo.href}
           target="_blank"
@@ -149,7 +146,7 @@ export const LogoCloudWithTitle = ({
           aria-label={`Visit ${logo.name} website`}
         >
           {logoElement}
-        </a>
+        </Link>
       );
     }
 
@@ -163,33 +160,33 @@ export const LogoCloudWithTitle = ({
   return (
     <Section>
       <Container>
-        <Stack spacing="2xl">
+        <Flex direction="column" gap={16}>
           {/* Header */}
-          <Stack spacing="md" align="center" className="text-center">
-            <Heading level={2}>{headline}</Heading>
+          <Flex direction="column" gap={6} className="items-center text-center">
+            <Header as="h2">{headline}</Header>
             {subheadline && (
-              <Text variant="lead" color="muted" className="max-w-2xl">
+              <p className="text-xl text-muted-foreground max-w-2xl">
                 {subheadline}
-              </Text>
+              </p>
             )}
-          </Stack>
+          </Flex>
 
           {/* Testimonial (if provided) */}
           {testimonial && (
             <Card className="max-w-3xl mx-auto">
               <CardContent className="p-6 md:p-8">
-                <Stack spacing="md" align="center">
+                <Flex direction="column" gap={6} className="items-center">
                   <Quote className="w-8 h-8 text-muted-foreground" />
                   <blockquote className="text-center">
-                    <Text variant="lead">&ldquo;{testimonial.quote}&rdquo;</Text>
+                    <p className="text-xl">&ldquo;{testimonial.quote}&rdquo;</p>
                   </blockquote>
                   <div className="text-center">
-                    <Text className="font-semibold">{testimonial.author}</Text>
-                    <Text variant="small" color="muted">
+                    <p className="font-semibold">{testimonial.author}</p>
+                    <p className="text-sm text-muted-foreground">
                       {testimonial.role} at {testimonial.company}
-                    </Text>
+                    </p>
                   </div>
-                </Stack>
+                </Flex>
               </CardContent>
             </Card>
           )}
@@ -200,19 +197,19 @@ export const LogoCloudWithTitle = ({
               {logos.map((logo, index) => renderLogo(logo, index))}
             </div>
           ) : variant === "stacked" ? (
-            <Stack spacing="lg" align="center">
+            <Flex direction="column" gap={8} className="items-center">
               {logos.map((logo, index) => (
                 <div key={index} className="w-full max-w-xs">
                   {renderLogo(logo, index)}
                 </div>
               ))}
-            </Stack>
+            </Flex>
           ) : (
             <div className={`grid gap-4 ${gridCols[columns]}`}>
               {logos.map((logo, index) => renderLogo(logo, index))}
             </div>
           )}
-        </Stack>
+        </Flex>
       </Container>
     </Section>
   );

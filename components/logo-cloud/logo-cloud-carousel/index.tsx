@@ -5,7 +5,7 @@ import Image from "next/image";
 import {
   Section,
   Container,
-} from "@/components/ds";
+} from "@/components/site/ds";
 
 /**
  * Logo configuration for carousel

@@ -1,9 +1,10 @@
 import * as React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Section,
   Container,
-} from "@/components/ds";
+} from "@/components/site/ds";
 
 /**
  * Logo configuration
@@ -123,7 +124,7 @@ export const LogoCloudSimple = ({
 
     if (logo.href) {
       return (
-        <a
+        <Link
           key={index}
           href={logo.href}
           target="_blank"
@@ -132,7 +133,7 @@ export const LogoCloudSimple = ({
           aria-label={`Visit ${logo.name} website`}
         >
           {logoElement}
-        </a>
+        </Link>
       );
     }
 
