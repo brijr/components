@@ -838,15 +838,8 @@ import Image from "next/image";
 - **Hero Sections**: Landing page heroes
 - **Feature Sections**: Product features
 - **CTA Sections**: Call-to-action blocks
-- **Pricing Tables**: Pricing plans
-- **Testimonials**: Customer reviews
-- **FAQ Sections**: Questions and answers
-- **Contact Forms**: Lead capture
-- **Stats/Metrics**: Numbers and achievements
-- **Logo Clouds**: Partner logos
-- **Newsletter**: Email signup
-- **Blog Sections**: Blog previews
-- **Footer Sections**: Site footers
+- **Pricing Sections**: Pricing plans and calculators
+- **Testimonial Sections**: Customer reviews and case studies
 
 ## Do NOT Use (Antipatterns)
 

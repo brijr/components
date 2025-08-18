@@ -1,0 +1,68 @@
+export const defaultContent = {
+  headline: "Choose Your Plan",
+  subheadline: "Start free and scale as you grow. No credit card required.",
+  plans: [
+    {
+      name: "Free",
+      description: "Get started with the basics",
+      price: 0,
+      currency: "$",
+      period: "month",
+      features: [
+        { text: "1 user", included: true },
+        { text: "2 projects", included: true },
+        { text: "Basic features", included: true },
+        { text: "Community support", included: true },
+        { text: "Analytics", included: false },
+        { text: "Custom domain", included: false },
+        { text: "Priority support", included: false },
+      ],
+      cta: {
+        text: "Get Started",
+        href: "/signup?plan=free",
+      },
+    },
+    {
+      name: "Pro",
+      description: "Best for professionals",
+      price: 49,
+      currency: "$",
+      period: "month",
+      features: [
+        { text: "Unlimited users", included: true },
+        { text: "Unlimited projects", included: true },
+        { text: "Advanced features", included: true },
+        { text: "Priority support", included: true },
+        { text: "Advanced analytics", included: true },
+        { text: "Custom domain", included: true },
+        { text: "API access", included: true },
+      ],
+      cta: {
+        text: "Start Free Trial",
+        href: "/signup?plan=pro",
+      },
+      highlighted: true,
+      badge: "Recommended",
+    },
+    {
+      name: "Team",
+      description: "For growing teams",
+      price: 99,
+      currency: "$",
+      period: "month",
+      features: [
+        { text: "Everything in Pro", included: true },
+        { text: "Team collaboration", included: true },
+        { text: "Admin controls", included: true },
+        { text: "Dedicated support", included: true },
+        { text: "Custom integrations", included: true },
+        { text: "SLA guarantee", included: true },
+        { text: "Training sessions", included: true },
+      ],
+      cta: {
+        text: "Contact Sales",
+        href: "/contact?plan=team",
+      },
+    },
+  ],
+};

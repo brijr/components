@@ -8,13 +8,7 @@ const componentTypes = [
   "cta",
   "pricing",
   "testimonial",
-  "faq",
-  "contact",
-  "stats",
-  "logo",
   "footer",
-  "newsletter",
-  "blog",
 ] as const;
 
 type ComponentType = (typeof componentTypes)[number];
@@ -25,13 +19,7 @@ const typeLabels: Record<ComponentType, string> = {
   cta: "Call to Action",
   pricing: "Pricing Tables",
   testimonial: "Testimonials",
-  faq: "FAQ Sections",
-  contact: "Contact Forms",
-  stats: "Statistics",
-  logo: "Logo Clouds",
-  footer: "Footers",
-  newsletter: "Newsletter Forms",
-  blog: "Blog Sections",
+  footer: "Footer Sections",
 };
 
 export default async function TypePage({

@@ -1,0 +1,58 @@
+export const defaultContent = {
+  headline: "Pricing Calculator",
+  subheadline:
+    "Estimate your monthly costs based on your usage. Adjust the sliders to see real-time pricing.",
+  inputs: [
+    {
+      id: "users",
+      label: "Team Members",
+      min: 1,
+      max: 500,
+      step: 1,
+      default: 10,
+      unit: "users",
+      pricePerUnit: 8,
+    },
+    {
+      id: "storage",
+      label: "Storage",
+      min: 0,
+      max: 5000,
+      step: 10,
+      default: 100,
+      unit: "GB",
+      pricePerUnit: 0.1,
+    },
+    {
+      id: "bandwidth",
+      label: "Bandwidth",
+      min: 0,
+      max: 10000,
+      step: 100,
+      default: 1000,
+      unit: "GB",
+      pricePerUnit: 0.05,
+    },
+    {
+      id: "api",
+      label: "API Calls",
+      min: 0,
+      max: 10000000,
+      step: 10000,
+      default: 100000,
+      unit: "calls",
+      pricePerUnit: 0.0001,
+    },
+  ],
+  basePrice: 29,
+  currency: "$",
+  breakdown: true,
+  primaryCTA: {
+    text: "Get Started",
+    href: "/signup",
+  },
+  secondaryCTA: {
+    text: "Talk to Sales",
+    href: "/contact",
+  },
+};

@@ -41,13 +41,7 @@ const componentTypes = [
   { type: "cta", label: "Call to Action", icon: MousePointer },
   { type: "pricing", label: "Pricing", icon: DollarSign },
   { type: "testimonial", label: "Testimonials", icon: MessageSquare },
-  { type: "faq", label: "FAQ", icon: HelpCircle },
-  { type: "contact", label: "Contact", icon: Mail },
-  { type: "stats", label: "Statistics", icon: BarChart3 },
-  { type: "logo", label: "Logo Clouds", icon: Building2 },
   { type: "footer", label: "Footers", icon: Menu },
-  { type: "newsletter", label: "Newsletter", icon: Newspaper },
-  { type: "blog", label: "Blog", icon: Rss },
 ] as const;
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
