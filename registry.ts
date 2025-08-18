@@ -20,6 +20,6 @@ export const registry: RegistryItem[] = [
     Component: HeroMinimal,
     description: "Minimal hero section with centered text and optional CTAs.",
     props: heroMinimalContent,
-    filePath: "./components/hero/hero-minimal/index.tsx",
+    filePath: "./components/components/hero/hero-minimal/index.tsx",
   },
 ];
