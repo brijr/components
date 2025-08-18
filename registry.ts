@@ -192,7 +192,20 @@ import { defaultContent as blogFeaturedContent } from "./components/blog/blog-fe
 
 type RegistryItem = {
   name: string;
-  type: "hero" | "feature" | "cta" | "pricing" | "testimonial" | "faq" | "contact" | "stats" | "logo" | "team" | "footer" | "newsletter" | "blog";
+  type:
+    | "hero"
+    | "feature"
+    | "cta"
+    | "pricing"
+    | "testimonial"
+    | "faq"
+    | "contact"
+    | "stats"
+    | "logo"
+    | "team"
+    | "footer"
+    | "newsletter"
+    | "blog";
   slug: string;
   Component: React.ComponentType<any>;
   description?: string;
@@ -391,7 +404,8 @@ export const registry: RegistryItem[] = [
     type: "feature",
     slug: "feature-grid",
     Component: FeatureGrid,
-    description: "Grid layout for showcasing multiple features with icons, centered text.",
+    description:
+      "Grid layout for showcasing multiple features with icons, centered text.",
     props: featureGridContent,
     filePath: "./components/feature/feature-grid/index.tsx",
   },
@@ -400,7 +414,8 @@ export const registry: RegistryItem[] = [
     type: "feature",
     slug: "feature-grid-left",
     Component: FeatureGridLeft,
-    description: "Grid layout for showcasing multiple features with icons, left-aligned text.",
+    description:
+      "Grid layout for showcasing multiple features with icons, left-aligned text.",
     props: featureGridLeftContent,
     filePath: "./components/feature/feature-grid-left/index.tsx",
   },
@@ -418,7 +433,8 @@ export const registry: RegistryItem[] = [
     type: "feature",
     slug: "feature-list-left",
     Component: FeatureListLeft,
-    description: "List layout with consistent left-aligned features and images.",
+    description:
+      "List layout with consistent left-aligned features and images.",
     props: featureListLeftContent,
     filePath: "./components/feature/feature-list-left/index.tsx",
   },
@@ -427,7 +443,8 @@ export const registry: RegistryItem[] = [
     type: "feature",
     slug: "feature-cards",
     Component: FeatureCards,
-    description: "Card-based feature layout with hover effects, centered design.",
+    description:
+      "Card-based feature layout with hover effects, centered design.",
     props: featureCardsContent,
     filePath: "./components/feature/feature-cards/index.tsx",
   },
@@ -436,7 +453,8 @@ export const registry: RegistryItem[] = [
     type: "feature",
     slug: "feature-cards-left",
     Component: FeatureCardsLeft,
-    description: "Card-based feature layout with hover effects, left-aligned content.",
+    description:
+      "Card-based feature layout with hover effects, left-aligned content.",
     props: featureCardsLeftContent,
     filePath: "./components/feature/feature-cards-left/index.tsx",
   },
@@ -454,7 +472,8 @@ export const registry: RegistryItem[] = [
     type: "feature",
     slug: "feature-showcase",
     Component: FeatureShowcase,
-    description: "Large feature showcase with screenshot and key points, centered text.",
+    description:
+      "Large feature showcase with screenshot and key points, centered text.",
     props: featureShowcaseContent,
     filePath: "./components/feature/feature-showcase/index.tsx",
   },
@@ -463,7 +482,8 @@ export const registry: RegistryItem[] = [
     type: "feature",
     slug: "feature-showcase-left",
     Component: FeatureShowcaseLeft,
-    description: "Large feature showcase with screenshot and key points, left-aligned text.",
+    description:
+      "Large feature showcase with screenshot and key points, left-aligned text.",
     props: featureShowcaseLeftContent,
     filePath: "./components/feature/feature-showcase-left/index.tsx",
   },
@@ -472,7 +492,8 @@ export const registry: RegistryItem[] = [
     type: "feature",
     slug: "feature-timeline",
     Component: FeatureTimeline,
-    description: "Timeline/process steps layout for onboarding flows or roadmaps.",
+    description:
+      "Timeline/process steps layout for onboarding flows or roadmaps.",
     props: featureTimelineContent,
     filePath: "./components/feature/feature-timeline/index.tsx",
   },
@@ -481,7 +502,8 @@ export const registry: RegistryItem[] = [
     type: "feature",
     slug: "feature-bento",
     Component: FeatureBento,
-    description: "Bento grid feature section with different sized cards for visual hierarchy.",
+    description:
+      "Bento grid feature section with different sized cards for visual hierarchy.",
     props: featureBentoContent,
     filePath: "./components/feature/feature-bento/index.tsx",
   },
@@ -490,7 +512,8 @@ export const registry: RegistryItem[] = [
     type: "feature",
     slug: "feature-tabs",
     Component: FeatureTabs,
-    description: "Tabbed feature section for showcasing features with detailed content.",
+    description:
+      "Tabbed feature section for showcasing features with detailed content.",
     props: featureTabsContent,
     filePath: "./components/feature/feature-tabs/index.tsx",
   },
@@ -499,7 +522,8 @@ export const registry: RegistryItem[] = [
     type: "feature",
     slug: "feature-accordion",
     Component: FeatureAccordion,
-    description: "Accordion-style feature section for expandable feature details.",
+    description:
+      "Accordion-style feature section for expandable feature details.",
     props: featureAccordionContent,
     filePath: "./components/feature/feature-accordion/index.tsx",
   },
@@ -517,7 +541,8 @@ export const registry: RegistryItem[] = [
     type: "feature",
     slug: "feature-spotlight",
     Component: FeatureSpotlight,
-    description: "Feature spotlight section with large images and detailed content.",
+    description:
+      "Feature spotlight section with large images and detailed content.",
     props: featureSpotlightContent,
     filePath: "./components/feature/feature-spotlight/index.tsx",
   },
@@ -528,7 +553,8 @@ export const registry: RegistryItem[] = [
     type: "cta",
     slug: "cta-simple",
     Component: CTASimple,
-    description: "Basic centered CTA with headline, subheadline, and action buttons.",
+    description:
+      "Basic centered CTA with headline, subheadline, and action buttons.",
     props: ctaSimpleContent,
     filePath: "./components/cta/cta-simple/index.tsx",
   },
@@ -537,7 +563,8 @@ export const registry: RegistryItem[] = [
     type: "cta",
     slug: "cta-simple-left",
     Component: CTASimpleLeft,
-    description: "Left-aligned CTA with headline, subheadline, and action buttons.",
+    description:
+      "Left-aligned CTA with headline, subheadline, and action buttons.",
     props: ctaSimpleLeftContent,
     filePath: "./components/cta/cta-simple-left/index.tsx",
   },
@@ -546,7 +573,8 @@ export const registry: RegistryItem[] = [
     type: "cta",
     slug: "cta-split",
     Component: CTASplit,
-    description: "Split layout CTA with text on one side and actions on the other.",
+    description:
+      "Split layout CTA with text on one side and actions on the other.",
     props: ctaSplitContent,
     filePath: "./components/cta/cta-split/index.tsx",
   },
@@ -573,7 +601,8 @@ export const registry: RegistryItem[] = [
     type: "cta",
     slug: "cta-with-benefits",
     Component: CTAWithBenefits,
-    description: "CTA section with a list of benefits to reinforce value proposition.",
+    description:
+      "CTA section with a list of benefits to reinforce value proposition.",
     props: ctaWithBenefitsContent,
     filePath: "./components/cta/cta-with-benefits/index.tsx",
   },
@@ -602,7 +631,8 @@ export const registry: RegistryItem[] = [
     type: "pricing",
     slug: "pricing-with-toggle",
     Component: PricingWithToggle,
-    description: "Pricing cards with monthly/annual toggle for flexible billing.",
+    description:
+      "Pricing cards with monthly/annual toggle for flexible billing.",
     props: pricingWithToggleContent,
     filePath: "./components/pricing/pricing-with-toggle/index.tsx",
   },
@@ -649,7 +679,8 @@ export const registry: RegistryItem[] = [
     type: "testimonial",
     slug: "testimonial-grid",
     Component: TestimonialGrid,
-    description: "Grid layout of testimonial cards showcasing customer feedback.",
+    description:
+      "Grid layout of testimonial cards showcasing customer feedback.",
     props: testimonialGridContent,
     filePath: "./components/testimonial/testimonial-grid/index.tsx",
   },
@@ -676,7 +707,8 @@ export const registry: RegistryItem[] = [
     type: "testimonial",
     slug: "testimonial-with-stats",
     Component: TestimonialWithStats,
-    description: "Testimonials combined with impressive metrics for social proof.",
+    description:
+      "Testimonials combined with impressive metrics for social proof.",
     props: testimonialWithStatsContent,
     filePath: "./components/testimonial/testimonial-with-stats/index.tsx",
   },
@@ -685,7 +717,8 @@ export const registry: RegistryItem[] = [
     type: "testimonial",
     slug: "testimonial-wall",
     Component: TestimonialWall,
-    description: "Masonry/wall layout of varied testimonials for visual impact.",
+    description:
+      "Masonry/wall layout of varied testimonials for visual impact.",
     props: testimonialWallContent,
     filePath: "./components/testimonial/testimonial-wall/index.tsx",
   },
@@ -779,7 +812,8 @@ export const registry: RegistryItem[] = [
     type: "contact",
     slug: "contact-cards",
     Component: ContactCards,
-    description: "Contact options as cards for different departments or purposes.",
+    description:
+      "Contact options as cards for different departments or purposes.",
     props: contactCardsContent,
     filePath: "./components/contact/contact-cards/index.tsx",
   },
@@ -857,7 +891,8 @@ export const registry: RegistryItem[] = [
     type: "footer",
     slug: "footer-simple",
     Component: FooterSimple,
-    description: "Simple footer with links and copyright. Clean and minimal design.",
+    description:
+      "Simple footer with links and copyright. Clean and minimal design.",
     props: footerSimpleContent,
     filePath: "./components/footer/footer-simple/index.tsx",
   },
@@ -866,7 +901,8 @@ export const registry: RegistryItem[] = [
     type: "footer",
     slug: "footer-detailed",
     Component: FooterDetailed,
-    description: "Detailed footer with multiple columns, newsletter, and comprehensive links.",
+    description:
+      "Detailed footer with multiple columns, newsletter, and comprehensive links.",
     props: footerDetailedContent,
     filePath: "./components/footer/footer-detailed/index.tsx",
   },
@@ -893,7 +929,8 @@ export const registry: RegistryItem[] = [
     type: "footer",
     slug: "footer-social",
     Component: FooterSocial,
-    description: "Social media focused footer with prominent social icons and follower counts.",
+    description:
+      "Social media focused footer with prominent social icons and follower counts.",
     props: footerSocialContent,
     filePath: "./components/footer/footer-social/index.tsx",
   },
@@ -902,7 +939,8 @@ export const registry: RegistryItem[] = [
     type: "footer",
     slug: "footer-newsletter",
     Component: FooterNewsletter,
-    description: "Newsletter-centric footer with prominent signup form and benefits.",
+    description:
+      "Newsletter-centric footer with prominent signup form and benefits.",
     props: footerNewsletterContent,
     filePath: "./components/footer/footer-newsletter/index.tsx",
   },
@@ -920,7 +958,8 @@ export const registry: RegistryItem[] = [
     type: "footer",
     slug: "footer-mega",
     Component: FooterMega,
-    description: "Mega menu style footer with detailed navigation and featured content.",
+    description:
+      "Mega menu style footer with detailed navigation and featured content.",
     props: footerMegaContent,
     filePath: "./components/footer/footer-mega/index.tsx",
   },
@@ -931,7 +970,8 @@ export const registry: RegistryItem[] = [
     type: "newsletter",
     slug: "newsletter-simple",
     Component: NewsletterSimple,
-    description: "Simple newsletter signup form. Clean design focused on email capture.",
+    description:
+      "Simple newsletter signup form. Clean design focused on email capture.",
     props: newsletterSimpleContent,
     filePath: "./components/newsletter/newsletter-simple/index.tsx",
   },
@@ -940,7 +980,8 @@ export const registry: RegistryItem[] = [
     type: "newsletter",
     slug: "newsletter-with-benefits",
     Component: NewsletterWithBenefits,
-    description: "Newsletter signup with benefits list. Emphasizes value proposition.",
+    description:
+      "Newsletter signup with benefits list. Emphasizes value proposition.",
     props: newsletterWithBenefitsContent,
     filePath: "./components/newsletter/newsletter-with-benefits/index.tsx",
   },

@@ -2,172 +2,168 @@
 
 ## Project Context
 
-I'm building a component library with Next.js 15, TypeScript, and Tailwind CSS. The library showcases various marketing UI components.
+This is a Next.js 15 marketing component gallery showcasing reusable UI components built with TypeScript and Tailwind CSS v4.
 
 ## Design System Overview
 
-Use the design system from `@/components/ds` instead of raw Tailwind classes:
+Use the design system from `@/components/site/ds` for all components:
+
+### Import Structure
+
+```tsx
+// Site design system components
+import {
+  Main,
+  Nav,
+  Section,
+  Container,
+  Header,
+  Grid,
+  Flex,
+  Prose,
+} from "@/components/site/ds";
+import { Form } from "@/components/site/form"; // Client component
+
+// shadcn/ui components
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+// ... any other shadcn component
+```
 
 ### Typography
 
+Use the `Header` component for all headings:
+
 ```tsx
-import { Heading, Text } from "@/components/ds";
-
-<Heading size={1}>Main Title</Heading>         // H1
-<Heading size={2} subdued>Section Title</Heading> // H2 with muted color
-<Heading size={3} centered>Centered Title</Heading> // H3 centered
-
-<Text variant="lead">Intro paragraph</Text>    // Large body text
-<Text subdued>Secondary info</Text>            // Muted text
-<Text variant="small" centered>Fine print</Text> // Small centered text
+<Header as="h1">Main Title</Header>
+<Header as="h2" className="text-muted-foreground">Subtitle</Header>
+<Header as="h3">Section Heading</Header>
 ```
 
-### Layout & Spacing
+For body text, use standard HTML elements or wrap in `Prose`:
 
 ```tsx
-import { Section, Container, Stack, Inline } from "@/components/ds";
+<p className="text-xl text-muted-foreground">Lead paragraph</p>
+<p>Regular text</p>
 
-<Section>
-  {" "}
-  // Has built-in padding (py-2 sm:py-4)
-  <Container>
-    {" "}
-    // Has built-in padding and max-width
-    <Stack spacing="lg">
-      {" "}
-      // Vertical spacing between children
-      <Heading size={2}>Title</Heading>
-      <Text>Description</Text>
-      <Inline spacing="sm">
-        {" "}
-        // Horizontal spacing (auto-wraps)
-        <Button>Primary</Button>
-        <Button variant="outline">Secondary</Button>
-      </Inline>
-    </Stack>
+// For rich text content
+<Prose isArticle isSpaced>
+  <h1>Article Title</h1>
+  <p>This content will be automatically styled.</p>
+</Prose>
+```
+
+### Layout Components
+
+#### Section & Container
+
+**CRITICAL: NEVER add padding or height to Section or Container**
+
+```tsx
+<Section> {/* Has built-in py-2 sm:py-4 - NO padding classes */}
+  <Container> {/* Has built-in p-4 sm:p-6 - NO padding classes */}
+    {/* Content */}
   </Container>
-</Section>;
+</Section>
+
+<Section className="bg-muted"> {/* Only backgrounds/borders, NO padding */}
+  <Container>
+    {/* Content */}
+  </Container>
+</Section>
 ```
+
+#### Flex Layout
+
+```tsx
+<Flex justify="between" align="center">
+  <div>Left content</div>
+  <div>Right content</div>
+</Flex>
+
+<Flex direction="column" gap={6}>
+  <div>Item 1</div>
+  <div>Item 2</div>
+</Flex>
+```
+
+Props:
+- `direction`: "row" | "column" | "row-reverse" | "column-reverse"
+- `justify`: "start" | "end" | "center" | "between" | "around" | "evenly"
+- `align`: "start" | "end" | "center" | "baseline" | "stretch"
+- `gap`: 0|1|2|3|4|5|6|8|10|12 (default: 4)
+
+#### Grid Layout
+
+```tsx
+<Grid columns={3}>
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</Grid>
+```
+
+Responsive columns:
+- 1 column: Always single column
+- 2 columns: 1 on mobile, 2 on sm+
+- 3 columns: 1 on mobile, 2 on sm, 3 on lg+
+- 4 columns: 1 on mobile, 2 on sm, 4 on lg+
 
 ### When to Use Design System vs Tailwind
 
 **Use Design System Components:**
-
-- Typography (Heading, Text, Prose)
-- Layout structure (Section, Container, Main)
-- Spacing between elements (Stack, Inline)
-- Common patterns with built-in accessibility
+- Page structure (Main, Nav, Section, Container)
+- Typography (Header, Prose)
+- Layout (Grid, Flex)
+- Consistent spacing and responsive behavior
 
 **Use Tailwind Classes:**
-
 - Visual styling (backgrounds, borders, shadows)
-- Grid layouts (`grid grid-cols-3 gap-6`)
-- Flexbox adjustments (`items-center justify-between`)
-- Responsive modifiers (`md:flex lg:grid-cols-4`)
-- Custom spacing for specific design needs
+- Fine-tuned responsive modifiers
+- Text colors and sizes
+- Custom spacing for specific needs
 
-**IMPORTANT:**
+**Use shadcn/ui Components:**
+- Buttons, Cards, Forms, Dialogs
+- Any interactive UI elements
+- Complex components with built-in accessibility
 
-- Section has built-in padding (`py-2 sm:py-4`). DO NOT add padding classes like `py-16` or `py-24`.
-- Container has built-in padding (`p-4 sm:p-6`) and max-width (`max-w-5xl`). DO NOT add extra padding.
-- Only add classes for styling needs like backgrounds, borders, or special effects.
+## Critical Rules
 
-### Spacing Scale
+### 🔗 All CTAs MUST Be Functional
 
-- `sm`: gap-2 (8px)
-- `md`: gap-4 (16px) - default
-- `lg`: gap-6 (24px)
-- `xl`: gap-8 (32px)
-- Custom: Any Tailwind gap class (e.g., `spacing="gap-12"`)
-
-**New:** Use `compact` prop for tight spacing:
+Every button and link must have a working action:
 
 ```tsx
-<Stack compact>
-  {" "}
-  // Same as spacing="sm"
-  <Badge>New</Badge>
-  <Text>Compact layout</Text>
-</Stack>
-```
+import Link from "next/link";
 
-## Pattern Components
+// Internal navigation
+<Button asChild size="lg">
+  <Link href="/contact">Get Started</Link>
+</Button>
 
-Use these pre-built patterns for common UI needs:
+// External links
+<Button asChild size="lg">
+  <a href="https://calendly.com/demo" target="_blank" rel="noopener noreferrer">
+    Book Demo
+  </a>
+</Button>
 
-### PageHeader
-
-Complete page header with title, subtitle, badge, and actions:
-
-```tsx
-import { PageHeader, ButtonGroup } from "@/components/ds/patterns";
-import { Button } from "@/components/ui/button";
-
-<PageHeader
-  badge="New"
-  title="Build Better Products"
-  subtitle="The modern way to ship software"
-  centered
+// Smooth scroll
+<Button 
+  size="lg"
+  onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
 >
-  <ButtonGroup>
-    <Button size="lg">Get Started</Button>
-    <Button size="lg" variant="outline">
-      Learn More
-    </Button>
-  </ButtonGroup>
-</PageHeader>;
+  View Pricing
+</Button>
+
+// ❌ NEVER do this
+<Button>Get Started</Button> // No action!
 ```
 
-### ContentBlock
+### TypeScript Requirements
 
-Feature sections with optional image:
-
-```tsx
-import { ContentBlock } from "@/components/ds/patterns";
-
-<ContentBlock
-  title="Advanced Analytics"
-  description="Get insights into your performance"
-  image="/analytics.jpg"
-  imagePosition="right"
-  buttonText="View Demo"
-  buttonHref="/demo"
-/>;
-```
-
-### ButtonGroup
-
-Pre-configured button layouts:
-
-```tsx
-import { ButtonGroup } from "@/components/ds/patterns";
-import { Button } from "@/components/ui/button";
-
-<ButtonGroup spacing="md">
-  <Button>Save</Button>
-  <Button variant="outline">Cancel</Button>
-</ButtonGroup>;
-```
-
-### When to Use Patterns vs Primitives
-
-**Use Pattern Components when:**
-
-- Building common UI sections (heroes, features, CTAs)
-- You want consistent, tested layouts
-- Speed is more important than customization
-
-**Use Primitive Components when:**
-
-- Building custom layouts
-- Need fine-grained control
-- Creating new patterns
-
-## TypeScript Best Practices
-
-### Component Typing
-
-**DO NOT use React.FC or React.FunctionComponent**. Instead, use direct function declarations with typed props:
+**NEVER use React.FC** - Use direct function declarations:
 
 ```tsx
 // ❌ DO NOT USE
@@ -175,105 +171,21 @@ export const Component: React.FC<Props> = ({ prop }) => { ... }
 
 // ✅ DO USE
 export const Component = ({ prop }: Props) => { ... }
-
-// ✅ ALSO GOOD - with explicit return type if needed
-export function Component({ prop }: Props): JSX.Element { ... }
 ```
 
-### Why avoid React.FC?
+### Component Structure
 
-- Adds unnecessary verbosity
-- Implicitly adds `children` prop which may not be needed
-- Modern TypeScript infers return types correctly
-- Industry best practice has moved away from React.FC
+```
+/components/[type]/[component-name]/
+  ├── index.tsx      # Component with named export
+  └── content.ts     # Default content and variations
+```
 
 ## Component Requirements
 
-### File Structure
-
-```
-/components/[component-type]/[component-name]/
-  ├── index.tsx      # Main component file
-  └── content.ts     # Example content and variations
-```
-
-Component types: `hero`, `feature`, `cta`, `pricing`, `testimonial`, `faq`, etc.
-
-### Component File (index.tsx)
-
-1. **Named Export**: `export const ComponentName`
-2. **TypeScript Interface**: Define all props with JSDoc comments
-3. **Design System**: Use components from `@/components/ds`
-4. **UI Components**: Use shadcn/ui from `@/components/ui/*`
-5. **Props-based Content**: No hardcoded text - everything via props
-6. **JSON Schema**: Include schema definition for the component
-7. **Responsive**: Mobile-first, works on all screen sizes
-8. **Accessible**: Proper heading hierarchy, alt text, ARIA labels
-
-### Content File (content.ts)
-
-```typescript
-export const defaultContent = {
-  // All text, images, and configuration
-};
-
-export const contentVariations = [
-  // Alternative content examples
-];
-```
-
-### Image Requirements
-
-- Use Next.js Image component from `next/image`
-- Default to `/placeholder.svg` for examples
-- Include width/height in props
-- Always include alt text
-
-## Registry Integration
-
-After creating each component:
-
-1. Import in `registry.ts`:
-
-```typescript
-import { ComponentName } from "./components/[type]/[component-name]";
-import { defaultContent } from "./components/[type]/[component-name]/content";
-```
-
-2. Add registry entry:
-
-```typescript
-{
-  name: "Component Name",        // Human-readable
-  type: "hero",                 // Component category
-  slug: "component-name",       // URL-friendly
-  Component: ComponentName,     // Component reference
-  description: "Brief description of what this component does",
-  props: defaultContent         // Default props from content.ts
-}
-```
-
-## Example Component Structure
+### 1. Named Export with TypeScript Interface
 
 ```tsx
-// components/hero/hero-minimal/index.tsx
-import * as React from "react";
-
-// Option 1: Using pattern components (recommended for common patterns)
-import { PageHeader, ButtonGroup } from "@/components/ds/patterns";
-import { Button } from "@/components/ui/button";
-
-// Option 2: Using primitive components (for custom layouts)
-import {
-  Section,
-  Container,
-  Stack,
-  Heading,
-  Text,
-  Inline,
-} from "@/components/ds";
-import { Button } from "@/components/ui/button";
-
 export interface HeroMinimalProps {
   headline: string;
   subheadline?: string;
@@ -281,360 +193,280 @@ export interface HeroMinimalProps {
     text: string;
     href: string;
   };
-  secondaryCTA?: {
-    text: string;
-    href: string;
-  };
 }
 
-export const HeroMinimal = ({
-  headline,
+export const HeroMinimal = ({ 
+  headline, 
   subheadline,
-  primaryCTA,
-  secondaryCTA,
+  primaryCTA 
 }: HeroMinimalProps) => {
+  // Component implementation
+};
+```
+
+### 2. Use Design System Components
+
+```tsx
+import { Section, Container, Header, Flex } from "@/components/site/ds";
+import { Button } from "@/components/ui/button";
+
+export const HeroMinimal = ({ headline, subheadline, primaryCTA }: HeroMinimalProps) => {
   return (
     <Section>
       <Container>
-        <Stack spacing="lg" align="center">
-          <Stack spacing="md" align="center">
-            <Heading size={1} centered>
-              {headline}
-            </Heading>
-            {subheadline && (
-              <Text variant="lead" centered subdued>
-                {subheadline}
-              </Text>
-            )}
-          </Stack>
-
-          {(primaryCTA || secondaryCTA) && (
-            <Inline spacing="md">
-              {primaryCTA && (
-                <Button size="lg" asChild>
-                  <a href={primaryCTA.href}>{primaryCTA.text}</a>
-                </Button>
-              )}
-              {secondaryCTA && (
-                <Button size="lg" variant="outline" asChild>
-                  <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
-                </Button>
-              )}
-            </Inline>
+        <Flex direction="column" align="center" className="text-center">
+          <Header as="h1">{headline}</Header>
+          {subheadline && (
+            <p className="text-xl text-muted-foreground max-w-2xl">
+              {subheadline}
+            </p>
           )}
-        </Stack>
+          {primaryCTA && (
+            <Button size="lg" className="mt-8" asChild>
+              <Link href={primaryCTA.href}>{primaryCTA.text}</Link>
+            </Button>
+          )}
+        </Flex>
       </Container>
     </Section>
   );
 };
+```
 
-// JSON Schema
-export const heroMinimalSchema = {
-  type: "object",
-  properties: {
-    headline: {
-      type: "string",
-      description: "Main headline text",
-    },
-    subheadline: {
-      type: "string",
-      description: "Supporting subheadline text",
-    },
-    primaryCTA: {
-      type: "object",
-      properties: {
-        text: { type: "string" },
-        href: { type: "string" },
-      },
-      required: ["text", "href"],
-    },
-    secondaryCTA: {
-      type: "object",
-      properties: {
-        text: { type: "string" },
-        href: { type: "string" },
-      },
-      required: ["text", "href"],
-    },
-  },
-  required: ["headline"],
+### 3. Content File
+
+```typescript
+// content.ts
+export const defaultContent = {
+  headline: "Build Better Websites",
+  subheadline: "Create beautiful, responsive websites with our component library",
+  primaryCTA: {
+    text: "Get Started",
+    href: "/contact"
+  }
 };
 ```
 
-## Component Best Practices
+### 4. Registry Integration
 
-### React Server Components (RSC)
+```typescript
+// In registry.ts
+import { HeroMinimal } from "./components/hero/hero-minimal";
+import { defaultContent } from "./components/hero/hero-minimal/content";
 
-- All components should be RSC by default
-- Only add `"use client"` when absolutely necessary (forms, interactivity)
-- Keep client components small and focused
-- Pass server data to client components via props
-
-### Performance
-
-- Use dynamic imports for heavy client components
-- Implement loading states with Suspense boundaries
-- Optimize images with Next.js Image component
-- Lazy load below-the-fold content when appropriate
-
-### Images
-
-- Vary aspect ratios based on content type (16:9 for dashboards, 4:3 for products, etc.)
-- Always include width and height for Next.js Image optimization
-- Use priority={true} for above-the-fold images
-
-### Layout
-
-- Let Container handle max-widths - don't add your own
-- Use Prose with isArticle for long-form content max-width
-- Trust the design system components to handle responsive behavior
-
-### CTAs and Links
-
-- ALWAYS use Button with asChild pattern for link buttons:
-  ```tsx
-  <Button asChild>
-    <a href="/path">Text</a>
-  </Button>
-  ```
-- This ensures proper styling and accessibility with shadcn/ui
-
-### Accessibility Requirements
-
-- **Keyboard Navigation**: All interactive elements must be keyboard accessible
-- **Focus Management**: Visible focus indicators on all interactive elements
-- **ARIA Labels**: Use aria-label for icon-only buttons
-- **Semantic HTML**: Use proper HTML5 elements (nav, main, article, etc.)
-- **Skip Links**: Include skip-to-content links for keyboard users
-- **Color Contrast**: Ensure WCAG AA compliance (4.5:1 for normal text)
-- **Screen Reader Announcements**: Use aria-live for dynamic content
-- **Form Labels**: All form inputs must have associated labels
-
-### Spacing
-
-- Use Stack/Inline for ALL spacing needs
-- Never add margins between elements
-- Section and Container have built-in padding - don't add more
-
-## Do NOT Use (Antipatterns)
-
-1. **React.FC** - Never use `React.FC<Props>` or `React.FunctionComponent<Props>`
-2. **Raw padding on Section/Container** - These have built-in spacing
-3. **Inline styles** - Use Tailwind classes or design system props
-4. **Hardcoded text** - All content must come from props
-5. **Direct margins between components** - Use Stack/Inline for spacing
-6. **className on design system components** - Use their props instead
-7. **Nested Containers** - One Container per Section is enough
-8. **Multiple H1s** - Only one H1 per page/component
-
-## Quality Checklist
-
-- [ ] Uses design system components (Stack, Inline, Heading, Text, etc.)
-- [ ] All content is passed via props
-- [ ] TypeScript interfaces are complete with JSDoc
-- [ ] Responsive on mobile, tablet, and desktop
-- [ ] Accessible (proper semantics, alt text)
-- [ ] Includes JSON schema
-- [ ] Has defaultContent in content.ts
-- [ ] Added to registry.ts
-- [ ] Section components used WITHOUT extra padding classes
-- [ ] Container components used WITHOUT extra padding classes
-
-## Common Patterns
-
-### Text with CTA
-
-```tsx
-<Stack spacing="md" align="center">
-  <Heading size={2}>Section Title</Heading>
-  <Text variant="lead" subdued>
-    Description
-  </Text>
-  <Button>Action</Button>
-</Stack>
+// Add to registry array
+{
+  name: "Hero Minimal",
+  type: "hero",
+  slug: "hero-minimal",
+  Component: HeroMinimal,
+  props: defaultContent
+}
 ```
 
-### Side-by-side Layout
+## Form Component Usage
+
+The Form component is a powerful client-side component that works in Server Components:
 
 ```tsx
-<div className="grid items-center gap-8 md:grid-cols-2">
-  <Stack spacing="md">
-    <Heading size={2}>Feature</Heading>
-    <Text>Description</Text>
-  </Stack>
-  <div>{/* Image or other content */}</div>
-</div>
-```
-
-**Or use ContentBlock pattern:**
-
-```tsx
-<ContentBlock
-  title="Feature"
-  description="Description"
-  image="/feature.jpg"
-  imagePosition="right"
+<Form
+  fields={[
+    {
+      name: "name",
+      type: "text",
+      label: "Full Name",
+      validation: { required: true }
+    },
+    {
+      name: "email",
+      type: "email",
+      label: "Email",
+      validation: { 
+        required: true,
+        validationType: "email"
+      }
+    },
+    {
+      name: "phone",
+      type: "tel",
+      label: "Phone",
+      phoneFormat: "auto", // Auto-formats phone numbers
+      validation: {
+        required: true,
+        validationType: "phone"
+      }
+    },
+    {
+      name: "budget",
+      type: "range",
+      label: "Budget Range",
+      min: 1000,
+      max: 50000,
+      step: 1000,
+      showValue: true
+    },
+    {
+      name: "services",
+      type: "multiselect",
+      label: "Services Needed",
+      options: [
+        { label: "Web Design", value: "design" },
+        { label: "SEO", value: "seo" }
+      ]
+    },
+    {
+      name: "urgent",
+      type: "yesno",
+      label: "Is this urgent?",
+      validation: { required: true }
+    }
+  ]}
+  webhookUrl="https://formspree.io/f/YOUR_ID"
+  showSuccessMessage={true}
+  resetOnSubmit={true}
+  submitText="Send Message"
 />
 ```
 
-### Card Grid
+## Common Patterns
+
+### Hero Section
 
 ```tsx
-<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-  {items.map((item) => (
-    <Card key={item.id}>
-      <CardHeader>
-        <Heading size={3}>{item.title}</Heading>
-      </CardHeader>
-      <CardContent>
-        <Text>{item.description}</Text>
-      </CardContent>
-    </Card>
-  ))}
-</div>
+<Section>
+  <Container>
+    <Flex direction="column" align="center" className="text-center">
+      <Header as="h1">Build Better Products</Header>
+      <p className="text-xl text-muted-foreground max-w-2xl">
+        The modern way to ship software
+      </p>
+      <Flex gap={4} className="mt-8">
+        <Button size="lg" asChild>
+          <Link href="/demo">Get Started</Link>
+        </Button>
+        <Button size="lg" variant="outline" asChild>
+          <a href="/docs">Learn More</a>
+        </Button>
+      </Flex>
+    </Flex>
+  </Container>
+</Section>
 ```
 
-## Error Handling Patterns
-
-### Loading States
+### Feature Grid
 
 ```tsx
-if (isLoading) {
-  return (
-    <Section>
-      <Container>
-        <Stack spacing="md" align="center">
-          <Skeleton className="h-8 w-64" />
-          <Skeleton className="h-4 w-96" />
-        </Stack>
-      </Container>
-    </Section>
-  );
-}
+<Section>
+  <Container>
+    <Header as="h2" className="text-center mb-8">
+      Features
+    </Header>
+    <Grid columns={3}>
+      {features.map((feature) => (
+        <Card key={feature.id}>
+          <CardHeader>
+            <CardTitle>{feature.title}</CardTitle>
+            <CardDescription>{feature.description}</CardDescription>
+          </CardHeader>
+        </Card>
+      ))}
+    </Grid>
+  </Container>
+</Section>
 ```
 
-### Error States
+### Side-by-Side Layout
 
 ```tsx
-if (error) {
-  return (
-    <Section>
-      <Container>
-        <Stack spacing="md" align="center">
-          <Heading size={2}>Something went wrong</Heading>
-          <Text subdued>{error.message}</Text>
-          <Button onClick={retry}>Try again</Button>
-        </Stack>
-      </Container>
-    </Section>
-  );
-}
+<Section>
+  <Container>
+    <div className="grid items-center gap-8 md:grid-cols-2">
+      <Flex direction="column" gap={4}>
+        <Header as="h2">Advanced Analytics</Header>
+        <p className="text-muted-foreground">
+          Get insights into your performance
+        </p>
+        <div>
+          <Button asChild>
+            <Link href="/demo">View Demo</Link>
+          </Button>
+        </div>
+      </Flex>
+      <div>
+        <Image 
+          src="/analytics.jpg" 
+          alt="Analytics dashboard"
+          width={600}
+          height={400}
+        />
+      </div>
+    </div>
+  </Container>
+</Section>
 ```
 
-### Empty States
+## Image Requirements
+
+- Use Next.js Image component
+- Default to `/placeholder.webp`
+- Always include width, height, and alt text
+- Use priority={true} for above-the-fold images
 
 ```tsx
-if (!data || data.length === 0) {
-  return (
-    <Section>
-      <Container>
-        <Stack spacing="md" align="center">
-          <Heading size={2}>No items found</Heading>
-          <Text subdued>Try adjusting your filters or search terms</Text>
-        </Stack>
-      </Container>
-    </Section>
-  );
-}
+import Image from "next/image";
+
+<Image
+  src="/placeholder.webp"
+  alt="Description"
+  width={1200}
+  height={600}
+  priority
+/>
 ```
+
+## Quality Checklist
+
+- [ ] Uses design system components from `@/components/site/ds`
+- [ ] All CTAs are functional with proper href/onClick
+- [ ] No React.FC usage
+- [ ] All content passed via props
+- [ ] TypeScript interfaces with JSDoc comments
+- [ ] Responsive on all devices
+- [ ] Section/Container WITHOUT padding classes
+- [ ] Proper heading hierarchy (one h1)
+- [ ] Images use Next.js Image component
+- [ ] Added to registry.ts
+- [ ] Has defaultContent in content.ts
 
 ## Component Types to Build
 
-- **Hero Sections**: Landing page heroes with various layouts
-- **Feature Sections**: Showcase product features
+- **Hero Sections**: Landing page heroes
+- **Feature Sections**: Product features
 - **CTA Sections**: Call-to-action blocks
-- **Pricing Tables**: Pricing plans and comparisons
-- **Testimonials**: Customer reviews and social proof
-- **FAQ Sections**: Frequently asked questions
-- **Contact Forms**: Contact and lead capture
+- **Pricing Tables**: Pricing plans
+- **Testimonials**: Customer reviews
+- **FAQ Sections**: Questions and answers
+- **Contact Forms**: Lead capture
 - **Stats/Metrics**: Numbers and achievements
-- **Logo Clouds**: Partner/client logos
-- **Team Sections**: Team member showcases
-- **Footer Sections**: Site footers with links
-- **Newsletter**: Email signup forms
-- **Blog Sections**: Blog post previews
-- **Gallery**: Image/video galleries
+- **Logo Clouds**: Partner logos
+- **Newsletter**: Email signup
+- **Blog Sections**: Blog previews
+- **Footer Sections**: Site footers
 
-## Migration Guide
+## Do NOT Use (Antipatterns)
 
-### Updated Design System API
+1. **React.FC** - Never use function component types
+2. **Padding on Section/Container** - They have built-in spacing
+3. **Non-functional CTAs** - All buttons must work
+4. **Hardcoded text** - Use props for all content
+5. **Multiple h1 tags** - One per component
+6. **Nested Containers** - One per Section
+7. **Old design system** - Use site/ds, not components/ds
 
-If you're updating existing components to use the new design system:
+## Important Notes
 
-#### Heading Changes
-
-```tsx
-// Old
-<Heading level={1}>Title</Heading>
-<Heading level={2} align="center" color="muted">Subtitle</Heading>
-
-// New
-<Heading size={1}>Title</Heading>
-<Heading size={2} centered subdued>Subtitle</Heading>
-```
-
-#### Text Changes
-
-```tsx
-// Old
-<Text variant="h1">Heading Text</Text>
-<Text variant="large">Large Text</Text>
-<Text variant="caption">Caption</Text>
-<Text color="muted">Muted Text</Text>
-
-// New
-<Heading size={1}>Heading Text</Heading>  // Use Heading for h1-h6
-<Text variant="lead">Large Text</Text>
-<Text variant="small" subdued>Caption</Text>
-<Text subdued>Muted Text</Text>
-```
-
-#### Stack/Inline Changes
-
-```tsx
-// Old
-<Stack spacing="2xl">
-<Stack spacing="xs">
-
-// New
-<Stack spacing="xl">     // or spacing="gap-12" for custom
-<Stack compact>          // replaces spacing="xs"
-```
-
-#### Pattern Components
-
-Consider replacing common component patterns with the new pattern components:
-
-```tsx
-// Old: Manual hero composition
-<Section>
-  <Container>
-    <Stack spacing="lg" align="center">
-      <Heading size={1} centered>{title}</Heading>
-      <Text variant="lead" centered subdued>{subtitle}</Text>
-      <Inline spacing="md">
-        <Button>CTA</Button>
-      </Inline>
-    </Stack>
-  </Container>
-</Section>
-
-// New: Use PageHeader pattern
-<PageHeader
-  title={title}
-  subtitle={subtitle}
-  centered
->
-  <Button>CTA</Button>
-</PageHeader>
-```
+- This is a showcase project for marketing components
+- Components are RSC by default (add "use client" only when needed)
+- Always prefer existing components from site/ds or shadcn/ui
+- Follow the established patterns for consistency
+- Run `pnpm lint` before committing

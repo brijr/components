@@ -32,12 +32,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} bg-accent/30 antialiased`}
       >
-        <DesignSystemProvider>
-          <AppLayout>
-            {children}
-          </AppLayout>
-          <Toaster />
-        </DesignSystemProvider>
+        <AppLayout>{children}</AppLayout>
+        <Toaster />
       </body>
     </html>
   );
