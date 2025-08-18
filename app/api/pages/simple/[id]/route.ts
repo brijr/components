@@ -5,7 +5,7 @@ const getPages = () => {
   if (!global.pagesSimple) {
     global.pagesSimple = new Map();
   }
-  return global.pagesSimple as Map<string, any>;
+  return global.pagesSimple as Map<string, unknown>;
 };
 
 /**

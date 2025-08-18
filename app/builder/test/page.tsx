@@ -48,7 +48,7 @@ export default function TestPageBuilder() {
           const data = await response.json();
           setPage(data.page);
         }
-      } catch (err) {
+      } catch {
         // Page doesn't exist, that's fine
       }
     };
