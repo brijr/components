@@ -73,6 +73,11 @@ For body text, use standard HTML elements or wrap in `Prose`:
 </Section>
 ```
 
+**Visual Hierarchy Rules:**
+- Section provides vertical rhythm between page sections
+- Container constrains content width and adds horizontal padding
+- Content inside Container should handle its own spacing
+
 #### Flex Layout
 
 ```tsx
@@ -92,6 +97,21 @@ Props:
 - `justify`: "start" | "end" | "center" | "between" | "around" | "evenly"
 - `align`: "start" | "end" | "center" | "baseline" | "stretch"
 - `gap`: 0|1|2|3|4|5|6|8|10|12 (default: 4)
+
+**Common Flex Patterns:**
+```tsx
+// Centered content
+<Flex direction="column" align="center" className="text-center">
+
+// Split layout with actions
+<Flex justify="between" align="center">
+
+// Vertical stack with consistent spacing
+<Flex direction="column" gap={4}>
+
+// Responsive direction change
+<Flex direction="column" className="md:flex-row">
+```
 
 #### Grid Layout
 
@@ -118,7 +138,7 @@ Responsive columns:
 - Consistent spacing and responsive behavior
 
 **Use Tailwind Classes:**
-- Visual styling (backgrounds, borders, shadows)
+- Visual styling (backgrounds, borders - NO SHADOWS)
 - Fine-tuned responsive modifiers
 - Text colors and sizes
 - Custom spacing for specific needs
@@ -128,37 +148,245 @@ Responsive columns:
 - Any interactive UI elements
 - Complex components with built-in accessibility
 
+## Clean Visual Design Principles
+
+### NO Drop Shadows Policy
+
+This design system uses a **flat, clean aesthetic** without drop shadows:
+
+```tsx
+// ❌ NEVER USE THESE:
+className="shadow"
+className="shadow-sm"
+className="shadow-md" 
+className="shadow-lg"
+className="shadow-xl"
+className="shadow-2xl"
+className="drop-shadow-*"
+
+// ✅ USE THESE INSTEAD:
+className="border"           // For subtle separation
+className="border-2"         // For emphasis
+className="bg-muted"         // For background depth
+className="bg-card"          // For card backgrounds
+className="divide-y"         // For list separators
+```
+
+### Creating Visual Hierarchy Without Shadows
+
+**1. Use Borders:**
+```tsx
+<Card className="border">  // Default card with border
+<div className="border-t">  // Top border for separation
+<div className="divide-y">  // Dividers between items
+```
+
+**2. Use Background Colors:**
+```tsx
+<Section className="bg-muted">     // Subtle background
+<div className="bg-primary/10">    // Tinted backgrounds
+<Card className="bg-card">         // Card backgrounds
+```
+
+**3. Use Spacing:**
+```tsx
+<Flex gap={8}>              // Large gaps for separation
+<div className="p-6">       // Padding for breathing room
+<div className="mt-8">      // Margins for sections
+```
+
+**4. Use Typography:**
+```tsx
+<Header as="h1">            // Size hierarchy
+<p className="text-muted-foreground">  // Color hierarchy
+<p className="font-semibold">          // Weight hierarchy
+```
+
+## Layout & Alignment Best Practices
+
+### Alignment Principles
+
+**Text Alignment:**
+- Center align for hero sections and CTAs
+- Left align for body content and detailed information
+- Use `text-center`, `text-left`, `text-right` classes
+- Combine with Flex `align="center"` for vertical centering
+
+**Content Width Control:**
+```tsx
+// Constrain text width for readability
+<p className="max-w-2xl mx-auto">Long paragraph text</p>
+
+// Center a fixed-width element
+<div className="max-w-md mx-auto">
+
+// Full width with padding
+<div className="w-full px-4">
+```
+
+**Spacing Consistency:**
+```tsx
+// Vertical spacing between sections
+<Flex direction="column" gap={8}>  // Large gap
+<Flex direction="column" gap={6}>  // Medium gap
+<Flex direction="column" gap={4}>  // Small gap
+
+// Margin utilities for one-off spacing
+className="mt-8"   // Top margin
+className="mb-6"   // Bottom margin
+className="my-4"   // Vertical margin
+className="mx-auto" // Horizontal center
+```
+
+**Responsive Alignment:**
+```tsx
+// Mobile-first responsive alignment
+<div className="text-center md:text-left">
+<Flex direction="column" className="md:flex-row md:justify-between">
+<Grid columns={1} className="md:grid-cols-2 lg:grid-cols-3">
+```
+
+### Common Layout Patterns
+
+**Hero Section - Centered:**
+```tsx
+<Section>
+  <Container>
+    <Flex direction="column" align="center" gap={6} className="text-center">
+      <Header as="h1" className="max-w-4xl">Headline</Header>
+      <p className="text-xl text-muted-foreground max-w-2xl">Subheadline</p>
+      <Flex gap={4}>
+        <Button>Primary</Button>
+        <Button variant="outline">Secondary</Button>
+      </Flex>
+    </Flex>
+  </Container>
+</Section>
+```
+
+**Hero Section - Left Aligned:**
+```tsx
+<Section>
+  <Container>
+    <Flex direction="column" gap={6} className="max-w-3xl">
+      <Header as="h1">Headline</Header>
+      <p className="text-xl text-muted-foreground">Subheadline</p>
+      <Flex gap={4}>
+        <Button>Primary</Button>
+        <Button variant="outline">Secondary</Button>
+      </Flex>
+    </Flex>
+  </Container>
+</Section>
+```
+
+**Split Layout - 50/50:**
+```tsx
+<Section>
+  <Container>
+    <div className="grid gap-8 md:grid-cols-2 md:gap-12 items-center">
+      <div>
+        {/* Text content */}
+      </div>
+      <div>
+        {/* Image or other content */}
+      </div>
+    </div>
+  </Container>
+</Section>
+```
+
+**Feature Cards - Equal Height:**
+```tsx
+<Grid columns={3}>
+  {features.map((feature) => (
+    <Card className="h-full"> {/* h-full ensures equal height */}
+      <CardHeader>
+        <CardTitle>{feature.title}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p>{feature.description}</p>
+      </CardContent>
+    </Card>
+  ))}
+</Grid>
+```
+
+### Visual Balance Guidelines
+
+1. **Whitespace Management:**
+   - Use consistent gap values (4, 6, 8)
+   - Don't mix different spacing systems
+   - Let Section/Container handle outer spacing
+
+2. **Content Hierarchy:**
+   - Largest text for h1 (Header as="h1")
+   - Decreasing sizes for h2-h6
+   - Muted colors for secondary text
+   - Bold for emphasis, not headers
+
+3. **Alignment Consistency:**
+   - Pick one alignment per section
+   - Center align for impact
+   - Left align for readability
+   - Maintain alignment in responsive views
+
+4. **Grid vs Flex Decision:**
+   - Use Grid for equal-width items
+   - Use Flex for unequal or flexible layouts
+   - Grid for cards and galleries
+   - Flex for navigation and split layouts
+
+5. **Visual Styling - Clean & Minimal:**
+   - **NO DROP SHADOWS** - Avoid shadow-* classes completely
+   - Use borders for separation (border, border-t, etc.)
+   - Use background colors for depth (bg-muted, bg-card)
+   - Rely on whitespace for visual hierarchy
+   - Keep the design flat and modern
+
 ## Critical Rules
 
-### 🔗 All CTAs MUST Be Functional
+### 🔗 All CTAs MUST Be Functional and Well-Aligned
 
-Every button and link must have a working action:
+Every button and link must have a working action AND proper alignment:
 
 ```tsx
 import Link from "next/link";
 
-// Internal navigation
-<Button asChild size="lg">
-  <Link href="/contact">Get Started</Link>
-</Button>
+// BUTTON ALIGNMENT PATTERNS:
 
-// External links
-<Button asChild size="lg">
-  <a href="https://calendly.com/demo" target="_blank" rel="noopener noreferrer">
-    Book Demo
-  </a>
-</Button>
+// Centered buttons (heroes, CTAs)
+<Flex gap={4} className="justify-center">
+  <Button size="lg" asChild>
+    <Link href="/contact">Get Started</Link>
+  </Button>
+  <Button size="lg" variant="outline" asChild>
+    <a href="/demo">View Demo</a>
+  </Button>
+</Flex>
 
-// Smooth scroll
-<Button 
-  size="lg"
-  onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
->
-  View Pricing
-</Button>
+// Left-aligned buttons (content sections)
+<Flex gap={4}>
+  <Button asChild>
+    <Link href="/learn">Learn More</Link>
+  </Button>
+</Flex>
+
+// Right-aligned buttons (forms, modals)
+<Flex gap={4} className="justify-end">
+  <Button variant="outline">Cancel</Button>
+  <Button>Submit</Button>
+</Flex>
+
+// Mobile-responsive button stack
+<Flex direction="column" gap={2} className="sm:flex-row sm:gap-4">
+  <Button className="w-full sm:w-auto">Primary</Button>
+  <Button variant="outline" className="w-full sm:w-auto">Secondary</Button>
+</Flex>
 
 // ❌ NEVER do this
 <Button>Get Started</Button> // No action!
+<div><Button>Misaligned</Button></div> // No flex container!
 ```
 
 ### TypeScript Requirements
@@ -328,19 +556,21 @@ The Form component is a powerful client-side component that works in Server Comp
 />
 ```
 
-## Common Patterns
+## Common Patterns with Perfect Alignment
 
-### Hero Section
+### Hero Section - Centered with Max Width
 
 ```tsx
 <Section>
   <Container>
-    <Flex direction="column" align="center" className="text-center">
-      <Header as="h1">Build Better Products</Header>
+    <Flex direction="column" align="center" gap={6} className="text-center">
+      <Header as="h1" className="max-w-4xl">
+        Build Better Products
+      </Header>
       <p className="text-xl text-muted-foreground max-w-2xl">
         The modern way to ship software
       </p>
-      <Flex gap={4} className="mt-8">
+      <Flex gap={4} className="mt-2">
         <Button size="lg" asChild>
           <Link href="/demo">Get Started</Link>
         </Button>
@@ -353,53 +583,114 @@ The Form component is a powerful client-side component that works in Server Comp
 </Section>
 ```
 
-### Feature Grid
+### Feature Grid - With Icons (Clean, No Shadows)
 
 ```tsx
 <Section>
   <Container>
-    <Header as="h2" className="text-center mb-8">
-      Features
-    </Header>
-    <Grid columns={3}>
-      {features.map((feature) => (
-        <Card key={feature.id}>
-          <CardHeader>
-            <CardTitle>{feature.title}</CardTitle>
-            <CardDescription>{feature.description}</CardDescription>
-          </CardHeader>
-        </Card>
-      ))}
-    </Grid>
+    <Flex direction="column" gap={8}>
+      <div className="text-center">
+        <Header as="h2" className="mb-3">Features</Header>
+        <p className="text-muted-foreground max-w-2xl mx-auto">
+          Everything you need to build modern applications
+        </p>
+      </div>
+      <Grid columns={3}>
+        {features.map((feature) => (
+          <Card key={feature.id} className="h-full">
+            {/* Card component has built-in border styling - no shadows needed */}
+            <CardHeader>
+              <div className="w-12 h-12 mb-4 rounded-lg bg-primary/10 flex items-center justify-center">
+                {feature.icon}
+              </div>
+              <CardTitle className="text-lg">{feature.title}</CardTitle>
+              <CardDescription>{feature.description}</CardDescription>
+            </CardHeader>
+          </Card>
+        ))}
+      </Grid>
+    </Flex>
   </Container>
 </Section>
 ```
 
-### Side-by-Side Layout
+### Split Layout - Text and Image
 
 ```tsx
 <Section>
   <Container>
-    <div className="grid items-center gap-8 md:grid-cols-2">
+    <div className="grid gap-12 md:grid-cols-2 md:gap-8 items-center">
       <Flex direction="column" gap={4}>
         <Header as="h2">Advanced Analytics</Header>
-        <p className="text-muted-foreground">
-          Get insights into your performance
+        <p className="text-lg text-muted-foreground">
+          Get insights into your performance with our powerful analytics dashboard
         </p>
-        <div>
+        <ul className="space-y-2">
+          <li className="flex gap-2">
+            <CheckIcon className="w-5 h-5 text-primary mt-0.5" />
+            <span>Real-time data</span>
+          </li>
+          <li className="flex gap-2">
+            <CheckIcon className="w-5 h-5 text-primary mt-0.5" />
+            <span>Custom reports</span>
+          </li>
+        </ul>
+        <div className="pt-2">
           <Button asChild>
             <Link href="/demo">View Demo</Link>
           </Button>
         </div>
       </Flex>
-      <div>
+      <div className="relative aspect-video">
         <Image 
           src="/analytics.jpg" 
           alt="Analytics dashboard"
-          width={600}
-          height={400}
+          fill
+          className="object-cover rounded-lg"
         />
       </div>
+    </div>
+  </Container>
+</Section>
+```
+
+### CTA Section - Centered with Background
+
+```tsx
+<Section className="bg-muted">
+  <Container>
+    <Flex direction="column" align="center" gap={4} className="text-center py-8">
+      <Header as="h2" className="max-w-3xl">
+        Ready to get started?
+      </Header>
+      <p className="text-lg text-muted-foreground max-w-xl">
+        Join thousands of teams already using our platform
+      </p>
+      <Flex gap={4} className="mt-2">
+        <Button size="lg" asChild>
+          <Link href="/signup">Start Free Trial</Link>
+        </Button>
+        <Button size="lg" variant="outline" asChild>
+          <Link href="/contact">Contact Sales</Link>
+        </Button>
+      </Flex>
+    </Flex>
+  </Container>
+</Section>
+```
+
+### Stats Section - Centered Numbers
+
+```tsx
+<Section>
+  <Container>
+    <div className="grid gap-8 md:grid-cols-4 text-center">
+      {stats.map((stat) => (
+        <div key={stat.id}>
+          <div className="text-4xl font-bold">{stat.value}</div>
+          <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
+        </div>
+      ))}
     </div>
   </Container>
 </Section>
@@ -422,6 +713,65 @@ import Image from "next/image";
   height={600}
   priority
 />
+```
+
+## Alignment Troubleshooting Guide
+
+### Common Alignment Issues and Fixes
+
+**Problem: Content not centered**
+```tsx
+// ❌ Wrong - missing centering utilities
+<div>
+  <Header as="h1">Title</Header>
+</div>
+
+// ✅ Correct - proper centering
+<Flex direction="column" align="center" className="text-center">
+  <Header as="h1">Title</Header>
+</Flex>
+```
+
+**Problem: Uneven spacing**
+```tsx
+// ❌ Wrong - mixing spacing systems
+<div className="mt-4 mb-8 space-y-2">
+
+// ✅ Correct - consistent gap usage
+<Flex direction="column" gap={4}>
+```
+
+**Problem: Content too wide on large screens**
+```tsx
+// ❌ Wrong - no width constraints
+<p>Very long paragraph that stretches across the entire screen...</p>
+
+// ✅ Correct - max-width for readability
+<p className="max-w-2xl mx-auto">Very long paragraph...</p>
+```
+
+**Problem: Misaligned grid items**
+```tsx
+// ❌ Wrong - inconsistent card heights
+<Grid columns={3}>
+  <Card>Short content</Card>
+  <Card>Much longer content that makes this card taller</Card>
+</Grid>
+
+// ✅ Correct - equal height cards
+<Grid columns={3}>
+  <Card className="h-full">Short content</Card>
+  <Card className="h-full">Much longer content</Card>
+</Grid>
+```
+
+**Problem: Poor mobile alignment**
+```tsx
+// ❌ Wrong - desktop-only alignment
+<div className="text-left">
+
+// ✅ Correct - responsive alignment
+<div className="text-center md:text-left">
 ```
 
 ## Quality Checklist
@@ -462,6 +812,8 @@ import Image from "next/image";
 5. **Multiple h1 tags** - One per component
 6. **Nested Containers** - One per Section
 7. **Old design system** - Use site/ds, not components/ds
+8. **Drop shadows** - Never use shadow-* classes (shadow-sm, shadow-md, shadow-lg, etc.)
+9. **Excessive visual effects** - Keep it clean and minimal
 
 ## Important Notes
 
