@@ -16,10 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title:
-    "components.bridger.to / react components for building marketing sites",
+  title: "components.work / react components for building marketing sites",
   description:
-    "bridger tower's component library. built with ds.bridger.to and ui.shadcn.com.",
+    "bridger tower's component library. built with ds.work and ui.shadcn.com.",
 };
 
 export default function RootLayout({
