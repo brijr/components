@@ -85,8 +85,6 @@ import { CTABanner } from "./components/cta/cta-banner";
 import { defaultContent as ctaBannerContent } from "./components/cta/cta-banner/content";
 import { CTAWithBenefits } from "./components/cta/cta-with-benefits";
 import { defaultContent as ctaWithBenefitsContent } from "./components/cta/cta-with-benefits/content";
-import { CTAFloating } from "./components/cta/cta-floating";
-import { defaultContent as ctaFloatingContent } from "./components/cta/cta-floating/content";
 
 // Pricing components
 import { PricingSimple } from "./components/pricing/pricing-simple";
@@ -605,15 +603,6 @@ export const registry: RegistryItem[] = [
       "CTA section with a list of benefits to reinforce value proposition.",
     props: ctaWithBenefitsContent,
     filePath: "./components/cta/cta-with-benefits/index.tsx",
-  },
-  {
-    name: "CTA Floating",
-    type: "cta",
-    slug: "cta-floating",
-    Component: CTAFloating,
-    description: "Sticky floating CTA bar that appears after user interaction.",
-    props: ctaFloatingContent,
-    filePath: "./components/cta/cta-floating/index.tsx",
   },
 
   // Pricing components
