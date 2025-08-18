@@ -65,7 +65,7 @@ export const TestimonialGrid = ({
                           <svg
                             key={i}
                             className={`h-4 w-4 ${
-                              i < testimonial.rating
+                              i < (testimonial.rating || 0)
                                 ? "fill-yellow-400 text-yellow-400"
                                 : "fill-muted text-muted"
                             }`}

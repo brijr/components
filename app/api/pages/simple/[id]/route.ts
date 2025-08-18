@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// Extend global type
+declare global {
+  var pagesSimple: Map<string, unknown> | undefined;
+}
+
 // Shared global storage
 const getPages = () => {
   if (!global.pagesSimple) {

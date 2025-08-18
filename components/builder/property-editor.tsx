@@ -40,7 +40,8 @@ export const PropertyEditor = () => {
     if (pathParts.length === 1) {
       newProps[propPath] = value;
     } else {
-      let current = newProps;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      let current: any = newProps;
       for (let i = 0; i < pathParts.length - 1; i++) {
         if (!current[pathParts[i]]) {
           current[pathParts[i]] = {};
@@ -89,7 +90,7 @@ export const PropertyEditor = () => {
           <Input
             id={fullPath}
             type={typeof value === "number" ? "number" : "text"}
-            value={value || ""}
+            value={typeof value === "string" || typeof value === "number" ? value : ""}
             onChange={(e) => handlePropChange(fullPath, e.target.value)}
           />
         )}

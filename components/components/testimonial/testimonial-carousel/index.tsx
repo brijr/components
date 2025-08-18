@@ -83,7 +83,7 @@ export const TestimonialCarousel = ({
                         <svg
                           key={i}
                           className={`h-5 w-5 ${
-                            i < currentTestimonial.rating
+                            i < (currentTestimonial.rating || 0)
                               ? "fill-yellow-400 text-yellow-400"
                               : "fill-muted text-muted"
                           }`}

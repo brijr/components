@@ -30,7 +30,7 @@ export const FeatureAlternatingMedia = ({
   return (
     <Section>
       <Container>
-        <Flex direction="column" gap={16}>
+        <Flex direction="column" gap={12}>
           {(headline || subheadline) && (
             <div className="text-center">
               {headline && (
@@ -46,7 +46,7 @@ export const FeatureAlternatingMedia = ({
             </div>
           )}
 
-          <Flex direction="column" gap={20}>
+          <Flex direction="column" gap={12}>
             {features.map((feature, index) => (
               <div
                 key={index}

@@ -69,12 +69,13 @@ export async function PUT(
       );
     }
     
+    const currentPage = pages.get(id);
     const updatedPage = {
       ...result.data,
       metadata: {
         ...result.data.metadata,
-        updatedAt: new Date(),
-        version: (pages.get(id).metadata?.version || 1) + 1,
+        updatedAt: new Date().toISOString(),
+        version: (currentPage?.metadata?.version || 1) + 1,
       }
     };
     

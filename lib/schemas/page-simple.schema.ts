@@ -6,7 +6,7 @@ import { z } from "zod";
 export const SimpleComponentInstanceSchema = z.object({
   id: z.string(),
   componentSlug: z.string(),
-  props: z.record(z.unknown()),
+  props: z.record(z.string(), z.unknown()),
   order: z.number(),
   visible: z.boolean().optional(),
 });

@@ -6,12 +6,12 @@ import { z } from "zod";
 export const ComponentInstanceSchema = z.object({
   id: z.string(),
   componentSlug: z.string(),
-  props: z.record(z.unknown()),
+  props: z.record(z.string(), z.unknown()),
   order: z.number(),
   visible: z.boolean().optional(),
   variants: z.object({
-    mobile: z.record(z.unknown()).optional(),
-    tablet: z.record(z.unknown()).optional(),
+    mobile: z.record(z.string(), z.unknown()).optional(),
+    tablet: z.record(z.string(), z.unknown()).optional(),
   }).optional(),
 });
 

@@ -28,9 +28,9 @@ export const AIComponentSchema = z.object({
   slug: z.string(),
   name: z.string(),
   description: z.string(),
-  props: z.record(z.any()),
+  props: z.record(z.string(), z.any()),
   ai: AIMetadataSchema,
-  examples: z.array(z.record(z.any())),
+  examples: z.array(z.record(z.string(), z.any())),
 });
 
 // TypeScript types

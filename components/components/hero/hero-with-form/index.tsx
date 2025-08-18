@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Section, Container, Header, Flex } from "@/components/site/ds";
-import { Form } from "@/components/site/form";
+import { Form, type FieldType } from "@/components/site/form";
 
 export interface HeroWithFormProps {
   headline: string;
@@ -9,7 +9,7 @@ export interface HeroWithFormProps {
   form: {
     fields: Array<{
       name: string;
-      type: string;
+      type: FieldType;
       label: string;
       placeholder?: string;
       validation?: Record<string, unknown>;

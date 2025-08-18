@@ -7,14 +7,14 @@ export const defaultContent = {
     fields: [
       {
         name: "fullName",
-        type: "text",
+        type: "text" as const,
         label: "Full Name",
         placeholder: "John Smith",
         validation: { required: true },
       },
       {
         name: "email",
-        type: "email",
+        type: "email" as const,
         label: "Work Email",
         placeholder: "john@company.com",
         validation: {
@@ -24,14 +24,14 @@ export const defaultContent = {
       },
       {
         name: "company",
-        type: "text",
+        type: "text" as const,
         label: "Company Name",
         placeholder: "Acme Inc.",
         validation: { required: true },
       },
       {
         name: "employees",
-        type: "select",
+        type: "select" as const,
         label: "Company Size",
         options: [
           { label: "1-10 employees", value: "1-10" },

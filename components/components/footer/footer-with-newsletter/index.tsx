@@ -120,7 +120,7 @@ export const FooterWithNewsletter = ({
           </div>
 
           {quickLinks && quickLinks.length > 0 && (
-            <Grid columns={quickLinks.length} className="gap-8">
+            <Grid columns={Math.min(quickLinks.length, 4) as 1 | 2 | 3 | 4} className="gap-8">
               {quickLinks.map((section, index) => (
                 <div key={index}>
                   <h4 className="font-semibold mb-3">{section.title}</h4>
