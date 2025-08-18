@@ -6,7 +6,9 @@ This is a Next.js 15 marketing component gallery showcasing reusable UI componen
 
 ## Design System Overview
 
-Use the design system from `@/components/site/ds` for all components:
+Use the design system from `@/components/site` for all components:
+
+You can reference `@/components/site/site-ds.md`
 
 ### Import Structure
 
@@ -26,7 +28,13 @@ import { Form } from "@/components/site/form"; // Client component
 
 // shadcn/ui components
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 // ... any other shadcn component
 ```
 
@@ -74,6 +82,7 @@ For body text, use standard HTML elements or wrap in `Prose`:
 ```
 
 **Visual Hierarchy Rules:**
+
 - Section provides vertical rhythm between page sections
 - Container constrains content width and adds horizontal padding
 - Content inside Container should handle its own spacing
@@ -93,12 +102,14 @@ For body text, use standard HTML elements or wrap in `Prose`:
 ```
 
 Props:
+
 - `direction`: "row" | "column" | "row-reverse" | "column-reverse"
 - `justify`: "start" | "end" | "center" | "between" | "around" | "evenly"
 - `align`: "start" | "end" | "center" | "baseline" | "stretch"
 - `gap`: 0|1|2|3|4|5|6|8|10|12 (default: 4)
 
 **Common Flex Patterns:**
+
 ```tsx
 // Centered content
 <Flex direction="column" align="center" className="text-center">
@@ -124,6 +135,7 @@ Props:
 ```
 
 Responsive columns:
+
 - 1 column: Always single column
 - 2 columns: 1 on mobile, 2 on sm+
 - 3 columns: 1 on mobile, 2 on sm, 3 on lg+
@@ -132,18 +144,21 @@ Responsive columns:
 ### When to Use Design System vs Tailwind
 
 **Use Design System Components:**
+
 - Page structure (Main, Nav, Section, Container)
 - Typography (Header, Prose)
 - Layout (Grid, Flex)
 - Consistent spacing and responsive behavior
 
 **Use Tailwind Classes:**
+
 - Visual styling (backgrounds, borders - NO SHADOWS)
 - Fine-tuned responsive modifiers
 - Text colors and sizes
 - Custom spacing for specific needs
 
 **Use shadcn/ui Components:**
+
 - Buttons, Cards, Forms, Dialogs
 - Any interactive UI elements
 - Complex components with built-in accessibility
@@ -156,25 +171,26 @@ This design system uses a **flat, clean aesthetic** without drop shadows:
 
 ```tsx
 // ❌ NEVER USE THESE:
-className="shadow"
-className="shadow-sm"
-className="shadow-md" 
-className="shadow-lg"
-className="shadow-xl"
-className="shadow-2xl"
-className="drop-shadow-*"
+className = "shadow";
+className = "shadow-sm";
+className = "shadow-md";
+className = "shadow-lg";
+className = "shadow-xl";
+className = "shadow-2xl";
+className = "drop-shadow-*";
 
 // ✅ USE THESE INSTEAD:
-className="border"           // For subtle separation
-className="border-2"         // For emphasis
-className="bg-muted"         // For background depth
-className="bg-card"          // For card backgrounds
-className="divide-y"         // For list separators
+className = "border"; // For subtle separation
+className = "border-2"; // For emphasis
+className = "bg-muted"; // For background depth
+className = "bg-card"; // For card backgrounds
+className = "divide-y"; // For list separators
 ```
 
 ### Creating Visual Hierarchy Without Shadows
 
 **1. Use Borders:**
+
 ```tsx
 <Card className="border">  // Default card with border
 <div className="border-t">  // Top border for separation
@@ -182,6 +198,7 @@ className="divide-y"         // For list separators
 ```
 
 **2. Use Background Colors:**
+
 ```tsx
 <Section className="bg-muted">     // Subtle background
 <div className="bg-primary/10">    // Tinted backgrounds
@@ -189,6 +206,7 @@ className="divide-y"         // For list separators
 ```
 
 **3. Use Spacing:**
+
 ```tsx
 <Flex gap={8}>              // Large gaps for separation
 <div className="p-6">       // Padding for breathing room
@@ -196,6 +214,7 @@ className="divide-y"         // For list separators
 ```
 
 **4. Use Typography:**
+
 ```tsx
 <Header as="h1">            // Size hierarchy
 <p className="text-muted-foreground">  // Color hierarchy
@@ -207,12 +226,14 @@ className="divide-y"         // For list separators
 ### Alignment Principles
 
 **Text Alignment:**
+
 - Center align for hero sections and CTAs
 - Left align for body content and detailed information
 - Use `text-center`, `text-left`, `text-right` classes
 - Combine with Flex `align="center"` for vertical centering
 
 **Content Width Control:**
+
 ```tsx
 // Constrain text width for readability
 <p className="max-w-2xl mx-auto">Long paragraph text</p>
@@ -225,6 +246,7 @@ className="divide-y"         // For list separators
 ```
 
 **Spacing Consistency:**
+
 ```tsx
 // Vertical spacing between sections
 <Flex direction="column" gap={8}>  // Large gap
@@ -239,6 +261,7 @@ className="mx-auto" // Horizontal center
 ```
 
 **Responsive Alignment:**
+
 ```tsx
 // Mobile-first responsive alignment
 <div className="text-center md:text-left">
@@ -249,12 +272,15 @@ className="mx-auto" // Horizontal center
 ### Common Layout Patterns
 
 **Hero Section - Centered:**
+
 ```tsx
 <Section>
   <Container>
     <Flex direction="column" align="center" gap={6} className="text-center">
-      <Header as="h1" className="max-w-4xl">Headline</Header>
-      <p className="text-xl text-muted-foreground max-w-2xl">Subheadline</p>
+      <Header as="h1" className="max-w-4xl">
+        Headline
+      </Header>
+      <p className="text-muted-foreground max-w-2xl text-xl">Subheadline</p>
       <Flex gap={4}>
         <Button>Primary</Button>
         <Button variant="outline">Secondary</Button>
@@ -265,12 +291,13 @@ className="mx-auto" // Horizontal center
 ```
 
 **Hero Section - Left Aligned:**
+
 ```tsx
 <Section>
   <Container>
     <Flex direction="column" gap={6} className="max-w-3xl">
       <Header as="h1">Headline</Header>
-      <p className="text-xl text-muted-foreground">Subheadline</p>
+      <p className="text-muted-foreground text-xl">Subheadline</p>
       <Flex gap={4}>
         <Button>Primary</Button>
         <Button variant="outline">Secondary</Button>
@@ -281,26 +308,26 @@ className="mx-auto" // Horizontal center
 ```
 
 **Split Layout - 50/50:**
+
 ```tsx
 <Section>
   <Container>
-    <div className="grid gap-8 md:grid-cols-2 md:gap-12 items-center">
-      <div>
-        {/* Text content */}
-      </div>
-      <div>
-        {/* Image or other content */}
-      </div>
+    <div className="grid items-center gap-8 md:grid-cols-2 md:gap-12">
+      <div>{/* Text content */}</div>
+      <div>{/* Image or other content */}</div>
     </div>
   </Container>
 </Section>
 ```
 
 **Feature Cards - Equal Height:**
+
 ```tsx
 <Grid columns={3}>
   {features.map((feature) => (
-    <Card className="h-full"> {/* h-full ensures equal height */}
+    <Card className="h-full">
+      {" "}
+      {/* h-full ensures equal height */}
       <CardHeader>
         <CardTitle>{feature.title}</CardTitle>
       </CardHeader>
@@ -338,7 +365,7 @@ className="mx-auto" // Horizontal center
    - Flex for navigation and split layouts
 
 5. **Visual Styling - Clean & Minimal:**
-   - **NO DROP SHADOWS** - Avoid shadow-* classes completely
+   - **NO DROP SHADOWS** - Avoid shadow-\* classes completely
    - Use borders for separation (border, border-t, etc.)
    - Use background colors for depth (bg-muted, bg-card)
    - Rely on whitespace for visual hierarchy
@@ -423,10 +450,10 @@ export interface HeroMinimalProps {
   };
 }
 
-export const HeroMinimal = ({ 
-  headline, 
+export const HeroMinimal = ({
+  headline,
   subheadline,
-  primaryCTA 
+  primaryCTA,
 }: HeroMinimalProps) => {
   // Component implementation
 };
@@ -438,14 +465,18 @@ export const HeroMinimal = ({
 import { Section, Container, Header, Flex } from "@/components/site/ds";
 import { Button } from "@/components/ui/button";
 
-export const HeroMinimal = ({ headline, subheadline, primaryCTA }: HeroMinimalProps) => {
+export const HeroMinimal = ({
+  headline,
+  subheadline,
+  primaryCTA,
+}: HeroMinimalProps) => {
   return (
     <Section>
       <Container>
         <Flex direction="column" align="center" className="text-center">
           <Header as="h1">{headline}</Header>
           {subheadline && (
-            <p className="text-xl text-muted-foreground max-w-2xl">
+            <p className="text-muted-foreground max-w-2xl text-xl">
               {subheadline}
             </p>
           )}
@@ -467,11 +498,12 @@ export const HeroMinimal = ({ headline, subheadline, primaryCTA }: HeroMinimalPr
 // content.ts
 export const defaultContent = {
   headline: "Build Better Websites",
-  subheadline: "Create beautiful, responsive websites with our component library",
+  subheadline:
+    "Create beautiful, responsive websites with our component library",
   primaryCTA: {
     text: "Get Started",
-    href: "/contact"
-  }
+    href: "/contact",
+  },
 };
 ```
 
@@ -503,16 +535,16 @@ The Form component is a powerful client-side component that works in Server Comp
       name: "name",
       type: "text",
       label: "Full Name",
-      validation: { required: true }
+      validation: { required: true },
     },
     {
       name: "email",
       type: "email",
       label: "Email",
-      validation: { 
+      validation: {
         required: true,
-        validationType: "email"
-      }
+        validationType: "email",
+      },
     },
     {
       name: "phone",
@@ -521,8 +553,8 @@ The Form component is a powerful client-side component that works in Server Comp
       phoneFormat: "auto", // Auto-formats phone numbers
       validation: {
         required: true,
-        validationType: "phone"
-      }
+        validationType: "phone",
+      },
     },
     {
       name: "budget",
@@ -531,7 +563,7 @@ The Form component is a powerful client-side component that works in Server Comp
       min: 1000,
       max: 50000,
       step: 1000,
-      showValue: true
+      showValue: true,
     },
     {
       name: "services",
@@ -539,15 +571,15 @@ The Form component is a powerful client-side component that works in Server Comp
       label: "Services Needed",
       options: [
         { label: "Web Design", value: "design" },
-        { label: "SEO", value: "seo" }
-      ]
+        { label: "SEO", value: "seo" },
+      ],
     },
     {
       name: "urgent",
       type: "yesno",
       label: "Is this urgent?",
-      validation: { required: true }
-    }
+      validation: { required: true },
+    },
   ]}
   webhookUrl="https://formspree.io/f/YOUR_ID"
   showSuccessMessage={true}
@@ -567,7 +599,7 @@ The Form component is a powerful client-side component that works in Server Comp
       <Header as="h1" className="max-w-4xl">
         Build Better Products
       </Header>
-      <p className="text-xl text-muted-foreground max-w-2xl">
+      <p className="text-muted-foreground max-w-2xl text-xl">
         The modern way to ship software
       </p>
       <Flex gap={4} className="mt-2">
@@ -590,8 +622,10 @@ The Form component is a powerful client-side component that works in Server Comp
   <Container>
     <Flex direction="column" gap={8}>
       <div className="text-center">
-        <Header as="h2" className="mb-3">Features</Header>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
+        <Header as="h2" className="mb-3">
+          Features
+        </Header>
+        <p className="text-muted-foreground mx-auto max-w-2xl">
           Everything you need to build modern applications
         </p>
       </div>
@@ -600,7 +634,7 @@ The Form component is a powerful client-side component that works in Server Comp
           <Card key={feature.id} className="h-full">
             {/* Card component has built-in border styling - no shadows needed */}
             <CardHeader>
-              <div className="w-12 h-12 mb-4 rounded-lg bg-primary/10 flex items-center justify-center">
+              <div className="bg-primary/10 mb-4 flex h-12 w-12 items-center justify-center rounded-lg">
                 {feature.icon}
               </div>
               <CardTitle className="text-lg">{feature.title}</CardTitle>
@@ -619,19 +653,20 @@ The Form component is a powerful client-side component that works in Server Comp
 ```tsx
 <Section>
   <Container>
-    <div className="grid gap-12 md:grid-cols-2 md:gap-8 items-center">
+    <div className="grid items-center gap-12 md:grid-cols-2 md:gap-8">
       <Flex direction="column" gap={4}>
         <Header as="h2">Advanced Analytics</Header>
-        <p className="text-lg text-muted-foreground">
-          Get insights into your performance with our powerful analytics dashboard
+        <p className="text-muted-foreground text-lg">
+          Get insights into your performance with our powerful analytics
+          dashboard
         </p>
         <ul className="space-y-2">
           <li className="flex gap-2">
-            <CheckIcon className="w-5 h-5 text-primary mt-0.5" />
+            <CheckIcon className="text-primary mt-0.5 h-5 w-5" />
             <span>Real-time data</span>
           </li>
           <li className="flex gap-2">
-            <CheckIcon className="w-5 h-5 text-primary mt-0.5" />
+            <CheckIcon className="text-primary mt-0.5 h-5 w-5" />
             <span>Custom reports</span>
           </li>
         </ul>
@@ -642,11 +677,11 @@ The Form component is a powerful client-side component that works in Server Comp
         </div>
       </Flex>
       <div className="relative aspect-video">
-        <Image 
-          src="/analytics.jpg" 
+        <Image
+          src="/analytics.jpg"
           alt="Analytics dashboard"
           fill
-          className="object-cover rounded-lg"
+          className="rounded-lg object-cover"
         />
       </div>
     </div>
@@ -659,11 +694,16 @@ The Form component is a powerful client-side component that works in Server Comp
 ```tsx
 <Section className="bg-muted">
   <Container>
-    <Flex direction="column" align="center" gap={4} className="text-center py-8">
+    <Flex
+      direction="column"
+      align="center"
+      gap={4}
+      className="py-8 text-center"
+    >
       <Header as="h2" className="max-w-3xl">
         Ready to get started?
       </Header>
-      <p className="text-lg text-muted-foreground max-w-xl">
+      <p className="text-muted-foreground max-w-xl text-lg">
         Join thousands of teams already using our platform
       </p>
       <Flex gap={4} className="mt-2">
@@ -684,11 +724,11 @@ The Form component is a powerful client-side component that works in Server Comp
 ```tsx
 <Section>
   <Container>
-    <div className="grid gap-8 md:grid-cols-4 text-center">
+    <div className="grid gap-8 text-center md:grid-cols-4">
       {stats.map((stat) => (
         <div key={stat.id}>
           <div className="text-4xl font-bold">{stat.value}</div>
-          <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
+          <div className="text-muted-foreground mt-1 text-sm">{stat.label}</div>
         </div>
       ))}
     </div>
@@ -712,7 +752,7 @@ import Image from "next/image";
   width={1200}
   height={600}
   priority
-/>
+/>;
 ```
 
 ## Alignment Troubleshooting Guide
@@ -720,6 +760,7 @@ import Image from "next/image";
 ### Common Alignment Issues and Fixes
 
 **Problem: Content not centered**
+
 ```tsx
 // ❌ Wrong - missing centering utilities
 <div>
@@ -733,6 +774,7 @@ import Image from "next/image";
 ```
 
 **Problem: Uneven spacing**
+
 ```tsx
 // ❌ Wrong - mixing spacing systems
 <div className="mt-4 mb-8 space-y-2">
@@ -742,6 +784,7 @@ import Image from "next/image";
 ```
 
 **Problem: Content too wide on large screens**
+
 ```tsx
 // ❌ Wrong - no width constraints
 <p>Very long paragraph that stretches across the entire screen...</p>
@@ -751,6 +794,7 @@ import Image from "next/image";
 ```
 
 **Problem: Misaligned grid items**
+
 ```tsx
 // ❌ Wrong - inconsistent card heights
 <Grid columns={3}>
@@ -766,6 +810,7 @@ import Image from "next/image";
 ```
 
 **Problem: Poor mobile alignment**
+
 ```tsx
 // ❌ Wrong - desktop-only alignment
 <div className="text-left">
@@ -812,7 +857,7 @@ import Image from "next/image";
 5. **Multiple h1 tags** - One per component
 6. **Nested Containers** - One per Section
 7. **Old design system** - Use site/ds, not components/ds
-8. **Drop shadows** - Never use shadow-* classes (shadow-sm, shadow-md, shadow-lg, etc.)
+8. **Drop shadows** - Never use shadow-\* classes (shadow-sm, shadow-md, shadow-lg, etc.)
 9. **Excessive visual effects** - Keep it clean and minimal
 
 ## Important Notes
