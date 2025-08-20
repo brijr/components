@@ -7,7 +7,7 @@ import { registry } from "@/registry";
 import { ComponentWrapper } from "@/components/component-wrapper";
 import { componentValidator } from "./schemas/component-schemas/validator";
 import { ValidationResult, ValidationError, ValidationWarning } from "./schemas/component-schemas/types";
-import { getHeroDefinition } from "./schemas/component-schemas/definitions/hero";
+import { getComponentDefinition } from "./schemas/component-schemas";
 
 interface PageRendererProps {
   schema: Page | SimplePage;
@@ -43,8 +43,8 @@ const ValidatedComponentLoader = ({
   
   useEffect(() => {
     if (enableValidation) {
-      // Get component definition (for now, only hero definitions are available)
-      const definition = getHeroDefinition(section.componentSlug);
+      // Get component definition
+      const definition = getComponentDefinition(section.componentSlug);
       
       // Validate props
       const result = componentValidator.validateProps(

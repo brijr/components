@@ -3,228 +3,325 @@
 import { useState } from "react";
 import { ValidatedPageRenderer } from "@/lib/page-renderer-validated";
 import { SimplePage } from "@/lib/schemas/page-simple.schema";
-import { heroMinimalDefinition } from "@/lib/schemas/component-schemas/definitions/hero";
+import { 
+  getComponentDefinition, 
+  getAllCategories,
+  getComponentsByCategory,
+  componentLibraryStats 
+} from "@/lib/schemas/component-schemas";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ValidationError, ValidationWarning } from "@/lib/schemas/component-schemas/types";
-import { CheckCircle, AlertCircle, XCircle, Code, Eye, Wand2 } from "lucide-react";
+import { 
+  CheckCircle, 
+  AlertCircle, 
+  XCircle, 
+  Code, 
+  Eye, 
+  Wand2,
+  Layers,
+  Zap,
+  Shield,
+  Package
+} from "lucide-react";
 
 /**
- * Schema Validation Demo Page
+ * Schema Validation Demo Page - Now with all components
  */
 export default function SchemaDemo() {
-  const [selectedExample, setSelectedExample] = useState<"valid" | "invalid" | "auto-fixed">("valid");
+  const [selectedCategory, setSelectedCategory] = useState<string>("hero");
+  const [selectedComponent, setSelectedComponent] = useState<string>("hero-minimal");
+  const [validationMode, setValidationMode] = useState<"valid" | "invalid" | "auto-fixed">("valid");
   const [validationErrors, setValidationErrors] = useState<ValidationError[]>([]);
   const [validationWarnings, setValidationWarnings] = useState<ValidationWarning[]>([]);
   
-  // Example pages with different validation states
-  const examples = {
-    valid: {
-      id: "valid-example",
-      title: "Valid Hero Example",
-      slug: "valid-hero",
-      sections: [
-        {
-          id: "hero-1",
-          componentSlug: "hero-minimal",
-          props: {
-            headline: "Build Amazing Products with Our Platform",
-            subheadline: "Everything you need to turn your ideas into reality",
-            primaryCTA: {
-              text: "Start Free Trial",
-              href: "/signup"
-            },
-            secondaryCTA: {
-              text: "Watch Demo",
-              href: "/demo"
+  const categories = getAllCategories();
+  const componentsInCategory = getComponentsByCategory(selectedCategory as any);
+  const currentDefinition = getComponentDefinition(selectedComponent);
+  
+  // Generate example pages for different validation states
+  const generateExamplePage = (): SimplePage => {
+    const baseProps = currentDefinition?.templates?.default || {};
+    
+    let props = { ...baseProps };
+    
+    if (validationMode === "invalid") {
+      // Intentionally break props
+      if (selectedComponent === "hero-minimal") {
+        props = {
+          subheadline: "Missing required headline",
+          primaryCTA: { text: "x".repeat(50), href: "invalid" }
+        };
+      } else if (selectedComponent === "feature-three-cards") {
+        props = {
+          features: [] // Empty array when features required
+        };
+      } else if (selectedComponent === "pricing-toggle") {
+        props = {
+          plans: [
+            { 
+              name: "", // Empty name
+              monthlyPrice: -10, // Negative price
+              features: [],
+              cta: { text: "", href: "" }
             }
-          },
-          order: 0,
-          visible: true
-        }
-      ],
-      metadata: {
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        generatedBy: "manual" as const,
-        version: 1
+          ]
+        };
       }
-    },
-    invalid: {
-      id: "invalid-example",
-      title: "Invalid Hero Example",
-      slug: "invalid-hero",
-      sections: [
-        {
-          id: "hero-2",
-          componentSlug: "hero-minimal",
-          props: {
-            // Missing required headline
-            subheadline: "This will trigger validation errors because the headline is missing and the CTA href is invalid",
-            primaryCTA: {
-              text: "Click here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", // Too long
-              href: "not-a-valid-url" // Invalid URL format
-            },
-            secondaryCTA: {
-              text: "", // Empty text
-              href: "/valid"
-            }
-          },
-          order: 0,
-          visible: true
-        }
-      ],
-      metadata: {
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        generatedBy: "manual" as const,
-        version: 1
-      }
-    },
-    "auto-fixed": {
-      id: "auto-fixed-example",
-      title: "Auto-Fixed Hero Example",
-      slug: "auto-fixed-hero",
-      sections: [
-        {
-          id: "hero-3",
-          componentSlug: "hero-minimal",
-          props: {
-            headline: "Hi", // Too short - will get warning
-            subheadline: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.", // Too long - will be trimmed
-            primaryCTA: {
-              text: "CLICK ME NOW", // All caps - will get warning
-              href: "signup" // Missing slash - will be auto-fixed
-            }
-          },
-          order: 0,
-          visible: true
-        }
-      ],
-      metadata: {
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        generatedBy: "manual" as const,
-        version: 1
+    } else if (validationMode === "auto-fixed") {
+      // Props that will be auto-fixed
+      if (selectedComponent === "hero-minimal") {
+        props = {
+          headline: "Hi", // Too short
+          subheadline: "x".repeat(250), // Too long - will be trimmed
+          primaryCTA: { text: "CLICK HERE", href: "signup" } // Missing slash
+        };
+      } else if (selectedComponent === "feature-three-cards") {
+        props = {
+          ...baseProps,
+          headline: "FEATURES IN ALL CAPS", // Will get warning
+          features: baseProps.features?.map((f: any) => ({
+            ...f,
+            description: "Lorem ipsum placeholder text" // Placeholder warning
+          }))
+        };
       }
     }
+    
+    return {
+      id: `demo-${validationMode}`,
+      title: `${currentDefinition?.name} Demo`,
+      slug: `demo-${selectedComponent}`,
+      sections: [
+        {
+          id: "section-1",
+          componentSlug: selectedComponent,
+          props,
+          order: 0,
+          visible: true
+        }
+      ],
+      metadata: {
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        generatedBy: "manual" as const,
+        version: 1
+      }
+    };
   };
   
-  const currentPage = examples[selectedExample] as SimplePage;
+  const currentPage = generateExamplePage();
   
   return (
     <div className="container mx-auto py-8 max-w-7xl">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-3">JSON Schema Validation Demo</h1>
+        <div className="flex items-center gap-4 mb-3">
+          <h1 className="text-4xl font-bold">AI-Ready Component Library</h1>
+          <Badge variant="secondary" className="text-lg px-3 py-1">
+            {componentLibraryStats.totalComponents} Components
+          </Badge>
+        </div>
         <p className="text-lg text-muted-foreground">
-          See how our AI-optimized component system validates and auto-fixes props in real-time
+          Every component has JSON schemas, AI hints, and validation rules for reliable generation
         </p>
       </div>
       
-      {/* Controls */}
-      <Card className="mb-8">
-        <CardHeader>
-          <CardTitle>Select Example</CardTitle>
-          <CardDescription>Choose different validation scenarios to test</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex gap-3">
-            <Button
-              variant={selectedExample === "valid" ? "default" : "outline"}
-              onClick={() => {
-                setSelectedExample("valid");
-                setValidationErrors([]);
-                setValidationWarnings([]);
-              }}
-              className="gap-2"
-            >
-              <CheckCircle className="h-4 w-4" />
-              Valid Props
-            </Button>
-            <Button
-              variant={selectedExample === "invalid" ? "default" : "outline"}
-              onClick={() => {
-                setSelectedExample("invalid");
-                setValidationErrors([]);
-                setValidationWarnings([]);
-              }}
-              className="gap-2"
-            >
-              <XCircle className="h-4 w-4" />
-              Invalid Props
-            </Button>
-            <Button
-              variant={selectedExample === "auto-fixed" ? "default" : "outline"}
-              onClick={() => {
-                setSelectedExample("auto-fixed");
-                setValidationErrors([]);
-                setValidationWarnings([]);
-              }}
-              className="gap-2"
-            >
-              <Wand2 className="h-4 w-4" />
-              Auto-Fixed Props
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+      {/* Stats Cards */}
+      <div className="grid gap-4 md:grid-cols-4 mb-8">
+        <Card>
+          <CardHeader className="pb-3">
+            <div className="flex items-center gap-2">
+              <Package className="h-4 w-4 text-blue-500" />
+              <CardTitle className="text-sm font-medium">Total Components</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{componentLibraryStats.totalComponents}</div>
+            <p className="text-xs text-muted-foreground">Across {componentLibraryStats.categories} categories</p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader className="pb-3">
+            <div className="flex items-center gap-2">
+              <Zap className="h-4 w-4 text-yellow-500" />
+              <CardTitle className="text-sm font-medium">AI Optimized</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">100%</div>
+            <p className="text-xs text-muted-foreground">Full schema coverage</p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader className="pb-3">
+            <div className="flex items-center gap-2">
+              <Shield className="h-4 w-4 text-green-500" />
+              <CardTitle className="text-sm font-medium">Validation</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">Multi-layer</div>
+            <p className="text-xs text-muted-foreground">Schema + business rules</p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader className="pb-3">
+            <div className="flex items-center gap-2">
+              <Layers className="h-4 w-4 text-purple-500" />
+              <CardTitle className="text-sm font-medium">Templates</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">3-5</div>
+            <p className="text-xs text-muted-foreground">Per component</p>
+          </CardContent>
+        </Card>
+      </div>
       
-      {/* Main Content */}
-      <div className="grid gap-8 lg:grid-cols-2">
-        {/* Schema & Props */}
-        <div className="space-y-6">
+      {/* Component Explorer */}
+      <div className="grid gap-8 lg:grid-cols-3">
+        {/* Controls & Schema */}
+        <div className="lg:col-span-1 space-y-6">
+          {/* Component Selector */}
           <Card>
             <CardHeader>
-              <CardTitle>Component Definition</CardTitle>
-              <CardDescription>AI hints and validation rules</CardDescription>
+              <CardTitle>Select Component</CardTitle>
+              <CardDescription>Choose a component to explore</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <label className="text-sm font-medium mb-2 block">Category</label>
+                <Select value={selectedCategory} onValueChange={(val) => {
+                  setSelectedCategory(val);
+                  const firstInCategory = getComponentsByCategory(val as any)[0];
+                  if (firstInCategory) {
+                    setSelectedComponent(firstInCategory.slug);
+                  }
+                }}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {categories.map(cat => (
+                      <SelectItem key={cat} value={cat}>
+                        {cat.charAt(0).toUpperCase() + cat.slice(1)} ({getComponentsByCategory(cat).length})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div>
+                <label className="text-sm font-medium mb-2 block">Component</label>
+                <Select value={selectedComponent} onValueChange={setSelectedComponent}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {componentsInCategory.map(comp => (
+                      <SelectItem key={comp.slug} value={comp.slug}>
+                        {comp.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div className="pt-2">
+                <label className="text-sm font-medium mb-2 block">Validation Mode</label>
+                <div className="flex gap-2">
+                  <Button
+                    size="sm"
+                    variant={validationMode === "valid" ? "default" : "outline"}
+                    onClick={() => setValidationMode("valid")}
+                    className="flex-1"
+                  >
+                    <CheckCircle className="h-3 w-3 mr-1" />
+                    Valid
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant={validationMode === "invalid" ? "default" : "outline"}
+                    onClick={() => setValidationMode("invalid")}
+                    className="flex-1"
+                  >
+                    <XCircle className="h-3 w-3 mr-1" />
+                    Invalid
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant={validationMode === "auto-fixed" ? "default" : "outline"}
+                    onClick={() => setValidationMode("auto-fixed")}
+                    className="flex-1"
+                  >
+                    <Wand2 className="h-3 w-3 mr-1" />
+                    Auto-Fix
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          
+          {/* Component Info */}
+          <Card>
+            <CardHeader>
+              <CardTitle>{currentDefinition?.name}</CardTitle>
+              <CardDescription>{currentDefinition?.description}</CardDescription>
             </CardHeader>
             <CardContent>
-              <Tabs defaultValue="schema">
-                <TabsList className="grid w-full grid-cols-3">
-                  <TabsTrigger value="schema">Schema</TabsTrigger>
-                  <TabsTrigger value="props">Props</TabsTrigger>
+              <Tabs defaultValue="ai-hints">
+                <TabsList className="grid w-full grid-cols-2">
                   <TabsTrigger value="ai-hints">AI Hints</TabsTrigger>
+                  <TabsTrigger value="schema">Schema</TabsTrigger>
                 </TabsList>
                 
+                <TabsContent value="ai-hints" className="mt-4 space-y-4">
+                  <div>
+                    <h4 className="font-semibold text-sm mb-2">Purpose</h4>
+                    <p className="text-sm text-muted-foreground">
+                      {currentDefinition?.aiHints.purpose}
+                    </p>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-semibold text-sm mb-2">When to Use</h4>
+                    <ul className="text-sm text-muted-foreground space-y-1">
+                      {currentDefinition?.aiHints.whenToUse.slice(0, 3).map((use, i) => (
+                        <li key={i}>• {use}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-semibold text-sm mb-2">Patterns</h4>
+                    <div className="flex flex-wrap gap-1">
+                      {currentDefinition?.aiHints.commonPatterns.slice(0, 3).map((pattern, i) => (
+                        <Badge key={i} variant="secondary" className="text-xs">
+                          {pattern}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </TabsContent>
+                
                 <TabsContent value="schema" className="mt-4">
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
-                    <code>{JSON.stringify(heroMinimalDefinition.schema, null, 2)}</code>
-                  </pre>
-                </TabsContent>
-                
-                <TabsContent value="props" className="mt-4">
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
-                    <code>{JSON.stringify(currentPage.sections[0].props, null, 2)}</code>
-                  </pre>
-                </TabsContent>
-                
-                <TabsContent value="ai-hints" className="mt-4">
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="font-semibold mb-2">Purpose</h4>
-                      <p className="text-sm text-muted-foreground">
-                        {heroMinimalDefinition.aiHints.purpose}
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-2">When to Use</h4>
-                      <ul className="text-sm text-muted-foreground space-y-1">
-                        {heroMinimalDefinition.aiHints.whenToUse.map((use, i) => (
-                          <li key={i}>• {use}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-2">Common Patterns</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {heroMinimalDefinition.aiHints.commonPatterns.map((pattern, i) => (
-                          <Badge key={i} variant="secondary">{pattern}</Badge>
-                        ))}
-                      </div>
-                    </div>
+                  <div className="bg-muted p-3 rounded-lg overflow-x-auto">
+                    <pre className="text-xs">
+                      <code>
+                        {JSON.stringify(
+                          currentDefinition?.schema?.properties || {},
+                          null,
+                          2
+                        ).slice(0, 500)}...
+                      </code>
+                    </pre>
                   </div>
                 </TabsContent>
               </Tabs>
@@ -232,72 +329,64 @@ export default function SchemaDemo() {
           </Card>
           
           {/* Validation Results */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Validation Results</CardTitle>
-              <CardDescription>
-                {validationErrors.length === 0 && validationWarnings.length === 0
-                  ? "No validation issues detected"
-                  : `${validationErrors.length} errors, ${validationWarnings.length} warnings`}
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              {validationErrors.length > 0 && (
-                <div className="mb-4">
-                  <h4 className="font-semibold text-red-600 mb-2 flex items-center gap-2">
-                    <XCircle className="h-4 w-4" />
-                    Errors
-                  </h4>
-                  <ul className="space-y-2">
-                    {validationErrors.map((error, i) => (
-                      <li key={i} className="text-sm bg-red-50 text-red-700 p-2 rounded">
-                        <span className="font-medium">{error.path}:</span> {error.message}
-                        {error.suggestion && (
-                          <div className="text-xs mt-1 opacity-75">
-                            💡 {error.suggestion}
-                          </div>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              
-              {validationWarnings.length > 0 && (
-                <div>
-                  <h4 className="font-semibold text-yellow-600 mb-2 flex items-center gap-2">
-                    <AlertCircle className="h-4 w-4" />
-                    Warnings
-                  </h4>
-                  <ul className="space-y-2">
-                    {validationWarnings.map((warning, i) => (
-                      <li key={i} className="text-sm bg-yellow-50 text-yellow-700 p-2 rounded">
-                        <span className="font-medium">{warning.path}:</span> {warning.message}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              
-              {validationErrors.length === 0 && validationWarnings.length === 0 && (
-                <div className="text-green-600 flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5" />
-                  <span>All validations passed successfully!</span>
-                </div>
-              )}
-            </CardContent>
-          </Card>
+          {(validationErrors.length > 0 || validationWarnings.length > 0) && (
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-sm">Validation Results</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {validationErrors.map((error, i) => (
+                  <div key={i} className="text-xs bg-red-50 text-red-700 p-2 rounded">
+                    <span className="font-medium">{error.path}:</span> {error.message}
+                  </div>
+                ))}
+                {validationWarnings.map((warning, i) => (
+                  <div key={i} className="text-xs bg-yellow-50 text-yellow-700 p-2 rounded">
+                    <span className="font-medium">{warning.path}:</span> {warning.message}
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+          )}
         </div>
         
         {/* Preview */}
-        <div>
+        <div className="lg:col-span-2">
           <Card className="sticky top-4">
             <CardHeader>
-              <CardTitle>Component Preview</CardTitle>
-              <CardDescription>Live preview with validation overlay</CardDescription>
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle>Live Preview</CardTitle>
+                  <CardDescription>
+                    {validationMode === "valid" && "Valid props example"}
+                    {validationMode === "invalid" && "Showing validation errors"}
+                    {validationMode === "auto-fixed" && "Auto-fixing in action"}
+                  </CardDescription>
+                </div>
+                <div className="flex items-center gap-2">
+                  {validationErrors.length === 0 && validationWarnings.length === 0 && (
+                    <Badge variant="outline" className="text-green-600">
+                      <CheckCircle className="h-3 w-3 mr-1" />
+                      Valid
+                    </Badge>
+                  )}
+                  {validationErrors.length > 0 && (
+                    <Badge variant="outline" className="text-red-600">
+                      <XCircle className="h-3 w-3 mr-1" />
+                      {validationErrors.length} Errors
+                    </Badge>
+                  )}
+                  {validationWarnings.length > 0 && (
+                    <Badge variant="outline" className="text-yellow-600">
+                      <AlertCircle className="h-3 w-3 mr-1" />
+                      {validationWarnings.length} Warnings
+                    </Badge>
+                  )}
+                </div>
+              </div>
             </CardHeader>
             <CardContent className="p-0">
-              <div className="border-t">
+              <div className="border-t max-h-[600px] overflow-auto">
                 <ValidatedPageRenderer
                   schema={currentPage}
                   mode="preview"
@@ -311,44 +400,6 @@ export default function SchemaDemo() {
           </Card>
         </div>
       </div>
-      
-      {/* Info Box */}
-      <Card className="mt-8">
-        <CardHeader>
-          <CardTitle>How It Works</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4 md:grid-cols-3">
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 font-semibold">
-                <Code className="h-4 w-4" />
-                Schema Validation
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Components are validated against JSON schemas generated from TypeScript interfaces, ensuring type safety and data integrity.
-              </p>
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 font-semibold">
-                <Wand2 className="h-4 w-4" />
-                Auto-Fix System
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Common errors like missing slashes in URLs or strings that are too long are automatically fixed, reducing AI generation failures.
-              </p>
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 font-semibold">
-                <Eye className="h-4 w-4" />
-                Real-time Feedback
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Validation happens in real-time during preview, showing errors and warnings inline with suggestions for fixes.
-              </p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 }
