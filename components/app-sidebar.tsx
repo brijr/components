@@ -105,10 +105,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton isActive={pathname === "/builder"} asChild>
-                  <Link href="/builder">
+                <SidebarMenuButton isActive={pathname === "/builder-v2"} asChild>
+                  <Link href="/builder-v2">
                     <Hammer />
                     <span>Page Builder</span>
+                    <SidebarMenuBadge className="bg-primary/10 text-primary">Enhanced</SidebarMenuBadge>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
