@@ -4,14 +4,14 @@ import { useState, useEffect } from "react";
 import { PageRenderer } from "@/lib/page-renderer";
 import { SimplePage } from "@/lib/schemas/page-simple.schema";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { Slider } from "@/components/ui/slider";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
 import { 
@@ -20,150 +20,91 @@ import {
   Save,
   RefreshCw,
   FileText,
-  Rocket,
-  Building2,
-  ShoppingBag,
-  GraduationCap,
   Monitor,
   Tablet,
   Smartphone,
-  Check,
   ArrowRight,
-  Wand2,
+  Brain,
   Zap,
   AlertCircle,
-  Brain
+  ChevronDown,
+  Wand2,
+  Lightbulb,
+  Copy,
+  Check
 } from "lucide-react";
 
-interface Template {
-  id: string;
-  name: string;
-  description: string;
-  sections: number;
-  industries: string[];
-  icon: any;
-}
-
-const templates: Template[] = [
+// Example prompts for inspiration
+const examplePrompts = [
   {
-    id: "saas-landing",
-    name: "SaaS Product",
-    description: "Software product with features, pricing, testimonials",
-    sections: 7,
-    industries: ["technology", "software"],
-    icon: Rocket
+    title: "SaaS Product",
+    prompt: "Create a landing page for DataFlow, an AI-powered analytics platform that helps businesses make data-driven decisions. Include features, pricing, and testimonials.",
+    icon: Zap,
   },
   {
-    id: "ecommerce-landing",
-    name: "E-commerce",
-    description: "Product showcase with categories and reviews",
-    sections: 6,
-    industries: ["retail", "fashion"],
-    icon: ShoppingBag
+    title: "E-commerce",
+    prompt: "Build a product page for GreenLeaf, an organic tea shop. Show our premium tea collection, customer reviews, and special offers. Casual and inviting tone.",
+    icon: FileText,
   },
   {
-    id: "agency-landing",
-    name: "Agency",
-    description: "Professional services with case studies",
-    sections: 7,
-    industries: ["consulting", "services"],
-    icon: Building2
+    title: "Agency",
+    prompt: "Design a professional website for Creative Studios, a digital marketing agency. Highlight our services, portfolio, and client success stories.",
+    icon: Wand2,
   },
   {
-    id: "startup-landing",
-    name: "Startup Launch",
-    description: "High-energy launch page for new products",
-    sections: 6,
-    industries: ["startup", "innovation"],
-    icon: Rocket
+    title: "Startup",
+    prompt: "Launch page for FitTrack, a new fitness app that uses AI to create personalized workout plans. Bold and energetic tone with early access signup.",
+    icon: Lightbulb,
   },
-  {
-    id: "course-landing",
-    name: "Online Course",
-    description: "Educational program with curriculum",
-    sections: 7,
-    industries: ["education", "training"],
-    icon: GraduationCap
-  }
-];
-
-const industries = [
-  "Technology", "Software", "E-commerce", "Healthcare", 
-  "Finance", "Education", "Real Estate", "Travel",
-  "Fitness", "Food & Beverage", "Entertainment", "Fashion"
-];
-
-const tones = [
-  "Professional", "Casual", "Bold", "Minimal", "Playful", "Serious"
 ];
 
 export default function PageGeneratorPage() {
-  const [selectedTemplate, setSelectedTemplate] = useState<string>("saas-landing");
-  const [companyName, setCompanyName] = useState("");
-  const [industry, setIndustry] = useState("Technology");
-  const [tone, setTone] = useState("Professional");
-  const [description, setDescription] = useState("");
-  const [targetAudience, setTargetAudience] = useState("");
-  const [uniqueSellingPoints, setUniqueSellingPoints] = useState("");
-  const [keywords, setKeywords] = useState("");
+  const [prompt, setPrompt] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [generationProgress, setGenerationProgress] = useState(0);
   const [generatedPage, setGeneratedPage] = useState<SimplePage | null>(null);
   const [deviceMode, setDeviceMode] = useState<"desktop" | "tablet" | "mobile">("desktop");
-  const [useAI, setUseAI] = useState(true);
-  const [aiAvailable, setAiAvailable] = useState<boolean | null>(null);
+  const [extractedContext, setExtractedContext] = useState<any>(null);
   const [generationMetadata, setGenerationMetadata] = useState<any>(null);
-
-  const selectedTemplateData = templates.find(t => t.id === selectedTemplate);
-
-  // Check AI availability on mount
-  useEffect(() => {
-    fetch("/api/generate-page-ai")
-      .then(res => res.json())
-      .then(data => setAiAvailable(data.aiEnabled))
-      .catch(() => setAiAvailable(false));
-  }, []);
+  const [copiedPrompt, setCopiedPrompt] = useState<number | null>(null);
+  
+  // Advanced options
+  const [showAdvanced, setShowAdvanced] = useState(false);
+  const [useAI, setUseAI] = useState(true);
+  const [useCache, setUseCache] = useState(true);
+  const [temperature, setTemperature] = useState(0.7);
+  const [autoEnhance, setAutoEnhance] = useState(true);
+  const [showExtractedContext, setShowExtractedContext] = useState(false);
 
   const generatePage = async () => {
-    if (!companyName.trim()) {
-      toast.error("Please enter your company or product name");
+    if (!prompt.trim() || prompt.length < 10) {
+      toast.error("Please describe what kind of page you want (at least 10 characters)");
       return;
     }
 
     setIsGenerating(true);
     setGenerationProgress(0);
+    setExtractedContext(null);
 
     // Simulate progress updates
     const progressInterval = setInterval(() => {
       setGenerationProgress(prev => Math.min(prev + 10, 90));
-    }, 300);
+    }, 500);
 
     try {
-      // Choose endpoint based on AI toggle
-      const endpoint = useAI && aiAvailable ? "/api/generate-page-ai" : "/api/generate-page";
-      
-      const requestBody: any = {
-        templateId: selectedTemplate,
-        companyName,
-        industry: industry.toLowerCase(),
-        tone: tone.toLowerCase(),
-        description
-      };
-
-      // Add AI-specific parameters
-      if (useAI && aiAvailable) {
-        requestBody.targetAudience = targetAudience;
-        requestBody.uniqueSellingPoints = uniqueSellingPoints ? uniqueSellingPoints.split(",").map(s => s.trim()) : undefined;
-        requestBody.keywords = keywords ? keywords.split(",").map(s => s.trim()) : undefined;
-        requestBody.useAI = true;
-        requestBody.useCache = true;
-        requestBody.temperature = 0.7;
-      }
-
-      const response = await fetch(endpoint, {
+      const response = await fetch("/api/generate-page-prompt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(requestBody)
+        body: JSON.stringify({
+          prompt,
+          options: {
+            useAI,
+            useCache,
+            temperature,
+            autoEnhance,
+            showExtractedContext,
+          }
+        })
       });
 
       clearInterval(progressInterval);
@@ -180,15 +121,19 @@ export default function PageGeneratorPage() {
         setGeneratedPage(data.page);
         setGenerationMetadata(data.metadata);
         
-        const generationMethod = data.metadata?.generationMethod === "ai" ? "AI" : "Template";
+        if (data.extractedContext) {
+          setExtractedContext(data.extractedContext);
+        }
+        
         const aiSections = data.metadata?.aiSectionsCount || 0;
+        const totalSections = data.page.sections.length;
         
         toast.success(
-          `Generated complete page with ${data.page.sections.length} sections!`,
+          `Generated ${totalSections} sections from your description!`,
           {
-            description: useAI && aiAvailable 
-              ? `${aiSections} sections generated with AI in ${data.metadata?.duration || 0}ms`
-              : `Template: ${data.template.name}`
+            description: aiSections > 0 
+              ? `${aiSections} sections created with AI in ${data.metadata?.duration || 0}ms`
+              : `Generated in ${data.metadata?.duration || 0}ms`
           }
         );
       } else {
@@ -204,6 +149,13 @@ export default function PageGeneratorPage() {
     }
   };
 
+  const useExamplePrompt = (examplePrompt: string, index: number) => {
+    setPrompt(examplePrompt);
+    setCopiedPrompt(index);
+    setTimeout(() => setCopiedPrompt(null), 2000);
+    toast.success("Example prompt loaded!");
+  };
+
   const exportPage = () => {
     if (!generatedPage) return;
     
@@ -213,7 +165,7 @@ export default function PageGeneratorPage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${generatedPage.slug}-complete-page.json`;
+    a.download = `${generatedPage.slug}-page.json`;
     a.click();
     toast.success("Page exported!");
   };
@@ -244,65 +196,114 @@ export default function PageGeneratorPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">
-            {useAI && aiAvailable && (
-              <Badge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-600">
-                <Brain className="h-3 w-3 mr-1" />
-                AI-Powered
-              </Badge>
-            )}
-            <Badge variant="secondary">Complete Pages</Badge>
+            <Badge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-600">
+              <Brain className="h-3 w-3 mr-1" />
+              AI-Powered
+            </Badge>
+            <Badge variant="secondary">Natural Language</Badge>
           </div>
           <h1 className="text-4xl font-bold mb-3">Page Generator</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Generate full landing pages with 5-8 sections in seconds. 
-            {useAI && aiAvailable 
-              ? " AI creates coherent, contextual content tailored to your business."
-              : " Every page is complete and ready to deploy."}
+            Just describe what you want, and AI will create a complete landing page with all the right sections.
           </p>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-3">
-          {/* Configuration Panel */}
-          <div className="space-y-6">
-            {/* Template Selection */}
+        <div className="grid gap-6 lg:grid-cols-5">
+          {/* Main Input Panel */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Prompt Input */}
             <Card>
               <CardHeader>
-                <CardTitle>1. Choose Template</CardTitle>
-                <CardDescription>Select a page structure</CardDescription>
+                <CardTitle>Describe Your Page</CardTitle>
+                <CardDescription>
+                  Tell us what kind of page you need in natural language
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <Textarea
+                    placeholder="Example: Create a landing page for TechFlow, an AI-powered project management tool for developers. We help teams ship faster with intelligent automation. Professional tone, include pricing and testimonials."
+                    value={prompt}
+                    onChange={(e) => setPrompt(e.target.value)}
+                    rows={6}
+                    className="resize-none text-base"
+                  />
+                  <div className="flex justify-between items-center mt-2">
+                    <span className="text-xs text-muted-foreground">
+                      {prompt.length} characters
+                    </span>
+                    {prompt.length > 0 && prompt.length < 10 && (
+                      <span className="text-xs text-orange-500">
+                        Minimum 10 characters
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Generate Button */}
+                <Button 
+                  onClick={generatePage} 
+                  disabled={isGenerating || prompt.length < 10}
+                  className="w-full h-12"
+                  size="lg"
+                >
+                  {isGenerating ? (
+                    <>
+                      <RefreshCw className="mr-2 h-5 w-5 animate-spin" />
+                      AI is creating your page...
+                    </>
+                  ) : (
+                    <>
+                      <Brain className="mr-2 h-5 w-5" />
+                      Generate Page
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </>
+                  )}
+                </Button>
+
+                {isGenerating && (
+                  <div className="space-y-2">
+                    <Progress value={generationProgress} className="h-2" />
+                    <p className="text-sm text-muted-foreground text-center">
+                      AI is analyzing your request and generating content...
+                    </p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Example Prompts */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Example Prompts</CardTitle>
+                <CardDescription>Click to use these as inspiration</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
-                {templates.map((template) => {
-                  const Icon = template.icon;
+                {examplePrompts.map((example, index) => {
+                  const Icon = example.icon;
                   return (
                     <button
-                      key={template.id}
-                      onClick={() => setSelectedTemplate(template.id)}
-                      className={`w-full p-4 rounded-lg border-2 transition-all text-left ${
-                        selectedTemplate === template.id 
-                          ? "border-primary bg-primary/5" 
-                          : "border-border hover:border-primary/50"
-                      }`}
+                      key={index}
+                      onClick={() => useExamplePrompt(example.prompt, index)}
+                      className="w-full p-3 rounded-lg border-2 border-border hover:border-primary/50 transition-all text-left group"
                     >
                       <div className="flex items-start gap-3">
-                        <div className={`p-2 rounded-lg ${
-                          selectedTemplate === template.id ? "bg-primary/10" : "bg-muted"
-                        }`}>
-                          <Icon className="h-5 w-5" />
+                        <div className="p-2 bg-muted rounded-lg group-hover:bg-primary/10 transition-colors">
+                          <Icon className="h-4 w-4" />
                         </div>
                         <div className="flex-1">
-                          <div className="font-medium">{template.name}</div>
-                          <div className="text-sm text-muted-foreground mt-1">
-                            {template.description}
+                          <div className="font-medium mb-1 flex items-center gap-2">
+                            {example.title}
+                            {copiedPrompt === index ? (
+                              <Check className="h-3 w-3 text-green-500" />
+                            ) : (
+                              <Copy className="h-3 w-3 opacity-0 group-hover:opacity-50 transition-opacity" />
+                            )}
                           </div>
-                          <div className="flex items-center gap-2 mt-2">
-                            <Badge variant="secondary" className="text-xs">
-                              {template.sections} sections
-                            </Badge>
+                          <div className="text-sm text-muted-foreground line-clamp-2">
+                            {example.prompt}
                           </div>
                         </div>
-                        {selectedTemplate === template.id && (
-                          <Check className="h-5 w-5 text-primary" />
-                        )}
                       </div>
                     </button>
                   );
@@ -310,200 +311,136 @@ export default function PageGeneratorPage() {
               </CardContent>
             </Card>
 
-            {/* Generation Mode */}
-            {aiAvailable !== null && (
+            {/* Advanced Options */}
+            <Collapsible open={showAdvanced} onOpenChange={setShowAdvanced}>
+              <Card>
+                <CollapsibleTrigger className="w-full">
+                  <CardHeader className="cursor-pointer">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <CardTitle>Advanced Options</CardTitle>
+                        <CardDescription>Fine-tune generation settings</CardDescription>
+                      </div>
+                      <ChevronDown className={`h-5 w-5 transition-transform ${showAdvanced ? "rotate-180" : ""}`} />
+                    </div>
+                  </CardHeader>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <CardContent className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <Label htmlFor="ai">Use AI Generation</Label>
+                      <Switch
+                        id="ai"
+                        checked={useAI}
+                        onCheckedChange={setUseAI}
+                      />
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <Label htmlFor="cache">Use Cache</Label>
+                      <Switch
+                        id="cache"
+                        checked={useCache}
+                        onCheckedChange={setUseCache}
+                      />
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <Label htmlFor="enhance">Auto-Enhance Context</Label>
+                      <Switch
+                        id="enhance"
+                        checked={autoEnhance}
+                        onCheckedChange={setAutoEnhance}
+                      />
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <Label htmlFor="context">Show Extracted Context</Label>
+                      <Switch
+                        id="context"
+                        checked={showExtractedContext}
+                        onCheckedChange={setShowExtractedContext}
+                      />
+                    </div>
+
+                    <div>
+                      <Label>Temperature: {temperature}</Label>
+                      <Slider
+                        value={[temperature]}
+                        onValueChange={([val]) => setTemperature(val)}
+                        min={0}
+                        max={1}
+                        step={0.1}
+                        className="mt-2"
+                      />
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Lower = more focused, Higher = more creative
+                      </p>
+                    </div>
+                  </CardContent>
+                </CollapsibleContent>
+              </Card>
+            </Collapsible>
+
+            {/* Extracted Context (Debug) */}
+            {extractedContext && showExtractedContext && (
               <Card>
                 <CardHeader>
-                  <CardTitle>2. Generation Mode</CardTitle>
-                  <CardDescription>Choose how to generate content</CardDescription>
+                  <CardTitle>Extracted Context</CardTitle>
+                  <CardDescription>What AI understood from your prompt</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center justify-between p-4 rounded-lg border-2 border-border">
-                    <div className="flex items-center gap-3">
-                      {useAI ? (
-                        <div className="p-2 bg-purple-500/10 rounded-lg">
-                          <Brain className="h-5 w-5 text-purple-600" />
-                        </div>
-                      ) : (
-                        <div className="p-2 bg-muted rounded-lg">
-                          <Zap className="h-5 w-5" />
-                        </div>
-                      )}
+                  <div className="space-y-2 text-sm">
+                    {extractedContext.companyName && (
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Company:</span>
+                        <span className="font-medium">{extractedContext.companyName}</span>
+                      </div>
+                    )}
+                    {extractedContext.industry && (
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Industry:</span>
+                        <span className="font-medium">{extractedContext.industry}</span>
+                      </div>
+                    )}
+                    {extractedContext.tone && (
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Tone:</span>
+                        <span className="font-medium">{extractedContext.tone}</span>
+                      </div>
+                    )}
+                    {extractedContext.suggestedTemplate && (
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Template:</span>
+                        <span className="font-medium">{extractedContext.suggestedTemplate}</span>
+                      </div>
+                    )}
+                    {extractedContext.numberOfSections && (
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Sections:</span>
+                        <span className="font-medium">{extractedContext.numberOfSections}</span>
+                      </div>
+                    )}
+                    {extractedContext.features && extractedContext.features.length > 0 && (
                       <div>
-                        <div className="font-medium">
-                          {useAI ? "AI Generation" : "Template Generation"}
-                        </div>
-                        <div className="text-sm text-muted-foreground">
-                          {useAI 
-                            ? "Intelligent, context-aware content"
-                            : "Fast, template-based content"}
+                        <span className="text-muted-foreground">Features:</span>
+                        <div className="mt-1 flex flex-wrap gap-1">
+                          {extractedContext.features.map((feature: string, i: number) => (
+                            <Badge key={i} variant="outline" className="text-xs">
+                              {feature}
+                            </Badge>
+                          ))}
                         </div>
                       </div>
-                    </div>
-                    <Switch
-                      checked={useAI}
-                      onCheckedChange={setUseAI}
-                      disabled={!aiAvailable}
-                    />
+                    )}
                   </div>
-                  {!aiAvailable && (
-                    <Alert className="mt-3">
-                      <AlertCircle className="h-4 w-4" />
-                      <AlertDescription>
-                        AI generation requires ANTHROPIC_API_KEY to be configured
-                      </AlertDescription>
-                    </Alert>
-                  )}
                 </CardContent>
               </Card>
-            )}
-
-            {/* Details */}
-            <Card>
-              <CardHeader>
-                <CardTitle>3. Customize Details</CardTitle>
-                <CardDescription>Personalize your page</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <label className="text-sm font-medium mb-2 block">
-                    Company/Product Name *
-                  </label>
-                  <Input
-                    placeholder="e.g., TechFlow AI"
-                    value={companyName}
-                    onChange={(e) => setCompanyName(e.target.value)}
-                  />
-                </div>
-
-                <div>
-                  <label className="text-sm font-medium mb-2 block">
-                    Industry
-                  </label>
-                  <Select value={industry} onValueChange={setIndustry}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {industries.map(ind => (
-                        <SelectItem key={ind} value={ind}>
-                          {ind}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <label className="text-sm font-medium mb-2 block">
-                    Tone & Style
-                  </label>
-                  <Select value={tone} onValueChange={setTone}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {tones.map(t => (
-                        <SelectItem key={t} value={t}>
-                          {t}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <label className="text-sm font-medium mb-2 block">
-                    Additional Context (Optional)
-                  </label>
-                  <Textarea
-                    placeholder="Any specific features, benefits, or unique aspects to highlight..."
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    rows={3}
-                  />
-                </div>
-
-                {/* AI-specific fields */}
-                {useAI && aiAvailable && (
-                  <>
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">
-                        Target Audience
-                      </label>
-                      <Input
-                        placeholder="e.g., developers, small businesses, marketers"
-                        value={targetAudience}
-                        onChange={(e) => setTargetAudience(e.target.value)}
-                      />
-                    </div>
-
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">
-                        Unique Selling Points
-                      </label>
-                      <Textarea
-                        placeholder="Comma-separated list of key benefits or features"
-                        value={uniqueSellingPoints}
-                        onChange={(e) => setUniqueSellingPoints(e.target.value)}
-                        rows={2}
-                      />
-                    </div>
-
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">
-                        Keywords
-                      </label>
-                      <Input
-                        placeholder="e.g., AI, automation, productivity, innovation"
-                        value={keywords}
-                        onChange={(e) => setKeywords(e.target.value)}
-                      />
-                    </div>
-                  </>
-                )}
-              </CardContent>
-            </Card>
-
-            {/* Generate Button */}
-            <Button 
-              onClick={generatePage} 
-              disabled={isGenerating || !companyName.trim()}
-              className="w-full h-12"
-              size="lg"
-            >
-              {isGenerating ? (
-                <>
-                  <RefreshCw className="mr-2 h-5 w-5 animate-spin" />
-                  {useAI && aiAvailable ? "AI Generating..." : "Generating..."}
-                </>
-              ) : (
-                <>
-                  {useAI && aiAvailable ? (
-                    <Brain className="mr-2 h-5 w-5" />
-                  ) : (
-                    <Sparkles className="mr-2 h-5 w-5" />
-                  )}
-                  Generate {useAI && aiAvailable ? "with AI" : "Full Page"}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </>
-              )}
-            </Button>
-
-            {isGenerating && (
-              <div className="space-y-2">
-                <Progress value={generationProgress} className="h-2" />
-                <p className="text-sm text-muted-foreground text-center">
-                  {useAI && aiAvailable 
-                    ? `AI is creating ${selectedTemplateData?.sections} coherent sections...`
-                    : `Creating ${selectedTemplateData?.sections} sections...`}
-                </p>
-              </div>
             )}
           </div>
 
           {/* Preview Panel */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <Card className="h-full min-h-[700px]">
               <CardHeader>
                 <div className="flex items-center justify-between">
@@ -512,10 +449,10 @@ export default function PageGeneratorPage() {
                     <CardDescription>
                       {generatedPage ? (
                         <span className="flex items-center gap-2">
-                          {generationMetadata?.generationMethod === "ai" && (
+                          {generationMetadata?.generationMethod === "prompt" && (
                             <Badge variant="outline" className="text-xs">
                               <Brain className="h-3 w-3 mr-1" />
-                              AI Generated
+                              From Prompt
                             </Badge>
                           )}
                           {generatedPage.sections.length} sections generated
@@ -526,7 +463,7 @@ export default function PageGeneratorPage() {
                           )}
                         </span>
                       ) : (
-                        "Your complete page will appear here"
+                        "Your page will appear here"
                       )}
                     </CardDescription>
                   </div>
@@ -583,29 +520,24 @@ export default function PageGeneratorPage() {
                   <div className="h-[600px] flex items-center justify-center bg-muted/20">
                     <div className="text-center space-y-4 max-w-md">
                       <div className="mx-auto w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center">
-                        <FileText className="h-10 w-10 text-primary" />
+                        <Brain className="h-10 w-10 text-primary" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-xl mb-2">Ready to Generate</h3>
                         <p className="text-muted-foreground">
-                          Configure your page details and click generate to create a complete {selectedTemplateData?.sections}-section landing page
+                          Simply describe your page in the text box, and AI will create a complete landing page tailored to your needs.
                         </p>
                       </div>
-                      {selectedTemplateData && (
-                        <div className="pt-4">
-                          <p className="text-sm font-medium mb-3">This template includes:</p>
-                          <div className="flex flex-wrap gap-2 justify-center">
-                            <Badge variant="outline">Hero Section</Badge>
-                            <Badge variant="outline">Features</Badge>
-                            <Badge variant="outline">Testimonials</Badge>
-                            {selectedTemplate.includes("pricing") && (
-                              <Badge variant="outline">Pricing</Badge>
-                            )}
-                            <Badge variant="outline">CTA</Badge>
-                            <Badge variant="outline">Footer</Badge>
-                          </div>
+                      <div className="pt-4">
+                        <p className="text-sm font-medium mb-3">AI understands:</p>
+                        <div className="flex flex-wrap gap-2 justify-center">
+                          <Badge variant="outline">Company Names</Badge>
+                          <Badge variant="outline">Industries</Badge>
+                          <Badge variant="outline">Features</Badge>
+                          <Badge variant="outline">Tone & Style</Badge>
+                          <Badge variant="outline">Target Audience</Badge>
                         </div>
-                      )}
+                      </div>
                     </div>
                   </div>
                 )}

@@ -16,6 +16,8 @@ import { getComponentDefinition } from "@/lib/schemas/component-schemas";
 import { SimplePage, GeneratedSection } from "@/lib/schemas/page-simple.schema";
 import { PageTemplate } from "@/lib/page-templates/types";
 import { z } from "zod";
+import { promptAnalyzer, ExtractedContext, ExtractedContextSchema } from "./prompt-analyzer";
+import { getPageTemplate, findBestTemplate } from "@/lib/page-templates/templates";
 
 /**
  * AI Page Generation Request Schema
@@ -45,11 +47,26 @@ export const AIPageGenerationRequestSchema = z.object({
     useCache: z.boolean().default(true),
     maxRetries: z.number().min(1).max(3).default(2),
     temperature: z.number().min(0).max(1).default(0.7),
-    progressCallback: z.function().optional(),
   }).optional(),
 });
 
 export type AIPageGenerationRequest = z.infer<typeof AIPageGenerationRequestSchema>;
+
+/**
+ * Prompt-based generation request
+ */
+export const PromptPageGenerationRequestSchema = z.object({
+  prompt: z.string().min(10),
+  extractedContext: ExtractedContextSchema.optional(),
+  options: z.object({
+    useAI: z.boolean().default(true),
+    useCache: z.boolean().default(true),
+    temperature: z.number().min(0).max(1).default(0.7),
+    autoEnhance: z.boolean().default(true),
+  }).optional(),
+});
+
+export type PromptPageGenerationRequest = z.infer<typeof PromptPageGenerationRequestSchema>;
 
 /**
  * Progressive context that builds as we generate sections
@@ -97,6 +114,7 @@ export interface AIPageGenerationResponse {
  */
 export class AIPageGenerator {
   private componentGenerator = componentGenerator;
+  private promptAnalyzer = promptAnalyzer;
 
   /**
    * Generate a complete page with AI-powered content
@@ -557,6 +575,141 @@ export class AIPageGenerator {
   }
 
   /**
+   * Generate page from natural language prompt
+   */
+  async generatePageFromPrompt(request: PromptPageGenerationRequest): Promise<AIPageGenerationResponse> {
+    const startTime = Date.now();
+    
+    try {
+      // Validate request
+      const validatedRequest = PromptPageGenerationRequestSchema.parse(request);
+      const { prompt, options } = validatedRequest;
+
+      // Extract context from prompt
+      let context = validatedRequest.extractedContext || this.promptAnalyzer.analyze(prompt);
+      
+      // Enhance context if needed
+      if (options?.autoEnhance !== false) {
+        context = this.promptAnalyzer.enhance(context);
+      }
+
+      // Find best template based on context
+      const templateId = context.suggestedTemplate || "saas-landing";
+      const template = getPageTemplate(templateId) || findBestTemplate(prompt);
+
+      if (!template) {
+        throw new Error("Could not determine appropriate template");
+      }
+
+      // Determine sections to include
+      const sections = this.determineSectionsFromContext(template, context);
+
+      // Build AI generation request
+      const aiRequest: AIPageGenerationRequest = {
+        template: {
+          id: template.id,
+          name: template.name,
+          sections,
+        },
+        context: {
+          companyName: context.companyName || context.productName || "Your Company",
+          industry: context.industry || "technology",
+          tone: context.tone || "professional",
+          targetAudience: context.targetAudience,
+          additionalContext: prompt, // Use full prompt as context
+          keywords: context.keywords,
+          uniqueSellingPoints: context.features,
+        },
+        options: {
+          useAI: options?.useAI !== false,
+          useCache: options?.useCache !== false,
+          temperature: options?.temperature || 0.7,
+        },
+      };
+
+      // Generate the page
+      const result = await this.generatePage(aiRequest);
+
+      // Add prompt-specific metadata
+      if (result.metadata) {
+        result.metadata = {
+          ...result.metadata,
+          generationMethod: "prompt",
+          extractedContext: context,
+          originalPrompt: prompt,
+        } as any;
+      }
+
+      return result;
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : "Unknown error",
+      };
+    }
+  }
+
+  /**
+   * Determine which sections to include based on context
+   */
+  private determineSectionsFromContext(template: PageTemplate, context: ExtractedContext): any[] {
+    const sections = [...template.sections];
+    const targetCount = context.numberOfSections || 6;
+    
+    // Sort sections by relevance to context
+    const prioritizedSections = sections.sort((a, b) => {
+      let scoreA = a.order;
+      let scoreB = b.order;
+
+      // Prioritize pricing if mentioned
+      if (context.includePricing) {
+        if (a.componentSlug.includes("pricing")) scoreA -= 10;
+        if (b.componentSlug.includes("pricing")) scoreB -= 10;
+      }
+
+      // Prioritize testimonials if mentioned
+      if (context.includeTestimonials) {
+        if (a.componentSlug.includes("testimonial")) scoreA -= 10;
+        if (b.componentSlug.includes("testimonial")) scoreB -= 10;
+      }
+
+      // Always include hero and footer
+      if (a.componentSlug.includes("hero")) scoreA -= 100;
+      if (b.componentSlug.includes("hero")) scoreB -= 100;
+      if (a.componentSlug.includes("footer")) scoreA -= 90;
+      if (b.componentSlug.includes("footer")) scoreB -= 90;
+
+      return scoreA - scoreB;
+    });
+
+    // Take the target number of sections
+    let selectedSections = prioritizedSections.slice(0, targetCount);
+    
+    // Ensure we have hero and footer
+    const hasHero = selectedSections.some(s => s.componentSlug.includes("hero"));
+    const hasFooter = selectedSections.some(s => s.componentSlug.includes("footer"));
+    
+    if (!hasHero) {
+      const hero = sections.find(s => s.componentSlug.includes("hero"));
+      if (hero) selectedSections.unshift(hero);
+    }
+    
+    if (!hasFooter) {
+      const footer = sections.find(s => s.componentSlug.includes("footer"));
+      if (footer) selectedSections.push(footer);
+    }
+
+    // Re-order by original order
+    selectedSections.sort((a, b) => a.order - b.order);
+    
+    // Re-index orders
+    return selectedSections.map((section, index) => ({
+      ...section,
+      order: index,
+    }));
+  }
+
+  /**
    * Generate multiple pages in batch
    */
   async batchGeneratePages(
@@ -575,6 +728,16 @@ export class AIPageGenerator {
     }
 
     return results;
+  }
+
+  /**
+   * Batch generate from prompts
+   */
+  async batchGenerateFromPrompts(
+    prompts: string[]
+  ): Promise<AIPageGenerationResponse[]> {
+    const requests = prompts.map(prompt => ({ prompt }));
+    return Promise.all(requests.map(req => this.generatePageFromPrompt(req)));
   }
 }
 

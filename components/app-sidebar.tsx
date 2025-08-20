@@ -11,9 +11,8 @@ import {
   DollarSign,
   MessageSquare,
   Menu,
-  Hammer,
-  FileText,
-  Code,
+  Brain,
+  Wand2,
 } from "lucide-react";
 
 import {
@@ -87,41 +86,24 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarGroupContent>
         </SidebarGroup>
         <SidebarGroup>
-          <SidebarGroupLabel>Tools</SidebarGroupLabel>
+          <SidebarGroupLabel>AI Tools</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton isActive={pathname === "/ai-generator"} asChild>
-                  <Link href="/ai-generator">
-                    <Sparkles />
-                    <span>AI Generator</span>
-                    <SidebarMenuBadge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-600">AI</SidebarMenuBadge>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
                 <SidebarMenuButton isActive={pathname === "/page-generator"} asChild>
                   <Link href="/page-generator">
-                    <FileText />
+                    <Brain />
                     <span>Page Generator</span>
-                    <SidebarMenuBadge className="bg-green-500/10 text-green-600">Full Pages</SidebarMenuBadge>
+                    <SidebarMenuBadge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-600">Prompt</SidebarMenuBadge>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton isActive={pathname === "/builder-v2"} asChild>
-                  <Link href="/builder-v2">
-                    <Hammer />
-                    <span>Page Builder</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton isActive={pathname === "/schema-demo"} asChild>
-                  <Link href="/schema-demo">
-                    <Code />
-                    <span>Schema Demo</span>
-                    <SidebarMenuBadge className="bg-purple-500/10 text-purple-600">New</SidebarMenuBadge>
+                <SidebarMenuButton isActive={pathname === "/ai-generator"} asChild>
+                  <Link href="/ai-generator">
+                    <Wand2 />
+                    <span>Component AI</span>
+                    <SidebarMenuBadge>Single</SidebarMenuBadge>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
