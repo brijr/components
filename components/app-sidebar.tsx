@@ -17,6 +17,8 @@ import {
   Newspaper,
   Rss,
   Menu,
+  Wand2,
+  Hammer,
 } from "lucide-react";
 
 import {
@@ -83,6 +85,30 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     <Home />
                     <span>All Components</span>
                     <SidebarMenuBadge>{registry.length}</SidebarMenuBadge>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>Tools</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton isActive={pathname === "/ai-playground"} asChild>
+                  <Link href="/ai-playground">
+                    <Wand2 />
+                    <span>AI Playground</span>
+                    <SidebarMenuBadge className="bg-primary/10 text-primary">New</SidebarMenuBadge>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton isActive={pathname === "/builder"} asChild>
+                  <Link href="/builder">
+                    <Hammer />
+                    <span>Page Builder</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
