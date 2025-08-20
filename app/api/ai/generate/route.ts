@@ -4,6 +4,7 @@ import { SimplePage } from "@/lib/schemas/page-simple.schema";
 import { registry } from "@/registry";
 import { generateComponentProps } from "@/lib/ai/helpers";
 import { getComponentTemplate } from "@/lib/ai/templates";
+import { generateWithClaude, generatePageWithClaude } from "@/lib/ai/anthropic-service";
 
 const GenerateRequestSchema = z.object({
   prompt: z.string().min(1),
@@ -81,22 +82,43 @@ async function generateSingleComponent(
   industry?: string,
   tone?: string
 ): Promise<SimplePage> {
-  // Find suitable components of this type
-  const components = registry.filter(c => c.type === componentType);
-  
-  if (components.length === 0) {
-    throw new Error(`No components found for type: ${componentType}`);
-  }
-
-  // Select the most appropriate component based on prompt
-  const selectedComponent = selectBestComponent(components, prompt);
-  
-  // Generate props for the component
-  const props = await generateComponentProps(
-    selectedComponent,
+  // Try to use Claude first
+  const claudeResult = await generateWithClaude({
     prompt,
-    { industry, tone }
-  );
+    componentType,
+    mode: "component",
+    industry,
+    tone
+  });
+
+  let selectedComponent;
+  let props;
+
+  if (claudeResult && claudeResult.componentSlug && claudeResult.props) {
+    // Use Claude's result
+    selectedComponent = registry.find(c => c.slug === claudeResult.componentSlug);
+    props = claudeResult.props;
+  }
+  
+  // Fallback to template system if Claude fails or no API key
+  if (!selectedComponent || !props) {
+    // Find suitable components of this type
+    const components = registry.filter(c => c.type === componentType);
+    
+    if (components.length === 0) {
+      throw new Error(`No components found for type: ${componentType}`);
+    }
+
+    // Select the most appropriate component based on prompt
+    selectedComponent = selectBestComponent(components, prompt);
+    
+    // Generate props for the component
+    props = await generateComponentProps(
+      selectedComponent,
+      prompt,
+      { industry, tone }
+    );
+  }
 
   return {
     id: `ai-${Date.now()}`,
@@ -124,65 +146,79 @@ async function generateFullPage(
   industry?: string,
   tone?: string
 ): Promise<SimplePage> {
-  // Analyze prompt to determine page structure
-  const pageStructure = analyzePageRequirements(prompt);
+  // Try Claude first for page generation
+  const claudePageResult = await generatePageWithClaude(prompt, { industry, tone });
   
-  const sections = [];
-  let order = 0;
+  let sections = [];
+  
+  if (claudePageResult && claudePageResult.length > 0) {
+    // Use Claude's result
+    sections = claudePageResult.map((item, index) => ({
+      id: `section-${index + 1}`,
+      componentSlug: item.componentSlug,
+      props: item.props,
+      order: index,
+      visible: true
+    }));
+  } else {
+    // Fallback to template-based generation
+    const pageStructure = analyzePageRequirements(prompt);
+    let order = 0;
 
-  // Add hero section
-  if (pageStructure.includeHero) {
-    const heroComponent = registry.find(c => c.slug === "hero-minimal");
-    if (heroComponent) {
-      sections.push({
-        id: `section-${++order}`,
-        componentSlug: heroComponent.slug,
-        props: await generateComponentProps(heroComponent, prompt, { industry, tone }),
-        order,
-        visible: true
-      });
+    // Add hero section
+    if (pageStructure.includeHero) {
+      const heroComponent = registry.find(c => c.slug === "hero-minimal");
+      if (heroComponent) {
+        sections.push({
+          id: `section-${++order}`,
+          componentSlug: heroComponent.slug,
+          props: await generateComponentProps(heroComponent, prompt, { industry, tone }),
+          order,
+          visible: true
+        });
+      }
     }
-  }
 
-  // Add feature section
-  if (pageStructure.includeFeatures) {
-    const featureComponent = registry.find(c => c.slug === "feature-three-cards");
-    if (featureComponent) {
-      sections.push({
-        id: `section-${++order}`,
-        componentSlug: featureComponent.slug,
-        props: await generateComponentProps(featureComponent, prompt, { industry, tone }),
-        order,
-        visible: true
-      });
+    // Add feature section
+    if (pageStructure.includeFeatures) {
+      const featureComponent = registry.find(c => c.slug === "feature-three-cards");
+      if (featureComponent) {
+        sections.push({
+          id: `section-${++order}`,
+          componentSlug: featureComponent.slug,
+          props: await generateComponentProps(featureComponent, prompt, { industry, tone }),
+          order,
+          visible: true
+        });
+      }
     }
-  }
 
-  // Add testimonial section
-  if (pageStructure.includeTestimonials) {
-    const testimonialComponent = registry.find(c => c.slug === "testimonial-grid");
-    if (testimonialComponent) {
-      sections.push({
-        id: `section-${++order}`,
-        componentSlug: testimonialComponent.slug,
-        props: await generateComponentProps(testimonialComponent, prompt, { industry, tone }),
-        order,
-        visible: true
-      });
+    // Add testimonial section
+    if (pageStructure.includeTestimonials) {
+      const testimonialComponent = registry.find(c => c.slug === "testimonial-grid");
+      if (testimonialComponent) {
+        sections.push({
+          id: `section-${++order}`,
+          componentSlug: testimonialComponent.slug,
+          props: await generateComponentProps(testimonialComponent, prompt, { industry, tone }),
+          order,
+          visible: true
+        });
+      }
     }
-  }
 
-  // Add CTA section
-  if (pageStructure.includeCTA) {
-    const ctaComponent = registry.find(c => c.slug === "cta-single");
-    if (ctaComponent) {
-      sections.push({
-        id: `section-${++order}`,
-        componentSlug: ctaComponent.slug,
-        props: await generateComponentProps(ctaComponent, prompt, { industry, tone }),
-        order,
-        visible: true
-      });
+    // Add CTA section
+    if (pageStructure.includeCTA) {
+      const ctaComponent = registry.find(c => c.slug === "cta-single");
+      if (ctaComponent) {
+        sections.push({
+          id: `section-${++order}`,
+          componentSlug: ctaComponent.slug,
+          props: await generateComponentProps(ctaComponent, prompt, { industry, tone }),
+          order,
+          visible: true
+        });
+      }
     }
   }
 
