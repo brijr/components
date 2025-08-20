@@ -13,6 +13,7 @@ import {
   Menu,
   Hammer,
   FileText,
+  Code,
 } from "lucide-react";
 
 import {
@@ -103,6 +104,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <Link href="/builder-v2">
                     <Hammer />
                     <span>Page Builder</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton isActive={pathname === "/schema-demo"} asChild>
+                  <Link href="/schema-demo">
+                    <Code />
+                    <span>Schema Demo</span>
+                    <SidebarMenuBadge className="bg-purple-500/10 text-purple-600">New</SidebarMenuBadge>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
