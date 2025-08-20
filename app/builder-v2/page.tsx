@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useBuilderStore } from "@/lib/builder-store-enhanced";
 import { EnhancedSidebar } from "@/components/builder/enhanced-sidebar";
 import { EnhancedCanvas } from "@/components/builder/enhanced-canvas";
 import { EnhancedPropertyEditor } from "@/components/builder/enhanced-property-editor";
-import { AiAssistant } from "@/components/builder/ai-assistant";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -19,14 +18,9 @@ import {
   Edit,
   Trash2,
   Undo,
-  Redo,
-  Wand2,
-  Plus,
-  FileText,
-  Sparkles
+  Redo
 } from "lucide-react";
 import { toast } from "sonner";
-import { cn } from "@/lib/utils";
 
 export default function EnhancedBuilderPage() {
   const {
@@ -36,8 +30,6 @@ export default function EnhancedBuilderPage() {
     previewMode,
     viewMode,
     selectedSectionId,
-    isAiPanelOpen,
-    isGenerating,
     setPageTitle,
     setPageSlug,
     setPreviewMode,
@@ -47,11 +39,7 @@ export default function EnhancedBuilderPage() {
     redo,
     canUndo,
     canRedo,
-    setAiPanelOpen,
-    generateWithAi,
   } = useBuilderStore();
-
-  const [showQuickActions, setShowQuickActions] = useState(false);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -73,17 +61,11 @@ export default function EnhancedBuilderPage() {
         e.preventDefault();
         setViewMode(viewMode === "edit" ? "preview" : "edit");
       }
-      
-      // Open AI: Cmd/Ctrl + K
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        e.preventDefault();
-        setAiPanelOpen(!isAiPanelOpen);
-      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [canUndo, canRedo, undo, redo, viewMode, setViewMode, isAiPanelOpen, setAiPanelOpen]);
+  }, [canUndo, canRedo, undo, redo, viewMode, setViewMode]);
 
   const handleSave = async () => {
     const pageData = {
@@ -140,23 +122,6 @@ export default function EnhancedBuilderPage() {
     toast.success("Page exported!");
   };
 
-  const quickGenerate = async (type: string) => {
-    const prompts: Record<string, string> = {
-      hero: "Create a hero section for a modern SaaS product",
-      features: "Create a feature grid showcasing product capabilities",
-      testimonials: "Create a testimonial section with customer reviews",
-      pricing: "Create a pricing section with three tiers",
-      cta: "Create a call-to-action section",
-      full: "Create a complete landing page for a SaaS product"
-    };
-
-    const prompt = prompts[type];
-    if (prompt) {
-      await generateWithAi(prompt, type === "full" ? "page" : "section");
-      setShowQuickActions(false);
-    }
-  };
-
   return (
     <div className="h-screen flex flex-col bg-background">
       {/* Header */}
@@ -181,7 +146,7 @@ export default function EnhancedBuilderPage() {
           {/* Center Controls */}
           <div className="flex items-center gap-2">
             {/* View Mode Toggle */}
-            <Tabs value={viewMode} onValueChange={(v) => setViewMode(v as any)}>
+            <Tabs value={viewMode} onValueChange={(v) => setViewMode(v as "edit" | "preview")}>
               <TabsList className="h-9">
                 <TabsTrigger value="edit" className="gap-2">
                   <Edit className="h-3 w-3" />
@@ -249,100 +214,30 @@ export default function EnhancedBuilderPage() {
 
           {/* Actions */}
           <div className="flex items-center gap-2">
-            {/* AI Actions */}
-            <div className="relative">
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() => setShowQuickActions(!showQuickActions)}
-                className="gap-2"
-              >
-                <Sparkles className="h-4 w-4" />
-                Quick Generate
-              </Button>
-              
-              {showQuickActions && (
-                <div className="absolute right-0 top-full mt-2 w-48 bg-popover border rounded-lg shadow-lg p-1 z-50">
-                  <button
-                    onClick={() => quickGenerate("hero")}
-                    className="w-full text-left px-3 py-2 text-sm hover:bg-accent rounded"
-                  >
-                    Generate Hero
-                  </button>
-                  <button
-                    onClick={() => quickGenerate("features")}
-                    className="w-full text-left px-3 py-2 text-sm hover:bg-accent rounded"
-                  >
-                    Generate Features
-                  </button>
-                  <button
-                    onClick={() => quickGenerate("testimonials")}
-                    className="w-full text-left px-3 py-2 text-sm hover:bg-accent rounded"
-                  >
-                    Generate Testimonials
-                  </button>
-                  <button
-                    onClick={() => quickGenerate("pricing")}
-                    className="w-full text-left px-3 py-2 text-sm hover:bg-accent rounded"
-                  >
-                    Generate Pricing
-                  </button>
-                  <button
-                    onClick={() => quickGenerate("cta")}
-                    className="w-full text-left px-3 py-2 text-sm hover:bg-accent rounded"
-                  >
-                    Generate CTA
-                  </button>
-                  <div className="border-t my-1" />
-                  <button
-                    onClick={() => quickGenerate("full")}
-                    className="w-full text-left px-3 py-2 text-sm hover:bg-accent rounded font-medium"
-                  >
-                    Generate Full Page
-                  </button>
-                </div>
-              )}
-            </div>
-
             <Button
               size="sm"
               variant="outline"
-              onClick={() => setAiPanelOpen(!isAiPanelOpen)}
-              className="gap-2"
-              title="AI Assistant (Cmd+K)"
+              onClick={handleExport}
+              disabled={sections.length === 0}
             >
-              <Wand2 className="h-4 w-4" />
-              AI Assistant
+              <Download className="h-4 w-4" />
             </Button>
-
-            <div className="border-l pl-2">
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={handleExport}
-                disabled={sections.length === 0}
-              >
-                <Download className="h-4 w-4" />
-              </Button>
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={clearPage}
-                disabled={sections.length === 0}
-                className="ml-1"
-              >
-                <Trash2 className="h-4 w-4" />
-              </Button>
-              <Button
-                size="sm"
-                onClick={handleSave}
-                disabled={sections.length === 0}
-                className="ml-1"
-              >
-                <Save className="mr-2 h-4 w-4" />
-                Save
-              </Button>
-            </div>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={clearPage}
+              disabled={sections.length === 0}
+            >
+              <Trash2 className="h-4 w-4" />
+            </Button>
+            <Button
+              size="sm"
+              onClick={handleSave}
+              disabled={sections.length === 0}
+            >
+              <Save className="mr-2 h-4 w-4" />
+              Save
+            </Button>
           </div>
         </div>
       </header>
@@ -359,33 +254,12 @@ export default function EnhancedBuilderPage() {
         {/* Canvas */}
         <div className="flex-1 relative">
           <EnhancedCanvas />
-          
-          {/* Floating AI Prompt Bar */}
-          {isGenerating && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-background border rounded-lg shadow-lg p-4 flex items-center gap-3">
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
-              <span className="text-sm">Generating with AI...</span>
-            </div>
-          )}
         </div>
 
         {/* Property Editor */}
         {viewMode === "edit" && selectedSectionId && (
           <div className="w-80 flex-shrink-0 border-l bg-background">
             <EnhancedPropertyEditor />
-          </div>
-        )}
-
-        {/* AI Assistant Panel */}
-        {isAiPanelOpen && (
-          <div className="absolute inset-0 z-40">
-            <div 
-              className="absolute inset-0 bg-background/80 backdrop-blur-sm"
-              onClick={() => setAiPanelOpen(false)}
-            />
-            <div className="absolute right-0 top-0 bottom-0 w-96 bg-background border-l shadow-xl">
-              <AiAssistant />
-            </div>
           </div>
         )}
       </div>

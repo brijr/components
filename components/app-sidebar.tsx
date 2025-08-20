@@ -10,15 +10,9 @@ import {
   MousePointer,
   DollarSign,
   MessageSquare,
-  HelpCircle,
-  Mail,
-  BarChart3,
-  Building2,
-  Newspaper,
-  Rss,
   Menu,
-  Wand2,
   Hammer,
+  FileText,
 } from "lucide-react";
 
 import {
@@ -96,11 +90,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton isActive={pathname === "/ai-playground"} asChild>
-                  <Link href="/ai-playground">
-                    <Wand2 />
-                    <span>AI Playground</span>
-                    <SidebarMenuBadge className="bg-primary/10 text-primary">New</SidebarMenuBadge>
+                <SidebarMenuButton isActive={pathname === "/page-generator"} asChild>
+                  <Link href="/page-generator">
+                    <FileText />
+                    <span>Page Generator</span>
+                    <SidebarMenuBadge className="bg-green-500/10 text-green-600">Full Pages</SidebarMenuBadge>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -109,7 +103,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <Link href="/builder-v2">
                     <Hammer />
                     <span>Page Builder</span>
-                    <SidebarMenuBadge className="bg-primary/10 text-primary">Enhanced</SidebarMenuBadge>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
