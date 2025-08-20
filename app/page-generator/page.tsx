@@ -10,6 +10,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
 import { 
   Sparkles,
@@ -25,7 +28,11 @@ import {
   Tablet,
   Smartphone,
   Check,
-  ArrowRight
+  ArrowRight,
+  Wand2,
+  Zap,
+  AlertCircle,
+  Brain
 } from "lucide-react";
 
 interface Template {
@@ -96,12 +103,26 @@ export default function PageGeneratorPage() {
   const [industry, setIndustry] = useState("Technology");
   const [tone, setTone] = useState("Professional");
   const [description, setDescription] = useState("");
+  const [targetAudience, setTargetAudience] = useState("");
+  const [uniqueSellingPoints, setUniqueSellingPoints] = useState("");
+  const [keywords, setKeywords] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [generationProgress, setGenerationProgress] = useState(0);
   const [generatedPage, setGeneratedPage] = useState<SimplePage | null>(null);
   const [deviceMode, setDeviceMode] = useState<"desktop" | "tablet" | "mobile">("desktop");
+  const [useAI, setUseAI] = useState(true);
+  const [aiAvailable, setAiAvailable] = useState<boolean | null>(null);
+  const [generationMetadata, setGenerationMetadata] = useState<any>(null);
 
   const selectedTemplateData = templates.find(t => t.id === selectedTemplate);
+
+  // Check AI availability on mount
+  useEffect(() => {
+    fetch("/api/generate-page-ai")
+      .then(res => res.json())
+      .then(data => setAiAvailable(data.aiEnabled))
+      .catch(() => setAiAvailable(false));
+  }, []);
 
   const generatePage = async () => {
     if (!companyName.trim()) {
@@ -118,16 +139,31 @@ export default function PageGeneratorPage() {
     }, 300);
 
     try {
-      const response = await fetch("/api/generate-page", {
+      // Choose endpoint based on AI toggle
+      const endpoint = useAI && aiAvailable ? "/api/generate-page-ai" : "/api/generate-page";
+      
+      const requestBody: any = {
+        templateId: selectedTemplate,
+        companyName,
+        industry: industry.toLowerCase(),
+        tone: tone.toLowerCase(),
+        description
+      };
+
+      // Add AI-specific parameters
+      if (useAI && aiAvailable) {
+        requestBody.targetAudience = targetAudience;
+        requestBody.uniqueSellingPoints = uniqueSellingPoints ? uniqueSellingPoints.split(",").map(s => s.trim()) : undefined;
+        requestBody.keywords = keywords ? keywords.split(",").map(s => s.trim()) : undefined;
+        requestBody.useAI = true;
+        requestBody.useCache = true;
+        requestBody.temperature = 0.7;
+      }
+
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          templateId: selectedTemplate,
-          companyName,
-          industry: industry.toLowerCase(),
-          tone: tone.toLowerCase(),
-          description
-        })
+        body: JSON.stringify(requestBody)
       });
 
       clearInterval(progressInterval);
@@ -142,10 +178,17 @@ export default function PageGeneratorPage() {
       
       if (data.page && data.page.sections && data.page.sections.length > 0) {
         setGeneratedPage(data.page);
+        setGenerationMetadata(data.metadata);
+        
+        const generationMethod = data.metadata?.generationMethod === "ai" ? "AI" : "Template";
+        const aiSections = data.metadata?.aiSectionsCount || 0;
+        
         toast.success(
           `Generated complete page with ${data.page.sections.length} sections!`,
           {
-            description: `Template: ${data.template.name}`
+            description: useAI && aiAvailable 
+              ? `${aiSections} sections generated with AI in ${data.metadata?.duration || 0}ms`
+              : `Template: ${data.template.name}`
           }
         );
       } else {
@@ -200,10 +243,21 @@ export default function PageGeneratorPage() {
       <div className="container mx-auto p-6 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-8">
-          <Badge className="mb-4" variant="secondary">AI-Powered</Badge>
-          <h1 className="text-4xl font-bold mb-3">Complete Page Generator</h1>
+          <div className="flex items-center justify-center gap-2 mb-4">
+            {useAI && aiAvailable && (
+              <Badge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-600">
+                <Brain className="h-3 w-3 mr-1" />
+                AI-Powered
+              </Badge>
+            )}
+            <Badge variant="secondary">Complete Pages</Badge>
+          </div>
+          <h1 className="text-4xl font-bold mb-3">Page Generator</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Generate full landing pages with 5-8 sections in seconds. Every page is complete, coherent, and ready to deploy.
+            Generate full landing pages with 5-8 sections in seconds. 
+            {useAI && aiAvailable 
+              ? " AI creates coherent, contextual content tailored to your business."
+              : " Every page is complete and ready to deploy."}
           </p>
         </div>
 
@@ -256,10 +310,58 @@ export default function PageGeneratorPage() {
               </CardContent>
             </Card>
 
+            {/* Generation Mode */}
+            {aiAvailable !== null && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>2. Generation Mode</CardTitle>
+                  <CardDescription>Choose how to generate content</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center justify-between p-4 rounded-lg border-2 border-border">
+                    <div className="flex items-center gap-3">
+                      {useAI ? (
+                        <div className="p-2 bg-purple-500/10 rounded-lg">
+                          <Brain className="h-5 w-5 text-purple-600" />
+                        </div>
+                      ) : (
+                        <div className="p-2 bg-muted rounded-lg">
+                          <Zap className="h-5 w-5" />
+                        </div>
+                      )}
+                      <div>
+                        <div className="font-medium">
+                          {useAI ? "AI Generation" : "Template Generation"}
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                          {useAI 
+                            ? "Intelligent, context-aware content"
+                            : "Fast, template-based content"}
+                        </div>
+                      </div>
+                    </div>
+                    <Switch
+                      checked={useAI}
+                      onCheckedChange={setUseAI}
+                      disabled={!aiAvailable}
+                    />
+                  </div>
+                  {!aiAvailable && (
+                    <Alert className="mt-3">
+                      <AlertCircle className="h-4 w-4" />
+                      <AlertDescription>
+                        AI generation requires ANTHROPIC_API_KEY to be configured
+                      </AlertDescription>
+                    </Alert>
+                  )}
+                </CardContent>
+              </Card>
+            )}
+
             {/* Details */}
             <Card>
               <CardHeader>
-                <CardTitle>2. Customize Details</CardTitle>
+                <CardTitle>3. Customize Details</CardTitle>
                 <CardDescription>Personalize your page</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -321,6 +423,45 @@ export default function PageGeneratorPage() {
                     rows={3}
                   />
                 </div>
+
+                {/* AI-specific fields */}
+                {useAI && aiAvailable && (
+                  <>
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">
+                        Target Audience
+                      </label>
+                      <Input
+                        placeholder="e.g., developers, small businesses, marketers"
+                        value={targetAudience}
+                        onChange={(e) => setTargetAudience(e.target.value)}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">
+                        Unique Selling Points
+                      </label>
+                      <Textarea
+                        placeholder="Comma-separated list of key benefits or features"
+                        value={uniqueSellingPoints}
+                        onChange={(e) => setUniqueSellingPoints(e.target.value)}
+                        rows={2}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">
+                        Keywords
+                      </label>
+                      <Input
+                        placeholder="e.g., AI, automation, productivity, innovation"
+                        value={keywords}
+                        onChange={(e) => setKeywords(e.target.value)}
+                      />
+                    </div>
+                  </>
+                )}
               </CardContent>
             </Card>
 
@@ -334,12 +475,16 @@ export default function PageGeneratorPage() {
               {isGenerating ? (
                 <>
                   <RefreshCw className="mr-2 h-5 w-5 animate-spin" />
-                  Generating Complete Page...
+                  {useAI && aiAvailable ? "AI Generating..." : "Generating..."}
                 </>
               ) : (
                 <>
-                  <Sparkles className="mr-2 h-5 w-5" />
-                  Generate Full Page
+                  {useAI && aiAvailable ? (
+                    <Brain className="mr-2 h-5 w-5" />
+                  ) : (
+                    <Sparkles className="mr-2 h-5 w-5" />
+                  )}
+                  Generate {useAI && aiAvailable ? "with AI" : "Full Page"}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </>
               )}
@@ -349,7 +494,9 @@ export default function PageGeneratorPage() {
               <div className="space-y-2">
                 <Progress value={generationProgress} className="h-2" />
                 <p className="text-sm text-muted-foreground text-center">
-                  Creating {selectedTemplateData?.sections} sections...
+                  {useAI && aiAvailable 
+                    ? `AI is creating ${selectedTemplateData?.sections} coherent sections...`
+                    : `Creating ${selectedTemplateData?.sections} sections...`}
                 </p>
               </div>
             )}
@@ -363,9 +510,24 @@ export default function PageGeneratorPage() {
                   <div>
                     <CardTitle>Live Preview</CardTitle>
                     <CardDescription>
-                      {generatedPage 
-                        ? `${generatedPage.sections.length} sections generated`
-                        : "Your complete page will appear here"}
+                      {generatedPage ? (
+                        <span className="flex items-center gap-2">
+                          {generationMetadata?.generationMethod === "ai" && (
+                            <Badge variant="outline" className="text-xs">
+                              <Brain className="h-3 w-3 mr-1" />
+                              AI Generated
+                            </Badge>
+                          )}
+                          {generatedPage.sections.length} sections generated
+                          {generationMetadata?.aiSectionsCount && (
+                            <span className="text-xs text-muted-foreground">
+                              ({generationMetadata.aiSectionsCount} with AI)
+                            </span>
+                          )}
+                        </span>
+                      ) : (
+                        "Your complete page will appear here"
+                      )}
                     </CardDescription>
                   </div>
                   {generatedPage && (

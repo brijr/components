@@ -91,6 +91,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
+                <SidebarMenuButton isActive={pathname === "/ai-generator"} asChild>
+                  <Link href="/ai-generator">
+                    <Sparkles />
+                    <span>AI Generator</span>
+                    <SidebarMenuBadge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-600">AI</SidebarMenuBadge>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
                 <SidebarMenuButton isActive={pathname === "/page-generator"} asChild>
                   <Link href="/page-generator">
                     <FileText />
