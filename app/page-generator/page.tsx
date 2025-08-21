@@ -15,7 +15,6 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
 import { 
-  Sparkles,
   Download,
   Save,
   RefreshCw,
@@ -26,34 +25,34 @@ import {
   ArrowRight,
   Brain,
   Zap,
-  AlertCircle,
   ChevronDown,
   Wand2,
   Lightbulb,
   Copy,
-  Check
+  Check,
+  Package
 } from "lucide-react";
 
 // Example prompts for inspiration
 const examplePrompts = [
   {
-    title: "SaaS Product",
-    prompt: "Create a landing page for DataFlow, an AI-powered analytics platform that helps businesses make data-driven decisions. Include features, pricing, and testimonials.",
+    title: "Physical Product",
+    prompt: "I'm selling eco-friendly water bottles made from recycled ocean plastic. They keep drinks cold for 24 hours and help clean the oceans. Target audience is environmentally conscious consumers.",
+    icon: Package,
+  },
+  {
+    title: "Sports Gear",
+    prompt: "Selling grip socks for surfing that help surfers stick to their boards better. Made with special rubber grip technology, perfect for all water sports. Fun and energetic tone.",
     icon: Zap,
   },
   {
-    title: "E-commerce",
-    prompt: "Build a product page for GreenLeaf, an organic tea shop. Show our premium tea collection, customer reviews, and special offers. Casual and inviting tone.",
-    icon: FileText,
-  },
-  {
-    title: "Agency",
-    prompt: "Design a professional website for Creative Studios, a digital marketing agency. Highlight our services, portfolio, and client success stories.",
+    title: "SaaS Product",
+    prompt: "Create a landing page for DataFlow, an AI-powered analytics platform that helps businesses make data-driven decisions. Include features, pricing, and testimonials.",
     icon: Wand2,
   },
   {
-    title: "Startup",
-    prompt: "Launch page for FitTrack, a new fitness app that uses AI to create personalized workout plans. Bold and energetic tone with early access signup.",
+    title: "Online Course",
+    prompt: "I'm offering an online photography course for beginners. 8-week program covering camera basics, composition, and editing. Includes lifetime access and community support.",
     icon: Lightbulb,
   },
 ];
@@ -222,7 +221,14 @@ export default function PageGeneratorPage() {
               <CardContent className="space-y-4">
                 <div>
                   <Textarea
-                    placeholder="Example: Create a landing page for TechFlow, an AI-powered project management tool for developers. We help teams ship faster with intelligent automation. Professional tone, include pricing and testimonials."
+                    placeholder="Describe your product or service in natural language. Be specific!
+
+Examples:
+• I'm selling [product] that helps [target audience] to [benefit]
+• Create a landing page for [company], we offer [service] for [industry]
+• Build a website for my [business type] that specializes in [specialty]
+
+Tips: Mention your product features, target audience, desired tone, and any specific sections you want (pricing, testimonials, etc.)"
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
                     rows={6}
@@ -531,12 +537,16 @@ export default function PageGeneratorPage() {
                       <div className="pt-4">
                         <p className="text-sm font-medium mb-3">AI understands:</p>
                         <div className="flex flex-wrap gap-2 justify-center">
-                          <Badge variant="outline">Company Names</Badge>
-                          <Badge variant="outline">Industries</Badge>
-                          <Badge variant="outline">Features</Badge>
-                          <Badge variant="outline">Tone & Style</Badge>
+                          <Badge variant="outline">Products & Services</Badge>
+                          <Badge variant="outline">Features & Benefits</Badge>
                           <Badge variant="outline">Target Audience</Badge>
+                          <Badge variant="outline">Industries</Badge>
+                          <Badge variant="outline">Tone & Style</Badge>
+                          <Badge variant="outline">Pricing & Testimonials</Badge>
                         </div>
+                        <p className="text-xs text-muted-foreground mt-3">
+                          The more specific you are, the better the results!
+                        </p>
                       </div>
                     </div>
                   </div>

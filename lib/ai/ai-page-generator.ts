@@ -616,7 +616,7 @@ export class AIPageGenerator {
           industry: context.industry || "technology",
           tone: context.tone || "professional",
           targetAudience: context.targetAudience,
-          additionalContext: prompt, // Use full prompt as context
+          additionalContext: `${prompt}\n\nProduct/Company: ${context.productName || context.companyName || "Not specified"}\nIndustry: ${context.industry || "Not specified"}\nKey features/benefits: ${context.features?.join(", ") || "Not specified"}`, // Enhanced context
           keywords: context.keywords,
           uniqueSellingPoints: context.features,
         },

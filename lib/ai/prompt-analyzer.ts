@@ -32,9 +32,14 @@ export type ExtractedContext = z.infer<typeof ExtractedContextSchema>;
  */
 const patterns = {
   companyName: /(?:for|called|named|^\s*)([A-Z][A-Za-z0-9]+(?:\s+[A-Z][A-Za-z0-9]+)*)/,
+  productName: /(?:selling|sell|offering|offer|providing|provide)\s+(?:a |an |the |our |my )?([\w\s]+?)(?:\s+for|\s+to|\s+that|\.|,|$)/i,
+  sellingIntent: /\b(selling|sell|shop|buy|purchase|order|cart|checkout|product|merchandise|store)\b/i,
   industry: {
     software: /\b(software|saas|app|application|platform|tool|api|sdk)\b/i,
-    ecommerce: /\b(ecommerce|e-commerce|shop|store|retail|product|merchandise)\b/i,
+    ecommerce: /\b(ecommerce|e-commerce|shop|store|retail|product|merchandise|selling|marketplace)\b/i,
+    sports: /\b(sports|sport|fitness|gym|athletic|exercise|surf|surfing|swim|running|cycling|yoga)\b/i,
+    outdoor: /\b(outdoor|camping|hiking|climbing|adventure|nature|gear|equipment)\b/i,
+    fashion: /\b(fashion|clothing|apparel|wear|outfit|style|accessories|shoes|socks)\b/i,
     agency: /\b(agency|consulting|services|freelance|studio|creative)\b/i,
     education: /\b(education|course|learning|training|academy|school|tutorial)\b/i,
     healthcare: /\b(health|medical|clinic|hospital|wellness|therapy|care)\b/i,
@@ -75,17 +80,47 @@ export class PromptAnalyzer {
   analyze(prompt: string): ExtractedContext {
     const context: ExtractedContext = {};
 
-    // Extract company/product name
-    const companyMatch = prompt.match(patterns.companyName);
-    if (companyMatch) {
-      context.companyName = companyMatch[1].trim();
+    // Check for selling intent first
+    const isSellingProduct = patterns.sellingIntent.test(prompt);
+    
+    // Extract product name if selling
+    if (isSellingProduct) {
+      const productMatch = prompt.match(patterns.productName);
+      if (productMatch) {
+        context.productName = productMatch[1].trim();
+      }
     }
 
-    // Detect industry
+    // Extract company name if no product name
+    if (!context.productName) {
+      const companyMatch = prompt.match(patterns.companyName);
+      if (companyMatch) {
+        context.companyName = companyMatch[1].trim();
+      }
+    }
+
+    // Detect industry - check multiple patterns and prioritize e-commerce for selling
+    const industryMatches: string[] = [];
     for (const [industry, pattern] of Object.entries(patterns.industry)) {
       if (pattern.test(prompt)) {
-        context.industry = industry;
-        break;
+        industryMatches.push(industry);
+      }
+    }
+    
+    // If selling product, prioritize e-commerce
+    if (isSellingProduct && industryMatches.includes("ecommerce")) {
+      context.industry = "ecommerce";
+    } else if (isSellingProduct && !industryMatches.includes("ecommerce")) {
+      // Add e-commerce as industry for selling intent
+      context.industry = "ecommerce";
+    } else if (industryMatches.length > 0) {
+      // For sports/outdoor products, prefer those industries
+      if (industryMatches.includes("sports")) {
+        context.industry = "sports";
+      } else if (industryMatches.includes("outdoor")) {
+        context.industry = "outdoor";
+      } else {
+        context.industry = industryMatches[0];
       }
     }
 
@@ -115,7 +150,7 @@ export class PromptAnalyzer {
     context.includeTestimonials = patterns.testimonials.test(prompt);
 
     // Suggest template based on content
-    context.suggestedTemplate = this.suggestTemplate(prompt, context);
+    context.suggestedTemplate = this.suggestTemplate(prompt, context, isSellingProduct);
 
     // Determine number of sections
     context.numberOfSections = this.determineNumberOfSections(prompt, context);
@@ -166,6 +201,17 @@ export class PromptAnalyzer {
           }
         }
       }
+      
+      // Look for purpose statements (for X, to Y)
+      const purposeMatch = sentence.match(/\b(?:for|to)\s+([^.!?,]+)/gi);
+      if (purposeMatch) {
+        purposeMatch.forEach(match => {
+          const purpose = match.replace(/^(for|to)\s+/i, "").trim();
+          if (purpose.length > 5 && purpose.length < 100 && !purpose.includes("landing page")) {
+            features.push(purpose);
+          }
+        });
+      }
     }
 
     // Remove duplicates and limit to 6 features
@@ -198,7 +244,12 @@ export class PromptAnalyzer {
   /**
    * Suggest a template based on prompt content
    */
-  private suggestTemplate(prompt: string, context: ExtractedContext): string {
+  private suggestTemplate(prompt: string, context: ExtractedContext, isSellingProduct: boolean): string {
+    // If selling a product, use e-commerce template
+    if (isSellingProduct || context.industry === "ecommerce") {
+      return "ecommerce-landing";
+    }
+    
     let bestMatch = "saas-landing"; // default
     let highestScore = 0;
 
@@ -287,14 +338,23 @@ export class PromptAnalyzer {
   enhance(context: ExtractedContext): ExtractedContext {
     const enhanced = { ...context };
 
-    // Ensure we have a company name
+    // Ensure we have a company or product name
     if (!enhanced.companyName && !enhanced.productName) {
-      enhanced.companyName = "Your Company";
+      if (enhanced.industry === "ecommerce") {
+        enhanced.productName = "Your Product";
+      } else {
+        enhanced.companyName = "Your Company";
+      }
     }
 
     // Default industry if not detected
     if (!enhanced.industry) {
       enhanced.industry = "technology";
+    }
+    
+    // For e-commerce, ensure pricing is included
+    if (enhanced.industry === "ecommerce" || enhanced.productName) {
+      enhanced.includePricing = true;
     }
 
     // Default tone
