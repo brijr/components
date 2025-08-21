@@ -2,78 +2,63 @@ import { ComponentWrapper } from "@/components/component-wrapper";
 import { registry } from "@/registry";
 import { notFound } from "next/navigation";
 
-const componentTypes = [
-  "hero",
-  "feature",
-  "cta",
-  "pricing",
-  "testimonial",
-  "footer",
-] as const;
+const validTypes = ["hero", "feature", "cta", "pricing", "testimonial", "footer"];
 
-type ComponentType = (typeof componentTypes)[number];
+interface TypePageProps {
+  params: {
+    type: string;
+  };
+}
 
-const typeLabels: Record<ComponentType, string> = {
-  hero: "Hero Sections",
-  feature: "Feature Sections",
-  cta: "Call to Action",
-  pricing: "Pricing Tables",
-  testimonial: "Testimonials",
-  footer: "Footer Sections",
-};
+export default function TypePage({ params }: TypePageProps) {
+  const { type } = params;
 
-export default async function TypePage({
-  params,
-}: {
-  params: Promise<{ type: string }>;
-}) {
-  const { type } = await params;
-  const componentType = type as ComponentType;
-
-  if (!componentTypes.includes(componentType)) {
+  if (!validTypes.includes(type)) {
     notFound();
   }
 
-  const components = registry.filter(
-    (component) => component.type === componentType,
-  );
-  const label = typeLabels[componentType];
+  const componentsOfType = registry.filter((component) => component.type === type);
+
+  if (componentsOfType.length === 0) {
+    return (
+      <main>
+        <div className="px-4 py-6">
+          <h1 className="text-center font-mono text-sm">
+            components.work / {type}
+          </h1>
+          <p className="text-center text-muted-foreground mt-4">
+            No {type} components found.
+          </p>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main>
       <div className="px-4 py-6">
         <h1 className="text-center font-mono text-sm">
-          components.work / {componentType}
+          components.work / {type}
         </h1>
       </div>
       <div className="grid gap-8 px-4">
-        {components.map(({ name, slug, Component, props, filePath }) => (
+        {componentsOfType.map(({ name, slug, Component, props, filePath }) => (
           <ComponentWrapper key={slug} name={name} filePath={filePath}>
             <Component {...(props || {})} />
           </ComponentWrapper>
         ))}
       </div>
-      {components.length === 0 && (
-        <div className="py-12 text-center">
-          <p className="text-muted-foreground">
-            No {label.toLowerCase()} components found.
-          </p>
-        </div>
-      )}
       <div className="py-6 text-center">
         <p className="text-muted-foreground font-mono text-sm">
-          created by{" "}
-          <a href="https://bridger.to" className="text-foreground">
-            Bridger Tower
-          </a>
+          {componentsOfType.length} {type} component{componentsOfType.length !== 1 ? 's' : ''}
         </p>
       </div>
     </main>
   );
 }
 
-export function generateStaticParams() {
-  return componentTypes.map((type) => ({
+export async function generateStaticParams() {
+  return validTypes.map((type) => ({
     type,
   }));
 }

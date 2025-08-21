@@ -121,16 +121,20 @@ export class AIComponentGenerator {
       let generatedBy: "claude" | "fallback" = "claude";
 
       if (this.anthropic) {
+        console.log("🤖 Using Claude AI for generation");
+        console.log("🔧 Context:", context);
         try {
           props = await this.generateWithClaude(definition, context, options);
+          console.log("✅ Claude generation successful");
           this.metrics.claudeGenerations++;
         } catch (error) {
-          console.warn("Claude generation failed, using fallback:", error);
+          console.warn("❌ Claude generation failed, using fallback:", error);
           props = this.generateWithFallback(definition, context);
           generatedBy = "fallback";
           this.metrics.fallbackGenerations++;
         }
       } else {
+        console.log("⚠️ No Anthropic API key found, using fallback generation");
         props = this.generateWithFallback(definition, context);
         generatedBy = "fallback";
         this.metrics.fallbackGenerations++;
@@ -309,15 +313,43 @@ Always return valid JSON that exactly matches the provided schema.`;
     definition: ComponentDefinition,
     context: GenerationContext
   ): any {
+    console.log("🔄 Generating fallback content for:", definition.slug);
+    console.log("📝 Using context:", context);
+
     // Start with default template
     let props = { ...definition.templates.default };
 
-    // Apply industry variations
+    // Priority 1: Product-specific context (highest priority)
+    if (context.uniqueSellingPoints && context.uniqueSellingPoints.length > 0) {
+      console.log("🎯 Using unique selling points:", context.uniqueSellingPoints);
+      
+      // For feature components, use the USPs as features
+      if (definition.category === "feature" && definition.slug.includes("feature-three-cards")) {
+        props = this.generateProductFeatures(context, definition);
+        console.log("✨ Generated product-specific features:", props);
+        return this.personalizeProps(props, context);
+      }
+    }
+
+    // Priority 2: Check if we have a product name and selling intent (generate custom content)
+    if (context.companyName && context.additionalContext && 
+        context.additionalContext.toLowerCase().includes("selling")) {
+      console.log("🛍️ Detected product selling context, generating custom content");
+      
+      if (definition.category === "feature" && definition.slug.includes("feature-three-cards")) {
+        props = this.generateProductFeaturesFromContext(context, definition);
+        console.log("🎨 Generated custom product features:", props);
+        return this.personalizeProps(props, context);
+      }
+    }
+
+    // Priority 3: Industry variations (lower priority, only if no product context)
     if (context.industry && definition.aiHints.industryVariations?.[context.industry]) {
+      console.log("🏭 Using industry variations for:", context.industry);
       props = { ...props, ...definition.aiHints.industryVariations[context.industry] };
     }
 
-    // Apply tone variations
+    // Priority 4: Apply tone variations
     if (context.tone && definition.aiHints.toneVariations?.[context.tone]) {
       props = { ...props, ...definition.aiHints.toneVariations[context.tone] };
     }
@@ -325,7 +357,116 @@ Always return valid JSON that exactly matches the provided schema.`;
     // Customize with company name
     props = this.personalizeProps(props, context);
 
+    console.log("📄 Generated fallback props:", props);
     return props;
+  }
+
+  /**
+   * Generate product-specific features from context
+   */
+  private generateProductFeatures(context: GenerationContext, definition: ComponentDefinition): any {
+    const productName = context.companyName || "Product";
+    const features = context.uniqueSellingPoints || [];
+    
+    // Create features based on USPs
+    const generatedFeatures = features.slice(0, 3).map((feature, index) => {
+      const icons = ["Zap", "Shield", "Star"];
+      return {
+        icon: icons[index] || "CheckCircle",
+        title: feature,
+        description: `${productName} offers ${feature.toLowerCase()} to give you the best experience possible.`
+      };
+    });
+
+    // Fill remaining slots if needed
+    while (generatedFeatures.length < 3) {
+      const defaultFeatures = [
+        { icon: "Heart", title: "Premium Quality", description: `${productName} is built with the highest quality materials.` },
+        { icon: "Users", title: "Customer Focused", description: `${productName} is designed with customers in mind.` },
+        { icon: "Award", title: "Proven Results", description: `${productName} delivers results you can count on.` }
+      ];
+      const nextFeature = defaultFeatures[generatedFeatures.length];
+      if (nextFeature) generatedFeatures.push(nextFeature);
+    }
+
+    return {
+      headline: `Why Choose ${productName}?`,
+      subheadline: `Everything you need for the best experience`,
+      features: generatedFeatures
+    };
+  }
+
+  /**
+   * Generate product features by analyzing context text intelligently
+   */
+  private generateProductFeaturesFromContext(context: GenerationContext, definition: ComponentDefinition): any {
+    const productName = context.companyName || "Product";
+    const contextText = context.additionalContext || "";
+    
+    console.log("🔍 Analyzing context for product features:", contextText);
+
+    // Extract product details from context
+    const productMatch = contextText.match(/selling\s+([^.]+?)(?:\s+(?:for|that|to)|\.|\,|$)/i);
+    const product = productMatch ? productMatch[1].trim() : productName;
+    
+    // Extract intended use/benefit
+    const benefitMatch = contextText.match(/(?:for|that|to)\s+([^.]+)/i);
+    const benefit = benefitMatch ? benefitMatch[1].trim() : "better performance";
+    
+    console.log("🎯 Extracted product:", product);
+    console.log("💡 Extracted benefit:", benefit);
+
+    // Generate context-aware features
+    let features = [];
+
+    // Feature 1: Core product benefit
+    features.push({
+      icon: "Target",
+      title: "Perfect for " + benefit.charAt(0).toUpperCase() + benefit.slice(1),
+      description: `${product} is specifically designed to help with ${benefit}.`
+    });
+
+    // Feature 2: Quality/performance based on product type
+    if (product.toLowerCase().includes("sock")) {
+      features.push({
+        icon: "Shield",
+        title: "Durable & Comfortable",
+        description: `Made with high-quality materials that provide comfort and durability for ${benefit}.`
+      });
+    } else {
+      features.push({
+        icon: "Zap",
+        title: "High Performance",
+        description: `Built for reliable performance that you can count on.`
+      });
+    }
+
+    // Feature 3: User-focused benefit
+    if (benefit.includes("stick")) {
+      features.push({
+        icon: "Lock",
+        title: "Superior Grip",
+        description: "Advanced grip technology keeps you secure and confident."
+      });
+    } else if (benefit.includes("surf")) {
+      features.push({
+        icon: "Waves",
+        title: "Water Ready",
+        description: "Designed to perform in wet conditions and water sports."
+      });
+    } else {
+      features.push({
+        icon: "Star",
+        title: "Proven Results",
+        description: `Join thousands who have improved their ${benefit.replace("better ", "")}.`
+      });
+    }
+
+    return {
+      headline: `Why Choose ${product}?`,
+      subheadline: `The perfect solution for ${benefit}`,
+      features: features
+    };
   }
 
   /**

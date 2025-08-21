@@ -69,7 +69,7 @@ export const EnhancedCanvas = () => {
 
   if (sections.length === 0) {
     return (
-      <div className="flex-1 flex items-center justify-center bg-muted/30">
+      <div className="h-full flex items-center justify-center bg-muted/30">
         <div className="text-center space-y-4">
           <div className="w-20 h-20 mx-auto bg-muted rounded-full flex items-center justify-center">
             <Plus className="h-10 w-10 text-muted-foreground" />
@@ -77,27 +77,16 @@ export const EnhancedCanvas = () => {
           <div>
             <h3 className="text-lg font-semibold mb-2">Start Building Your Page</h3>
             <p className="text-muted-foreground mb-4 max-w-sm">
-              Add components from the sidebar or use AI to generate a complete page
+              Drag and drop components from the sidebar to build your page manually
             </p>
-            <div className="flex gap-2 justify-center">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  const store = useBuilderStore.getState();
-                  store.setAiPanelOpen(true);
-                }}
-              >
-                Generate with AI
-              </Button>
-              <Button
-                onClick={() => {
-                  // Add a default hero section
-                  addSection("hero-minimal");
-                }}
-              >
-                Add First Section
-              </Button>
-            </div>
+            <Button
+              onClick={() => {
+                // Add a default hero section
+                addSection("hero-minimal");
+              }}
+            >
+              Add First Section
+            </Button>
           </div>
         </div>
       </div>
@@ -105,7 +94,7 @@ export const EnhancedCanvas = () => {
   }
 
   return (
-    <div className="flex-1 bg-muted/30 overflow-auto">
+    <div className="flex-1 bg-muted/30 overflow-auto h-full">
       <div className={cn(
         "min-h-full bg-background transition-all duration-300",
         deviceClasses[previewMode]
@@ -250,18 +239,9 @@ export const EnhancedCanvas = () => {
         {/* Add Section Button */}
         {viewMode === "edit" && (
           <div className="p-8 flex justify-center">
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => {
-                const store = useBuilderStore.getState();
-                store.setAiPanelOpen(true);
-              }}
-              className="gap-2"
-            >
-              <Plus className="h-4 w-4" />
-              Add Section
-            </Button>
+            <p className="text-sm text-muted-foreground">
+              Drag components from the sidebar to add more sections
+            </p>
           </div>
         )}
       </div>

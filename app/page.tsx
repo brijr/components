@@ -1,29 +1,22 @@
-import { ComponentWrapper } from "@/components/component-wrapper";
-import { registry } from "@/registry";
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    // Redirect to the Page Generator as the main entry point
+    router.replace("/page-generator");
+  }, [router]);
+
   return (
-    <main>
-      <div className="px-4 py-6">
-        <h1 className="text-center font-mono text-sm">
-          components.work / all components
-        </h1>
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="text-center">
+        <h1 className="text-2xl font-bold mb-2">Components</h1>
+        <p className="text-muted-foreground">Redirecting to Page Generator...</p>
       </div>
-      <div className="grid gap-8 px-4">
-        {registry.map(({ name, slug, Component, props, filePath }) => (
-          <ComponentWrapper key={slug} name={name} filePath={filePath}>
-            <Component {...(props || {})} />
-          </ComponentWrapper>
-        ))}
-      </div>
-      <div className="py-6 text-center">
-        <p className="text-muted-foreground font-mono text-sm">
-          created by{" "}
-          <a href="https://bridger.to" className="text-foreground">
-            Bridger Tower
-          </a>
-        </p>
-      </div>
-    </main>
+    </div>
   );
 }

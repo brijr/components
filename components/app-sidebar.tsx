@@ -4,15 +4,14 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  Home,
+  Brain,
+  Hammer,
   Layout,
   Sparkles,
   MousePointer,
   DollarSign,
   MessageSquare,
   Menu,
-  Brain,
-  Wand2,
 } from "lucide-react";
 
 import {
@@ -53,7 +52,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <Link href="/">
+              <Link href="/page-generator">
                 <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
                   <span className="text-lg font-bold">C</span>
                 </div>
@@ -70,40 +69,24 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton isActive={pathname === "/"} asChild>
-                  <Link href="/">
-                    <Home />
-                    <span>All Components</span>
-                    <SidebarMenuBadge>{registry.length}</SidebarMenuBadge>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-        <SidebarGroup>
-          <SidebarGroupLabel>AI Tools</SidebarGroupLabel>
+          <SidebarGroupLabel>Tools</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton isActive={pathname === "/page-generator"} asChild>
                   <Link href="/page-generator">
                     <Brain />
-                    <span>Page Generator</span>
-                    <SidebarMenuBadge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-600">Prompt</SidebarMenuBadge>
+                    <span>AI Page Generator</span>
+                    <SidebarMenuBadge className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-600">AI</SidebarMenuBadge>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton isActive={pathname === "/ai-generator"} asChild>
-                  <Link href="/ai-generator">
-                    <Wand2 />
-                    <span>Component AI</span>
-                    <SidebarMenuBadge>Single</SidebarMenuBadge>
+                <SidebarMenuButton isActive={pathname === "/builder-v2"} asChild>
+                  <Link href="/builder-v2">
+                    <Hammer />
+                    <span>Page Builder</span>
+                    <SidebarMenuBadge>Manual</SidebarMenuBadge>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
